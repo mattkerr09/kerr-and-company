@@ -1,0 +1,5 @@
+# kerrandcompanyholdings.com — allow all crawlers, including AI search bots
+User-agent: *
+Allow: /
+
+Sitemap: https://kerrandcompanyholdings.com/sitemap.xml
