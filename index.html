@@ -57,9 +57,9 @@
       --ink-2: #c6c4bd;
       --ink-3: #97958d;
       --ink-4: #66655e;
-      --accent: #8b7bff;
-      --accent-2: #a594ff;
-      --accent-soft: rgba(139,123,255,0.14);
+      --accent: #4f8bff;
+      --accent-2: #86b0ff;
+      --accent-soft: rgba(79,139,255,0.14);
       --gold: #e9b872;
       --green: #5fd38d;
       --green-soft: rgba(95,211,141,0.12);
@@ -80,7 +80,7 @@
 
     /* ambient glows */
     .glow { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.55; }
-    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(139,123,255,0.28), transparent 70%); }
+    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(79,139,255,0.28), transparent 70%); }
     .glow-2 { bottom: -300px; left: -200px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(233,184,114,0.10), transparent 70%); }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); position: relative; z-index: 1; }
@@ -97,8 +97,8 @@
     .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
     .brand-mark {
       width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(140deg, var(--accent), #6d5cf0); color: #fff;
-      font-family: var(--serif); font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(139,123,255,0.4);
+      background: linear-gradient(140deg, var(--accent), #2f6ae0); color: #fff;
+      font-family: var(--serif); font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(79,139,255,0.4);
     }
     .brand-name { font-family: var(--serif); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; }
     .brand-name em { font-style: normal; color: var(--ink-3); font-weight: 400; font-family: var(--sans); font-size: 0.78rem; }
@@ -111,7 +111,7 @@
       background: var(--accent); padding: 0.5rem 1.1rem; border-radius: 8px; white-space: nowrap;
       transition: background .15s, transform .15s, box-shadow .15s;
     }
-    .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(139,123,255,0.4); }
+    .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(79,139,255,0.4); }
     @media (max-width: 720px){ .nav-links { display: none; } }
 
     /* HERO */
@@ -133,7 +133,7 @@
     .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; transition: all .15s; border: 1px solid transparent; cursor: pointer; }
     .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(139,123,255,0.35); }
+    .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(79,139,255,0.35); }
     .btn-ghost { background: transparent; color: var(--ink-2); border-color: var(--line-2); }
     .btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-2px); }
 
@@ -191,7 +191,7 @@
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; }
     .svc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.7rem; transition: border-color .2s, transform .2s; }
     .svc:hover { border-color: var(--line-2); transform: translateY(-3px); }
-    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(139,123,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.1rem; }
+    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(79,139,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.1rem; }
     .svc h3 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
     .svc p { font-size: 0.9rem; color: var(--ink-3); line-height: 1.65; }
 
@@ -209,7 +209,7 @@
     /* CONTACT */
     #contact { border-top: 1px solid var(--line); }
     .contact-card { background: linear-gradient(160deg, var(--surface), var(--bg-2)); border: 1px solid var(--line-2); border-radius: 22px; padding: clamp(2.5rem, 6vw, 4.5rem); text-align: center; position: relative; overflow: hidden; }
-    .contact-card::before { content:''; position: absolute; top: -140px; left: 50%; transform: translateX(-50%); width: 460px; height: 300px; background: radial-gradient(circle, rgba(139,123,255,0.22), transparent 70%); pointer-events: none; }
+    .contact-card::before { content:''; position: absolute; top: -140px; left: 50%; transform: translateX(-50%); width: 460px; height: 300px; background: radial-gradient(circle, rgba(79,139,255,0.22), transparent 70%); pointer-events: none; }
     .contact-card h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; position: relative; }
     .contact-card h2 em { font-style: italic; color: var(--accent-2); }
     .contact-card p { color: var(--ink-3); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; position: relative; }
@@ -502,7 +502,7 @@
       sc.setAttribute('tabindex','0');
     });
 
-    console.log("%cKerr & Company — AI Venture Studio","font:600 15px ui-sans-serif;color:#8b7bff");
+    console.log("%cKerr & Company — AI Venture Studio","font:600 15px ui-sans-serif;color:#4f8bff");
     console.log("%cWe build and ship real AI products. Want yours built? mattkerr09@gmail.com","color:#97958d");
   </script>
 </body>
