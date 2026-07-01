@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kerr &amp; Company — AI Venture Studio</title>
+  <meta name="description" content="Kerr & Company is an AI venture studio. We build and ship real AI products — notarized macOS apps, live SaaS, and automation frameworks — and take on a few select consulting builds each year. Outlier · Crisp · ProposalAI · Jarvis Factory.">
+  <meta name="author" content="Kerr & Company">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <meta property="og:title" content="Kerr &amp; Company — AI Venture Studio">
+  <meta property="og:description" content="We build and ship real AI products — and help a few companies do the same.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kerrandcompanyholdings.com">
+  <meta property="og:image" content="https://kerrandcompanyholdings.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kerr &amp; Company — AI Venture Studio">
+  <meta name="twitter:description" content="We build and ship real AI products — and help a few companies do the same.">
+  <meta name="twitter:image" content="https://kerrandcompanyholdings.com/assets/og-card.png">
+  <link rel="canonical" href="https://kerrandcompanyholdings.com">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kerr & Company",
+    "alternateName": "Kerr & Company Holdings",
+    "description": "AI venture studio that builds and ships real AI products and takes select consulting builds.",
+    "url": "https://kerrandcompanyholdings.com",
+    "email": "mattkerr09@gmail.com",
+    "founder": { "@type": "Person", "name": "Matthew Kerr" },
+    "foundingDate": "2021",
+    "address": { "@type": "PostalAddress", "addressLocality": "Grand Rapids", "addressRegion": "MI", "addressCountry": "US" }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-2: #0f0f17;
+      --surface: #15151f;
+      --surface-2: #1c1c28;
+      --line: #24242f;
+      --line-2: #32323f;
+      --ink: #f3f1ec;
+      --ink-2: #c6c4bd;
+      --ink-3: #97958d;
+      --ink-4: #66655e;
+      --accent: #8b7bff;
+      --accent-2: #a594ff;
+      --accent-soft: rgba(139,123,255,0.14);
+      --gold: #e9b872;
+      --green: #5fd38d;
+      --green-soft: rgba(95,211,141,0.12);
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --serif: 'Fraunces', Georgia, serif;
+      --mono: 'JetBrains Mono', monospace;
+      --maxw: 1120px;
+      --shadow: 0 2px 4px rgba(0,0,0,0.4), 0 24px 60px rgba(0,0,0,0.55);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink); font-family: var(--sans);
+      line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: #fff; }
+    a { color: inherit; }
+
+    /* ambient glows */
+    .glow { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.55; }
+    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(139,123,255,0.28), transparent 70%); }
+    .glow-2 { bottom: -300px; left: -200px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(233,184,114,0.10), transparent 70%); }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50; height: 66px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+      background: rgba(10,10,15,0.72); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line); transition: transform .35s ease;
+    }
+    nav.hidden { transform: translateY(-100%); }
+    .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .brand-mark {
+      width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(140deg, var(--accent), #6d5cf0); color: #fff;
+      font-family: var(--serif); font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(139,123,255,0.4);
+    }
+    .brand-name { font-family: var(--serif); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; }
+    .brand-name em { font-style: normal; color: var(--ink-3); font-weight: 400; font-family: var(--sans); font-size: 0.78rem; }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links { display: flex; gap: 1.7rem; list-style: none; }
+    .nav-links a { font-size: 0.86rem; color: var(--ink-3); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+    .nav-cta {
+      font-size: 0.82rem; font-weight: 600; color: #fff; text-decoration: none;
+      background: var(--accent); padding: 0.5rem 1.1rem; border-radius: 8px; white-space: nowrap;
+      transition: background .15s, transform .15s, box-shadow .15s;
+    }
+    .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(139,123,255,0.4); }
+    @media (max-width: 720px){ .nav-links { display: none; } }
+
+    /* HERO */
+    .hero { padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono);
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2);
+      margin-bottom: 1.6rem;
+    }
+    .eyebrow::before { content:''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 300; font-size: clamp(2.7rem, 7vw, 5.2rem);
+      line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.6rem; max-width: 15ch;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent-2); }
+    .hero-sub { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--ink-2); max-width: 640px; line-height: 1.6; margin-bottom: 2.4rem; }
+    .hero-sub strong { color: var(--ink); font-weight: 600; }
+    .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; transition: all .15s; border: 1px solid transparent; cursor: pointer; }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(139,123,255,0.35); }
+    .btn-ghost { background: transparent; color: var(--ink-2); border-color: var(--line-2); }
+    .btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-2px); }
+
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
+    @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
+    .stat { background: var(--bg-2); padding: 1.7rem 1.3rem; }
+    .stat-num { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.5vw, 2.4rem); letter-spacing: -0.02em; line-height: 1; }
+    .stat-num .accent { color: var(--accent-2); }
+    .stat-label { font-size: 0.74rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.55rem; }
+
+    /* SECTIONS */
+    section { padding: clamp(3.5rem, 8vw, 6rem) 0; position: relative; z-index: 1; }
+    .section-head { max-width: 640px; margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+    .section-title { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.5vw, 3rem); letter-spacing: -0.025em; line-height: 1.1; }
+    .section-intro { color: var(--ink-3); margin-top: 1rem; font-size: 1.05rem; line-height: 1.7; }
+
+    /* PRODUCTS */
+    #work { border-top: 1px solid var(--line); }
+    .product { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding: clamp(2.5rem,5vw,4rem) 0; border-bottom: 1px solid var(--line); }
+    .product:nth-child(even) .product-visual { order: 2; }
+    @media (max-width: 860px){ .product { grid-template-columns: 1fr; gap: 1.8rem; } .product:nth-child(even) .product-visual { order: 0; } }
+    .product-num { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-4); letter-spacing: 0.1em; margin-bottom: 0.7rem; }
+    .product-title-row { display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+    .product-name { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; letter-spacing: -0.02em; }
+    .product-badge { font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--green); background: var(--green-soft); border: 1px solid rgba(95,211,141,0.28); padding: 0.2rem 0.55rem; border-radius: 100px; }
+    .product-year { font-size: 0.8rem; color: var(--ink-4); margin: 0.35rem 0 1rem; }
+    .product-desc { font-size: 0.96rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1.3rem; }
+    .product-desc strong { color: var(--ink); font-weight: 600; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
+    .tag { font-size: 0.72rem; font-weight: 500; padding: 0.26rem 0.65rem; border-radius: 6px; background: var(--surface-2); color: var(--ink-3); border: 1px solid var(--line); }
+    .product-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 600; color: var(--accent-2); text-decoration: none; }
+    .product-link:hover { gap: 0.65rem; }
+
+    /* mockups */
+    .mockup { position: relative; background: var(--surface); border: 1px solid var(--line-2); border-radius: 13px; overflow: hidden; box-shadow: var(--shadow); }
+    .mockup-bar { height: 34px; background: var(--surface-2); border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 0.85rem; gap: 0.42rem; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-bar span { margin: 0 auto; font-family: var(--mono); font-size: 0.66rem; color: var(--ink-4); }
+    .mockup-scroll { height: 320px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+    .mockup-scroll::-webkit-scrollbar { width: 8px; }
+    .mockup-scroll::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 10px; }
+    .mockup-scroll img { width: 100%; height: auto; display: block; }
+    .scroll-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 0.66rem; font-weight: 600; color: #fff; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 0.28rem 0.75rem; border-radius: 100px; pointer-events: none; transition: opacity .3s; z-index: 3; white-space: nowrap; }
+    .mockup.scrolled .scroll-hint { opacity: 0; }
+    /* terminal (Jarvis) */
+    .term { background: #0c0b12; border: 1px solid var(--line-2); border-radius: 13px; overflow: hidden; box-shadow: var(--shadow); }
+    .term-bar { height: 34px; background: #14131c; display: flex; align-items: center; padding: 0 0.85rem; gap: 0.42rem; border-bottom: 1px solid var(--line-2); }
+    .term-bar span { margin: 0 auto; font-family: var(--mono); font-size: 0.66rem; color: var(--ink-4); }
+    .term-body { padding: 1.2rem 1.3rem; font-family: var(--mono); font-size: 0.8rem; line-height: 1.9; color: #cdd0d8; }
+    .term-body .c { color: var(--ink-4); } .term-body .g { color: var(--green); } .term-body .p { color: var(--accent-2); } .term-body .y { color: var(--gold); }
+
+    /* SERVICES */
+    #services { border-top: 1px solid var(--line); background: var(--bg-2); }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; }
+    .svc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.7rem; transition: border-color .2s, transform .2s; }
+    .svc:hover { border-color: var(--line-2); transform: translateY(-3px); }
+    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(139,123,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.1rem; }
+    .svc h3 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .svc p { font-size: 0.9rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* APPROACH */
+    .appr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem); align-items: start; }
+    @media (max-width: 760px){ .appr-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .appr-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.2rem; }
+    .appr-body p strong { color: var(--ink); font-weight: 600; }
+    .appr-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .appr-item { display: flex; gap: 0.9rem; padding: 1.1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    .appr-item .n { font-family: var(--mono); font-size: 0.82rem; color: var(--accent-2); flex-shrink: 0; }
+    .appr-item h4 { font-size: 0.94rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .appr-item p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.55; }
+
+    /* CONTACT */
+    #contact { border-top: 1px solid var(--line); }
+    .contact-card { background: linear-gradient(160deg, var(--surface), var(--bg-2)); border: 1px solid var(--line-2); border-radius: 22px; padding: clamp(2.5rem, 6vw, 4.5rem); text-align: center; position: relative; overflow: hidden; }
+    .contact-card::before { content:''; position: absolute; top: -140px; left: 50%; transform: translateX(-50%); width: 460px; height: 300px; background: radial-gradient(circle, rgba(139,123,255,0.22), transparent 70%); pointer-events: none; }
+    .contact-card h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; position: relative; }
+    .contact-card h2 em { font-style: italic; color: var(--accent-2); }
+    .contact-card p { color: var(--ink-3); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; position: relative; }
+    .contact-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--line); padding: 2.2rem clamp(1.25rem,5vw,3rem); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    footer .fl { display: flex; align-items: center; gap: 0.7rem; }
+    footer .fl .brand-mark { width: 26px; height: 26px; font-size: 0.82rem; }
+    footer .fl span { font-size: 0.82rem; color: var(--ink-4); }
+    footer .fr { display: flex; gap: 1.4rem; }
+    footer .fr a { font-size: 0.82rem; color: var(--ink-3); text-decoration: none; }
+    footer .fr a:hover { color: var(--ink); }
+
+    /* reveal */
+    .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+    #work, #services, #approach, #contact { scroll-margin-top: 82px; }
+    @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} .js .reveal{opacity:1;transform:none;transition:none;} .eyebrow::before{animation:none;} }
+  </style>
+</head>
+<body>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <nav aria-label="Primary">
+    <a href="#top" class="brand" aria-label="Kerr & Company — home">
+      <span class="brand-mark" aria-hidden="true">K</span>
+      <span class="brand-name">Kerr &amp; Company <em>/ AI Venture Studio</em></span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#approach">Approach</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Work with us</a>
+    </div>
+  </nav>
+
+  <span id="top"></span>
+  <header class="hero">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">AI Venture Studio · Grand Rapids, MI</div>
+        <h1>We turn ideas into <em>shipped AI products</em>.</h1>
+        <p class="hero-sub">
+          Kerr &amp; Company is an AI venture studio. We build and launch our own software — <strong>notarized macOS apps,
+          live SaaS, and automation frameworks</strong> — by directing AI end-to-end. And each year we take on a few
+          select companies who want us to build theirs.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">See what we've built ↓</a>
+          <a href="#contact" class="btn btn-ghost">Work with us</a>
+        </div>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="stat-num"><span class="accent">4</span></div><div class="stat-label">Products shipped</div></div>
+        <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">Monthly downloads</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Provisional patents</div></div>
+        <div class="stat"><div class="stat-num">$$$</div><div class="stat-label">Live revenue products</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WORK -->
+  <main id="work">
+    <div class="wrap">
+      <div class="section-head reveal" style="padding-top: clamp(3rem,6vw,5rem);">
+        <div class="eyebrow" style="color:var(--ink-4);">The portfolio</div>
+        <h2 class="section-title">Products we've built and shipped</h2>
+        <p class="section-intro">Not case studies — live products with real users, real revenue, and real patents. Scroll each one to explore the actual site.</p>
+      </div>
+
+      <!-- Outlier -->
+      <article class="product reveal">
+        <div class="product-visual">
+          <div class="mockup">
+            <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>outlier.host</span></div>
+            <div class="mockup-scroll"><img src="assets/outlier-site.webp" width="1440" height="4600" alt="Outlier — private offline AI for macOS" loading="lazy"></div>
+            <span class="scroll-hint">↕ scroll to explore</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-num">01 — Consumer AI · macOS</div>
+          <div class="product-title-row"><h3 class="product-name">Outlier</h3><span class="product-badge">● Live revenue</span></div>
+          <div class="product-year">2025 – Present · outlier.host</div>
+          <p class="product-desc">
+            A <strong>notarized macOS app</strong> that runs open-weight models up to 397B parameters fully offline on Apple Silicon —
+            a private, local alternative to ChatGPT and Claude. Launched as a live subscription business with paying customers, 42 open
+            models on HuggingFace, and <strong>3 provisional U.S. patents</strong> on the underlying inference methods.
+          </p>
+          <div class="tags"><span class="tag">macOS</span><span class="tag">Local LLMs</span><span class="tag">Apple Silicon</span><span class="tag">Stripe</span><span class="tag">Patents</span></div>
+          <a href="https://outlier.host" target="_blank" rel="noopener" class="product-link">Visit outlier.host →</a>
+        </div>
+      </article>
+
+      <!-- Crisp -->
+      <article class="product reveal">
+        <div class="product-visual">
+          <div class="mockup">
+            <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>crispvideo.app</span></div>
+            <div class="mockup-scroll"><img src="assets/crisp-site.webp" width="1440" height="4600" alt="Crisp — offline AI video upscaler for macOS" loading="lazy"></div>
+            <span class="scroll-hint">↕ scroll to explore</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-num">02 — Consumer AI · macOS</div>
+          <div class="product-title-row"><h3 class="product-name">Crisp</h3></div>
+          <div class="product-year">2026 · crispvideo.app</div>
+          <p class="product-desc">
+            An <strong>offline AI video upscaler &amp; restorer</strong> — the on-device alternative to Topaz Video AI. Turns
+            low-quality footage into clean 4K, 100% on device, with a one-drop AUTO workflow that reads each clip and picks the
+            right model and settings automatically. Positioned, built, and shipped as a signed macOS app.
+          </p>
+          <div class="tags"><span class="tag">macOS</span><span class="tag">On-device AI</span><span class="tag">Video</span><span class="tag">Product design</span></div>
+          <a href="https://crispvideo.app" target="_blank" rel="noopener" class="product-link">Visit crispvideo.app →</a>
+        </div>
+      </article>
+
+      <!-- Jarvis Factory -->
+      <article class="product reveal">
+        <div class="product-visual">
+          <div class="term">
+            <div class="term-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>jarvis-factory — supervisor</span></div>
+            <div class="term-body">
+<span class="c"># the studio's build engine</span><br>
+<span class="g">➜</span> supervisor <span class="p">spawn</span> --agents 50 --sandbox<br>
+&nbsp;&nbsp;<span class="y">✓</span> memory store online<br>
+&nbsp;&nbsp;<span class="y">✓</span> 50 agents registered<br>
+<span class="g">➜</span> build <span class="p">ProposalAI</span> --site --stripe<br>
+&nbsp;&nbsp;<span class="y">✓</span> product, site &amp; payments shipped<br>
+&nbsp;&nbsp;<span class="g">✓ live SaaS ONLINE</span>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-num">03 — Internal platform</div>
+          <div class="product-title-row"><h3 class="product-name">Jarvis Factory</h3></div>
+          <div class="product-year">2026 – Present</div>
+          <p class="product-desc">
+            Our <strong>build engine</strong>: a Supervisor-Agent-Memory system that orchestrates 50+ AI agents over MCP to
+            build and run software-business tasks — local-first, with sandboxed execution. It's how we ship faster than a
+            team our size should. Its first product, ProposalAI, was built almost entirely by the framework itself.
+          </p>
+          <div class="tags"><span class="tag">Multi-agent</span><span class="tag">MCP</span><span class="tag">Automation</span><span class="tag">Local-first</span></div>
+        </div>
+      </article>
+
+      <!-- ProposalAI -->
+      <article class="product reveal">
+        <div class="product-visual">
+          <div class="mockup">
+            <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>myproposalai.com</span></div>
+            <div class="mockup-scroll"><img src="assets/proposalai-site.webp" width="1440" height="3852" alt="ProposalAI — AI proposal software for contractors" loading="lazy"></div>
+            <span class="scroll-hint">↕ scroll to explore</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-num">04 — B2B SaaS · built by Jarvis Factory</div>
+          <div class="product-title-row"><h3 class="product-name">ProposalAI</h3><span class="product-badge">● Live SaaS</span></div>
+          <div class="product-year">2026 · myproposalai.com</div>
+          <p class="product-desc">
+            A <strong>live B2B SaaS</strong> that helps contractors send polished, branded proposals in minutes and win more bids —
+            with a clear ICP, value-based pricing, and a visit → trial → paid funnel. The product, marketing site, and Stripe billing
+            were <strong>built almost entirely by Jarvis Factory</strong> under our direction — proof the studio ships monetized software, not demos.
+          </p>
+          <div class="tags"><span class="tag">B2B SaaS</span><span class="tag">Stripe</span><span class="tag">Agent-built</span><span class="tag">Go-to-market</span></div>
+          <a href="https://myproposalai.com" target="_blank" rel="noopener" class="product-link">Visit myproposalai.com →</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="color:var(--ink-4);">Work with us</div>
+        <h2 class="section-title">We'll build yours, too</h2>
+        <p class="section-intro">A few select engagements a year. We move like a studio that ships its own products — because we do — so you get real software fast, not slideware.</p>
+      </div>
+      <div class="svc-grid reveal">
+        <div class="svc">
+          <div class="svc-ic">🚀</div>
+          <h3>0→1 AI products</h3>
+          <p>Idea to shipped, signed, and live. Consumer apps, SaaS, internal tools — we take the whole thing from concept to launch, including distribution and payments.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-ic">⚙️</div>
+          <h3>Automation &amp; agents</h3>
+          <p>Multi-agent systems, workflow automation, and internal tools that remove the busywork — the same engine (Jarvis Factory) we use to ship our own products.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-ic">🧭</div>
+          <h3>Applied-AI strategy</h3>
+          <p>Model selection, on-device vs. cloud, cost/performance, and what's actually worth building. Grounded in shipping real products, not slide decks.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-ic">🌐</div>
+          <h3>Sites, funnels &amp; growth</h3>
+          <p>High-converting marketing sites, landing pages, analytics, and go-to-market — built and measured. We market what we build.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="wrap">
+      <div class="appr-grid">
+        <div class="appr-body reveal">
+          <div class="eyebrow" style="color:var(--ink-4);">How we work</div>
+          <h2 class="section-title" style="margin-bottom:1.4rem;">A studio that directs AI to ship real things.</h2>
+          <p>
+            Kerr &amp; Company is small on purpose. Instead of a big team, we <strong>direct AI end-to-end</strong> — from
+            architecture to code to launch — which lets us take an idea to a shipped, monetized product faster than teams
+            many times our size.
+          </p>
+          <p>
+            The proof is the portfolio above: a notarized macOS app with paying subscribers and <strong>3 provisional U.S.
+            patents</strong>, a live B2B SaaS, and an automation framework that builds products on its own. We ship for
+            ourselves first, so when we build for you, you get the same instincts and the same speed.
+          </p>
+        </div>
+        <div class="appr-list reveal">
+          <div class="appr-item"><span class="n">01</span><div><h4>Ship first, iterate in public</h4><p>Real products in users' hands quickly, then improve with data — never a six-month deck.</p></div></div>
+          <div class="appr-item"><span class="n">02</span><div><h4>AI-directed, end to end</h4><p>We orchestrate AI across the whole stack, so a small studio moves like a big team.</p></div></div>
+          <div class="appr-item"><span class="n">03</span><div><h4>Own every layer</h4><p>Product, distribution, monetization, and growth — not just code. We think like operators.</p></div></div>
+          <div class="appr-item"><span class="n">04</span><div><h4>Local-first &amp; private</h4><p>On-device and sandboxed where it matters — privacy and control as a default, not an afterthought.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <h2>Have something you want <em>shipped</em>?</h2>
+        <p>Tell us what you're trying to build. We take on a handful of engagements a year — if it's a fit, we'll move fast.</p>
+        <div class="contact-actions">
+          <a href="mailto:mattkerr09@gmail.com?subject=Project%20inquiry%20—%20Kerr%20%26%20Company" class="btn btn-primary">Start a conversation →</a>
+          <a href="https://matthewkerr.dev" target="_blank" rel="noopener" class="btn btn-ghost">Meet the founder ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fl">
+      <span class="brand-mark" aria-hidden="true">K</span>
+      <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
+    </div>
+    <div class="fr">
+      <a href="mailto:mattkerr09@gmail.com">Email</a>
+      <a href="https://outlier.host" target="_blank" rel="noopener">Outlier</a>
+      <a href="https://crispvideo.app" target="_blank" rel="noopener">Crisp</a>
+      <a href="https://myproposalai.com" target="_blank" rel="noopener">ProposalAI</a>
+      <a href="https://matthewkerr.dev" target="_blank" rel="noopener">Founder</a>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.add('js');
+    const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // scroll-spy
+    const navMap={}; document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>navMap[a.getAttribute('href').slice(1)]=a);
+    const spy=new IntersectionObserver((es)=>{es.forEach(e=>{const l=navMap[e.target.id];if(l&&e.isIntersecting){document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));l.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
+    ['work','services','approach','contact'].forEach(id=>{const s=document.getElementById(id);if(s)spy.observe(s);});
+
+    // smart header
+    const nav=document.querySelector('nav'); let last=window.scrollY;
+    window.addEventListener('scroll',()=>{const y=window.scrollY; if(y>last&&y>200)nav.classList.add('hidden'); else nav.classList.remove('hidden'); last=y;},{passive:true});
+
+    // scrollable mockups: auto-pan on hover + manual
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.mockup-scroll').forEach(sc=>{
+      const mk=sc.closest('.mockup'); let raf=null;
+      const stop=()=>{if(raf){cancelAnimationFrame(raf);raf=null;}};
+      const ease=t=>t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+      const pan=(to,dur)=>{if(reduce)return;stop();const s=sc.scrollTop,d=to-s,t0=performance.now();const step=(n)=>{const p=Math.min((n-t0)/dur,1);sc.scrollTop=s+d*ease(p);if(p<1)raf=requestAnimationFrame(step);else raf=null;};raf=requestAnimationFrame(step);};
+      const max=()=>sc.scrollHeight-sc.clientHeight;
+      sc.addEventListener('mouseenter',()=>pan(max(),Math.max(3500,max()*1.3)));
+      sc.addEventListener('mouseleave',()=>pan(0,900));
+      ['wheel','touchstart','pointerdown','keydown'].forEach(ev=>sc.addEventListener(ev,stop,{passive:true}));
+      sc.addEventListener('scroll',()=>{if(sc.scrollTop>8)mk.classList.add('scrolled');else mk.classList.remove('scrolled');},{passive:true});
+      sc.setAttribute('tabindex','0');
+    });
+
+    console.log("%cKerr & Company — AI Venture Studio","font:600 15px ui-sans-serif;color:#8b7bff");
+    console.log("%cWe build and ship real AI products. Want yours built? mattkerr09@gmail.com","color:#97958d");
+  </script>
+</body>
+</html>
