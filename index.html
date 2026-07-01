@@ -70,7 +70,7 @@
       --shadow: 0 2px 4px rgba(0,0,0,0.4), 0 24px 60px rgba(0,0,0,0.55);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       background: var(--bg); color: var(--ink); font-family: var(--sans);
       line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
@@ -79,7 +79,8 @@
     a { color: inherit; }
 
     /* ambient glows */
-    .glow { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.55; }
+    .glows { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+    .glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.55; }
     .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(79,139,255,0.28), transparent 70%); }
     .glow-2 { bottom: -300px; left: -200px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(233,184,114,0.10), transparent 70%); }
 
@@ -124,9 +125,11 @@
     .eyebrow::before { content:''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2.4s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
     .hero h1 {
-      font-family: var(--serif); font-weight: 300; font-size: clamp(2.7rem, 7vw, 5.2rem);
-      line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.6rem; max-width: 15ch;
+      font-family: var(--serif); font-weight: 300; font-size: clamp(2.35rem, 6.6vw, 5.2rem);
+      line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.6rem; max-width: min(15ch, 100%);
+      overflow-wrap: break-word;
     }
+    @media (max-width: 520px){ .hero h1 { font-size: 2.15rem; letter-spacing: -0.02em; } }
     .hero h1 em { font-style: italic; color: var(--accent-2); }
     .hero-sub { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--ink-2); max-width: 640px; line-height: 1.6; margin-bottom: 2.4rem; }
     .hero-sub strong { color: var(--ink); font-weight: 600; }
@@ -224,16 +227,99 @@
     footer .fr a { font-size: 0.82rem; color: var(--ink-3); text-decoration: none; }
     footer .fr a:hover { color: var(--ink); }
 
+    /* PROOF STRIP */
+    .proofstrip { display: flex; flex-wrap: wrap; gap: 0.7rem 1.6rem; align-items: center; margin-top: 1.8rem; font-size: 0.9rem; color: var(--ink-2); }
+    .proofstrip .pi { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .proofstrip .pi b { color: var(--ink); font-weight: 600; }
+    .proofstrip .pi::before { content: '✓'; color: var(--accent-2); font-weight: 700; }
+    .proofstrip .sep { color: var(--line-2); }
+    @media (max-width: 620px){ .proofstrip .sep { display: none; } .proofstrip { gap: 0.5rem 1.2rem; } }
+
+    /* PACKAGES */
+    #packages { border-top: 1px solid var(--line); background: var(--bg-2); }
+    .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.1rem; }
+    .pkg { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.7rem 1.6rem; transition: border-color .2s, transform .2s; position: relative; }
+    .pkg:hover { border-color: var(--line-2); transform: translateY(-3px); }
+    .pkg.feature { border-color: rgba(79,139,255,0.45); box-shadow: 0 0 0 1px rgba(79,139,255,0.25), 0 20px 50px rgba(0,0,0,0.4); }
+    .pkg-tag { position: absolute; top: -11px; left: 1.6rem; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: var(--accent); padding: 0.25rem 0.6rem; border-radius: 100px; }
+    .pkg h3 { font-family: var(--serif); font-weight: 500; font-size: 1.28rem; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+    .pkg .price { font-family: var(--serif); font-weight: 400; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
+    .pkg .price small { font-size: 0.8rem; color: var(--ink-3); font-family: var(--sans); font-weight: 400; }
+    .pkg .meta { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); margin: 0.4rem 0 1rem; letter-spacing: 0.02em; }
+    .pkg .desc { font-size: 0.9rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 1rem; }
+    .pkg ul.feat { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.4rem; }
+    .pkg ul.feat li { font-size: 0.86rem; color: var(--ink-2); padding-left: 1.4rem; position: relative; line-height: 1.5; }
+    .pkg ul.feat li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-2); font-weight: 700; }
+    .pkg .pkg-cta { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.86rem; font-weight: 600; padding: 0.7rem 1rem; border-radius: 9px; text-decoration: none; transition: all .15s; }
+    .pkg .pkg-cta.solid { background: var(--accent); color: #fff; }
+    .pkg .pkg-cta.solid:hover { background: var(--accent-2); }
+    .pkg .pkg-cta.line { border: 1px solid var(--line-2); color: var(--ink-2); }
+    .pkg .pkg-cta.line:hover { border-color: var(--ink-3); color: var(--ink); }
+    .pricing-note { font-size: 0.82rem; color: var(--ink-4); margin-top: 1.4rem; text-align: center; }
+
+    /* GUARANTEE band */
+    .guarantee { display: flex; align-items: center; gap: 1.1rem; background: var(--green-soft); border: 1px solid rgba(95,211,141,0.3); border-radius: 14px; padding: 1.2rem 1.5rem; margin-top: 1.6rem; }
+    .guarantee .gi { font-size: 1.5rem; flex-shrink: 0; }
+    .guarantee p { font-size: 0.94rem; color: var(--ink-2); line-height: 1.55; }
+    .guarantee p strong { color: var(--ink); font-weight: 600; }
+
+    /* FIT block */
+    #fit { border-top: 1px solid var(--line); }
+    .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 0.5rem; }
+    @media (max-width: 640px){ .fit-grid { grid-template-columns: 1fr; } }
+    .fit-col { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.6rem; }
+    .fit-col h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; font-weight: 700; }
+    .fit-col.yes h3 { color: var(--green); }
+    .fit-col.no h3 { color: var(--ink-3); }
+    .fit-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .fit-col li { font-size: 0.92rem; color: var(--ink-2); padding-left: 1.7rem; position: relative; line-height: 1.5; }
+    .fit-col.yes li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+    .fit-col.no li::before { content: '✕'; position: absolute; left: 0; color: var(--ink-4); font-weight: 700; }
+
+    /* BUILD STORY */
+    .buildstory { background: linear-gradient(160deg, var(--surface), var(--bg-2)); border: 1px solid var(--line-2); border-radius: 18px; padding: clamp(1.8rem, 4vw, 2.6rem); margin-top: 1.6rem; }
+    .buildstory .bs-eyebrow { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-2); margin-bottom: 0.7rem; }
+    .buildstory h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.15; }
+    .buildstory p { font-size: 0.96rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; max-width: 70ch; }
+    .buildstory p strong { color: var(--ink); font-weight: 600; }
+    .bs-steps { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.1rem 0 1.3rem; }
+    .bs-step { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 0.4rem 0.75rem; }
+    .bs-step b { color: var(--accent-2); font-weight: 500; }
+
+    /* FOUNDER */
+    #founder { border-top: 1px solid var(--line); background: var(--bg-2); }
+    .founder-grid { display: grid; grid-template-columns: 200px 1fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: center; }
+    @media (max-width: 640px){ .founder-grid { grid-template-columns: 1fr; gap: 1.4rem; } }
+    .founder-photo { width: 200px; height: 200px; border-radius: 18px; object-fit: cover; object-position: center top; border: 1px solid var(--line-2); box-shadow: var(--shadow); }
+    @media (max-width: 640px){ .founder-photo { width: 130px; height: 130px; } }
+    .founder-body h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(1.7rem, 3.5vw, 2.4rem); letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 0.9rem; }
+    .founder-body h2 em { font-style: italic; color: var(--accent-2); }
+    .founder-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; max-width: 60ch; }
+    .founder-body p strong { color: var(--ink); font-weight: 600; }
+    .founder-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--accent-2); text-decoration: none; }
+    .founder-link:hover { gap: 0.65rem; }
+
+    /* RESPONSE PROMISE */
+    .resp-promise { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.86rem; color: var(--ink-3); margin-top: 1.1rem; }
+    .resp-promise::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 9px var(--green); }
+
+    /* STICKY MOBILE CTA */
+    .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none; padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom)); background: rgba(10,10,15,0.92); backdrop-filter: blur(14px); border-top: 1px solid var(--line-2); }
+    .sticky-cta a { display: block; text-align: center; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.95rem; padding: 0.85rem; border-radius: 11px; text-decoration: none; }
+    @media (max-width: 720px){ .sticky-cta { display: block; } body { padding-bottom: 76px; } }
+
     /* reveal */
     .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity: 1; transform: none; }
-    #work, #services, #approach, #contact { scroll-margin-top: 82px; }
+    #work, #packages, #approach, #fit, #founder, #contact { scroll-margin-top: 82px; }
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} .js .reveal{opacity:1;transform:none;transition:none;} .eyebrow::before{animation:none;} }
   </style>
 </head>
 <body>
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
+  <div class="glows" aria-hidden="true">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
 
   <nav aria-label="Primary">
     <a href="#top" class="brand" aria-label="Kerr & Company — home">
@@ -243,10 +329,11 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#work">Work</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Pricing</a></li>
         <li><a href="#approach">Approach</a></li>
+        <li><a href="#founder">Founder</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Work with us</a>
+      <a href="#contact" class="nav-cta book-cta">Book a call</a>
     </div>
   </nav>
 
@@ -255,16 +342,24 @@
     <div class="wrap">
       <div class="reveal">
         <div class="eyebrow">AI Venture Studio · Grand Rapids, MI</div>
-        <h1>We turn ideas into <em>shipped AI products</em>.</h1>
+        <h1>We build and ship <em>production AI products</em> — then we build yours.</h1>
         <p class="hero-sub">
-          Kerr &amp; Company is an AI venture studio. We build and launch our own software — <strong>notarized macOS apps,
-          live SaaS, and automation frameworks</strong> — by directing AI end-to-end. And each year we take on a few
-          select companies who want us to build theirs.
+          Kerr &amp; Company is an AI venture studio. We ship our own software — a <strong>notarized macOS app with paying
+          subscribers</strong>, a <strong>live B2B SaaS</strong>, and an automation engine that builds products on its own —
+          and take on a handful of select client builds a year. You get a team that ships its own products under patent,
+          not an agency learning on your dime.
         </p>
         <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">See what we've built ↓</a>
-          <a href="#contact" class="btn btn-ghost">Work with us</a>
+          <a href="#contact" class="btn btn-primary book-cta">Book a build call →</a>
+          <a href="#work" class="btn btn-ghost">See our work ↓</a>
         </div>
+        <div class="proofstrip">
+          <span class="pi"><b>3</b>&nbsp;provisional patents</span><span class="sep">·</span>
+          <span class="pi"><b>Live</b>&nbsp;B2B SaaS in production</span><span class="sep">·</span>
+          <span class="pi"><b>5,000+</b>&nbsp;app downloads</span><span class="sep">·</span>
+          <span class="pi"><b>Paying</b>&nbsp;subscribers today</span>
+        </div>
+        <div class="resp-promise">Matthew replies personally — within one business day.</div>
       </div>
       <div class="stats reveal">
         <div class="stat"><div class="stat-num"><span class="accent">4</span></div><div class="stat-label">Products shipped</div></div>
@@ -381,38 +476,101 @@
           <a href="https://myproposalai.com" target="_blank" rel="noopener" class="product-link">Visit myproposalai.com →</a>
         </div>
       </article>
+
+      <!-- BUILD STORY -->
+      <div class="buildstory reveal">
+        <div class="bs-eyebrow">Build story · our first case study</div>
+        <h3>How we took ProposalAI from idea to a live, paying B2B&nbsp;SaaS.</h3>
+        <p>
+          ProposalAI helps contractors send polished, branded proposals in minutes and win more bids. The
+          <strong>product, the marketing site, and Stripe billing were built almost entirely by Jarvis Factory</strong> —
+          our multi-agent build engine — under our direction. We didn't just design a proposal tool; we shipped a monetized
+          product with a real ICP and a visit → trial → paid funnel.
+        </p>
+        <div class="bs-steps">
+          <span class="bs-step"><b>01</b>&nbsp; Positioning &amp; ICP</span>
+          <span class="bs-step"><b>02</b>&nbsp; Product built by agents</span>
+          <span class="bs-step"><b>03</b>&nbsp; Marketing site &amp; Stripe</span>
+          <span class="bs-step"><b>04</b>&nbsp; Live &amp; taking payments</span>
+        </div>
+        <p>
+          That's what a client build looks like with us: <strong>an idea turned into shipped, revenue-ready software</strong> —
+          not a prototype, not a deck. You can go verify it's real right now, then tell us what you want built.
+          <a href="#contact" class="book-cta" style="color:var(--accent-2);font-weight:600;text-decoration:none;white-space:nowrap;">Book a build call →</a>
+        </p>
+      </div>
     </div>
   </main>
 
-  <!-- SERVICES -->
-  <section id="services">
+  <!-- PACKAGES -->
+  <section id="packages">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow" style="color:var(--ink-4);">Work with us</div>
-        <h2 class="section-title">We'll build yours, too</h2>
-        <p class="section-intro">A few select engagements a year. We move like a studio that ships its own products — because we do — so you get real software fast, not slideware.</p>
+        <h2 class="section-title">Fixed-scope ways to work together</h2>
+        <p class="section-intro">A few select engagements a year. Clear scope, clear price, real shipped software — not open-ended retainers or slideware. Start small with an audit, or go straight to a build.</p>
       </div>
-      <div class="svc-grid reveal">
-        <div class="svc">
-          <div class="svc-ic">🚀</div>
-          <h3>0→1 AI products</h3>
-          <p>Idea to shipped, signed, and live. Consumer apps, SaaS, internal tools — we take the whole thing from concept to launch, including distribution and payments.</p>
+      <div class="pkg-grid reveal">
+
+        <div class="pkg">
+          <h3>AI Build Audit</h3>
+          <div class="price">$3,500 <small>starting at</small></div>
+          <div class="meta">2 weeks · best first step</div>
+          <p class="desc">We assess your idea, codebase, or workflow and hand back a clear plan you own — whether or not we build it.</p>
+          <ul class="feat">
+            <li>Scored readiness report</li>
+            <li>3 prioritized build recommendations</li>
+            <li>Fixed-scope proposal for the build</li>
+          </ul>
+          <a href="#contact" class="pkg-cta line book-cta">Start with an audit</a>
         </div>
-        <div class="svc">
-          <div class="svc-ic">⚙️</div>
-          <h3>Automation &amp; agents</h3>
-          <p>Multi-agent systems, workflow automation, and internal tools that remove the busywork — the same engine (Jarvis Factory) we use to ship our own products.</p>
+
+        <div class="pkg feature">
+          <span class="pkg-tag">Most popular</span>
+          <h3>0→1 Product Sprint</h3>
+          <div class="price">$25k <small>starting at</small></div>
+          <div class="meta">4–6 weeks · idea → shipped</div>
+          <p class="desc">Idea to a working, shippable AI product — consumer app, SaaS, or internal tool — including distribution and payments.</p>
+          <ul class="feat">
+            <li>Design, build &amp; launch</li>
+            <li>Stripe / payments wired in</li>
+            <li>Weekly shipping cadence</li>
+          </ul>
+          <a href="#contact" class="pkg-cta solid book-cta">Book a build call</a>
         </div>
-        <div class="svc">
-          <div class="svc-ic">🧭</div>
-          <h3>Applied-AI strategy</h3>
-          <p>Model selection, on-device vs. cloud, cost/performance, and what's actually worth building. Grounded in shipping real products, not slide decks.</p>
+
+        <div class="pkg">
+          <h3>Agent &amp; Automation Build</h3>
+          <div class="price">$15k <small>starting at</small></div>
+          <div class="meta">production multi-agent systems</div>
+          <p class="desc">A production automation or multi-agent workflow that removes real busywork — powered by the same Jarvis Factory engine we run ourselves.</p>
+          <ul class="feat">
+            <li>Multi-agent workflow design</li>
+            <li>Integrated with your tools (MCP)</li>
+            <li>Sandboxed, local-first where it matters</li>
+          </ul>
+          <a href="#contact" class="pkg-cta line book-cta">Scope an automation</a>
         </div>
-        <div class="svc">
-          <div class="svc-ic">🌐</div>
-          <h3>Sites, funnels &amp; growth</h3>
-          <p>High-converting marketing sites, landing pages, analytics, and go-to-market — built and measured. We market what we build.</p>
+
+        <div class="pkg">
+          <h3>Applied-AI Strategy &amp; Custom</h3>
+          <div class="price">Let's scope it</div>
+          <div class="meta">custom &amp; ongoing builds</div>
+          <p class="desc">Model selection, on-device vs. cloud, cost/performance, and bigger custom builds — grounded in shipping real products, not slide decks.</p>
+          <ul class="feat">
+            <li>Applied-AI roadmap</li>
+            <li>Custom / larger builds</li>
+            <li>Advice on what's worth building</li>
+          </ul>
+          <a href="#contact" class="pkg-cta line book-cta">Talk it through</a>
         </div>
+
+      </div>
+      <p class="pricing-note">Prices are starting points and depend on scope — you'll always get a fixed quote before any work begins.</p>
+
+      <div class="guarantee reveal">
+        <span class="gi">🛡️</span>
+        <p><strong>Our guarantee:</strong> we rework the first deliverable until you sign off. You see real, shipped work before you're locked in — the kind of risk-reversal only a studio that ships its own products can afford to make.</p>
       </div>
     </div>
   </section>
@@ -445,15 +603,74 @@
     </div>
   </section>
 
+  <!-- FIT -->
+  <section id="fit">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="color:var(--ink-4);">Is this a fit?</div>
+        <h2 class="section-title">Who we do our best work with</h2>
+        <p class="section-intro">We take on only a handful of builds a year, so we're honest about fit up front — it saves everyone time.</p>
+      </div>
+      <div class="fit-grid reveal">
+        <div class="fit-col yes">
+          <h3>You're a great fit if…</h3>
+          <ul>
+            <li>You're a funded founder or operator who needs a real AI product shipped to production.</li>
+            <li>You want a partner who ships, owns outcomes, and moves fast — not a body-shop of contractors.</li>
+            <li>You value privacy, craft, and software that actually works over a flashy deck.</li>
+          </ul>
+        </div>
+        <div class="fit-col no">
+          <h3>Probably not a fit if…</h3>
+          <ul>
+            <li>You're shopping purely for the cheapest quote.</li>
+            <li>You need a large outsourced team to manage yourself.</li>
+            <li>You're not ready to make a decision this quarter.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder">
+    <div class="wrap">
+      <div class="founder-grid">
+        <img class="founder-photo reveal" src="assets/headshot.jpg" width="200" height="200" alt="Matthew Kerr, founder of Kerr &amp; Company" loading="lazy">
+        <div class="founder-body reveal">
+          <div class="eyebrow" style="color:var(--ink-4);">The founder</div>
+          <h2>You'll work directly with <em>Matthew Kerr</em>.</h2>
+          <p>
+            Kerr &amp; Company is small on purpose. I direct AI end-to-end to ship real, monetized products — a
+            <strong>notarized macOS app with paying subscribers and 3 provisional U.S. patents</strong>, a
+            <strong>live B2B SaaS</strong>, and an automation engine that builds software on its own.
+          </p>
+          <p>
+            You don't get handed off to a junior team. When you work with the studio, you get the same instincts and the
+            same speed I use to ship my own products — and I reply to every inquiry personally.
+          </p>
+          <a href="https://matthewkerr.dev" target="_blank" rel="noopener" class="founder-link">Meet the founder ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="wrap">
       <div class="contact-card reveal">
         <h2>Have something you want <em>shipped</em>?</h2>
-        <p>Tell us what you're trying to build. We take on a handful of engagements a year — if it's a fit, we'll move fast.</p>
+        <p>Book a 20-minute build call. We'll tell you honestly whether we're the right build partner — and if we're not, who is. No pitch, no pressure.</p>
         <div class="contact-actions">
-          <a href="mailto:mattkerr09@gmail.com?subject=Project%20inquiry%20—%20Kerr%20%26%20Company" class="btn btn-primary">Start a conversation →</a>
-          <a href="https://matthewkerr.dev" target="_blank" rel="noopener" class="btn btn-ghost">Meet the founder ↗</a>
+          <a href="mailto:mattkerr09@gmail.com?subject=Build%20call%20%E2%80%94%20Kerr%20%26%20Company&amp;body=Hi%20Matthew%2C%0A%0AWhat%20I%27m%20trying%20to%20build%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A" class="btn btn-primary book-cta">Book a build call →</a>
+          <a href="mailto:mattkerr09@gmail.com?subject=Project%20inquiry%20%E2%80%94%20Kerr%20%26%20Company" class="btn btn-ghost">Or just email us ↗</a>
+        </div>
+        <div class="resp-promise" style="justify-content:center;">Matthew replies personally — within one business day.</div>
+        <div class="bs-steps" style="justify-content:center;position:relative;margin-top:1.7rem;">
+          <span class="bs-step"><b>1</b>&nbsp; Book a fit call</span>
+          <span class="bs-step"><b>2</b>&nbsp; We scope a fixed proposal</span>
+          <span class="bs-step"><b>3</b>&nbsp; Kickoff</span>
+          <span class="bs-step"><b>4</b>&nbsp; Weekly shipping</span>
         </div>
       </div>
     </div>
@@ -473,15 +690,29 @@
     </div>
   </footer>
 
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-cta">
+    <a href="mailto:mattkerr09@gmail.com?subject=Build%20call%20%E2%80%94%20Kerr%20%26%20Company&amp;body=Hi%20Matthew%2C%0A%0AWhat%20I%27m%20trying%20to%20build%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A" class="book-cta">Book a build call →</a>
+  </div>
+
   <script>
     document.documentElement.classList.add('js');
+
+    // Booking link: set BOOKING_URL to your Cal.com/Calendly URL to activate one-click booking.
+    // Until then, every "Book a call" button falls back to a pre-filled email so nothing is broken.
+    const BOOKING_URL = ""; // e.g. "https://cal.com/matthew-kerr/build-call"
+    if (BOOKING_URL) {
+      document.querySelectorAll('a.book-cta').forEach(a => {
+        a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener";
+      });
+    }
     const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
     // scroll-spy
     const navMap={}; document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>navMap[a.getAttribute('href').slice(1)]=a);
     const spy=new IntersectionObserver((es)=>{es.forEach(e=>{const l=navMap[e.target.id];if(l&&e.isIntersecting){document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));l.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
-    ['work','services','approach','contact'].forEach(id=>{const s=document.getElementById(id);if(s)spy.observe(s);});
+    ['work','packages','approach','fit','founder','contact'].forEach(id=>{const s=document.getElementById(id);if(s)spy.observe(s);});
 
     // smart header
     const nav=document.querySelector('nav'); let last=window.scrollY;
