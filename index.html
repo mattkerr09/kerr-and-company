@@ -341,10 +341,6 @@
     .resp-promise { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.86rem; color: var(--ink-3); margin-top: 1.1rem; }
     .resp-promise::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 9px var(--green); }
 
-    /* STICKY MOBILE CTA */
-    .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none; padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom)); background: rgba(10,10,15,0.92); backdrop-filter: blur(14px); border-top: 1px solid var(--line-2); }
-    .sticky-cta a { display: block; text-align: center; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.95rem; padding: 0.85rem; border-radius: 11px; text-decoration: none; }
-    @media (max-width: 720px){ .sticky-cta { display: block; } body { padding-bottom: 76px; } }
 
     /* FAQ */
     #faq { border-top: 1px solid var(--line); background: var(--bg-2); }
@@ -379,7 +375,7 @@
         <li><a href="#approach">Approach</a></li>
         <li><a href="#founder">Founder</a></li>
       </ul>
-      <a href="#contact" class="nav-cta book-cta">Book a call</a>
+      <a href="#contact" class="nav-cta">Contact</a>
     </div>
   </nav>
 
@@ -396,7 +392,7 @@
           not an agency learning on your dime.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary book-cta">Book a build call →</a>
+          <a href="#contact" class="btn btn-primary">Get in touch →</a>
           <a href="#work" class="btn btn-ghost">See our work ↓</a>
         </div>
         <div class="proofstrip">
@@ -542,7 +538,7 @@
         <p>
           That's what a client build looks like with us: <strong>an idea turned into shipped, revenue-ready software</strong> —
           not a prototype, not a deck. You can go verify it's real right now, then tell us what you want built.
-          <a href="#contact" class="book-cta" style="color:var(--accent-2);font-weight:600;text-decoration:none;white-space:nowrap;">Book a build call →</a>
+          <a href="#contact" style="color:var(--accent-2);font-weight:600;text-decoration:none;white-space:nowrap;">Get in touch →</a>
         </p>
       </div>
     </div>
@@ -568,7 +564,7 @@
             <li>3 prioritized build recommendations</li>
             <li>Fixed-scope proposal for the build</li>
           </ul>
-          <a href="#contact" class="pkg-cta line book-cta">Start with an audit</a>
+          <a href="#contact" class="pkg-cta line">Start with an audit</a>
         </div>
 
         <div class="pkg feature">
@@ -582,7 +578,7 @@
             <li>Stripe / payments wired in</li>
             <li>Weekly shipping cadence</li>
           </ul>
-          <a href="#contact" class="pkg-cta solid book-cta">Book a build call</a>
+          <a href="#contact" class="pkg-cta solid">Get in touch</a>
         </div>
 
         <div class="pkg">
@@ -595,7 +591,7 @@
             <li>Integrated with your tools (MCP)</li>
             <li>Sandboxed, local-first where it matters</li>
           </ul>
-          <a href="#contact" class="pkg-cta line book-cta">Scope an automation</a>
+          <a href="#contact" class="pkg-cta line">Scope an automation</a>
         </div>
 
         <div class="pkg">
@@ -608,7 +604,7 @@
             <li>Custom / larger builds</li>
             <li>Advice on what's worth building</li>
           </ul>
-          <a href="#contact" class="pkg-cta line book-cta">Talk it through</a>
+          <a href="#contact" class="pkg-cta line">Talk it through</a>
         </div>
 
       </div>
@@ -739,14 +735,14 @@
     <div class="wrap">
       <div class="contact-card reveal">
         <h2>Have something you want <em>shipped</em>?</h2>
-        <p>Book a 20-minute build call. We'll tell you honestly whether we're the right build partner — and if we're not, who is. No pitch, no pressure.</p>
-        <div class="contact-actions">
-          <a href="mailto:mattkerr09@gmail.com?subject=Build%20call%20%E2%80%94%20Kerr%20%26%20Company&amp;body=Hi%20Matthew%2C%0A%0AWhat%20I%27m%20trying%20to%20build%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A" class="btn btn-primary book-cta">Book a build call →</a>
-          <a href="mailto:mattkerr09@gmail.com?subject=Project%20inquiry%20%E2%80%94%20Kerr%20%26%20Company" class="btn btn-ghost">Or just email us ↗</a>
+        <p>Tell us what you're trying to build — timeline, budget range, the problem. We'll tell you honestly whether we're the right build partner, and if we're not, who is. No pitch, no pressure.</p>
+        <div class="contact-actions" style="flex-direction:column;gap:0.4rem;align-items:center;">
+          <span style="font-family:var(--serif);font-size:clamp(1.25rem,3vw,1.7rem);color:var(--ink);font-weight:500;letter-spacing:-0.01em;">mattkerr09@gmail.com</span>
+          <span style="font-size:1.02rem;color:var(--ink-2);font-weight:600;">616-888-9558</span>
         </div>
         <div class="resp-promise" style="justify-content:center;">Matthew replies personally — within one business day.</div>
         <div class="bs-steps" style="justify-content:center;position:relative;margin-top:1.7rem;">
-          <span class="bs-step"><b>1</b>&nbsp; Book a fit call</span>
+          <span class="bs-step"><b>1</b>&nbsp; Reach out</span>
           <span class="bs-step"><b>2</b>&nbsp; We scope a fixed proposal</span>
           <span class="bs-step"><b>3</b>&nbsp; Kickoff</span>
           <span class="bs-step"><b>4</b>&nbsp; Weekly shipping</span>
@@ -761,7 +757,7 @@
       <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI · <a href="tel:+16168889558" style="color:inherit;text-decoration:none;">616-888-9558</a> · Updated Jul 2026</span>
     </div>
     <div class="fr">
-      <a href="mailto:mattkerr09@gmail.com">Email</a>
+      <span style="color:var(--ink-3);">mattkerr09@gmail.com</span>
       <a href="https://outlier.host" target="_blank" rel="noopener">Outlier</a>
       <a href="https://crispvideo.app" target="_blank" rel="noopener">Crisp</a>
       <a href="https://myproposalai.com" target="_blank" rel="noopener">ProposalAI</a>
@@ -769,22 +765,9 @@
     </div>
   </footer>
 
-  <!-- STICKY MOBILE CTA -->
-  <div class="sticky-cta">
-    <a href="mailto:mattkerr09@gmail.com?subject=Build%20call%20%E2%80%94%20Kerr%20%26%20Company&amp;body=Hi%20Matthew%2C%0A%0AWhat%20I%27m%20trying%20to%20build%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A" class="book-cta">Book a build call →</a>
-  </div>
-
   <script>
     document.documentElement.classList.add('js');
 
-    // Booking link: set BOOKING_URL to your Cal.com/Calendly URL to activate one-click booking.
-    // Until then, every "Book a call" button falls back to a pre-filled email so nothing is broken.
-    const BOOKING_URL = ""; // e.g. "https://cal.com/matthew-kerr/build-call"
-    if (BOOKING_URL) {
-      document.querySelectorAll('a.book-cta').forEach(a => {
-        a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener";
-      });
-    }
     const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
