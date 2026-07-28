@@ -261,7 +261,9 @@
     footer .fl { display: flex; align-items: center; gap: 0.7rem; }
     footer .fl .brand-mark { width: 26px; height: 26px; font-size: 0.82rem; }
     footer .fl span { font-size: 0.82rem; color: var(--ink-4); }
-    footer .fr { display: flex; gap: 1.4rem; }
+    /* wrap: without it the last 7 links — including all three legal pages —
+       sit off-screen and unreachable at 375px. assets/pages.css already wraps. */
+    footer .fr { display: flex; flex-wrap: wrap; gap: 0.9rem 1.4rem; justify-content: center; }
     footer .fr a { font-size: 0.82rem; color: var(--ink-3); text-decoration: none; }
     footer .fr a:hover { color: var(--ink); }
 
@@ -472,7 +474,7 @@
         <div class="proofstrip">
           <span class="pi"><b>3</b>&nbsp;provisional patents</span><span class="sep">·</span>
           <span class="pi"><b>Live</b>&nbsp;B2B SaaS in production</span><span class="sep">·</span>
-          <span class="pi"><b>5,000+</b>&nbsp;monthly users</span><span class="sep">·</span>
+          <span class="pi"><b>5,000+</b>&nbsp;monthly model downloads</span><span class="sep">·</span>
           <span class="pi"><b>Paying</b>&nbsp;subscribers today</span>
         </div>
         <div class="resp-promise">Matthew replies personally — within one business day.</div>
@@ -953,7 +955,7 @@
       <div class="faq-list reveal">
         <div class="faq-item">
           <h3>What is an AI venture studio?</h3>
-          <p>An AI venture studio builds and ships its own AI products rather than only advising. Kerr &amp; Company runs four — <strong>Outlier</strong> (a notarized macOS app with paying subscribers), <strong>ProposalAI</strong> (a live B2B SaaS), and <strong>Jarvis Factory</strong> (a multi-agent build engine) — backed by <strong>3 provisional U.S. patents</strong>, and takes on a few select client builds each year.</p>
+          <p>An AI venture studio builds and ships its own AI products rather than only advising. Kerr &amp; Company runs four — <strong>Outlier</strong> (a notarized macOS app with paying subscribers), <strong>Crisp</strong> (an offline AI video upscaler for macOS), <strong>ProposalAI</strong> (a live B2B SaaS), and <strong>Jarvis Factory</strong> (a multi-agent build engine) — backed by <strong>3 provisional U.S. patents</strong>, and takes on a few select client builds each year.</p>
         </div>
         <div class="faq-item">
           <h3>Does Kerr &amp; Company do AI consulting in Grand Rapids and Michigan?</h3>
@@ -1033,7 +1035,7 @@
 
         <div class="or-line"><span>OR REACH ME DIRECTLY</span></div>
         <div class="contact-actions" style="flex-direction:column;gap:0.4rem;align-items:center;margin-top:1rem;">
-          <span style="font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.45rem);color:var(--ink);font-weight:500;letter-spacing:-0.01em;">matthew@kerrandcompanyholdings.com</span>
+          <span style="font-family:var(--serif);font-size:clamp(0.95rem,4.2vw,1.45rem);color:var(--ink);font-weight:500;letter-spacing:-0.01em;display:inline-block;max-width:100%;overflow-wrap:anywhere;">matthew@kerrandcompanyholdings.com</span>
         </div>
         <div class="resp-promise" style="justify-content:center;">Matthew replies personally — within one business day.</div>
         <div class="bs-steps" style="justify-content:center;position:relative;margin-top:1.7rem;">
