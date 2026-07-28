@@ -353,7 +353,32 @@
     /* reveal */
     .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity: 1; transform: none; }
-    #services, #work, #packages, #approach, #fit, #founder, #faq, #contact { scroll-margin-top: 82px; }
+    #services, #why, #work, #packages, #approach, #fit, #founder, #faq, #contact { scroll-margin-top: 82px; }
+
+    /* WHY US */
+    #why { border-top: 1px solid var(--line); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: 1.1rem; }
+    .why-card { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 1.5rem 1.5rem; transition: border-color .2s; }
+    .why-card:hover { border-color: var(--line-2); }
+    .why-card .wi { font-size: 1.35rem; line-height: 1; margin-bottom: 0.65rem; display: block; }
+    .why-card h3 { font-family: var(--serif); font-weight: 500; font-size: 1.14rem; letter-spacing: -0.01em; margin-bottom: 0.4rem; color: var(--ink); }
+    .why-card p { font-size: 0.89rem; color: var(--ink-2); line-height: 1.62; }
+    .why-card p strong { color: var(--accent-2); font-weight: 600; }
+
+    /* comparison table */
+    .cmp-wrap { overflow-x: auto; margin-top: 1.6rem; -webkit-overflow-scrolling: touch; }
+    table.cmp { width: 100%; min-width: 660px; border-collapse: collapse; font-size: 0.9rem; }
+    table.cmp th { text-align: left; padding: 0.85rem 1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ink-3); font-weight: 600; border-bottom: 1px solid var(--line-2); white-space: nowrap; }
+    table.cmp th.us { color: var(--accent-2); background: rgba(79,139,255,0.1); border-radius: 10px 10px 0 0;
+      border-left: 1px solid rgba(79,139,255,0.3); border-right: 1px solid rgba(79,139,255,0.3); }
+    table.cmp td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--line); color: var(--ink-3); line-height: 1.5; vertical-align: top; }
+    table.cmp td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+    table.cmp td.us { background: rgba(79,139,255,0.07); color: var(--ink); font-weight: 600;
+      border-left: 1px solid rgba(79,139,255,0.3); border-right: 1px solid rgba(79,139,255,0.3); }
+    table.cmp tr:last-child td { border-bottom: none; }
+    table.cmp tr:last-child td.us { border-bottom: 1px solid rgba(79,139,255,0.3); border-radius: 0 0 10px 10px; }
+    .cmp-note { font-size: 0.78rem; color: var(--ink-4); margin-top: 0.9rem; line-height: 1.6; max-width: 720px; }
 
     /* SERVICES hub */
     #services { border-top: 1px solid var(--line); background: var(--bg-2); }
@@ -384,6 +409,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why us</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#packages">Pricing</a></li>
         <li><a href="#approach">Approach</a></li>
@@ -479,6 +505,77 @@
           <span class="go">AI consulting →</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="color:var(--ink-4);">Why work with us</div>
+        <h2 class="section-title">You get the person who builds it</h2>
+        <p class="section-intro">No account managers, no junior handoff, no six-week timelines for a five-page site. You work directly with the founder — who ships production software for a living and can prove it.</p>
+      </div>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">⚡</span>
+          <h3>Days, not months</h3>
+          <p>Agencies quote 6–12 weeks for a business site. We build with AI and ship in <strong>days</strong> — we took a product and its full marketing site from idea to live in two days.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">🏷️</span>
+          <h3>Pricing you can actually see</h3>
+          <p>Every price is published on this site. <strong>Fixed quotes before any work starts</strong> — no hourly meter, no "contact us for a quote," no surprise invoices.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">🔬</span>
+          <h3>Proof, not promises</h3>
+          <p>A notarized macOS app with paying subscribers, <strong>3 provisional patents</strong>, a live B2B SaaS, and ads at <strong>$3.82 per lead</strong> — about 4x below the industry median.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">🤖</span>
+          <h3>Tools nobody else offers</h3>
+          <p>Most shops resell templates. We build <strong>custom AI tools</strong> — missed-call-to-text, review engines, instant quotes, live dashboards — that make your site actually work.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">📊</span>
+          <h3>Flat fees, never % of spend</h3>
+          <p>Ad management is a <strong>flat monthly fee</strong>, so we don't get paid more for telling you to spend more. You pay the platforms directly and own every account.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">🛡️</span>
+          <h3>You own everything</h3>
+          <p>Your site, your accounts, your data, your profiles — all yours, no hostage hosting. Plus we <strong>rework the first deliverable until you sign off</strong>.</p>
+        </div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:3.4rem;margin-bottom:0;">
+        <h2 class="section-title" style="font-size:clamp(1.5rem,3.2vw,2rem);">How we compare</h2>
+        <p class="section-intro">Typical market rates for a small-business website build, against what you get here.</p>
+      </div>
+      <div class="cmp-wrap reveal">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="us">Kerr &amp; Company</th>
+              <th>Typical agency</th>
+              <th>DIY builder</th>
+              <th>Overseas marketplace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Website cost</td><td class="us">From $2,500</td><td>$5,000–$10,000+</td><td>$20–$50/mo + your time</td><td>$300–$1,000</td></tr>
+            <tr><td>Time to live</td><td class="us">Days</td><td>6–12 weeks</td><td>Weeks of your evenings</td><td>3–8 weeks, timezone lag</td></tr>
+            <tr><td>Pricing shown up front</td><td class="us">Yes — published</td><td>Rarely — "contact us"</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Who does the work</td><td class="us">The founder, directly</td><td>Account manager → junior</td><td>You</td><td>Rotating contractors</td></tr>
+            <tr><td>Custom AI tools</td><td class="us">Included option</td><td>Rarely offered</td><td>No</td><td>No</td></tr>
+            <tr><td>SEO &amp; local search</td><td class="us">Built in</td><td>Separate retainer</td><td>Plugin, DIY</td><td>Usually none</td></tr>
+            <tr><td>Ongoing care plan</td><td class="us">From $199/mo</td><td>$500–$2,000/mo</td><td>Self-managed</td><td>Usually none</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cmp-note">Comparison figures reflect published 2025–2026 market pricing for small-business web projects and are shown as typical ranges, not quotes from any specific company. Your project always gets its own fixed quote.</p>
     </div>
   </section>
 
@@ -830,6 +927,9 @@
       <a href="https://outlier.host" target="_blank" rel="noopener">Outlier</a>
       <a href="https://crispvideo.app" target="_blank" rel="noopener">Crisp</a>
       <a href="https://myproposalai.com" target="_blank" rel="noopener">ProposalAI</a>
+      <a href="/legal/privacy.html">Privacy</a>
+      <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="https://matthewkerr.dev" target="_blank" rel="noopener">Founder</a>
     </div>
   </footer>
