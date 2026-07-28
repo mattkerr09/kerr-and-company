@@ -353,7 +353,20 @@
     /* reveal */
     .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity: 1; transform: none; }
-    #work, #packages, #approach, #fit, #founder, #faq, #contact { scroll-margin-top: 82px; }
+    #services, #work, #packages, #approach, #fit, #founder, #faq, #contact { scroll-margin-top: 82px; }
+
+    /* SERVICES hub */
+    #services { border-top: 1px solid var(--line); background: var(--bg-2); }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 1.1rem; }
+    .svc { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+      padding: 1.6rem 1.55rem; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .svc:hover { border-color: rgba(79,139,255,0.45); transform: translateY(-3px); box-shadow: var(--shadow-card); }
+    .svc-ic { font-size: 1.4rem; line-height: 1; margin-bottom: 0.7rem; }
+    .svc h3 { font-family: var(--serif); font-weight: 500; font-size: 1.22rem; letter-spacing: -0.01em; margin-bottom: 0.4rem; color: var(--ink); }
+    .svc p { font-size: 0.89rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 0.9rem; }
+    .svc .from { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-3); letter-spacing: 0.02em; margin-top: auto; }
+    .svc .go { font-size: 0.85rem; font-weight: 600; color: var(--accent-2); margin-top: 0.5rem; }
+    .svc:hover .go { color: var(--ink); }
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} .js .reveal{opacity:1;transform:none;transition:none;} .eyebrow::before{animation:none;} }
   </style>
 </head>
@@ -370,6 +383,7 @@
     </a>
     <div class="nav-right">
       <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#packages">Pricing</a></li>
         <li><a href="#approach">Approach</a></li>
@@ -413,6 +427,61 @@
   </header>
 
   <!-- WORK -->
+  <!-- SERVICES HUB -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="color:var(--ink-4);">Services</div>
+        <h2 class="section-title">What we build for businesses</h2>
+        <p class="section-intro">Websites, search, ads, and custom AI — for Grand Rapids and West Michigan businesses, and remote clients who want an operator who ships. Fixed prices, no hourly billing, and a monthly plan only if it's actually earning its keep.</p>
+      </div>
+      <div class="svc-grid reveal">
+        <a class="svc" href="/services/web-design-grand-rapids.html">
+          <span class="svc-ic" aria-hidden="true">🌐</span>
+          <h3>Websites &amp; Apps</h3>
+          <p>Fast, conversion-focused sites built in days, not months — with the option to add a custom AI tool a template shop can't touch.</p>
+          <span class="from">from $2,500 · care plans from $199/mo</span>
+          <span class="go">Web design in Grand Rapids →</span>
+        </a>
+        <a class="svc" href="/services/seo-grand-rapids.html">
+          <span class="svc-ic" aria-hidden="true">🔍</span>
+          <h3>SEO</h3>
+          <p>Technical, local, and content SEO that produces calls — with a live dashboard so you see exactly what your money is doing.</p>
+          <span class="from">audit $1,500 · retainers from $750/mo</span>
+          <span class="go">SEO in Grand Rapids →</span>
+        </a>
+        <a class="svc" href="/services/local-seo-google-business-profile.html">
+          <span class="svc-ic" aria-hidden="true">📍</span>
+          <h3>Local SEO &amp; Reviews</h3>
+          <p>Get into the Google map pack: managed Business Profile, automated review generation, citations, and local rank tracking.</p>
+          <span class="from">from $500/mo per location</span>
+          <span class="go">Local SEO &amp; Google Business →</span>
+        </a>
+        <a class="svc" href="/services/digital-marketing-grand-rapids.html">
+          <span class="svc-ic" aria-hidden="true">📈</span>
+          <h3>Google &amp; Meta Ads</h3>
+          <p>Ads that produce leads you can count — proven at <strong>$3.82 per real-estate tour lead</strong>, ~4x below the industry median.</p>
+          <span class="from">flat fees from $500/mo · never % of spend</span>
+          <span class="go">Ads management →</span>
+        </a>
+        <a class="svc" href="/services/ai-automation.html">
+          <span class="svc-ic" aria-hidden="true">⚡</span>
+          <h3>AI Automation &amp; Tools</h3>
+          <p>Missed-call-to-text, review engines, instant quotes, lead routing, dashboards — the custom tools that keep clients from leaving.</p>
+          <span class="from">builds from $2,500 · managed from $300/mo</span>
+          <span class="go">AI automation →</span>
+        </a>
+        <a class="svc" href="/services/ai-consulting.html">
+          <span class="svc-ic" aria-hidden="true">🧠</span>
+          <h3>AI Consulting</h3>
+          <p>Straight answers on where AI helps, what to build vs. buy, and what's hype — from a studio with 3 patents and shipped products.</p>
+          <span class="from">$250/hr · assessments from $3,500</span>
+          <span class="go">AI consulting →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <main id="work">
     <div class="wrap">
       <div class="section-head reveal" style="padding-top: clamp(3rem,6vw,5rem);">
