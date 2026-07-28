@@ -353,7 +353,7 @@
     /* reveal */
     .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity: 1; transform: none; }
-    #services, #why, #work, #packages, #approach, #fit, #founder, #faq, #contact { scroll-margin-top: 82px; }
+    #services, #easy, #why, #work, #packages, #approach, #fit, #founder, #faq, #contact { scroll-margin-top: 82px; }
 
     /* CONTACT FORM */
     .cform { max-width: 560px; margin: 1.6rem auto 0; text-align: left; }
@@ -442,6 +442,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
+        <li><a href="#easy">How it works</a></li>
         <li><a href="#why">Why us</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#packages">Pricing</a></li>
@@ -538,6 +539,50 @@
           <span class="go">AI consulting →</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- EASY -->
+  <section id="easy">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="color:var(--ink-4);">How it works</div>
+        <h2 class="section-title">One 20-minute call. We handle the rest.</h2>
+        <p class="section-intro">Most agencies hand you a 40-question content planner and wait. You're busy running a business — so we do the work instead. No homework, no logins to learn, no chasing.</p>
+      </div>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">📞</span>
+          <h3>You talk, we write</h3>
+          <p>One recorded 20-minute call — from your truck, your office, wherever. We pull the rest from your existing site, Google profile, and reviews, then <strong>write your whole site for you</strong>. You just tell us what's wrong.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">✍️</span>
+          <h3>Feedback by pointing</h3>
+          <p>Click anywhere on the draft and type — no accounts, no passwords, no "the blue thing under the header" emails. Works on your phone.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">🔑</span>
+          <h3>You own everything — really</h3>
+          <p>Domain, hosting, logins, and accounts are all registered <strong>in your name from day one</strong>. If you ever leave, you keep all of it and we'll help you move. No hostage-taking.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">📅</span>
+          <h3>Real dates, not "3–4 weeks"</h3>
+          <p>You get a dated schedule up front — design by the 4th, revisions by the 8th, live on the 15th — plus a status link you can check anytime without logging in.</p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">💬</span>
+          <h3>Updates before you ask</h3>
+          <p>A short text every week, even when there's nothing to report. Usually it just says <em>"on track, nothing needed from you."</em></p>
+        </div>
+        <div class="why-card">
+          <span class="wi" aria-hidden="true">💳</span>
+          <h3>Easy on cash flow</h3>
+          <p>50% to start, the rest at launch — or split it into monthly payments. Pay by bank transfer or card, whichever you prefer.</p>
+        </div>
+      </div>
+      <p class="cmp-note" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto;margin-top:1.6rem;">Total time required from you: about <strong style="color:var(--ink);">45 minutes</strong> — one call, one round of feedback, one final approval.</p>
     </div>
   </section>
 
@@ -970,12 +1015,8 @@
               </select>
             </div>
           </div>
-          <div class="field">
-            <label for="cf-msg">Anything else? <span class="opt">(optional)</span></label>
-            <textarea id="cf-msg" name="message" placeholder="A sentence about your business is plenty — I'll ask the rest."></textarea>
-          </div>
           <button type="submit" id="cf-submit">Send it →</button>
-          <p class="micro">Takes about 30 seconds. No obligation, no sales sequence — you'll hear back from Matthew personally.</p>
+          <p class="micro">Four fields, about 20 seconds. No obligation and no sales sequence — you'll hear back from Matthew personally, usually same day.</p>
         </form>
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
 
