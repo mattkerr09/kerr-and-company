@@ -1,0 +1,82 @@
+/* Kerr & Company — shared article styles.
+   Loaded AFTER pages.css. Only adds what articles need beyond the
+   service-page system: readable body column, data tables, callouts,
+   pull quotes, author block and the article index cards. */
+
+/* body column — narrower than .wrap for line length ~70ch */
+.article{max-width:760px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.4rem);}
+.article p{color:var(--ink-2);margin-bottom:1.05rem;font-size:1.02rem;line-height:1.75;}
+.article h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.2vw,1.95rem);
+  letter-spacing:-0.01em;color:var(--ink);margin:2.6rem 0 0.9rem;}
+.article h3{font-family:var(--serif);font-weight:500;font-size:1.22rem;color:var(--ink);margin:1.9rem 0 0.55rem;}
+.article strong{color:var(--ink);font-weight:600;}
+.article em{color:var(--accent-2);font-style:italic;}
+.article a{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+.article a:hover{color:var(--ink);}
+.article ul,.article ol{margin:0 0 1.1rem 1.3rem;color:var(--ink-2);}
+.article li{margin-bottom:0.5rem;line-height:1.7;}
+.article li::marker{color:var(--accent);}
+.article hr{border:none;border-top:1px solid var(--line);margin:2.4rem 0;}
+
+/* article meta line under the H1 */
+.ameta{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.05em;color:var(--ink-4);
+  display:flex;flex-wrap:wrap;gap:0.5rem 1rem;margin-top:1rem;}
+.ameta span{display:inline-flex;align-items:center;gap:0.4rem;}
+
+/* key takeaways box — sits under the lede */
+.takeaways{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:12px;padding:1.3rem 1.5rem;margin:1.8rem 0 2.2rem;}
+.takeaways h2{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--accent-2);margin:0 0 0.8rem;font-weight:500;}
+.takeaways ul{margin:0 0 0 1.1rem;}
+.takeaways li{font-size:0.94rem;color:var(--ink-2);margin-bottom:0.45rem;}
+.takeaways li:last-child{margin-bottom:0;}
+
+/* data table */
+.datatable{width:100%;border-collapse:collapse;margin:1.4rem 0 1.6rem;font-size:0.92rem;
+  display:block;overflow-x:auto;white-space:nowrap;}
+.datatable th{text-align:left;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--ink-4);font-weight:500;padding:0.6rem 0.9rem;border-bottom:1px solid var(--line-2);}
+.datatable td{padding:0.7rem 0.9rem;border-bottom:1px solid var(--line);color:var(--ink-2);}
+.datatable td:first-child{color:var(--ink);font-weight:500;}
+.datatable tr:last-child td{border-bottom:none;}
+.datatable .hi{color:var(--accent-2);font-weight:600;}
+@media(min-width:700px){.datatable{display:table;white-space:normal;}}
+
+/* callouts */
+.callout{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:1.15rem 1.35rem;margin:1.6rem 0;}
+.callout p{margin-bottom:0.6rem;font-size:0.95rem;}
+.callout p:last-child{margin-bottom:0;}
+.callout .clabel{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.13em;text-transform:uppercase;
+  color:var(--accent-2);display:block;margin-bottom:0.5rem;}
+.callout.warn{border-left:3px solid #e9b872;}
+.callout.warn .clabel{color:#e9b872;}
+
+/* pull quote */
+.pullquote{font-family:var(--serif);font-weight:300;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.45;
+  color:var(--ink);border-left:3px solid var(--accent);padding:0.3rem 0 0.3rem 1.3rem;margin:2rem 0;}
+
+/* author / trust block */
+.author{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:1.3rem 1.4rem;margin:2.6rem 0 0;}
+.author .abody p{font-size:0.9rem;margin-bottom:0.5rem;color:var(--ink-2);}
+.author .abody p:last-child{margin-bottom:0;}
+.author .aname{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:0.3rem;}
+
+/* article index cards */
+.acards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;margin-top:1.6rem;}
+.acard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.5rem;
+  text-decoration:none;display:flex;flex-direction:column;transition:border-color .15s,transform .15s;}
+.acard:hover{border-color:var(--accent);transform:translateY(-2px);}
+.acard .atag{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.11em;text-transform:uppercase;
+  color:var(--accent-2);margin-bottom:0.6rem;}
+.acard h2,.acard h3{font-family:var(--serif);font-weight:500;font-size:1.1rem;line-height:1.35;
+  color:var(--ink);margin:0 0 0.5rem;}
+.acard p{font-size:0.88rem;color:var(--ink-3);line-height:1.6;margin:0;}
+.acard .aread{font-family:var(--mono);font-size:0.7rem;color:var(--ink-4);margin-top:0.9rem;}
+
+/* next/prev article strip */
+.anext{border-top:1px solid var(--line);margin-top:2.6rem;padding-top:1.6rem;}
+.anext .albl{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-4);margin-bottom:0.8rem;}

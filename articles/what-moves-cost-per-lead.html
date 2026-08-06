@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Actually Moves Cost Per Lead — A $179 Teardown</title>
+  <meta name="description" content="My conversion rate got worse and cost per lead still fell 30%. The arithmetic from a $179 Meta campaign — and why most advertisers fix the wrong half.">
+  <link rel="canonical" href="https://kerrandcompanyholdings.com/articles/what-moves-cost-per-lead.html">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta property="og:title" content="What Actually Moves Cost Per Lead — A $179 Teardown">
+  <meta property="og:description" content="My conversion rate got worse and cost per lead still dropped 30%. The full arithmetic, and why most advertisers optimize the wrong number.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kerrandcompanyholdings.com/articles/what-moves-cost-per-lead.html">
+  <meta property="og:image" content="https://kerrandcompanyholdings.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/pages.css">
+  <link rel="stylesheet" href="/assets/article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Article",
+        "@id": "https://kerrandcompanyholdings.com/articles/what-moves-cost-per-lead.html#article",
+        "headline": "What Actually Moves Cost Per Lead — A $179 Teardown",
+        "description": "My conversion rate got worse and cost per lead still dropped 30%. The full arithmetic from a $179 Meta campaign, and why most advertisers optimize the wrong number.",
+        "datePublished": "2026-08-06",
+        "dateModified": "2026-08-06",
+        "author": { "@type": "Person", "name": "Matthew Kerr", "url": "https://matthewkerr.dev/",
+          "knowsAbout": ["Meta Ads", "Google Ads", "Conversion optimization", "Lead generation"] },
+        "publisher": { "@type": "Organization", "name": "Kerr & Company", "url": "https://kerrandcompanyholdings.com/" },
+        "mainEntityOfPage": "https://kerrandcompanyholdings.com/articles/what-moves-cost-per-lead.html",
+        "image": "https://kerrandcompanyholdings.com/assets/og-card.png" },
+      { "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kerrandcompanyholdings.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://kerrandcompanyholdings.com/articles/" },
+        { "@type": "ListItem", "position": 3, "name": "What moves cost per lead", "item": "https://kerrandcompanyholdings.com/articles/what-moves-cost-per-lead.html" } ] },
+      { "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "What is a good cost per lead on Facebook ads?", "acceptedAnswer": { "@type": "Answer", "text": "It depends almost entirely on your industry, because you are bidding against everyone else in that category. WordStream's 2025 Facebook benchmarks put the real-estate median near $16.61, while categories like legal and dental run substantially higher because clicks there cost more. Comparing your cost per lead to a cross-industry average is close to meaningless. Compare it to your own category." } },
+        { "@type": "Question", "name": "Can cost per lead improve while conversion rate gets worse?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it happens more often than people expect. Cost per lead is cost per click divided by conversion rate. If the click price falls faster than the conversion rate does, cost per lead improves anyway. In my campaign the form conversion rate fell from 16.6% to 11.3%, but the cost per click fell from $0.69 to $0.33, and cost per lead still dropped 30%." } },
+        { "@type": "Question", "name": "Should I optimize my landing page or my targeting first?", "acceptedAnswer": { "@type": "Answer", "text": "Neither, until you have decomposed your cost per lead into cost per click and conversion rate. Those two numbers tell you which half of the equation is actually broken. Rewriting a page that already converts above benchmark wastes effort, and in restricted categories like housing, employment and credit, targeting is not even available as a lever." } },
+        { "@type": "Question", "name": "How much budget do you need to test a Meta lead campaign?", "acceptedAnswer": { "@type": "Answer", "text": "Less than most people claim, but understand what a small budget buys. My test ran on $179 total and produced 47 leads, which was enough to compare two campaigns against each other but well under Meta's roughly 50-conversions-per-week threshold for exiting the learning phase. Treat small-budget results as a direction to explore, not a stable performance figure." } }
+      ] }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true">K</span><span class="brand-name">Kerr &amp; Company</span></a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/articles/">Articles</a></li>
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/">Home</a> / <a href="/articles/">Articles</a> / Cost per lead</div>
+  </div>
+
+  <header class="phero">
+    <div class="article">
+      <div class="eyebrow">Paid Ads · First-party data</div>
+      <h1>My conversion rate got worse. Cost per lead fell 30% anyway.</h1>
+      <p class="lede">The full arithmetic from a $179 campaign, including the part that contradicts the advice everyone gives — and the reason most advertisers spend months optimizing the wrong half of the equation.</p>
+      <div class="ameta">
+        <span>By Matthew Kerr</span>
+        <span>August 2026</span>
+        <span>8 min read</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="article" style="padding-top:2.2rem;padding-bottom:1rem;">
+
+    <div class="takeaways">
+      <h2>Short version</h2>
+      <ul>
+        <li>Cost per lead is <strong>cost per click ÷ conversion rate</strong>. Nothing else can move it.</li>
+        <li>My second campaign converted <em>worse</em> — 11.3% vs 16.6% — and beat the first by 30%.</li>
+        <li>It won because clicks got cheaper: $0.69 → $0.33. The cheaper half outran the worse half.</li>
+        <li>Most people rewrite the page. Half the time the page was never the problem.</li>
+        <li>Decompose before you optimize. It takes ten minutes and tells you which lever to pull.</li>
+      </ul>
+    </div>
+
+    <p>There is a standard piece of advice about paid ads: if your leads cost too much, improve your offer and your landing page.</p>
+
+    <p>It is good advice roughly half the time. The other half it sends you rewriting something that already works while the actual problem sits untouched in a column you never opened.</p>
+
+    <p>I know because I did it backwards and got lucky, then went back and worked out why it happened.</p>
+
+    <h2>The identity everything reduces to</h2>
+
+    <p>Every lead you buy costs:</p>
+
+    <p class="pullquote">Cost per lead = cost per click ÷ conversion rate</p>
+
+    <p>This is not a theory or a framework. It is arithmetic, and it is true on every ad platform that has ever existed. If you paid $0.69 for a click and 16.6% of clickers converted, each lead cost $4.16. There is no third variable hiding somewhere.</p>
+
+    <p>What this buys you is a <strong>completeness guarantee</strong>. Nothing on earth can change your cost per lead without moving one of those two numbers. Not your creative, not your audience, not the season, not the algorithm. Those things all act <em>through</em> click price or conversion rate.</p>
+
+    <p>So when cost per lead is bad, there are exactly two diagnoses. You are paying too much for traffic, or too little of it converts. Everyone I have watched debug a campaign assumes the second one without checking.</p>
+
+    <h2>What actually happened</h2>
+
+    <p>I ran Meta lead-form ads for local home tours. Total spend across both campaigns: $179. Here is everything.</p>
+
+    <table class="datatable">
+      <thead>
+        <tr><th></th><th>Campaign 1</th><th>Campaign 2</th><th>Blended</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Spend</td><td>$141</td><td>$38</td><td>$179</td></tr>
+        <tr><td>Link clicks</td><td>205</td><td>115</td><td>320</td></tr>
+        <tr><td>Cost per click</td><td>$0.69</td><td class="hi">$0.33</td><td>$0.56</td></tr>
+        <tr><td>Form conversion rate</td><td class="hi">16.6%</td><td>11.3%</td><td>14.7%</td></tr>
+        <tr><td>Leads</td><td>34</td><td>13</td><td>47</td></tr>
+        <tr><td>Cost per lead</td><td>$4.16</td><td class="hi">$2.92</td><td>$3.82</td></tr>
+      </tbody>
+    </table>
+
+    <p>Look at the two highlighted columns and notice they point in opposite directions.</p>
+
+    <p>Campaign 1 had the <em>better</em> conversion rate — 16.6%, which is strong against a real-estate median near 9.5%. Campaign 2 converted at 11.3%, a third worse.</p>
+
+    <p>Campaign 2 won by 30%.</p>
+
+    <p>It won because its clicks cost less than half as much. $0.33 against $0.69. Run it through the identity: $0.33 ÷ 0.113 = $2.92. The cheaper traffic more than paid for the worse conversion.</p>
+
+    <h2>Why I would have optimized the wrong thing</h2>
+
+    <p>Put yourself at the end of campaign 1. You have 34 leads at $4.16. You want them cheaper. What do you do?</p>
+
+    <p>Nearly everyone rewrites the offer. That is what the blogs say, it is what agencies pitch, and it feels like the part you control.</p>
+
+    <p>But campaign 1's form was converting at <strong>16.6%</strong> — about 1.7× the category median. The offer was not the constraint. It was the best-performing part of the whole thing. Spending two weeks rewriting it would have produced, at absolute best, a marginal gain on the strongest number in the account.</p>
+
+    <p>The weak number was traffic price. $0.69 a click, against a real-estate median around $1.57 — so not <em>bad</em>, just the softer of the two. That is where the room was, and the only reason I knew is that I had both numbers side by side instead of one blended figure.</p>
+
+    <div class="callout">
+      <span class="clabel">The ten-minute version</span>
+      <p>Open your ads manager. Pull cost per click and conversion rate as separate columns for each campaign, then divide one by the other and confirm it matches your reported cost per lead. It will.</p>
+      <p>Now compare each against your category's benchmark. Whichever is further behind is your project. If conversion is above median and clicks are expensive, do not touch the page — you have a traffic problem.</p>
+    </div>
+
+    <h2>The part I am careful about</h2>
+
+    <p>A single $179 test is a direction, not a law. Four things keep me honest about these numbers, and I would rather say them than have someone else find them.</p>
+
+    <h3>The sample is small</h3>
+
+    <p>Forty-seven conversions total. Meta's optimization generally wants somewhere around 50 conversions per week before a campaign exits its learning phase, which means this whole test lived inside the noisiest period of a campaign's life. The direction was clear. The precise figures are not stable.</p>
+
+    <h3>Some of this was the auction, not me</h3>
+
+    <p>Meta click prices in real estate softened considerably through 2025 and 2026. Part of my $0.33 was skill, and part was a cheap market. I do not know the split, and anyone who tells you they can separate those cleanly on their own account is guessing.</p>
+
+    <h3>The form type is a confound</h3>
+
+    <p>These were Meta instant forms, which pre-fill from the user's profile. Category conversion benchmarks blend instant forms with landing-page campaigns, and landing pages convert far lower. So part of my above-median conversion rate is the form format, not the offer. If you change the offer and the form type together you have run two experiments at once and learned less than you think.</p>
+
+    <h3>Cost per lead is not the goal</h3>
+
+    <p>This one matters most and gets said least. I have cost per lead. I do not have show rate or close rate. A $3.82 lead that never shows for the tour is worth less than a $15 lead that signs. Cheap leads are a proxy for a business outcome, not the outcome — and it is entirely possible to optimize cost per lead straight into a pile of junk.</p>
+
+    <div class="callout warn">
+      <span class="clabel">The trap</span>
+      <p>Cost per lead is the easiest number to improve and the easiest to improve dishonestly. Loosen the ask — "get info" instead of "book a tour" — and your cost per lead will drop immediately, because you are now paying for people who did something that costs them nothing. The number gets better while the business gets worse.</p>
+      <p>Which is why I made the ask <em>harder</em>: pick a house, pick a time. Fewer people convert. The ones who do are worth calling.</p>
+    </div>
+
+    <h2>Where the auction beats you</h2>
+
+    <p>One more thing worth internalizing, because it sets a ceiling on what any optimization can do.</p>
+
+    <p>Click prices vary enormously by category. Real estate sits low. Home improvement is meaningfully more expensive. Legal and dental are dramatically higher — in some benchmark sets, several times real estate's cost per click.</p>
+
+    <p>That difference is not something you optimize away. If you are a dentist, you are bidding against every other dentist for the same attention, and your floor is set by that auction before you write a single word. Offer design attacks the conversion half of the equation. It cannot touch the traffic-price half.</p>
+
+    <p>So when someone shows you a $4 lead from a different industry and asks why yours costs $40, the honest answer is usually: because you are standing in a more expensive room. Benchmark against your own category or do not benchmark at all.</p>
+
+    <h2>What I would tell you to do Monday</h2>
+
+    <ol>
+      <li><strong>Decompose.</strong> Cost per click and conversion rate as separate columns, per campaign. Ten minutes.</li>
+      <li><strong>Find your category's medians</strong> — not the cross-industry average, which is a blend of dentists and real estate and means nothing for either.</li>
+      <li><strong>Fix whichever number is further behind.</strong> Only that one.</li>
+      <li><strong>Change one thing at a time.</strong> Offer <em>and</em> form format together teaches you nothing.</li>
+      <li><strong>Track past the lead.</strong> Show rate and close rate, or you are flying on a proxy.</li>
+    </ol>
+
+    <p>The whole exercise is unglamorous and takes an afternoon. It is also the difference between two months of rewriting copy that was never broken and a 30% improvement from changing how you buy traffic.</p>
+
+    <hr>
+
+    <h2>Common questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is a good cost per lead on Facebook ads?</h3>
+        <p>It depends almost entirely on your industry, because you are bidding against everyone else in that category. WordStream's 2025 Facebook benchmarks put the real-estate median near $16.61, while categories like legal and dental run substantially higher because clicks there cost more. Comparing your cost per lead to a cross-industry average is close to meaningless. Compare it to your own category.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can cost per lead improve while conversion rate gets worse?</h3>
+        <p>Yes, and it happens more often than people expect. Cost per lead is cost per click divided by conversion rate. If the click price falls faster than the conversion rate does, cost per lead improves anyway. In my campaign the form conversion rate fell from 16.6% to 11.3%, but the cost per click fell from $0.69 to $0.33, and cost per lead still dropped 30%.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Should I optimize my landing page or my targeting first?</h3>
+        <p>Neither, until you have decomposed your cost per lead into cost per click and conversion rate. Those two numbers tell you which half of the equation is actually broken. Rewriting a page that already converts above benchmark wastes effort, and in restricted categories like housing, employment and credit, targeting is not even available as a lever.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How much budget do you need to test a Meta lead campaign?</h3>
+        <p>Less than most people claim, but understand what a small budget buys. My test ran on $179 total and produced 47 leads, which was enough to compare two campaigns against each other but well under Meta's roughly 50-conversions-per-week threshold for exiting the learning phase. Treat small-budget results as a direction to explore, not a stable performance figure.</p>
+      </div>
+    </div>
+
+    <div class="author">
+      <div class="abody">
+        <div class="aname">Matthew Kerr</div>
+        <p>I run <a href="/">Kerr &amp; Company</a> in Grand Rapids, build the analytics and automation I use, and manage a two-property portfolio at a management company. Every number on this page came out of my own ad account.</p>
+        <p>The full campaign write-up, including creative decisions, is in the <a href="/case-studies/real-estate-ads-3-82-cost-per-lead.html">case study</a>.</p>
+      </div>
+    </div>
+
+    <div class="anext">
+      <div class="albl">Related</div>
+      <div class="related">
+        <a href="/case-studies/real-estate-ads-3-82-cost-per-lead.html">The full $3.82 case study</a>
+        <a href="/articles/calendar-link-beats-free-estimate.html">Why "free estimate" loses to a calendar link</a>
+        <a href="/services/digital-marketing-grand-rapids.html">Ads management</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Want me to <em>decompose your account?</em></h2>
+      <p>Send me read-only access or just a screenshot of your campaign columns. I'll tell you which half of the equation is costing you money — traffic price or conversion — and what I'd change first.</p>
+      <div class="contact-line"><a href="mailto:matthew@kerrandcompanyholdings.com">matthew@kerrandcompanyholdings.com</a></div>
+      <p class="promise">If your numbers are already good I'll say so. That's a real possible outcome.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
+    <div class="fr">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="/legal/privacy.html">Privacy</a>
+      <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/disclaimer.html">Disclaimer</a>
+    </div>
+  </footer>
+</body>
+</html>
