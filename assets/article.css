@@ -6,9 +6,9 @@
 /* body column — narrower than .wrap for line length ~70ch */
 .article{max-width:760px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.4rem);}
 .article p{color:var(--ink-2);margin-bottom:1.05rem;font-size:1.02rem;line-height:1.75;}
-.article h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.2vw,1.95rem);
+.article h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3.2vw,1.95rem);
   letter-spacing:-0.01em;color:var(--ink);margin:2.6rem 0 0.9rem;}
-.article h3{font-family:var(--serif);font-weight:500;font-size:1.22rem;color:var(--ink);margin:1.9rem 0 0.55rem;}
+.article h3{font-family:var(--serif);font-weight:600;font-size:1.22rem;color:var(--ink);margin:1.9rem 0 0.55rem;}
 .article strong{color:var(--ink);font-weight:600;}
 .article em{color:var(--accent-2);font-style:italic;}
 .article a{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
@@ -54,7 +54,7 @@
 .callout.warn .clabel{color:#e9b872;}
 
 /* pull quote */
-.pullquote{font-family:var(--serif);font-weight:300;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.45;
+.pullquote{font-family:var(--serif);font-weight:600;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.45;
   color:var(--ink);border-left:3px solid var(--accent);padding:0.3rem 0 0.3rem 1.3rem;margin:2rem 0;}
 
 /* author / trust block */
@@ -71,7 +71,7 @@
 .acard:hover{border-color:var(--accent);transform:translateY(-2px);}
 .acard .atag{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.11em;text-transform:uppercase;
   color:var(--accent-2);margin-bottom:0.6rem;}
-.acard h2,.acard h3{font-family:var(--serif);font-weight:500;font-size:1.1rem;line-height:1.35;
+.acard h2,.acard h3{font-family:var(--serif);font-weight:600;font-size:1.1rem;line-height:1.35;
   color:var(--ink);margin:0 0 0.5rem;}
 .acard p{font-size:0.88rem;color:var(--ink-3);line-height:1.6;margin:0;}
 .acard .aread{font-family:var(--mono);font-size:0.7rem;color:var(--ink-4);margin-top:0.9rem;}
@@ -83,6 +83,6 @@
 
 /* hero metric row — shared by case studies */
 .metrics{display:flex;flex-wrap:wrap;gap:1.6rem 2.4rem;margin-top:1.6rem;}
-.metric .n{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,4vw,2.3rem);color:var(--ink);line-height:1;letter-spacing:-0.02em;}
+.metric .n{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,4vw,2.3rem);color:var(--ink);line-height:1;letter-spacing:-0.02em;}
 .metric.hero .n{color:var(--accent-2);}
 .metric .l{font-size:0.78rem;color:var(--ink-3);margin-top:0.35rem;}
