@@ -2,3 +2,6 @@
 .claude/
 # Internal blocker board. Never published — this repo is public.
 ops-8f2c91/
+node_modules/
+test-results/
+playwright-report/
