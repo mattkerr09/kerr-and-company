@@ -180,6 +180,36 @@ test.describe('claims that must never come back', () => {
     expect(found, 'a previously-corrected false claim is live again').toEqual([]);
   });
 
+  /**
+   * Our OWN prices must agree with each other across the site.
+   *
+   * The care plan was published at $199/month in nine places — including the
+   * pricing card and the JSON-LD FAQ — and at $99/month in one article, inside a
+   * paragraph that began "My pricing is public". A prospect who read that article
+   * would have been quoted double. This is worse than a wrong competitor figure:
+   * a buyer can hold us to the lower number, and they would be right to.
+   *
+   * This asserts agreement rather than banning one string, so it catches the
+   * drift in either direction — including a genuine price change applied to some
+   * pages and not others.
+   */
+  test('our own recurring prices agree everywhere they appear', async () => {
+    test.setTimeout(120_000);
+    const CARE = /care plans? (?:start(?:ing)? at|from) \$([\d,]+)/gi;
+    const seen = new Map<string, string[]>();
+    for (const p of PAGES) {
+      const text = visibleText(await body(p));
+      for (const m of text.matchAll(CARE)) {
+        const price = m[1].replace(/,/g, '');
+        if (!seen.has(price)) seen.set(price, []);
+        seen.get(price)!.push(p);
+      }
+    }
+    const summary = [...seen.entries()].map(([p, ps]) => `$${p} on ${ps.join(', ')}`);
+    expect(seen.size, `care plan quoted at conflicting prices — ${summary.join(' | ')}`)
+      .toBeLessThanOrEqual(1);
+  });
+
   test('no testimonial names a person, because there are no collected testimonials', async () => {
     test.setTimeout(120_000);
     // Three fabricated testimonials with names and cities shipped on a sibling
