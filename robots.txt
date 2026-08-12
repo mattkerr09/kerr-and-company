@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://kerrandcompanyholdings.com/sitemap.xml
+Disallow: /ops-8f2c91/
