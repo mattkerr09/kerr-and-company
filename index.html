@@ -468,6 +468,44 @@
     table.cmp tr:last-child td.us { border-bottom: 1px solid rgba(224,169,85,0.3); border-radius: 0 0 10px 10px; }
     .cmp-note { font-size: 0.78rem; color: var(--ink-4); margin-top: 0.9rem; line-height: 1.6; max-width: 720px; }
 
+
+    /* LIGHT THEME, designed rather than inverted.
+       Two things do not survive a naive flip. The gold #e0a955 reads 1.9:1 on paper
+       and is unusable for text or links, so it darkens to #8a5a12 (5.9:1) while the
+       original stays as the FILL on buttons, where dark text sits on it. And the
+       ground is warm paper #faf7f1 rather than white, because the dark side is warm
+       ink and a cold white would read as a different brand rather than the same one
+       with the lights on. */
+    :root[data-theme="light"]{
+      --bg: #faf7f1; --bg-2: #f3efe6; --surface: #ffffff; --surface-2: #f6f2ea;
+      --line: #e4ded1; --line-2: #d3cabb;
+      --ink: #1a1611; --ink-2: #4a423a; --ink-3: #6b6157; --ink-4: #8a8075;
+      --accent: #8a5a12; --accent-2: #6d460c; --accent-soft: rgba(138,90,18,0.10);
+      --gold: #8a5a12; --green: #2f6b3c; --green-soft: rgba(47,107,60,0.10);
+      --shadow: 0 1px 2px rgba(26,22,17,.06), 0 8px 24px -12px rgba(26,22,17,.14);
+      --shadow-card: 0 2px 6px rgba(26,22,17,.07), 0 18px 40px -20px rgba(26,22,17,.18);
+    }
+    /* The gold FILL survives into light mode on the primary button only, where the
+       label is dark ink on gold rather than gold on paper. */
+    :root[data-theme="light"] .btn-primary,
+    :root[data-theme="light"] .nav-cta{ background:#e0a955; color:#1a1611; border-color:#cf9640; }
+
+
+    /* Toggle. Only one icon is ever in the DOM flow: showing the sun in light mode and
+       the moon in dark is the convention every reference site uses — the icon shows the
+       state you are IN, not the one you would switch to. Getting that backwards is the
+       single most common bug in these. */
+    .theme-toggle{ display:inline-grid; place-items:center; width:34px; height:34px;
+      background:transparent; border:1px solid var(--line); border-radius:9px;
+      color:var(--ink-3); cursor:pointer; padding:0; transition:color .18s, border-color .18s; }
+    .theme-toggle:hover{ color:var(--ink); border-color:var(--line-2); }
+    .theme-toggle svg{ width:16px; height:16px; }
+    .theme-toggle .ic-sun{ display:none; }
+    :root[data-theme="light"] .theme-toggle .ic-sun{ display:block; }
+    :root[data-theme="light"] .theme-toggle .ic-moon{ display:none; }
+    /* No JS: the button cannot do anything, so it is not offered. */
+    html:not(.js) .theme-toggle{ display:none; }
+
     /* SERVICES hub */
     #services { border-top: 1px solid var(--line); background: var(--bg-2); }
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 1.1rem; }
@@ -482,6 +520,28 @@
     .svc:hover .go { color: var(--ink); }
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} .js .reveal{opacity:1;transform:none;transition:none;} .eyebrow::before{animation:none;} }
   </style>
+  <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
+       only site in this portfolio that already had one. Reading localStorage and stamping
+       data-theme in <head> is the whole trick: do it in a deferred script and the page
+       paints the wrong theme first, which is worse than having no toggle. -->
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch(e){}
+
+    // Theme toggle. The default is already applied pre-paint in <head>; this only
+    // handles the click and the persistence, so there is no second source of truth.
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+    });
+    })();
+  </script>
 </head>
 <body>
   <div class="glows" aria-hidden="true">
@@ -507,6 +567,11 @@
         <li><a href="#packages">Pricing</a></li>
         <li><a href="/articles/">Articles</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark / light">
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M4.2 12H1.8M22.2 12h-2.4M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"/></svg>
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/></svg>
+      </button>
       <a href="#contact" class="nav-cta">Contact</a>
     </div>
   </nav>
