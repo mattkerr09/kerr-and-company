@@ -219,6 +219,13 @@
     .btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-2px); }
 
     /* STATS */
+    .hero-proof { margin-top: clamp(2.6rem, 5vw, 4rem); }
+    /* Taller than the in-page portfolio mockups (320px): this one is the first evidence a
+       visitor sees and has to read as a website rather than a thumbnail. Capped by vh so it
+       cannot push the CTA off a laptop fold — the whole point is that both are visible at
+       once. */
+    .hero-proof .mockup-scroll { height: clamp(300px, 42vh, 460px); }
+    @media (max-width: 700px) { .hero-proof .mockup-scroll { height: 260px; } }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: 1.7rem 1.3rem; }
@@ -488,15 +495,17 @@
       <span class="brand-name">Kerr &amp; Company <em>/ Grand Rapids</em></span>
     </a>
     <div class="nav-right">
+      <!-- Five, not nine. Cursor, Raycast, Warp and Linear all run four or five top-level
+           items; this nav had nine plus the brand, which reads as a sitemap rather than a
+           choice and is one of the clearest tells separating a small-business site from a
+           product company's. Nothing was deleted — "How it works", "Why us", "Approach" and
+           "Founder" are all still on the page and reachable by scrolling; they simply stopped
+           competing for the one place a visitor looks first. -->
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="#easy">How it works</a></li>
-        <li><a href="#why">Why us</a></li>
         <li><a href="#work">Work</a></li>
-      <li><a href="/articles/">Articles</a></li>
         <li><a href="#packages">Pricing</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#founder">Founder</a></li>
+        <li><a href="/articles/">Articles</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Contact</a>
     </div>
@@ -510,16 +519,22 @@
       <div class="reveal">
         <div class="eyebrow">Web Design · SEO · AI Automation — Grand Rapids, MI</div>
         <h1>Websites built in days, <em>not months</em>.</h1>
+        <!-- 69 words became 21. The old subhead did three jobs at once — what the business
+             builds, proof that its founder ships real software, and an argument against
+             agencies — and asked a stranger to read a paragraph before anything had been
+             shown to them. Cursor's hero has no subhead at all; Linear's is one line;
+             Raycast's is two. The software-portfolio claim did not get weaker, it moved: it
+             is a proof element, and proof belongs after the promise, not inside it. -->
         <p class="hero-sub">
-          Kerr &amp; Company builds websites, local SEO and custom AI tools for Grand Rapids businesses —
-          <strong>from $999</strong>, with the scope, the price and the delivery date in writing before you commit.
-          I also ship my own software: a <strong>notarized macOS app with paying subscribers</strong>, a
-          <strong>live B2B SaaS</strong>, and 3 provisional patents. You get someone who builds products for a
-          living, not an agency learning on your dime.
+          Websites, local SEO and custom AI tools for Grand Rapids businesses —
+          <strong>from $999</strong>, with the scope, the price and the date in writing before you commit.
         </p>
+        <!-- One action. "See pricing" was the same audience at a lower commitment, which is
+             the dilution pattern none of the four references use — where they carry a second
+             button it is a different AUDIENCE (Cursor: enterprise demo; Raycast: Windows
+             users). Pricing is in the nav and the section is one scroll down. -->
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Get a written quote →</a>
-          <a href="#packages" class="btn btn-ghost">See pricing ↓</a>
         </div>
         <div class="proofstrip">
           <span class="pi"><b>3</b>&nbsp;provisional patents</span><span class="sep">·</span>
@@ -529,11 +544,23 @@
         </div>
         <div class="resp-promise">Matthew replies personally — within one business day.</div>
       </div>
-      <div class="stats reveal">
-        <div class="stat"><div class="stat-num"><span class="accent">5</span></div><div class="stat-label">Products shipped</div></div>
-        <div class="stat"><div class="stat-num">2,500+</div><div class="stat-label">Monthly downloads</div></div>
-        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Provisional patents</div></div>
-        <div class="stat"><div class="stat-num">$3.82</div><div class="stat-label">Cost per lead achieved</div></div>
+
+      <!-- The fold had no evidence in it. Cursor, Warp and Linear all give most of the first
+           screen to the product itself; this page gave it to a paragraph and eight numbers
+           across two stacked proof strips. A services business has no .app to show, but it
+           does have the work — and this one has four real sites sitting in assets/ that were
+           only ever used four screens down the page.
+           So: one of them, live and scrollable, in the fold. It is the strongest thing this
+           business can say and it was being saved for people who scrolled. The stats row that
+           used to sit here was the second of two proof strips in a row; the ticks above it do
+           the same job in a quarter of the height, and the four figures still appear further
+           down where they have room to be read. -->
+      <div class="hero-proof reveal">
+        <div class="mockup">
+          <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>docketseo.app</span></div>
+          <div class="mockup-scroll"><img src="assets/docket-site.webp" width="1440" height="9184" alt="Docket SEO — a site built and shipped by Kerr &amp; Company" loading="eager" decoding="async"></div>
+          <span class="scroll-hint">↕ scroll it — this is a real site we shipped</span>
+        </div>
       </div>
     </div>
   </header>
