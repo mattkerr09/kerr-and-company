@@ -88,24 +88,35 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #07090e;
-      --bg-2: #0b0e15;
-      --surface: #11151f;
-      --surface-2: #161b27;
-      --line: #1f2634;
-      --line-2: #2b3446;
-      --ink: #eef2f8;
-      --ink-2: #a3aec4;
-      --ink-3: #8792a8;
-      --ink-4: #737e91;
-      --accent: #4f8bff;
-      --accent-2: #8fb4ff;
-      --accent-soft: rgba(79,139,255,0.14);
-      --gold: #e9b872;
-      --green: #5fd38d;
-      --green-soft: rgba(95,211,141,0.12);
+      /* Five sites in this portfolio were near-black with a blue accent and a
+         system sans — crispvideo.app #5ac8fa, adplaybook.app #4c8dff, this one
+         #e0a955, all on #000-ish, all -apple-system. Side by side they read as
+         one company shipping four things, which is the opposite of what a
+         services studio wants: a prospect should not think they are buying
+         software. docketseo.app proved the escape route — a different ground
+         colour, a real typeface and a different hero structure — and it is the
+         strongest site of the six.
+         So: warm ink instead of blue-black, the gold that was already in this
+         palette promoted from decoration to the primary accent, and an
+         editorial serif for display. No webfont, no extra request. */
+      --bg: #0d0b09;
+      --bg-2: #14110d;
+      --surface: #1b1712;
+      --surface-2: #221d17;
+      --line: #2e2820;
+      --line-2: #3d352a;
+      --ink: #f6f2ea;
+      --ink-2: #c3b9a8;
+      --ink-3: #a2988a;
+      --ink-4: #857c70;
+      --accent: #e0a955;
+      --accent-2: #f2cd94;
+      --accent-soft: rgba(224,169,85,0.14);
+      --gold: #e0a955;
+      --green: #7fbf8a;
+      --green-soft: rgba(127,191,138,0.12);
       --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Inter, system-ui, sans-serif;
-      --serif: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Inter, system-ui, sans-serif;
+      --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
       --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
       --maxw: 1120px;
       --shadow: 0 2px 4px rgba(0,0,0,0.4), 0 24px 60px rgba(0,0,0,0.55);
@@ -122,7 +133,7 @@
     /* ambient glows */
     .glows { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
     .glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.55; }
-    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(79,139,255,0.28), transparent 70%); }
+    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(224,169,85,0.28), transparent 70%); }
     .glow-2 { bottom: -300px; left: -200px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(233,184,114,0.10), transparent 70%); }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); position: relative; z-index: 1; }
@@ -140,7 +151,7 @@
     .brand-mark {
       width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
       background: linear-gradient(140deg, var(--accent), #2f6ae0); color: #fff;
-      font-family: var(--serif); font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(79,139,255,0.4);
+      font-family: var(--serif); font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(224,169,85,0.4);
     }
     .brand-name { font-family: var(--serif); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; }
     .brand-name em { font-style: normal; color: var(--ink-3); font-weight: 400; font-family: var(--sans); font-size: 0.78rem; }
@@ -153,7 +164,7 @@
       background: var(--accent); padding: 0.5rem 1.1rem; border-radius: 8px; white-space: nowrap;
       transition: background .15s, transform .15s, box-shadow .15s;
     }
-    .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(79,139,255,0.4); }
+    .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(224,169,85,0.4); }
     @media (max-width: 720px){ .nav-links { display: none; } }
 
     /* HERO */
@@ -171,7 +182,7 @@
     .glow { position: absolute; pointer-events: none; z-index: 0; border-radius: 50%; }
     .glow-a {
       top: -22%; left: 6%; width: min(760px, 78vw); height: min(760px, 78vw);
-      background: radial-gradient(circle, rgba(79,139,255,0.30), transparent 66%);
+      background: radial-gradient(circle, rgba(224,169,85,0.30), transparent 66%);
       filter: blur(110px);
     }
     .glow-b {
@@ -191,7 +202,7 @@
     /* Gradient headline — the one flourish, reserved for the emphasised phrase. */
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(120deg, #8fb4ff 8%, #4f8bff 48%, #8b7cff 96%);
+      background: linear-gradient(120deg, #f2cd94 8%, #e0a955 48%, #8b7cff 96%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent;
     }
@@ -203,7 +214,7 @@
     .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none; transition: all .15s; border: 1px solid transparent; cursor: pointer; }
     .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(79,139,255,0.35); }
+    .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(224,169,85,0.35); }
     .btn-ghost { background: transparent; color: var(--ink-2); border-color: var(--line-2); }
     .btn-ghost:hover { border-color: var(--ink-3); color: var(--ink); transform: translateY(-2px); }
 
@@ -263,7 +274,7 @@
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; }
     .svc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.7rem; transition: border-color .2s, transform .2s; }
     .svc:hover { border-color: var(--line-2); transform: translateY(-3px); }
-    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(79,139,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.1rem; }
+    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(224,169,85,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.1rem; }
     .svc h3 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
     .svc p { font-size: 0.9rem; color: var(--ink-3); line-height: 1.65; }
 
@@ -281,7 +292,7 @@
     /* CONTACT */
     #contact { border-top: 1px solid var(--line); }
     .contact-card { background: linear-gradient(160deg, var(--surface), var(--bg-2)); border: 1px solid var(--line-2); border-radius: 22px; padding: clamp(2.5rem, 6vw, 4.5rem); text-align: center; position: relative; overflow: hidden; }
-    .contact-card::before { content:''; position: absolute; top: -140px; left: 50%; transform: translateX(-50%); width: 460px; height: 300px; background: radial-gradient(circle, rgba(79,139,255,0.22), transparent 70%); pointer-events: none; }
+    .contact-card::before { content:''; position: absolute; top: -140px; left: 50%; transform: translateX(-50%); width: 460px; height: 300px; background: radial-gradient(circle, rgba(224,169,85,0.22), transparent 70%); pointer-events: none; }
     .contact-card h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; position: relative; }
     .contact-card h2 em { font-style: italic; color: var(--accent-2); }
     .contact-card p { color: var(--ink-3); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; position: relative; }
@@ -311,7 +322,7 @@
     .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.1rem; }
     .pkg { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.7rem 1.6rem; transition: border-color .2s, transform .2s; position: relative; }
     .pkg:hover { border-color: var(--line-2); transform: translateY(-3px); }
-    .pkg.feature { border-color: rgba(79,139,255,0.45); box-shadow: 0 0 0 1px rgba(79,139,255,0.25), 0 20px 50px rgba(0,0,0,0.4); }
+    .pkg.feature { border-color: rgba(224,169,85,0.45); box-shadow: 0 0 0 1px rgba(224,169,85,0.25), 0 20px 50px rgba(0,0,0,0.4); }
     .pkg-tag { position: absolute; top: -11px; left: 1.6rem; font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: var(--accent); padding: 0.25rem 0.6rem; border-radius: 100px; }
     .pkg h3 { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
     .pkg .price { font-family: var(--serif); font-weight: 600; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
@@ -404,7 +415,7 @@
       transition: border-color .15s, box-shadow .15s; }
     .cform input::placeholder, .cform textarea::placeholder { color: var(--ink-4); }
     .cform input:focus, .cform select:focus, .cform textarea:focus {
-      outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,139,255,0.16); }
+      outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,169,85,0.16); }
     .cform select { appearance: none; cursor: pointer;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2397958d' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.2rem; }
@@ -415,7 +426,7 @@
       width: 100%; background: var(--accent); color: #fff; font-family: var(--sans); font-weight: 600;
       font-size: 1rem; padding: 0.9rem 1.4rem; border: none; border-radius: 11px; cursor: pointer;
       transition: background .15s, transform .15s, box-shadow .15s; margin-top: 0.3rem; }
-    .cform button:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(79,139,255,0.4); }
+    .cform button:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(224,169,85,0.4); }
     .cform button:disabled { opacity: 0.6; cursor: wait; transform: none; }
     .cform .micro { font-size: 0.8rem; color: var(--ink-4); text-align: center; margin-top: 0.7rem; line-height: 1.55; }
     .form-status { display: none; margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: 10px; font-size: 0.92rem; line-height: 1.55; }
@@ -440,14 +451,14 @@
     table.cmp { width: 100%; min-width: 660px; border-collapse: collapse; font-size: 0.9rem; }
     table.cmp th { text-align: left; padding: 0.85rem 1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
       color: var(--ink-3); font-weight: 600; border-bottom: 1px solid var(--line-2); white-space: nowrap; }
-    table.cmp th.us { color: var(--accent-2); background: rgba(79,139,255,0.1); border-radius: 10px 10px 0 0;
-      border-left: 1px solid rgba(79,139,255,0.3); border-right: 1px solid rgba(79,139,255,0.3); }
+    table.cmp th.us { color: var(--accent-2); background: rgba(224,169,85,0.1); border-radius: 10px 10px 0 0;
+      border-left: 1px solid rgba(224,169,85,0.3); border-right: 1px solid rgba(224,169,85,0.3); }
     table.cmp td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--line); color: var(--ink-3); line-height: 1.5; vertical-align: top; }
     table.cmp td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
-    table.cmp td.us { background: rgba(79,139,255,0.07); color: var(--ink); font-weight: 600;
-      border-left: 1px solid rgba(79,139,255,0.3); border-right: 1px solid rgba(79,139,255,0.3); }
+    table.cmp td.us { background: rgba(224,169,85,0.07); color: var(--ink); font-weight: 600;
+      border-left: 1px solid rgba(224,169,85,0.3); border-right: 1px solid rgba(224,169,85,0.3); }
     table.cmp tr:last-child td { border-bottom: none; }
-    table.cmp tr:last-child td.us { border-bottom: 1px solid rgba(79,139,255,0.3); border-radius: 0 0 10px 10px; }
+    table.cmp tr:last-child td.us { border-bottom: 1px solid rgba(224,169,85,0.3); border-radius: 0 0 10px 10px; }
     .cmp-note { font-size: 0.78rem; color: var(--ink-4); margin-top: 0.9rem; line-height: 1.6; max-width: 720px; }
 
     /* SERVICES hub */
@@ -455,7 +466,7 @@
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 1.1rem; }
     .svc { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
       padding: 1.6rem 1.55rem; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
-    .svc:hover { border-color: rgba(79,139,255,0.45); transform: translateY(-3px); box-shadow: var(--shadow-card); }
+    .svc:hover { border-color: rgba(224,169,85,0.45); transform: translateY(-3px); box-shadow: var(--shadow-card); }
     .svc-ic { font-size: 1.4rem; line-height: 1; margin-bottom: 0.7rem; }
     .svc h3 { font-family: var(--serif); font-weight: 600; font-size: 1.22rem; letter-spacing: -0.01em; margin-bottom: 0.4rem; color: var(--ink); }
     .svc p { font-size: 0.89rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 0.9rem; }
@@ -1192,7 +1203,7 @@
       sc.setAttribute('tabindex','0');
     });
 
-    console.log("%cKerr & Company — Grand Rapids","font:600 15px ui-sans-serif;color:#4f8bff");
+    console.log("%cKerr & Company — Grand Rapids","font:600 15px ui-sans-serif;color:#e0a955");
     console.log("%cWe build and ship real AI products. Want yours built? matthew@kerrandcompanyholdings.com","color:#97958d");
   </script>
 </body>
