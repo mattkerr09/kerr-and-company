@@ -168,6 +168,33 @@ test.describe('claims that must never come back', () => {
     },
   ];
 
+  /**
+   * The detectors must still detect.
+   *
+   * Every needle above is a regex written against a string that has since been
+   * removed from the site. Nothing re-checks that the regex still matches the
+   * text it was written for — so a well-meant tidy of one of these patterns
+   * would leave a test that passes because it can no longer see, which is
+   * indistinguishable from passing because the claim is gone.
+   *
+   * This is the lesson of 2026-08-13, when four of five new assertions in a
+   * sibling repo caught their defect and the fifth was decorative: a gate is
+   * only known to work once it has been watched failing on the thing it names.
+   */
+  test('each forbidden-claim detector still matches the claim it was written for', async () => {
+    const SAMPLES: [RegExp, string][] = [
+      [FORBIDDEN[0].needle, 'Over 2,800+ monthly downloads across our models'],
+      [FORBIDDEN[1].needle, 'Trusted by 5K+ developers'],
+      [FORBIDDEN[2].needle, 'Orchestrating 50+ AI agents over MCP'],
+    ];
+    const blind: string[] = [];
+    for (const [needle, sample] of SAMPLES) {
+      if (!needle.test(sample)) blind.push(`${needle} no longer matches "${sample}"`);
+    }
+    expect(blind, 'a detector stopped detecting — it would now pass on a live falsehood')
+      .toEqual([]);
+  });
+
   test('no retired false claim has returned', async () => {
     test.setTimeout(120_000);
     const found: string[] = [];
@@ -206,8 +233,21 @@ test.describe('claims that must never come back', () => {
       }
     }
     const summary = [...seen.entries()].map(([p, ps]) => `$${p} on ${ps.join(', ')}`);
-    expect(seen.size, `care plan quoted at conflicting prices — ${summary.join(' | ')}`)
-      .toBeLessThanOrEqual(1);
+    // `<= 1` was wrong, and wrong in the direction that hides things: zero matches
+    // also satisfies it. The regex is narrow by necessity — it looks for "care
+    // plans from $199" — so a rewrite to "Care plan: $199/mo" would stop matching
+    // and this test would go green forever while checking nothing. That is the
+    // same failure as the `[^<]` sweep documented above, and the same one found in
+    // an AdPlaybook e2e assertion on 2026-08-13 that passed against a stub
+    // returning empty lists.
+    //
+    // Exactly one price, therefore: found, and agreeing with itself. It currently
+    // matches $199 across four places.
+    expect(seen.size, seen.size === 0
+      ? 'no care-plan price matched anywhere. The copy was reworded and this ' +
+        'assertion stopped checking — fix the pattern, do not delete the test.'
+      : `care plan quoted at conflicting prices — ${summary.join(' | ')}`)
+      .toBe(1);
   });
 
   test('no testimonial names a person, because there are no collected testimonials', async () => {
