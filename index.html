@@ -531,15 +531,6 @@
         if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', t);
       } catch(e){}
-
-    // Theme toggle. The default is already applied pre-paint in <head>; this only
-    // handles the click and the persistence, so there is no second source of truth.
-    const themeBtn = document.getElementById('themeToggle');
-    if (themeBtn) themeBtn.addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch(e){}
-    });
     })();
   </script>
 </head>
@@ -1297,6 +1288,16 @@
 
     console.log("%cKerr & Company — Grand Rapids","font:600 15px ui-sans-serif;color:#e0a955");
     console.log("%cWe build and ship real AI products. Want yours built? matthew@kerrandcompanyholdings.com","color:#97958d");
+  
+
+    // Theme toggle. The default is already applied pre-paint in <head>; this only
+    // handles the click and the persistence, so there is no second source of truth.
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(e){}
+    });
   </script>
 </body>
 </html>
