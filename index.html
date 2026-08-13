@@ -115,6 +115,16 @@
       --gold: #e0a955;
       --green: #7fbf8a;
       --green-soft: rgba(127,191,138,0.12);
+      /* Colours that USED to be literals in the rules below. Every one of them made
+         light mode wrong while the token palette was correct — the nav stayed
+         near-black with dark text on it, the headline gradient stayed dark-mode
+         gold on paper, and the ambient glows kept dark-mode alphas. Measuring the
+         tokens is not the same as checking what reads them. */
+      --nav-bg: rgba(10,10,15,0.72);
+      --grad-1: #f2cd94; --grad-2: #e0a955; --grad-3: #b9762e;
+      --glow-gold: rgba(224,169,85,0.28);
+      --glow-gold-2: rgba(233,184,114,0.10);
+      --glow-violet: rgba(139,124,255,0.22);
       --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Inter, system-ui, sans-serif;
       --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
       --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
@@ -133,8 +143,8 @@
     /* ambient glows */
     .glows { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
     .glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.55; }
-    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, rgba(224,169,85,0.28), transparent 70%); }
-    .glow-2 { bottom: -300px; left: -200px; width: 560px; height: 560px; background: radial-gradient(circle, rgba(233,184,114,0.10), transparent 70%); }
+    .glow-1 { top: -260px; right: -160px; width: 620px; height: 620px; background: radial-gradient(circle, var(--glow-gold), transparent 70%); }
+    .glow-2 { bottom: -300px; left: -200px; width: 560px; height: 560px; background: radial-gradient(circle, var(--glow-gold-2), transparent 70%); }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); position: relative; z-index: 1; }
 
@@ -143,7 +153,7 @@
       position: sticky; top: 0; z-index: 50; height: 66px;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 clamp(1.25rem, 5vw, 3rem);
-      background: rgba(10,10,15,0.72); backdrop-filter: blur(18px);
+      background: var(--nav-bg); backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--line); transition: transform .35s ease;
     }
     nav.hidden { transform: translateY(-100%); }
@@ -182,12 +192,12 @@
     .glow { position: absolute; pointer-events: none; z-index: 0; border-radius: 50%; }
     .glow-a {
       top: -22%; left: 6%; width: min(760px, 78vw); height: min(760px, 78vw);
-      background: radial-gradient(circle, rgba(224,169,85,0.30), transparent 66%);
+      background: radial-gradient(circle, var(--glow-gold), transparent 66%);
       filter: blur(110px);
     }
     .glow-b {
       top: 8%; right: -14%; width: min(600px, 62vw); height: min(600px, 62vw);
-      background: radial-gradient(circle, rgba(139,124,255,0.22), transparent 68%);
+      background: radial-gradient(circle, var(--glow-violet), transparent 68%);
       filter: blur(120px);
     }
     .hero .wrap { position: relative; z-index: 1; }
@@ -202,7 +212,7 @@
     /* Gradient headline — the one flourish, reserved for the emphasised phrase. */
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(120deg, #f2cd94 8%, #e0a955 52%, #b9762e 96%);
+      background: linear-gradient(120deg, var(--grad-1) 8%, var(--grad-2) 52%, var(--grad-3) 96%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent;
     }
@@ -482,6 +492,13 @@
       --ink: #1a1611; --ink-2: #4a423a; --ink-3: #6b6157; --ink-4: #8a8075;
       --accent: #8a5a12; --accent-2: #6d460c; --accent-soft: rgba(138,90,18,0.10);
       --gold: #8a5a12; --green: #2f6b3c; --green-soft: rgba(47,107,60,0.10);
+      --nav-bg: rgba(250,247,241,0.82);
+      /* The headline gradient darkens so it is readable ON paper. Same three-stop
+         shape, same hue family, values that clear contrast rather than glow. */
+      --grad-1: #a06a1b; --grad-2: #8a5a12; --grad-3: #6d460c;
+      --glow-gold: rgba(224,169,85,0.16);
+      --glow-gold-2: rgba(233,184,114,0.08);
+      --glow-violet: rgba(139,124,255,0.10);
       --shadow: 0 1px 2px rgba(26,22,17,.06), 0 8px 24px -12px rgba(26,22,17,.14);
       --shadow-card: 0 2px 6px rgba(26,22,17,.07), 0 18px 40px -20px rgba(26,22,17,.18);
     }
