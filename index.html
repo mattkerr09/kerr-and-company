@@ -562,10 +562,10 @@
 /* One icon language, and it is not emoji. Nineteen full-colour Apple
    emoji were doing icon duty here — 6 .svc-ic, 12 .why-card .wi, 1
    .guarantee .gi. Emoji render differently on every OS, cannot take
-   the brand colour, and read as a slide deck rather than a product. */
-.svc-ic,
-.why-card .wi,
-.guarantee .gi { display: none; }
+   the brand colour, and read as a slide deck rather than a product.
+   The first pass hid them with display:none; the spans are now deleted
+   outright, because dead markup that a stylesheet suppresses is a
+   revert waiting to happen the next time someone edits the CSS. */
 
 /* #easy is the only grid that is genuinely a sequence, so it is the
    only one numbered. Numbering a non-sequence is decoration pretending
@@ -722,42 +722,36 @@
       </div>
       <div class="svc-grid reveal">
         <a class="svc" href="/services/web-design-grand-rapids.html">
-          <span class="svc-ic" aria-hidden="true">🌐</span>
           <h3>Websites &amp; Apps</h3>
           <p>Fast, conversion-focused sites built in days, not months — with the option to add a custom AI tool a template shop can't touch.</p>
           <span class="from">from $999 · care plans from $199/mo</span>
           <span class="go">Web design in Grand Rapids →</span>
         </a>
         <a class="svc" href="/services/seo-grand-rapids.html">
-          <span class="svc-ic" aria-hidden="true">🔍</span>
           <h3>SEO</h3>
           <p>Technical, local, and content SEO that produces calls — with a live dashboard so you see exactly what your money is doing.</p>
           <span class="from">audit $1,500 · retainers from $750/mo</span>
           <span class="go">SEO in Grand Rapids →</span>
         </a>
         <a class="svc" href="/services/local-seo-google-business-profile.html">
-          <span class="svc-ic" aria-hidden="true">📍</span>
           <h3>Local SEO &amp; Reviews</h3>
           <p>Get into the Google map pack: managed Business Profile, automated review generation, citations, and local rank tracking.</p>
           <span class="from">from $500/mo per location</span>
           <span class="go">Local SEO &amp; Google Business →</span>
         </a>
         <a class="svc" href="/services/digital-marketing-grand-rapids.html">
-          <span class="svc-ic" aria-hidden="true">📈</span>
           <h3>Google &amp; Meta Ads</h3>
           <p>Ads that produce leads you can count — proven at <strong>$3.82 per real-estate tour lead</strong> — ~4x below the ~$17 real-estate median (WordStream, 2025).</p>
           <span class="from">flat fees from $750/mo · $500 setup · never % of spend</span>
           <span class="go">Ads management →</span>
         </a>
         <a class="svc" href="/services/ai-automation.html">
-          <span class="svc-ic" aria-hidden="true">⚡</span>
           <h3>AI Automation &amp; Tools</h3>
           <p>Missed-call-to-text, review engines, instant quotes, lead routing, dashboards — the custom tools that keep clients from leaving.</p>
           <span class="from">builds from $2,500 · managed from $300/mo</span>
           <span class="go">AI automation →</span>
         </a>
         <a class="svc" href="/services/ai-consulting.html">
-          <span class="svc-ic" aria-hidden="true">🧠</span>
           <h3>AI Consulting</h3>
           <p>Straight answers on where AI helps, what to build vs. buy, and what's hype — from a studio with 3 provisional patents and shipped products.</p>
           <span class="from">$250/hr · assessments from $3,500</span>
@@ -777,32 +771,26 @@
       </div>
       <div class="why-grid reveal">
         <div class="why-card">
-          <span class="wi" aria-hidden="true">📞</span>
           <h3>You talk, we write</h3>
           <p>One recorded 20-minute call — from your truck, your office, wherever. We pull the rest from your existing site, Google profile, and reviews, then <strong>write your whole site for you</strong>. You just tell us what's wrong.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">✍️</span>
           <h3>Feedback by pointing</h3>
           <p>Click anywhere on the draft and type — no accounts, no passwords, no "the blue thing under the header" emails. Works on your phone.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">🔑</span>
           <h3>You own everything — really</h3>
           <p>Domain, hosting, logins, and accounts are all registered <strong>in your name from day one</strong>. If you ever leave, you keep all of it and we'll help you move. No hostage-taking.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">📅</span>
           <h3>Real dates, not "3–4 weeks"</h3>
           <p>You get a dated schedule up front — design by the 4th, revisions by the 8th, live on the 15th — plus a status link you can check anytime without logging in.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">💬</span>
           <h3>Updates before you ask</h3>
           <p>A short text every week, even when there's nothing to report. Usually it just says <em>"on track, nothing needed from you."</em></p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">💳</span>
           <h3>Easy on cash flow</h3>
           <p>50% to start, the rest at launch — or split it into monthly payments. Pay by bank transfer or card, whichever you prefer. Once your quote is agreed, <a href="https://buy.polar.sh/polar_cl_12RwrWNrrc5GQ25FzHdRZCp9okQ0wZfhaf4ZK0Dp0lb" style="color:var(--accent-2);font-weight:600;text-decoration:none;">pay the deposit here</a> and we start the same week.</p>
         </div>
@@ -821,32 +809,26 @@
       </div>
       <div class="why-grid reveal">
         <div class="why-card">
-          <span class="wi" aria-hidden="true">⚡</span>
           <h3>Days, not months</h3>
           <p>Agencies quote 6–12 weeks for a business site. We build with AI and ship in <strong>days</strong> — we took a product and its full marketing site from idea to live in two days.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">🏷️</span>
           <h3>Pricing you can actually see</h3>
           <p>Every price is published on this site. <strong>Fixed quotes before any work starts</strong> — no hourly meter, no "contact us for a quote," no surprise invoices.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">🔬</span>
           <h3>Proof, not promises</h3>
           <p>A notarized macOS app with a paying customer, <strong>3 provisional patents</strong>, a live B2B SaaS, and ads at <strong>$3.82 per lead</strong> — <a href="/case-studies/real-estate-ads-3-82-cost-per-lead.html" style="color:var(--accent-2);text-decoration:none;">see the case study →</a></p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">🤖</span>
           <h3>Tools nobody else offers</h3>
           <p>Most shops resell templates. We build <strong>custom AI tools</strong> — missed-call-to-text, review engines, instant quotes, live dashboards — that make your site actually work.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">📊</span>
           <h3>Flat fees, never % of spend</h3>
           <p>Ad management is a <strong>flat monthly fee</strong>, so we don't get paid more for telling you to spend more. You pay the platforms directly and own every account.</p>
         </div>
         <div class="why-card">
-          <span class="wi" aria-hidden="true">🛡️</span>
           <h3>You own everything</h3>
           <p>Your site, your accounts, your data, your profiles — all yours, no hostage hosting. Plus we <strong>rework the first deliverable until you sign off</strong>.</p>
         </div>
@@ -1104,7 +1086,6 @@
       <p class="pricing-note" style="margin-top:.55rem;">Building a product rather than a website? <a href="/studio.html" style="color:var(--accent-2);font-weight:600;text-decoration:none;">See studio engagements →</a> — AI build audits, 0→1 product sprints, and agent &amp; automation builds.</p>
 
       <div class="guarantee reveal">
-        <span class="gi">🛡️</span>
         <p><strong>Our guarantee:</strong> we rework the first deliverable until you sign off. You see real, shipped work before you're locked in — the kind of risk-reversal only a studio that ships its own products can afford to make.</p>
       </div>
     </div>
