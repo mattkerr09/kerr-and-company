@@ -548,7 +548,68 @@
     .svc .go { font-size: 0.85rem; font-weight: 600; color: var(--accent-2); margin-top: 0.5rem; }
     .svc:hover .go { color: var(--ink); }
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} .js .reveal{opacity:1;transform:none;transition:none;} .eyebrow::before{animation:none;} }
-  </style>
+  
+/* ============================================================
+   Design pass, 2026-08-14, toward the Cursor / Raycast / Warp /
+   Linear tier Matthew set as the bar. Measured against those four
+   rather than guessed: Warp uses ONE display face at one weight and
+   has zero saturated colour above the fold; Linear runs 2 families
+   and 3 weights on uniform 128px section padding; Cursor's h1 is
+   only 26px because a product mockup carries the fold. What they
+   share is restraint, and this page had none of it.
+   ============================================================ */
+
+/* One icon language, and it is not emoji. Nineteen full-colour Apple
+   emoji were doing icon duty here — 6 .svc-ic, 12 .why-card .wi, 1
+   .guarantee .gi. Emoji render differently on every OS, cannot take
+   the brand colour, and read as a slide deck rather than a product. */
+.svc-ic,
+.why-card .wi,
+.guarantee .gi { display: none; }
+
+/* #easy is the only grid that is genuinely a sequence, so it is the
+   only one numbered. Numbering a non-sequence is decoration pretending
+   to be information. */
+#easy .why-grid { counter-reset: wi; }
+#easy .why-card::before {
+  counter-increment: wi;
+  content: counter(wi, decimal-leading-zero);
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  margin-bottom: 0.75rem;
+}
+
+/* The h1 was only 1.12x the section titles, so nothing dominated the
+   fold. Widened to about 2.1x without growing it on mobile. */
+.hero h1 { font-size: clamp(2.3rem, 6.4vw, 5rem); }
+.section-title,
+.contact-card h2,
+.founder-body h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); }
+
+/* Gold is the only accent. The brand mark faded gold into blue, a
+   second ambient field glowed violet, and ten eyebrow dots pulsed on a
+   2.4s loop. Three accents and an animation, on a page selling
+   restraint. Literal #e0a955 in both themes deliberately: in light mode
+   --accent is #8a5a12, so var(--accent) here would land dark brown on
+   near-black at 2.4:1. */
+.brand-mark { background: #e0a955; color: #1a1611; box-shadow: none; }
+:root { --glow-violet: rgba(224,169,85,0.10); }
+:root[data-theme="light"] { --glow-violet: rgba(224,169,85,0.06); }
+.eyebrow::before { display: none; }
+
+/* Gold carries dark ink, never white: #e0a955 on #fff is 2.10:1 and
+   fails WCAG outright; on #1a1611 it is 8.7:1. */
+::selection,
+.btn-primary,
+.nav-cta,
+.cform button,
+.pkg .pkg-cta.solid,
+.pkg-tag { color: #1a1611; }
+
+</style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
        data-theme in <head> is the whole trick: do it in a deferred script and the page
