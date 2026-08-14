@@ -265,7 +265,13 @@
     .product-desc strong { color: var(--ink); font-weight: 600; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
     .tag { font-size: 0.72rem; font-weight: 500; padding: 0.26rem 0.65rem; border-radius: 6px; background: var(--surface-2); color: var(--ink-3); border: 1px solid var(--line); }
-    .product-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; font-weight: 600; color: var(--accent-2); text-decoration: none; }
+    /* min-height:24px here and on .founder-link, footer .fr a and the inline
+       accent links is WCAG 2.2 Target Size (Minimum, 2.5.8), not decoration.
+       Measured on the live page at 375px through a mobile viewport on
+       2026-08-14: .product-link and .founder-link were 23px, footer links 21px,
+       and the inline "Get in touch" / "packages" links 17-18px — all padding:0,
+       so the hit box was exactly the text. */
+    .product-link { display: inline-flex; align-items: center; min-height: 24px; gap: 0.4rem; font-size: 0.88rem; font-weight: 600; color: var(--accent-2); text-decoration: none; }
     .product-link:hover { gap: 0.65rem; }
 
     /* mockups */
@@ -329,7 +335,7 @@
     /* wrap: without it the last 7 links — including all three legal pages —
        sit off-screen and unreachable at 375px. assets/pages.css already wraps. */
     footer .fr { display: flex; flex-wrap: wrap; gap: 0.9rem 1.4rem; justify-content: center; }
-    footer .fr a { font-size: 0.82rem; color: var(--ink-3); text-decoration: none; }
+    footer .fr a { display: inline-flex; align-items: center; min-height: 24px; font-size: 0.82rem; color: var(--ink-3); text-decoration: none; }
     footer .fr a:hover { color: var(--ink); }
 
     /* PROOF STRIP */
@@ -401,7 +407,7 @@
     .founder-body h2 em { font-style: italic; color: var(--accent-2); }
     .founder-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; max-width: 60ch; }
     .founder-body p strong { color: var(--ink); font-weight: 600; }
-    .founder-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--accent-2); text-decoration: none; }
+    .founder-link { display: inline-flex; align-items: center; min-height: 24px; gap: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--accent-2); text-decoration: none; }
     .founder-link:hover { gap: 0.65rem; }
 
     /* RESPONSE PROMISE */
@@ -963,7 +969,7 @@
         <p>
           That's what a client build looks like with us: <strong>an idea turned into shipped, revenue-ready software</strong> —
           not a prototype, not a deck. You can go verify it's real right now, then tell us what you want built.
-          <a href="#contact" style="color:var(--accent-2);font-weight:600;text-decoration:none;white-space:nowrap;">Get in touch →</a>
+          <a href="#contact" style="display:inline-flex;align-items:center;min-height:24px;color:var(--accent-2);font-weight:600;text-decoration:none;white-space:nowrap;">Get in touch →</a>
         </p>
       </div>
     </div>
@@ -1034,7 +1040,7 @@
 
       </div>
       <p class="pricing-note"><strong>Introductory pricing</strong> while we build our West Michigan client roster — locked in for clients who start now. Prices are starting points and depend on scope; you always get a fixed quote before any work begins.</p>
-      <p class="pricing-note" style="margin-top:.55rem;">Building a product rather than a website? <a href="/studio.html" style="color:var(--accent-2);font-weight:600;text-decoration:none;">See studio engagements →</a> — AI build audits, 0→1 product sprints, and agent &amp; automation builds.</p>
+      <p class="pricing-note" style="margin-top:.55rem;">Building a product rather than a website? <a href="/studio.html" style="display:inline-flex;align-items:center;min-height:24px;color:var(--accent-2);font-weight:600;text-decoration:none;">See studio engagements →</a> — AI build audits, 0→1 product sprints, and agent &amp; automation builds.</p>
 
       <div class="guarantee reveal">
         <span class="gi">🛡️</span>
