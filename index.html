@@ -184,7 +184,10 @@
       font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2);
       margin-bottom: 1.6rem;
     }
-    .eyebrow::before { content:''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2.4s infinite; }
+    /* .eyebrow::before was a 7px green dot pulsing on a 2.4s loop, ten times per
+       page. Removed rather than hidden: an earlier pass set display:none on it
+       and left this rule intact, which is dead CSS one edit away from coming
+       back. */
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
     /* Ambient glows — the depth cue behind every high-end product hero.
        Two blurred radial fields, pointer-events:none so they never eat clicks. */
