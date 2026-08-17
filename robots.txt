@@ -1,5 +1,5 @@
-# kerrandcompanyholdings.com — allow all crawlers, including AI search bots
+# builtbykerr.com — allow all crawlers, including AI search bots
 User-agent: *
 Allow: /
 
-Sitemap: https://kerrandcompanyholdings.com/sitemap.xml
+Sitemap: https://builtbykerr.com/sitemap.xml
