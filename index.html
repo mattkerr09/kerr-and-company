@@ -376,6 +376,52 @@
       .js .rise, .js .stagger > * { opacity:1 !important; transform:none !important; }
       .scroll-progress { display:none; }
     }
+
+    /* ── SECTION AS A PLACE ─────────────────────────────────────────────────
+       Lemon Squeezy runs FOUR distinct section grounds down a 19,200px page —
+       vivid purple, off-white, white, pale pink — and zero gradients. The scroll
+       feels alive because each section is somewhere else, not because anything
+       is animated. Ours had TWO grounds across ten sections, so 14,500px read as
+       one uninterrupted slab and every section landed with the same weight.
+
+       Hue is not available to us — reintroducing it rebuilds the exact problem
+       this rebrand removed — so the rhythm is tonal, plus one fully INVERTED
+       panel. An inverted section is the monochrome equivalent of Lemon's colour
+       change: it announces a new room without a single new colour, and Framer
+       and Mobbin both use it for the same reason.
+
+       Applied by position rather than by id so a new section inherits the
+       rhythm instead of falling back to the default ground. */
+    body > section { position: relative; }
+    body > section:nth-of-type(3n+2) { background: var(--bg-2); }
+    body > section:nth-of-type(5n+4) { background: var(--surface); }
+
+    /* the inverted panel — full-bleed, and the one place the page flips */
+    #approach {
+      background: var(--ink) !important; color: var(--bg);
+      border-radius: clamp(28px, 4vw, 52px);
+      margin: clamp(3rem,6vw,6rem) clamp(.75rem,2vw,2rem);
+      padding-block: clamp(3.5rem, 7vw, 6rem);
+    }
+    #approach h2, #approach h3, #approach .section-title { color: var(--bg); }
+    #approach p, #approach li, #approach span { color: color-mix(in srgb, var(--bg) 74%, var(--ink)); }
+    #approach .kicker, #approach .eyebrow { color: color-mix(in srgb, var(--bg) 56%, var(--ink)); }
+
+    /* GEOMETRY. Ours topped out at 13px; Lemon runs 20, 40 and 64px. A tight
+       radius reads as a UI control, a generous one reads as a surface — and
+       these are surfaces. Pills and avatars keep their own radii. */
+    .card, .svc, .why-card, .pkg, .faq-item, .box, .mockup-scroll, .win,
+    .stats, .contact-card, .buildstory { border-radius: clamp(16px, 1.6vw, 24px) !important; }
+    .mockup-scroll, .hero-proof .mockup-scroll { border-radius: clamp(18px, 2vw, 28px) !important;
+      overflow: hidden; }
+
+    /* section seam — a hairline where two grounds meet, so the change of place
+       is deliberate rather than looking like a rendering artefact */
+    body > section + section::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent);
+    }
+    #approach::before { display:none; }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: 1.7rem 1.3rem; }
