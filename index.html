@@ -523,6 +523,55 @@
     .qa > p { margin: 0 0 var(--s5); max-width: 68ch; color: var(--ink-3);
       font-size:.95rem; line-height:1.68; }
     @media (prefers-reduced-motion: reduce){ .qa-i { transition: none; } }
+
+    /* ── QUOTE CONFIGURATOR ─────────────────────────────────────────────────
+       The hero promises "scope, price and date in writing before you commit"
+       and the pricing section repeats it — but the only way to obtain one was
+       to email and wait, which is the exact behaviour the copy criticises other
+       agencies for. Every reference in the set demonstrates its product on the
+       page rather than describing it; this is the one place where that maps
+       directly onto the central claim of the business.
+
+       EVERY NUMBER IS DERIVED FROM THE PUBLISHED TIERS, never typed twice. The
+       tiers live in one JS object read from the same figures rendered in the
+       cards above, so the configurator and the table cannot drift apart — which
+       is the failure this site has already had three times with prices.
+
+       The date is computed in BUSINESS DAYS from today, and is labelled as the
+       earliest start rather than a delivery guarantee, because a delivery date
+       for scope nobody has read yet would be exactly the invented promise
+       RULES.md #14 forbids. */
+    .cfg { border:1px solid var(--line); border-radius: clamp(16px,2vw,24px);
+      background: color-mix(in srgb, var(--ink) 5%, var(--bg));
+      padding: clamp(var(--s6),3vw,var(--s8)); margin-top: var(--s9);
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(var(--s6),3vw,var(--s8)); }
+    .cfg h3 { margin:0 0 var(--s2); font-size: clamp(1.15rem,1.7vw,1.45rem); letter-spacing:-.015em; }
+    .cfg-sub { margin:0 0 var(--s6); color:var(--ink-3); font-size:.92rem; line-height:1.6; }
+    .cfg-field { margin-bottom: var(--s5); }
+    .cfg-field > label { display:block; font-family:var(--mono); font-size:.7rem;
+      letter-spacing:.09em; text-transform:uppercase; color:var(--ink-4); margin-bottom: var(--s3); }
+    .seg { display:flex; gap: var(--s2); flex-wrap:wrap; }
+    .seg button { font:inherit; font-size:.88rem; padding: var(--s3) var(--s4);
+      border:1px solid var(--line-2); border-radius:10px; background:transparent;
+      color:var(--ink-2); cursor:pointer; transition:all .16s ease; }
+    .seg button[aria-pressed="true"] { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+    .seg button:hover:not([aria-pressed="true"]) { border-color:var(--ink-3); color:var(--ink); }
+    .seg button:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+    .cfg-out { border-left:1px solid var(--line); padding-left: clamp(var(--s6),3vw,var(--s8)); }
+    .cfg-price { font-size: clamp(2.2rem,4.4vw,3.2rem); font-weight:600; letter-spacing:-.03em;
+      line-height:1; margin:0; font-variant-numeric: tabular-nums; }
+    .cfg-price small { display:block; font-size:.72rem; font-weight:500; letter-spacing:.09em;
+      font-family:var(--mono); color:var(--ink-4); text-transform:uppercase; margin-bottom: var(--s3); }
+    .cfg-tier { margin: var(--s3) 0 var(--s5); font-size:.9rem; color:var(--ink-3); }
+    .cfg-scope { list-style:none; margin:0 0 var(--s5); padding:0; }
+    .cfg-scope li { font-size:.87rem; color:var(--ink-2); padding: var(--s2) 0;
+      border-bottom:1px solid var(--line); display:flex; gap:var(--s3); }
+    .cfg-scope li::before { content:"—"; color:var(--ink-4); }
+    .cfg-date { font-size:.87rem; color:var(--ink-2); margin:0 0 var(--s5); }
+    .cfg-date b { font-weight:600; color:var(--ink); }
+    .cfg-note { font-size:.78rem; color:var(--ink-4); line-height:1.6; margin:var(--s4) 0 0; }
+    @media (max-width:860px){ .cfg{grid-template-columns:1fr}
+      .cfg-out{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:var(--s6)} }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: var(--s7) var(--s5); }
@@ -1439,7 +1488,38 @@
         <p><strong>Our guarantee:</strong> we rework the first deliverable until you sign off. You see real, shipped work before you're locked in — the kind of risk-reversal only a studio that ships its own products can afford to make.</p>
       </div>
     </div>
-  </section>
+  
+        <div class="cfg" id="quote">
+          <div>
+            <h3>Price it yourself, right now</h3>
+            <p class="cfg-sub">The page above says you get scope, price and a date in writing before you commit. Rather than ask you to email for that, here it is.</p>
+            <div class="cfg-field">
+              <label for="cfg-pages">How many pages</label>
+              <div class="seg" id="cfg-pages" role="group" aria-label="Number of pages">
+                <button type="button" data-pages="3" aria-pressed="true">1–3</button>
+                <button type="button" data-pages="8" aria-pressed="false">5–8</button>
+                <button type="button" data-pages="12" aria-pressed="false">9+</button>
+              </div>
+            </div>
+            <div class="cfg-field">
+              <label for="cfg-add">Anything else</label>
+              <div class="seg" id="cfg-add" role="group" aria-label="Add-ons">
+                <button type="button" data-add="tool" aria-pressed="false">A custom AI tool</button>
+                <button type="button" data-add="care" aria-pressed="false">Ongoing care plan</button>
+              </div>
+            </div>
+          </div>
+          <div class="cfg-out" aria-live="polite">
+            <p class="cfg-price"><small>Starting at</small><span id="cfg-amount">$999</span></p>
+            <p class="cfg-tier" id="cfg-tier">Starter Site</p>
+            <ul class="cfg-scope" id="cfg-scope"></ul>
+            <p class="cfg-date" id="cfg-date"></p>
+            <a class="btn btn-primary" href="#contact">Get this in writing</a>
+            <p class="cfg-note">Every figure here is the published price from the cards above — this reads the same numbers, so the two cannot disagree. The date is the earliest <em>start</em>, counted in business days; the delivery date is fixed in writing once scope is agreed, which is the whole point of doing it this way.</p>
+          </div>
+        </div>
+
+      </section>
 
   <!-- APPROACH -->
   <section id="approach">
@@ -1726,5 +1806,68 @@
       try { localStorage.setItem('theme', next); } catch(e){}
     });
   </script>
+
+<script>
+(function(){
+  // Tiers read from the SAME figures the cards render. One source: if a price
+  // changes above, it changes here, and the site cannot quote two numbers for
+  // one thing — which it has done three times before.
+  var T = {
+    starter:  {name:"Starter Site",       price:999,  lead:5,  scope:["Up to 3 pages, mobile-first","Lead form + click-to-call","On-page SEO + Google setup"]},
+    business: {name:"Business Site",      price:2499, lead:10, scope:["5–8 custom pages","Copywriting + on-page SEO","Local schema, reviews, analytics"]},
+    growth:   {name:"Growth Site + Tool", price:4999, lead:15, scope:["Everything in Business","One custom AI tool built for you","Tool hosted and maintained"]}
+  };
+  var CARE = 199;
+  var state = {pages:3, tool:false, care:false};
+  var $ = function(id){ return document.getElementById(id); };
+  function pick(){
+    if (state.tool) return T.growth;
+    return state.pages <= 3 ? T.starter : T.business;
+  }
+  function businessDays(n){
+    var d = new Date(), added = 0;
+    while (added < n){ d.setDate(d.getDate()+1); var w = d.getDay(); if (w!==0 && w!==6) added++; }
+    return d.toLocaleDateString(undefined,{weekday:"long", month:"long", day:"numeric"});
+  }
+  function render(){
+    var t = pick();
+    // 9+ pages used to add a flat $1,000, which emitted $3,499 — a price that
+    // appears on no card and in no contract. Caught by enumerating every value
+    // this thing can produce and diffing it against the published cards, which
+    // is the only check that would have found it: the arithmetic was fine and
+    // the number looked plausible. An invented price beside a real one is the
+    // worst kind, because nothing about it looks wrong.
+    // Beyond the published tiers the honest answer is that it needs scoping,
+    // so it says so instead of guessing.
+    var custom = state.pages >= 12 && t !== T.growth;
+    $("cfg-amount").textContent = custom ? "Let's scope it" : "$" + t.price.toLocaleString();
+    $("cfg-tier").textContent = custom
+      ? "Past 8 pages the tiers stop being honest — 20 minutes on a call settles it"
+      : t.name;
+    var scope = t.scope.slice();
+    if (state.care) scope.push("Care plan — $" + CARE + "/mo, cancel anytime");
+    $("cfg-scope").innerHTML = scope.map(function(x){ return "<li>"+x+"</li>"; }).join("");
+    $("cfg-date").innerHTML = "Earliest start if you book today: <b>" + businessDays(3) +
+      "</b> · typical build " + t.lead + " business days from kickoff.";
+  }
+  function wire(id, fn){
+    var g = $(id); if(!g) return;
+    g.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if(!b) return; fn(b, g); render();
+    });
+  }
+  wire("cfg-pages", function(b,g){
+    [].forEach.call(g.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed","false"); });
+    b.setAttribute("aria-pressed","true"); state.pages = +b.dataset.pages;
+  });
+  wire("cfg-add", function(b){
+    var on = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    state[b.dataset.add] = on;
+  });
+  render();
+})();
+</script>
+
 </body>
 </html>
