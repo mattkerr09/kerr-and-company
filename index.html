@@ -393,19 +393,102 @@
        Applied by position rather than by id so a new section inherits the
        rhythm instead of falling back to the default ground. */
     body > section { position: relative; }
-    body > section:nth-of-type(3n+2) { background: var(--bg-2); }
-    body > section:nth-of-type(5n+4) { background: var(--surface); }
 
-    /* the inverted panel — full-bleed, and the one place the page flips */
-    #approach {
+    /* ── ALTERNATING GROUNDS ────────────────────────────────────────────
+       Matthew: "there is too much black and the backgrounds dont contrast as
+       good as they could... really make each part of a page feel like its own
+       part." Both are the same defect and the measurement is unambiguous.
+
+       The four "distinct" grounds I shipped were #0B0B0C, #101012 and #141416
+       plus one inverted panel. Contrast ratios between the three darks: 1.04 and
+       1.03. That is invisible. Only the inverted panel registered, at 17.61 —
+       and it was the one section that felt like its own place, which is exactly
+       what he noticed.
+
+       Shades of black CANNOT fix this. Luminance compresses at the dark end:
+       even lifting the ramp to #0E0E11 -> #212127 buys a total span of 1.20,
+       still below perceptible. I measured that before abandoning the approach
+       rather than tuning hex values until it looked done.
+
+       So the page alternates instead — every EVEN section inverts, in both
+       themes. Half the page stops being black, each section announces itself
+       without a single new hue, and the rhythm survives a section being added
+       because it is positional. This is what Lemon Squeezy does with white,
+       tinted and purple panels; monochrome just means our version swaps value
+       instead of hue. */
+    body > section:nth-of-type(even) {
       background: var(--ink) !important; color: var(--bg);
+    }
+    body > section:nth-of-type(even) h1,
+    body > section:nth-of-type(even) h2,
+    body > section:nth-of-type(even) h3,
+    body > section:nth-of-type(even) .section-title,
+    body > section:nth-of-type(even) strong,
+    body > section:nth-of-type(even) b { color: var(--bg); }
+    body > section:nth-of-type(even) p,
+    body > section:nth-of-type(even) li,
+    body > section:nth-of-type(even) span,
+    body > section:nth-of-type(even) td,
+    body > section:nth-of-type(even) summary { color: color-mix(in srgb, var(--bg) 76%, var(--ink)); }
+    body > section:nth-of-type(even) .kicker,
+    body > section:nth-of-type(even) .eyebrow,
+    body > section:nth-of-type(even) .src,
+    body > section:nth-of-type(even) .from { color: color-mix(in srgb, var(--bg) 58%, var(--ink)); }
+    /* borders and card grounds have to flip too, or they vanish into the panel */
+    body > section:nth-of-type(even) .card,
+    body > section:nth-of-type(even) .svc,
+    body > section:nth-of-type(even) .pkg,
+    body > section:nth-of-type(even) .qa,
+    body > section:nth-of-type(even) .proof-i,
+    body > section:nth-of-type(even) .split,
+    body > section:nth-of-type(even) table,
+    body > section:nth-of-type(even) th,
+    body > section:nth-of-type(even) td { border-color: color-mix(in srgb, var(--bg) 18%, transparent); }
+    body > section:nth-of-type(even) .svc,
+    body > section:nth-of-type(even) .pkg,
+    body > section:nth-of-type(even) .card { background: color-mix(in srgb, var(--bg) 5%, transparent); }
+    body > section:nth-of-type(even) a { color: var(--bg); }
+    /* Buttons and CTAs were NOT in the inversion rules, so when #packages
+       flipped they kept their dark-ground greys and landed at 1.97:1 on a light
+       panel — seven strings, in both themes. That is precisely the "text I still
+       have a hard time reading cus of its background" Matthew reported, and the
+       contrast checker only caught it because the ground under them is now a
+       known colour instead of a video or a transparent stack. */
+    body > section:nth-of-type(even) .seg button { color: color-mix(in srgb, var(--bg) 78%, var(--ink));
+      border-color: color-mix(in srgb, var(--bg) 26%, transparent); }
+    body > section:nth-of-type(even) .seg button[aria-pressed="true"] {
+      background: var(--bg); color: var(--ink); border-color: var(--bg); }
+    body > section:nth-of-type(even) .seg button:hover:not([aria-pressed="true"]) {
+      color: var(--bg); border-color: color-mix(in srgb, var(--bg) 55%, transparent); }
+    body > section:nth-of-type(even) .pkg-cta,
+    body > section:nth-of-type(even) .cfg-field > label,
+    body > section:nth-of-type(even) .cfg-note,
+    body > section:nth-of-type(even) .proof-s { color: color-mix(in srgb, var(--bg) 72%, var(--ink)); }
+    body > section:nth-of-type(even) .cfg { background: color-mix(in srgb, var(--bg) 6%, transparent);
+      border-color: color-mix(in srgb, var(--bg) 20%, transparent); }
+    body > section:nth-of-type(even) .cfg-out { border-left-color: color-mix(in srgb, var(--bg) 20%, transparent); }
+    /* `.pkg .pkg-cta.line` is specificity 0-3-0; my inversion rule was 0-2-1 and
+       lost, so three CTAs kept dark-ground grey on a light panel at 1.92:1. The
+       computed value said var(--ink-2) while the rule I had written said
+       otherwise — asking the browser WHICH rules matched and in what order is
+       the only way to see that, not reading the stylesheet. */
+    body > section:nth-of-type(even) .pkg .pkg-cta.line {
+      color: color-mix(in srgb, var(--bg) 82%, var(--ink));
+      border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
+    body > section:nth-of-type(even) .pkg .pkg-cta.line:hover {
+      color: var(--bg); border-color: color-mix(in srgb, var(--bg) 60%, transparent); }
+    body > section:nth-of-type(even) .pkg .pkg-cta.solid {
+      background: var(--bg); color: var(--ink); }
+
+    body > section:nth-of-type(even) .btn-primary { background: var(--bg); color: var(--ink); }
+
+    /* #approach keeps its rounded full-bleed shape; its colour now comes from
+       the alternation above rather than from a rule of its own. */
+    #approach {
       border-radius: clamp(28px, 4vw, 52px);
       margin: clamp(3rem,6vw,6rem) clamp(.75rem,2vw,2rem);
       padding-block: clamp(3.5rem, 7vw, 6rem);
     }
-    #approach h2, #approach h3, #approach .section-title { color: var(--bg); }
-    #approach p, #approach li, #approach span { color: color-mix(in srgb, var(--bg) 74%, var(--ink)); }
-    #approach .kicker, #approach .eyebrow { color: color-mix(in srgb, var(--bg) 56%, var(--ink)); }
 
     /* GEOMETRY. Ours topped out at 13px; Lemon runs 20, 40 and 64px. A tight
        radius reads as a UI control, a generous one reads as a surface — and
