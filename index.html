@@ -422,6 +422,64 @@
       background: linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent);
     }
     #approach::before { display:none; }
+
+    /* ── SPLIT PANEL: index left, diagram right ─────────────────────────────
+       Lemon Squeezy's process section is the single most transferable thing in
+       any of the six references. A numbered editorial index sits on one ground;
+       a full-bleed panel on a DIFFERENT ground sits beside it holding a flow
+       diagram built from real UI fragments joined by arrows. It does not
+       describe the process — it draws it, and the drawing is made of the same
+       parts the product is made of.
+       The right panel is STICKY, which is the other half: the diagram holds
+       while the index scrolls past it, so a reader is looking at the thing being
+       explained the whole time they read the explanation. Framer and Avo both
+       pin their product for the same reason. A static page cannot do this, and
+       it is the difference between a page that flows and a page that stacks. */
+    .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: 0;
+             align-items: start; margin-top: clamp(2rem,4vw,3.5rem);
+             border-radius: clamp(18px,2vw,28px); overflow: hidden;
+             border: 1px solid var(--line); }
+    .split-idx { padding: clamp(1.6rem,3vw,2.8rem); background: var(--bg); }
+    .split-idx ol { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+    .split-idx li { counter-increment: step; display: grid;
+      grid-template-columns: 2.6rem 1fr; gap: .3rem 1rem; align-items: baseline;
+      padding: clamp(1rem,2vw,1.5rem) 0; border-bottom: 1px solid var(--line); }
+    .split-idx li:last-child { border-bottom: 0; }
+    .split-idx li::before { content: "0" counter(step); font-family: var(--mono);
+      font-size: .74rem; color: var(--ink-4); letter-spacing: .08em; }
+    .split-idx h3 { margin: 0; font-size: clamp(1.02rem,1.5vw,1.2rem); font-weight: 600;
+      letter-spacing: -.01em; color: var(--ink); }
+    .split-idx p { grid-column: 2; margin: .4rem 0 0; font-size: .93rem;
+      color: var(--ink-3); line-height: 1.62; }
+
+    /* the panel — a different ground, which is the whole Lemon device */
+    /* The two grounds have to be TELLABLE APART or the split does nothing —
+       Lemon sets white against pink, a difference you register without looking.
+       --surface-2 sat 5% off --bg and the panel read as the same slab with a
+       seam drawn on it. Mixed toward the ink instead, which stays monochrome
+       and still reads as a different room in both themes. */
+    .split-panel { background: color-mix(in srgb, var(--ink) 9%, var(--bg));
+      padding: clamp(1.6rem,3vw,2.6rem);
+      border-left: 1px solid var(--line-2);
+      position: sticky; top: 84px; align-self: stretch;
+      display: flex; align-items: center; }
+    .split-panel .flow { width: 100%; }
+    .flow { display: flex; flex-direction: column; gap: 0; }
+    .frag { background: var(--bg); border: 1px solid var(--line-2);
+      border-radius: 14px; padding: .95rem 1.1rem; box-shadow: var(--shadow); }
+    .frag-h { display:flex; align-items:center; gap:.55rem; font-size:.82rem;
+      color: var(--ink-2); font-weight:600; }
+    .frag-b { margin:.55rem 0 0; font-size:.8rem; color: var(--ink-4); line-height:1.55; }
+    .frag .dot { width:7px; height:7px; border-radius:50%; background: var(--ink-3); flex:none; }
+    .flow-arrow { display:flex; justify-content:center; padding:.5rem 0; color: var(--ink-4); }
+    .flow-arrow svg { width:14px; height:26px; }
+    .frag-row { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem; }
+    .chip { font-family: var(--mono); font-size:.66rem; letter-spacing:.06em;
+      border:1px solid var(--line-2); border-radius:999px; padding:.2rem .55rem; color: var(--ink-3); }
+    @media (max-width: 900px){
+      .split { grid-template-columns: 1fr; }
+      .split-panel { position: static; }
+    }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: 1.7rem 1.3rem; }
@@ -990,52 +1048,39 @@
         <div class="eyebrow" style="color:var(--ink-4);">How it works</div>
         <h2 class="section-title">One 20-minute call. We handle the rest.</h2>
         <p class="section-intro">Most agencies hand you a 40-question content planner and wait. You're busy running a business — so we do the work instead. No homework, no logins to learn, no chasing.</p>
-      </div>
-      <div class="why-grid reveal">
-        <div class="why-card">
-          <h3>You talk, we write</h3>
-          <p>One recorded 20-minute call — from your truck, your office, wherever. We pull the rest from your existing site, Google profile, and reviews, then <strong>write your whole site for you</strong>. You just tell us what's wrong.</p>
+        <div class="split">
+          <div class="split-idx">
+            <ol>
+              <li><h3>You talk, we write</h3><p>One recorded 20-minute call — from your truck or your office. We pull the rest from what you already have and write the whole site for you.</p></li>
+              <li><h3>Feedback by pointing</h3><p>Click anywhere on the draft and type. No accounts, no passwords, no describing “the blue thing under the map”.</p></li>
+              <li><h3>You own everything</h3><p>Domain, hosting, logins and accounts registered in your name from day one. If you leave, you keep all of it and we help you move.</p></li>
+              <li><h3>Real dates, not “3–4 weeks”</h3><p>A written date before you commit, and the scope and price beside it.</p></li>
+            </ol>
+          </div>
+          <div class="split-panel">
+            <div class="flow" role="img" aria-label="The process: a recorded call becomes a draft you comment on, then everything is handed to you in your own name.">
+              <div class="frag">
+                <div class="frag-h"><span class="dot"></span>20-minute call · recorded</div>
+                <p class="frag-b">You describe the business. We keep the recording so nothing gets lost in translation.</p>
+                <div class="frag-row"><span class="chip">NO FORM</span><span class="chip">NO PLANNER</span></div>
+              </div>
+              <div class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 14 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 1v20M2.5 17.5 7 22l4.5-4.5"/></svg></div>
+              <div class="frag">
+                <div class="frag-h"><span class="dot"></span>Draft, with comments open</div>
+                <p class="frag-b">Click the headline → type “too long”. That is the whole feedback loop.</p>
+                <div class="frag-row"><span class="chip">POINT</span><span class="chip">TYPE</span><span class="chip">DONE</span></div>
+              </div>
+              <div class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 14 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 1v20M2.5 17.5 7 22l4.5-4.5"/></svg></div>
+              <div class="frag">
+                <div class="frag-h"><span class="dot"></span>Handover — in your name</div>
+                <p class="frag-b">Domain, hosting and every login registered to you from day one.</p>
+                <div class="frag-row"><span class="chip">DOMAIN</span><span class="chip">HOSTING</span><span class="chip">LOGINS</span></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="why-card">
-          <h3>Feedback by pointing</h3>
-          <p>Click anywhere on the draft and type — no accounts, no passwords, no "the blue thing under the header" emails. Works on your phone.</p>
-        </div>
-        <div class="why-card">
-          <h3>You own everything — really</h3>
-          <p>Domain, hosting, logins, and accounts are all registered <strong>in your name from day one</strong>. If you ever leave, you keep all of it and we'll help you move. No hostage-taking.</p>
-        </div>
-        <div class="why-card">
-          <h3>Real dates, not "3–4 weeks"</h3>
-          <p>You get a dated schedule up front — design by the 4th, revisions by the 8th, live on the 15th — plus a status link you can check anytime without logging in.</p>
-        </div>
-        <div class="why-card">
-          <h3>Updates before you ask</h3>
-          <p>A short text every week, even when there's nothing to report. Usually it just says <em>"on track, nothing needed from you."</em></p>
-        </div>
-        <div class="why-card">
-          <h3>Easy on cash flow</h3>
-          <!-- The "pay the deposit here" Polar link was removed 2026-08-18. Two independent
-             reasons, either of which is sufficient:
-             1. Polar's acceptable-use policy, read today: "Polar serves software companies…
-                If your company's primary offering is human services… the Services are not
-                designed for and should not be used by you", and "Human services" is listed
-                under prohibited products. This is a web-design and SEO business.
-             2. That product sat in the legacy Outlier org (slug kerr-and-company-llc,
-                name still "Outlier"), so the checkout a services client landed on was
-                headed with an unrelated desktop app's brand and reseller line.
-             NOT a reason, though it was recorded as one here until it was checked:
-             the org's status is "snoozed", which does NOT disable payments. Verified
-             against the API on 2026-08-18 — checkout_payments, payouts and refunds are
-             all true, and nothing is being asked of the account. A snoozed org takes
-             money fine. Do not use "snoozed" to diagnose a dead checkout; fetch
-             capabilities, or fetch the checkout URL and look for the card form.
-             The invoice route below is what has always actually collected this money. -->
-          <p>50% to start, the rest at launch — or split it into monthly payments. Once your quote is agreed we send an invoice you can pay by card or bank transfer, and we start the same week.</p>
-        </div>
-      </div>
-      <p class="cmp-note" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto;margin-top:1.6rem;">Total time required from you: about <strong style="color:var(--ink);">45 minutes</strong> — one call, one round of feedback, one final approval.</p>
-    </div>
-  </section>
+
+      </section>
 
   <!-- WHY US -->
   <section id="why">
