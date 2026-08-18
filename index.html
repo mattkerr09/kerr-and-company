@@ -813,10 +813,15 @@
                 If your company's primary offering is human services… the Services are not
                 designed for and should not be used by you", and "Human services" is listed
                 under prohibited products. This is a web-design and SEO business.
-             2. The org that product sits in, kerr-and-company-llc, has status "snoozed" —
-                so the button rendered, looked live, and could not have taken a payment.
-                That is the worst failure mode a checkout has: from outside it is
-                indistinguishable from a working one.
+             2. That product sat in the legacy Outlier org (slug kerr-and-company-llc,
+                name still "Outlier"), so the checkout a services client landed on was
+                headed with an unrelated desktop app's brand and reseller line.
+             NOT a reason, though it was recorded as one here until it was checked:
+             the org's status is "snoozed", which does NOT disable payments. Verified
+             against the API on 2026-08-18 — checkout_payments, payouts and refunds are
+             all true, and nothing is being asked of the account. A snoozed org takes
+             money fine. Do not use "snoozed" to diagnose a dead checkout; fetch
+             capabilities, or fetch the checkout URL and look for the card form.
              The invoice route below is what has always actually collected this money. -->
           <p>50% to start, the rest at launch — or split it into monthly payments. Once your quote is agreed we send an invoice you can pay by card or bank transfer, and we start the same week.</p>
         </div>
