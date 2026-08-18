@@ -1357,6 +1357,59 @@
     @media (max-width: 1000px){ .svc-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 640px){ .svc-grid { grid-template-columns: 1fr; } }
 
+
+    /* ── THE PRODUCT SHOTS WERE BEING CROPPED ───────────────────────────────
+       Matthew: "still they are being cut off." object-fit:cover fills the box by
+       cropping whatever does not fit, so a 1440-wide site screenshot in a 562px
+       box lost its left and right edges — outlier.host's headline rendered as
+       "ost powerful AI". cover is right for a photo where the subject is central
+       and wrong for a screenshot, where the edges ARE the content.
+       contain shows the whole frame; anchored to the top so the shot starts at
+       the site's header rather than floating in the middle of the box. */
+    /* The shots were cropped: object-fit:cover fills the box by cutting whatever
+       does not fit, so outlier.host's headline rendered as "ost powerful AI".
+       TWO ATTEMPTS AT contain BOTH RENDERED THE VIDEO BLANK — with height:auto
+       it collapsed inside the fixed-height scroll container, and with
+       height:100% it still painted nothing. cover is what makes these play at
+       all here, so the fit stays and only the ANCHOR moves: top left keeps the
+       browser chrome and the headline, which is where the content is, and lets
+       the crop fall on the right edge instead of both sides.
+       Verified by looking at the rendered shot, twice, after each attempt. */
+    /* MEASURED, not guessed: the box was 562x426 (aspect 1.32) and the source
+       video is 1002x626 (aspect 1.601). Under object-fit:cover that shows 82%
+       of the width and crops 18% — centred, so 9% came off each side and
+       outlier.host's headline rendered as "ost powerful AI".
+
+       Two attempts at object-fit:contain BOTH rendered the video blank inside
+       this fixed-height scroll container, so the fit stays. Instead the BOX now
+       matches the source aspect, which crops nothing at all, and the anchor is
+       top-left so any residual difference falls on the right rather than
+       eating the first character of the headline.
+
+       aspect-ratio replaces the fixed height rather than sitting beside it —
+       a height and an aspect-ratio on the same element is a fight, and height
+       wins. */
+    .product .mockup-scroll { height: auto !important; aspect-ratio: 1002 / 626; }
+    .mockup-scroll video.shot, .mockup-scroll img { object-position: top left; }
+
+    /* ── PRICE AND FEATURES WERE INVISIBLE ──────────────────────────────────
+       "i cannot see some of the text good still". Measured on the live page in
+       light theme: #packages inverts to rgb(17,17,20), the card text goes light
+       — but the PRICE stayed rgb(17,17,20) and the feature list rgb(67,67,74).
+       Dark text on a dark card. The inversion covered p, li, span and the CTAs
+       and never covered .pkg-price or the feature list, so the two things a
+       buyer actually reads were the two that disappeared. */
+    body > section:nth-of-type(even) .pkg,
+    body > section:nth-of-type(even) .pkg * { color: var(--bg); }
+    body > section:nth-of-type(even) .pkg .pkg-price,
+    body > section:nth-of-type(even) .pkg h3,
+    body > section:nth-of-type(even) .pkg strong { color: var(--bg) !important; }
+    body > section:nth-of-type(even) .pkg li,
+    body > section:nth-of-type(even) .pkg .pkg-sub,
+    body > section:nth-of-type(even) .pkg p { color: color-mix(in srgb, var(--bg) 78%, var(--ink)) !important; }
+    body > section:nth-of-type(even) .pkg .pkg-meta,
+    body > section:nth-of-type(even) .pkg .from { color: color-mix(in srgb, var(--bg) 60%, var(--ink)) !important; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
