@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="dark" lang="en">
 <head>
 
   <!-- Privacy-friendly analytics by Plausible -->
@@ -205,12 +205,12 @@
        the Didone, the locality in letterspaced caps beneath. It previously ran
        inline as "Kerr & Company / Grand Rapids", which is a breadcrumb rather
        than a signature. */
-    .brand-name { font-family: var(--display); font-weight: 400; font-size: 1.06rem;
+    .brand-name { font-family: var(--display); font-weight: 400; font-size: 1.34rem;
                   letter-spacing: .055em; line-height: 1; display: flex;
                   flex-direction: column; gap: .3rem; padding-left: .7rem;
                   border-left: 1px solid var(--line-2); }
     .brand-name em { font-style: normal; color: var(--ink-3); font-weight: 400;
-                     font-family: var(--sans); font-size: .56rem; letter-spacing: .34em; line-height: 1; }
+                     font-family: var(--sans); font-size: .62rem; letter-spacing: .3em; line-height: 1; }
     @media (max-width: 640px){ .brand-name em{display:none} .brand-name{border-left:0;padding-left:.15rem} }
     .nav-right { display: flex; align-items: center; gap: 1.8rem; }
     .nav-links { display: flex; gap: 1.7rem; list-style: none; }
@@ -318,6 +318,69 @@
     .shipwall-row a:hover { color: var(--ink); }
     .shipwall-row a:hover::after { right: 0; }
     @media (max-width: 560px){ .shipwall-row { gap:.5rem 1.3rem; } .shipwall-row a{font-size:.84rem} }
+
+    /* BUTTON CONTRAST — SHIPPED BROKEN AND MATTHEW COULD NOT READ THEM.
+       The palette sweep mapped the gold background (#8a5a12) and the dark label
+       (#1a1611) onto the SAME #111114, and .btn-primary still said `color:#fff`
+       against an --accent that had become white. Four buttons measured a
+       contrast ratio of 1.00 — invisible, not merely low.
+       That is what a blanket find-and-replace over colour does: it preserves
+       every value's identity except the one thing that mattered, which is that
+       two of them had to stay DIFFERENT from each other.
+       Set explicitly per theme now, inverted rather than tinted, so neither can
+       collapse into its own background again. Verified by measuring rendered
+       pixels in both themes, not by reading the rule. */
+    .btn-primary, .nav-cta, .pkg .pkg-cta.solid, button[type="submit"] {
+      background: #FAFAF8 !important; color: #0B0B0C !important;
+      border-color: #FAFAF8 !important;
+    }
+    .btn-primary:hover, .nav-cta:hover, .pkg .pkg-cta.solid:hover, button[type="submit"]:hover {
+      background: #FFFFFF !important; color: #000 !important; box-shadow: none !important;
+    }
+    :root[data-theme="light"] .btn-primary,
+    :root[data-theme="light"] .nav-cta,
+    :root[data-theme="light"] .pkg .pkg-cta.solid,
+    :root[data-theme="light"] button[type="submit"] {
+      background: #111114 !important; color: #FBFBF9 !important; border-color: #111114 !important;
+    }
+    :root[data-theme="light"] .btn-primary:hover,
+    :root[data-theme="light"] .nav-cta:hover,
+    :root[data-theme="light"] .pkg .pkg-cta.solid:hover,
+    :root[data-theme="light"] button[type="submit"]:hover {
+      background: #000 !important; color: #fff !important;
+    }
+
+    /* ── SCROLL CHOREOGRAPHY ────────────────────────────────────────────────
+       The references do not merely fade things in. LangChain drives GSAP,
+       Mistral and Cofounder run 3,300-3,600 animated elements, Framer 3,247.
+       Ours ran 765 and every one was the same 24px fade — one gesture repeated,
+       which reads as a template even when it is smooth.
+       Three different behaviours, chosen so the motion says something about the
+       content rather than decorating it:
+         .rise    sections arrive with a longer travel and a slight scale, so a
+                  new idea feels like it enters rather than appears
+         .stagger children arrive in sequence, which is how a LIST should read
+         .sticky-media  the product pins while its copy scrolls past it — the
+                  pattern Framer and Avo both use to hold a product on screen
+                  while explaining it, and the one thing a static page cannot do
+       All of it collapses to "visible, no transform" under
+       prefers-reduced-motion, and the JS never runs at all there. */
+    .js .rise { opacity:0; transform: translateY(46px) scale(.985); }
+    .js .rise.in { opacity:1; transform:none;
+      transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+    .js .stagger > * { opacity:0; transform: translateY(26px); }
+    .js .stagger.in > * { opacity:1; transform:none;
+      transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+      transition-delay: calc(var(--i, 0) * 70ms); }
+    /* progress hairline — Mobbin and Framer both keep a persistent read of how
+       far through the page you are; on a 14,000px page it is not decoration. */
+    .scroll-progress { position: fixed; top:0; left:0; height:2px; width:100%;
+      transform-origin: 0 50%; transform: scaleX(0); background: var(--ink);
+      z-index: 200; pointer-events:none; opacity:.85; }
+    @media (prefers-reduced-motion: reduce){
+      .js .rise, .js .stagger > * { opacity:1 !important; transform:none !important; }
+      .scroll-progress { display:none; }
+    }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: 1.7rem 1.3rem; }
@@ -580,7 +643,7 @@
        ground is warm paper #faf7f1 rather than white, because the dark side is warm
        ink and a cold white would read as a different brand rather than the same one
        with the lights on. */
-    :root[data-theme="dark"]{
+    :root[data-theme="light"]{
       --bg: #FBFBF9; --bg-2: #F4F4F1; --surface: #FFFFFF; --surface-2: #F7F7F4;
       --line: #E5E5E1; --line-2: #D6D6D1;
       /* --ink-4 was #8a8075: 3.37:1 against --bg-2 #f3efe6, which fails WCAG
@@ -730,7 +793,7 @@
 
   <nav aria-label="Primary">
     <a href="#top" class="brand" aria-label="Kerr & Company — home">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Kerr &amp; Co."><g><path d="M47.34 33.21Q47.23 24.15 50.00 15.00Q52.77 24.15 52.66 33.21"/><path d="M52.66 33.21Q54.84 27.00 59.27 21.47Q59.60 28.55 57.72 34.85"/><path d="M57.72 34.85Q62.95 27.46 70.57 21.68Q67.44 30.71 62.02 37.98"/><path d="M62.02 37.98Q67.43 34.24 74.27 32.37Q70.38 38.29 65.15 42.28"/><path d="M65.15 42.28Q73.73 39.38 83.29 39.18Q75.44 44.65 66.79 47.34"/><path d="M66.79 47.34Q73.37 47.49 80.00 50.00Q73.37 52.51 66.79 52.66"/><path d="M66.79 52.66Q75.44 55.35 83.29 60.82Q73.73 60.62 65.15 57.72"/><path d="M65.15 57.72Q70.38 61.71 74.27 67.63Q67.43 65.76 62.02 62.02"/><path d="M62.02 62.02Q67.44 69.29 70.57 78.32Q62.95 72.54 57.72 65.15"/><path d="M57.72 65.15Q59.60 71.45 59.27 78.53Q54.84 73.00 52.66 66.79"/><path d="M52.66 66.79Q52.77 75.85 50.00 85.00Q47.23 75.85 47.34 66.79"/><path d="M47.34 66.79Q45.16 73.00 40.73 78.53Q40.40 71.45 42.28 65.15"/><path d="M42.28 65.15Q37.05 72.54 29.43 78.32Q32.56 69.29 37.98 62.02"/><path d="M37.98 62.02Q32.57 65.76 25.73 67.63Q29.62 61.71 34.85 57.72"/><path d="M34.85 57.72Q26.27 60.62 16.71 60.82Q24.56 55.35 33.21 52.66"/><path d="M33.21 52.66Q26.63 52.51 20.00 50.00Q26.63 47.49 33.21 47.34"/><path d="M33.21 47.34Q24.56 44.65 16.71 39.18Q26.27 39.38 34.85 42.28"/><path d="M34.85 42.28Q29.62 38.29 25.73 32.37Q32.57 34.24 37.98 37.98"/><path d="M37.98 37.98Q32.56 30.71 29.43 21.68Q37.05 27.46 42.28 34.85"/><path d="M42.28 34.85Q40.40 28.55 40.73 21.47Q45.16 27.00 47.34 33.21"/></g><circle cx="50" cy="50" r="17.0"/><g fill="currentColor" stroke="none"><circle cx="47.65" cy="52.15" r="1.5"/><circle cx="50.39" cy="45.51" r="1.5"/><circle cx="53.36" cy="54.38" r="1.5"/><circle cx="43.72" cy="48.89" r="1.5"/><circle cx="56.02" cy="46.17" r="1.5"/><circle cx="47.97" cy="57.54" r="1.5"/><circle cx="46.11" cy="42.51" r="1.5"/><circle cx="58.47" cy="53.09" r="1.5"/><circle cx="41.16" cy="53.65" r="1.5"/><circle cx="54.27" cy="40.87" r="1.5"/><circle cx="53.17" cy="60.09" r="1.5"/><circle cx="40.44" cy="44.46" r="1.5"/><circle cx="61.23" cy="47.53" r="1.5"/><circle cx="43.14" cy="59.76" r="1.5"/><circle cx="48.41" cy="37.75" r="1.5"/><circle cx="59.75" cy="58.22" r="1.5"/><circle cx="36.86" cy="50.54" r="1.5"/><circle cx="59.59" cy="40.46" r="1.5"/><circle cx="49.36" cy="63.89" r="1.5"/></g></svg></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Kerr &amp; Co."><g><path d="M50.78 31.59C52.44 18.54 56.88 15.42 56.88 15.42C56.88 15.42 59.78 20.00 56.33 32.69Z" opacity=".55"/><path d="M57.76 33.29C64.30 21.87 69.59 20.68 69.59 20.68C69.59 20.68 70.52 26.02 62.47 36.43Z" opacity=".55"/><path d="M63.57 37.53C73.98 29.48 79.32 30.41 79.32 30.41C79.32 30.41 78.13 35.70 66.71 42.24Z" opacity=".55"/><path d="M67.31 43.67C80.00 40.22 84.58 43.12 84.58 43.12C84.58 43.12 81.46 47.56 68.41 49.22Z" opacity=".55"/><path d="M68.41 50.78C81.46 52.44 84.58 56.88 84.58 56.88C84.58 56.88 80.00 59.78 67.31 56.33Z" opacity=".55"/><path d="M66.71 57.76C78.13 64.30 79.32 69.59 79.32 69.59C79.32 69.59 73.98 70.52 63.57 62.47Z" opacity=".55"/><path d="M62.47 63.57C70.52 73.98 69.59 79.32 69.59 79.32C69.59 79.32 64.30 78.13 57.76 66.71Z" opacity=".55"/><path d="M56.33 67.31C59.78 80.00 56.88 84.58 56.88 84.58C56.88 84.58 52.44 81.46 50.78 68.41Z" opacity=".55"/><path d="M49.22 68.41C47.56 81.46 43.12 84.58 43.12 84.58C43.12 84.58 40.22 80.00 43.67 67.31Z" opacity=".55"/><path d="M42.24 66.71C35.70 78.13 30.41 79.32 30.41 79.32C30.41 79.32 29.48 73.98 37.53 63.57Z" opacity=".55"/><path d="M36.43 62.47C26.02 70.52 20.68 69.59 20.68 69.59C20.68 69.59 21.87 64.30 33.29 57.76Z" opacity=".55"/><path d="M32.69 56.33C20.00 59.78 15.42 56.88 15.42 56.88C15.42 56.88 18.54 52.44 31.59 50.78Z" opacity=".55"/><path d="M31.59 49.22C18.54 47.56 15.42 43.12 15.42 43.12C15.42 43.12 20.00 40.22 32.69 43.67Z" opacity=".55"/><path d="M33.29 42.24C21.87 35.70 20.68 30.41 20.68 30.41C20.68 30.41 26.02 29.48 36.43 37.53Z" opacity=".55"/><path d="M37.53 36.43C29.48 26.02 30.41 20.68 30.41 20.68C30.41 20.68 35.70 21.87 42.24 33.29Z" opacity=".55"/><path d="M43.67 32.69C40.22 20.00 43.12 15.42 43.12 15.42C43.12 15.42 47.56 18.54 49.22 31.59Z" opacity=".55"/><path d="M46.83 31.27C45.34 14.14 50.00 9.00 50.00 9.00C50.00 9.00 54.66 14.14 53.17 31.27Z"/><path d="M54.24 31.48C59.42 15.09 65.69 12.12 65.69 12.12C65.69 12.12 68.03 18.65 60.10 33.90Z"/><path d="M61.01 34.51C72.06 21.35 78.99 21.01 78.99 21.01C78.99 21.01 78.65 27.94 65.49 38.99Z"/><path d="M66.10 39.90C81.35 31.97 87.88 34.31 87.88 34.31C87.88 34.31 84.91 40.58 68.52 45.76Z"/><path d="M68.73 46.83C85.86 45.34 91.00 50.00 91.00 50.00C91.00 50.00 85.86 54.66 68.73 53.17Z"/><path d="M68.52 54.24C84.91 59.42 87.88 65.69 87.88 65.69C87.88 65.69 81.35 68.03 66.10 60.10Z"/><path d="M65.49 61.01C78.65 72.06 78.99 78.99 78.99 78.99C78.99 78.99 72.06 78.65 61.01 65.49Z"/><path d="M60.10 66.10C68.03 81.35 65.69 87.88 65.69 87.88C65.69 87.88 59.42 84.91 54.24 68.52Z"/><path d="M53.17 68.73C54.66 85.86 50.00 91.00 50.00 91.00C50.00 91.00 45.34 85.86 46.83 68.73Z"/><path d="M45.76 68.52C40.58 84.91 34.31 87.88 34.31 87.88C34.31 87.88 31.97 81.35 39.90 66.10Z"/><path d="M38.99 65.49C27.94 78.65 21.01 78.99 21.01 78.99C21.01 78.99 21.35 72.06 34.51 61.01Z"/><path d="M33.90 60.10C18.65 68.03 12.12 65.69 12.12 65.69C12.12 65.69 15.09 59.42 31.48 54.24Z"/><path d="M31.27 53.17C14.14 54.66 9.00 50.00 9.00 50.00C9.00 50.00 14.14 45.34 31.27 46.83Z"/><path d="M31.48 45.76C15.09 40.58 12.12 34.31 12.12 34.31C12.12 34.31 18.65 31.97 33.90 39.90Z"/><path d="M34.51 38.99C21.35 27.94 21.01 21.01 21.01 21.01C21.01 21.01 27.94 21.35 38.99 34.51Z"/><path d="M39.90 33.90C31.97 18.65 34.31 12.12 34.31 12.12C34.31 12.12 40.58 15.09 45.76 31.48Z"/></g><circle cx="50" cy="50" r="19.0"/><g fill="currentColor" stroke="none"><circle cx="47.83" cy="51.98" r="1.45"/><circle cx="50.36" cy="45.86" r="1.45"/><circle cx="53.09" cy="54.04" r="1.45"/><circle cx="44.22" cy="48.98" r="1.45"/><circle cx="55.54" cy="46.48" r="1.45"/><circle cx="48.13" cy="56.95" r="1.45"/><circle cx="46.42" cy="43.11" r="1.45"/><circle cx="57.80" cy="52.85" r="1.45"/><circle cx="41.86" cy="53.36" r="1.45"/><circle cx="53.94" cy="41.59" r="1.45"/><circle cx="52.91" cy="59.29" r="1.45"/><circle cx="41.20" cy="44.90" r="1.45"/><circle cx="60.34" cy="47.73" r="1.45"/><circle cx="43.68" cy="58.99" r="1.45"/><circle cx="48.54" cy="38.72" r="1.45"/><circle cx="58.98" cy="57.57" r="1.45"/><circle cx="37.90" cy="50.50" r="1.45"/><circle cx="58.83" cy="41.21" r="1.45"/><circle cx="49.41" cy="62.79" r="1.45"/><circle cx="41.59" cy="39.92" r="1.45"/><circle cx="63.34" cy="51.79" r="1.45"/><circle cx="38.69" cy="57.87" r="1.45"/><circle cx="53.09" cy="36.26" r="1.45"/><circle cx="57.15" cy="62.48" r="1.45"/><circle cx="36.01" cy="45.54" r="1.45"/><circle cx="63.59" cy="43.72" r="1.45"/><circle cx="44.11" cy="64.08" r="1.45"/><circle cx="44.74" cy="35.38" r="1.45"/><circle cx="64.00" cy="57.36" r="1.45"/><circle cx="34.45" cy="54.10" r="1.45"/><circle cx="58.84" cy="36.25" r="1.45"/></g></svg></span>
       <span class="brand-name">Kerr &amp; Co.<em>Grand Rapids</em></span>
     </a>
     <div class="nav-right">
@@ -1419,7 +1482,7 @@
 
   <footer>
     <div class="fl">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Kerr &amp; Co."><g><path d="M47.34 33.21Q47.23 24.15 50.00 15.00Q52.77 24.15 52.66 33.21"/><path d="M52.66 33.21Q54.84 27.00 59.27 21.47Q59.60 28.55 57.72 34.85"/><path d="M57.72 34.85Q62.95 27.46 70.57 21.68Q67.44 30.71 62.02 37.98"/><path d="M62.02 37.98Q67.43 34.24 74.27 32.37Q70.38 38.29 65.15 42.28"/><path d="M65.15 42.28Q73.73 39.38 83.29 39.18Q75.44 44.65 66.79 47.34"/><path d="M66.79 47.34Q73.37 47.49 80.00 50.00Q73.37 52.51 66.79 52.66"/><path d="M66.79 52.66Q75.44 55.35 83.29 60.82Q73.73 60.62 65.15 57.72"/><path d="M65.15 57.72Q70.38 61.71 74.27 67.63Q67.43 65.76 62.02 62.02"/><path d="M62.02 62.02Q67.44 69.29 70.57 78.32Q62.95 72.54 57.72 65.15"/><path d="M57.72 65.15Q59.60 71.45 59.27 78.53Q54.84 73.00 52.66 66.79"/><path d="M52.66 66.79Q52.77 75.85 50.00 85.00Q47.23 75.85 47.34 66.79"/><path d="M47.34 66.79Q45.16 73.00 40.73 78.53Q40.40 71.45 42.28 65.15"/><path d="M42.28 65.15Q37.05 72.54 29.43 78.32Q32.56 69.29 37.98 62.02"/><path d="M37.98 62.02Q32.57 65.76 25.73 67.63Q29.62 61.71 34.85 57.72"/><path d="M34.85 57.72Q26.27 60.62 16.71 60.82Q24.56 55.35 33.21 52.66"/><path d="M33.21 52.66Q26.63 52.51 20.00 50.00Q26.63 47.49 33.21 47.34"/><path d="M33.21 47.34Q24.56 44.65 16.71 39.18Q26.27 39.38 34.85 42.28"/><path d="M34.85 42.28Q29.62 38.29 25.73 32.37Q32.57 34.24 37.98 37.98"/><path d="M37.98 37.98Q32.56 30.71 29.43 21.68Q37.05 27.46 42.28 34.85"/><path d="M42.28 34.85Q40.40 28.55 40.73 21.47Q45.16 27.00 47.34 33.21"/></g><circle cx="50" cy="50" r="17.0"/><g fill="currentColor" stroke="none"><circle cx="47.65" cy="52.15" r="1.5"/><circle cx="50.39" cy="45.51" r="1.5"/><circle cx="53.36" cy="54.38" r="1.5"/><circle cx="43.72" cy="48.89" r="1.5"/><circle cx="56.02" cy="46.17" r="1.5"/><circle cx="47.97" cy="57.54" r="1.5"/><circle cx="46.11" cy="42.51" r="1.5"/><circle cx="58.47" cy="53.09" r="1.5"/><circle cx="41.16" cy="53.65" r="1.5"/><circle cx="54.27" cy="40.87" r="1.5"/><circle cx="53.17" cy="60.09" r="1.5"/><circle cx="40.44" cy="44.46" r="1.5"/><circle cx="61.23" cy="47.53" r="1.5"/><circle cx="43.14" cy="59.76" r="1.5"/><circle cx="48.41" cy="37.75" r="1.5"/><circle cx="59.75" cy="58.22" r="1.5"/><circle cx="36.86" cy="50.54" r="1.5"/><circle cx="59.59" cy="40.46" r="1.5"/><circle cx="49.36" cy="63.89" r="1.5"/></g></svg></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Kerr &amp; Co."><g><path d="M50.78 31.59C52.44 18.54 56.88 15.42 56.88 15.42C56.88 15.42 59.78 20.00 56.33 32.69Z" opacity=".55"/><path d="M57.76 33.29C64.30 21.87 69.59 20.68 69.59 20.68C69.59 20.68 70.52 26.02 62.47 36.43Z" opacity=".55"/><path d="M63.57 37.53C73.98 29.48 79.32 30.41 79.32 30.41C79.32 30.41 78.13 35.70 66.71 42.24Z" opacity=".55"/><path d="M67.31 43.67C80.00 40.22 84.58 43.12 84.58 43.12C84.58 43.12 81.46 47.56 68.41 49.22Z" opacity=".55"/><path d="M68.41 50.78C81.46 52.44 84.58 56.88 84.58 56.88C84.58 56.88 80.00 59.78 67.31 56.33Z" opacity=".55"/><path d="M66.71 57.76C78.13 64.30 79.32 69.59 79.32 69.59C79.32 69.59 73.98 70.52 63.57 62.47Z" opacity=".55"/><path d="M62.47 63.57C70.52 73.98 69.59 79.32 69.59 79.32C69.59 79.32 64.30 78.13 57.76 66.71Z" opacity=".55"/><path d="M56.33 67.31C59.78 80.00 56.88 84.58 56.88 84.58C56.88 84.58 52.44 81.46 50.78 68.41Z" opacity=".55"/><path d="M49.22 68.41C47.56 81.46 43.12 84.58 43.12 84.58C43.12 84.58 40.22 80.00 43.67 67.31Z" opacity=".55"/><path d="M42.24 66.71C35.70 78.13 30.41 79.32 30.41 79.32C30.41 79.32 29.48 73.98 37.53 63.57Z" opacity=".55"/><path d="M36.43 62.47C26.02 70.52 20.68 69.59 20.68 69.59C20.68 69.59 21.87 64.30 33.29 57.76Z" opacity=".55"/><path d="M32.69 56.33C20.00 59.78 15.42 56.88 15.42 56.88C15.42 56.88 18.54 52.44 31.59 50.78Z" opacity=".55"/><path d="M31.59 49.22C18.54 47.56 15.42 43.12 15.42 43.12C15.42 43.12 20.00 40.22 32.69 43.67Z" opacity=".55"/><path d="M33.29 42.24C21.87 35.70 20.68 30.41 20.68 30.41C20.68 30.41 26.02 29.48 36.43 37.53Z" opacity=".55"/><path d="M37.53 36.43C29.48 26.02 30.41 20.68 30.41 20.68C30.41 20.68 35.70 21.87 42.24 33.29Z" opacity=".55"/><path d="M43.67 32.69C40.22 20.00 43.12 15.42 43.12 15.42C43.12 15.42 47.56 18.54 49.22 31.59Z" opacity=".55"/><path d="M46.83 31.27C45.34 14.14 50.00 9.00 50.00 9.00C50.00 9.00 54.66 14.14 53.17 31.27Z"/><path d="M54.24 31.48C59.42 15.09 65.69 12.12 65.69 12.12C65.69 12.12 68.03 18.65 60.10 33.90Z"/><path d="M61.01 34.51C72.06 21.35 78.99 21.01 78.99 21.01C78.99 21.01 78.65 27.94 65.49 38.99Z"/><path d="M66.10 39.90C81.35 31.97 87.88 34.31 87.88 34.31C87.88 34.31 84.91 40.58 68.52 45.76Z"/><path d="M68.73 46.83C85.86 45.34 91.00 50.00 91.00 50.00C91.00 50.00 85.86 54.66 68.73 53.17Z"/><path d="M68.52 54.24C84.91 59.42 87.88 65.69 87.88 65.69C87.88 65.69 81.35 68.03 66.10 60.10Z"/><path d="M65.49 61.01C78.65 72.06 78.99 78.99 78.99 78.99C78.99 78.99 72.06 78.65 61.01 65.49Z"/><path d="M60.10 66.10C68.03 81.35 65.69 87.88 65.69 87.88C65.69 87.88 59.42 84.91 54.24 68.52Z"/><path d="M53.17 68.73C54.66 85.86 50.00 91.00 50.00 91.00C50.00 91.00 45.34 85.86 46.83 68.73Z"/><path d="M45.76 68.52C40.58 84.91 34.31 87.88 34.31 87.88C34.31 87.88 31.97 81.35 39.90 66.10Z"/><path d="M38.99 65.49C27.94 78.65 21.01 78.99 21.01 78.99C21.01 78.99 21.35 72.06 34.51 61.01Z"/><path d="M33.90 60.10C18.65 68.03 12.12 65.69 12.12 65.69C12.12 65.69 15.09 59.42 31.48 54.24Z"/><path d="M31.27 53.17C14.14 54.66 9.00 50.00 9.00 50.00C9.00 50.00 14.14 45.34 31.27 46.83Z"/><path d="M31.48 45.76C15.09 40.58 12.12 34.31 12.12 34.31C12.12 34.31 18.65 31.97 33.90 39.90Z"/><path d="M34.51 38.99C21.35 27.94 21.01 21.01 21.01 21.01C21.01 21.01 27.94 21.35 38.99 34.51Z"/><path d="M39.90 33.90C31.97 18.65 34.31 12.12 34.31 12.12C34.31 12.12 40.58 15.09 45.76 31.48Z"/></g><circle cx="50" cy="50" r="19.0"/><g fill="currentColor" stroke="none"><circle cx="47.83" cy="51.98" r="1.45"/><circle cx="50.36" cy="45.86" r="1.45"/><circle cx="53.09" cy="54.04" r="1.45"/><circle cx="44.22" cy="48.98" r="1.45"/><circle cx="55.54" cy="46.48" r="1.45"/><circle cx="48.13" cy="56.95" r="1.45"/><circle cx="46.42" cy="43.11" r="1.45"/><circle cx="57.80" cy="52.85" r="1.45"/><circle cx="41.86" cy="53.36" r="1.45"/><circle cx="53.94" cy="41.59" r="1.45"/><circle cx="52.91" cy="59.29" r="1.45"/><circle cx="41.20" cy="44.90" r="1.45"/><circle cx="60.34" cy="47.73" r="1.45"/><circle cx="43.68" cy="58.99" r="1.45"/><circle cx="48.54" cy="38.72" r="1.45"/><circle cx="58.98" cy="57.57" r="1.45"/><circle cx="37.90" cy="50.50" r="1.45"/><circle cx="58.83" cy="41.21" r="1.45"/><circle cx="49.41" cy="62.79" r="1.45"/><circle cx="41.59" cy="39.92" r="1.45"/><circle cx="63.34" cy="51.79" r="1.45"/><circle cx="38.69" cy="57.87" r="1.45"/><circle cx="53.09" cy="36.26" r="1.45"/><circle cx="57.15" cy="62.48" r="1.45"/><circle cx="36.01" cy="45.54" r="1.45"/><circle cx="63.59" cy="43.72" r="1.45"/><circle cx="44.11" cy="64.08" r="1.45"/><circle cx="44.74" cy="35.38" r="1.45"/><circle cx="64.00" cy="57.36" r="1.45"/><circle cx="34.45" cy="54.10" r="1.45"/><circle cx="58.84" cy="36.25" r="1.45"/></g></svg></span>
       <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI · Updated Jul 2026</span>
     </div>
     <div class="fr">
@@ -1474,6 +1537,36 @@
 
     const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Scroll choreography. Kept to IntersectionObserver + one rAF-throttled
+    // scroll read: a library would be 40-70KB to do what 20 lines do, on a site
+    // whose entire argument is that it is built rather than assembled.
+    (function(){
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const bar = document.createElement('div');
+      bar.className = 'scroll-progress'; document.body.appendChild(bar);
+      let tick = false;
+      addEventListener('scroll', () => {
+        if (tick) return; tick = true;
+        requestAnimationFrame(() => {
+          const h = document.documentElement.scrollHeight - innerHeight;
+          bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+          tick = false;
+        });
+      }, {passive:true});
+
+      // every section rises; every grid/list staggers its children
+      document.querySelectorAll('section, .hero-proof, .shipwall').forEach(el => el.classList.add('rise'));
+      document.querySelectorAll('.cards, .svcs, .stats, .pkgs, .why-grid, .faq-list, .shipwall-row')
+        .forEach(g => { g.classList.add('stagger');
+          [...g.children].forEach((c,i) => c.style.setProperty('--i', i)); });
+
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }), {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+      document.querySelectorAll('.rise, .stagger').forEach(el => io.observe(el));
+    })();
+
 
     // scroll-spy
     const navMap={}; document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>navMap[a.getAttribute('href').slice(1)]=a);
