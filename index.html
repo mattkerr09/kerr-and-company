@@ -558,6 +558,16 @@
     .seg button:hover:not([aria-pressed="true"]) { border-color:var(--ink-3); color:var(--ink); }
     .seg button:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
     .cfg-out { border-left:1px solid var(--line); padding-left: clamp(var(--s6),3vw,var(--s8)); }
+
+    /* The price label reads "Your estimate", not "Starting at", and that is a
+       correctness fix rather than a copy preference. The add-on button directly
+       before it is labelled "Ongoing care plan"; in the RENDERED LAYOUT they sit
+       in different columns, but in the TEXT STREAM they are adjacent — so a
+       screen reader, a text extractor and an LLM summarising this page all read
+       "care plan starting at $999". The live-site suite caught exactly that and
+       reported the care plan quoted at two conflicting prices.
+       Nobody looking at the page could have seen it. Only reading the page the
+       way a machine does could. */
     .cfg-price { font-size: clamp(2.2rem,4.4vw,3.2rem); font-weight:600; letter-spacing:-.03em;
       line-height:1; margin:0; font-variant-numeric: tabular-nums; }
     .cfg-price small { display:block; font-size:.72rem; font-weight:500; letter-spacing:.09em;
@@ -1283,17 +1293,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Website cost</td><td class="us">From $999</td><td>$5,000–$20,000+</td><td>$20–$50/mo + your time</td><td>$300–$1,000</td></tr>
+            <tr><td>Website cost</td><td class="us">From $999</td><td>$8,000–$15,000</td><td>$20–$50/mo + your time</td><td>$300–$1,000</td></tr>
             <tr><td>Time to live</td><td class="us">Days</td><td>4–8 weeks</td><td>Weeks of your evenings</td><td>3–8 weeks, timezone lag</td></tr>
             <tr><td>Pricing shown up front</td><td class="us">Yes — published</td><td>Rarely — "contact us"</td><td>Yes</td><td>Yes</td></tr>
             <tr><td>Who does the work</td><td class="us">The founder, directly</td><td>Account manager → junior</td><td>You</td><td>Rotating contractors</td></tr>
             <tr><td>Custom AI tools</td><td class="us">Included option</td><td>Rarely offered</td><td>No</td><td>No</td></tr>
             <tr><td>SEO &amp; local search</td><td class="us">Built in</td><td>Separate retainer</td><td>Plugin, DIY</td><td>Usually none</td></tr>
-            <tr><td>Ongoing care plan</td><td class="us">From $199/mo</td><td>$500–$2,000/mo</td><td>Self-managed</td><td>Usually none</td></tr>
+            <tr><td>Ongoing care plan</td><td class="us">From $199/mo</td><td>$150–$500/mo</td><td>Self-managed</td><td>Usually none</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="cmp-note">Comparison figures reflect published 2025–2026 market pricing for small-business web projects and are shown as typical ranges, not quotes from any specific company. Your project always gets its own fixed quote.</p>
+      <p class="cmp-note">Comparison figures are typical ranges for small-business web projects, not quotes from any specific company — your project always gets its own fixed quote. Agency build and maintenance-retainer ranges are from <a href="https://www.digitalapplied.com/blog/website-development-cost-2026-complete-pricing-data" rel="nofollow noopener" target="_blank">Digital Applied’s 2026 pricing data</a> (published 8 April 2026, read 18 August 2026), which puts a boutique agency build at $8,000–$15,000 and a small-business maintenance retainer at $1,800–$6,000 a year. Our $199/mo sits inside that range rather than under it: the difference is what the plan includes and who does the work, not the price.</p>
     </div>
   </section>
 
@@ -1568,7 +1578,7 @@
             </div>
           </div>
           <div class="cfg-out" aria-live="polite">
-            <p class="cfg-price"><small>Starting at</small><span id="cfg-amount">$999</span></p>
+            <p class="cfg-price"><small>Your estimate</small><span id="cfg-amount">$999</span></p>
             <p class="cfg-tier" id="cfg-tier">Starter Site</p>
             <ul class="cfg-scope" id="cfg-scope"></ul>
             <p class="cfg-date" id="cfg-date"></p>
