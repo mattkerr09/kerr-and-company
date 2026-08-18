@@ -298,6 +298,26 @@
     @media (prefers-reduced-motion: reduce){ .mockup-scroll video.shot{ display:none; }
       .mockup-scroll{ background:var(--surface-2); } }
     @media (max-width: 700px) { .hero-proof .mockup-scroll { height: 260px; } }
+
+    /* SHIPPED-WORK WALL. The reference pattern is a logo row under the hero;
+       LangChain runs nineteen, Mobbin five. Ours lists domains rather than
+       borrowed marks because these are OUR builds, and a domain a visitor can
+       open in a new tab is a harder proof than a logo they cannot check. Each
+       was fetched and returned 200 before it was written here. */
+    .shipwall { margin-top: clamp(2.2rem, 4vw, 3.2rem); padding-top: clamp(1.4rem,2.5vw,2rem);
+                border-top: 1px solid var(--line); }
+    .shipwall-lede { font-family: var(--mono); font-size: .68rem; letter-spacing: .18em;
+                     text-transform: uppercase; color: var(--ink-4); margin: 0 0 .95rem; }
+    .shipwall-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap;
+                    gap: .55rem 2.1rem; }
+    .shipwall-row a { font-family: var(--mono); font-size: .93rem; color: var(--ink-3);
+                      text-decoration: none; position: relative; padding-bottom: 2px;
+                      transition: color .25s ease; }
+    .shipwall-row a::after { content:""; position:absolute; left:0; right:100%; bottom:0;
+                             height:1px; background: var(--ink); transition: right .28s ease; }
+    .shipwall-row a:hover { color: var(--ink); }
+    .shipwall-row a:hover::after { right: 0; }
+    @media (max-width: 560px){ .shipwall-row { gap:.5rem 1.3rem; } .shipwall-row a{font-size:.84rem} }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: 1.7rem 1.3rem; }
@@ -750,8 +770,7 @@
              Raycast's is two. The software-portfolio claim did not get weaker, it moved: it
              is a proof element, and proof belongs after the promise, not inside it. -->
         <p class="hero-sub">
-          Websites, local SEO and custom AI tools for Grand Rapids businesses —
-          <strong>from $999</strong>, with the scope, the price and the date in writing before you commit.
+          Scope, price and date in writing before you commit — <strong>from $999</strong>.
         </p>
         <!-- One action. "See pricing" was the same audience at a lower commitment, which is
              the dilution pattern none of the four references use — where they carry a second
@@ -759,15 +778,7 @@
              users). Pricing is in the nav and the section is one scroll down. -->
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Get a written quote →</a>
-        </div>
-        <div class="proofstrip">
-          <span class="pi"><b>3</b>&nbsp;provisional patents</span><span class="sep">·</span>
-          <span class="pi"><b>Live</b>&nbsp;B2B SaaS in production</span><span class="sep">·</span>
-          <span class="pi"><b>2,500+</b>&nbsp;monthly downloads across 42 published models</span><span class="sep">·</span>
-          <span class="pi"><b>Paying</b>&nbsp;customer on a shipped app</span>
-        </div>
-        <div class="resp-promise">Matthew replies personally — within one business day.</div>
-      </div>
+        </div>      </div>
 
       <!-- The fold had no evidence in it. Cursor, Warp and Linear all give most of the first
            screen to the product itself; this page gave it to a paragraph and eight numbers
@@ -783,6 +794,25 @@
         <div class="mockup">
           <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>docketseo.app</span></div>
           <div class="mockup-scroll"><video class="shot" autoplay loop muted playsinline preload="auto" poster="assets/video/docket.jpg" width="1000" height="625" aria-label="Docket SEO — a site built and shipped by Kerr &amp; Co."><source src="assets/video/docket.webm" type="video/webm"></video></div>
+
+        <div class="shipwall reveal" aria-label="Sites designed, built and shipped by Kerr &amp; Co.">
+          <p class="shipwall-lede">Designed, built and shipped by us — all six live right now</p>
+          <ul class="shipwall-row">
+            <li><a href="https://crispvideo.app/" rel="noopener">crispvideo.app</a></li>
+            <li><a href="https://docketseo.app/" rel="noopener">docketseo.app</a></li>
+            <li><a href="https://adplaybook.app/" rel="noopener">adplaybook.app</a></li>
+            <li><a href="https://outlier.host/" rel="noopener">outlier.host</a></li>
+            <li><a href="https://bookbreaker.bet/" rel="noopener">bookbreaker.bet</a></li>
+            <li><a href="https://myproposalai.com/" rel="noopener">myproposalai.com</a></li>
+          </ul>
+        </div>
+        <div class="proofstrip">
+          <span class="pi"><b>3</b>&nbsp;provisional patents</span><span class="sep">·</span>
+          <span class="pi"><b>Live</b>&nbsp;B2B SaaS in production</span><span class="sep">·</span>
+          <span class="pi"><b>2,500+</b>&nbsp;monthly downloads across 42 published models</span><span class="sep">·</span>
+          <span class="pi"><b>Paying</b>&nbsp;customer on a shipped app</span>
+        </div>
+        <div class="resp-promise">Matthew replies personally — within one business day.</div>
           <span class="scroll-hint">↕ scroll it — this is a real site we shipped</span>
         </div>
       </div>
