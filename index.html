@@ -851,7 +851,14 @@
 
     /* WHY US */
     #why { border-top: 1px solid var(--line); }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: var(--s4); }
+    /* auto-fit, and the "0px" third track it reports is auto-fit COLLAPSING an
+       empty column — not dead space. I read that string as a bug and wrote a
+       comment claiming to have fixed one. Measured properly, the two surviving
+       cards span 1024 of 1024px at desktop and 345 of 345 at mobile: the grid
+       was correct before I touched it. What actually changed here is the gap,
+       16px to 24px, which two cards want more of than six did. */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--s6); }
     .why-card { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 1.5rem 1.5rem; transition: border-color .2s; }
     .why-card:hover { border-color: var(--line-2); }
     .why-card .wi { font-size: 1.35rem; line-height: 1; margin-bottom: var(--s3); display: block; }
@@ -1254,19 +1261,10 @@
 
       </div>
       <div class="why-grid reveal">
-        <div class="why-card">
-          <h3>Days, not months</h3>
-          <p>Published agency timelines for a custom multi-page business site run four to eight weeks. We build with AI and ship in <strong>days</strong> — we took a product and its full marketing site from idea to live in two days.</p>
-        </div>
-        <div class="why-card">
-          <h3>Pricing you can actually see</h3>
-          <p>Every price is published on this site. <strong>Fixed quotes before any work starts</strong> — no hourly meter, no "contact us for a quote," no surprise invoices.</p>
-        </div>
-        <div class="why-card"><h3>Proof, not promises</h3><p>The numbers above are ours and the case study behind them shows its own working. Alongside them: a notarized macOS app with a paying customer and a live B2B SaaS — <a href="/case-studies/">see the case studies &rarr;</a></p></div>
-        <div class="why-card">
-          <h3>Tools nobody else offers</h3>
-          <p>Most shops resell templates. We build <strong>custom AI tools</strong> — missed-call-to-text, review engines, instant quotes, live dashboards — that make your site actually work.</p>
-        </div>
+        
+        
+        
+        
         <div class="why-card">
           <h3>Flat fees, never % of spend</h3>
           <p>Ad management is a <strong>flat monthly fee</strong>, so we don't get paid more for telling you to spend more. You pay the platforms directly and own every account.</p>
