@@ -608,7 +608,18 @@
 
 /* The h1 was only 1.12x the section titles, so nothing dominated the
    fold. Widened to about 2.1x without growing it on mobile. */
-.hero h1 { font-size: clamp(2.3rem, 6.4vw, 5rem); }
+/* Ceiling 5rem -> 3.4rem on 2026-08-18. Measured, not guessed: this rendered at
+   80.0px at 1440x900, the largest headline in the portfolio, against a
+   reference band of 38-56px taken from the six sites Matthew pointed at
+   (set.space 39, getfernand 38, framer ~40, arrakis 56). The survey calls the
+   oversized hero the single loudest AI tell we have.
+   Only the CEILING moves. The 2.3rem floor and the 6.4vw middle term are
+   untouched, so nothing below ~850px viewport changes at all.
+   3.4rem = 54.4px, near the top of the band — this is a direct-response
+   services page and can carry more weight than the holding-company page at
+   43.2px. Guarded by ops/bin/hero-scale-gate.py, which measures the RENDERED
+   size in a browser because grep reports a clamp's maximum, not its result. */
+.hero h1 { font-size: clamp(2.3rem, 6.4vw, 3.4rem); }
 .section-title,
 .contact-card h2,
 .founder-body h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); }
