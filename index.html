@@ -496,6 +496,33 @@
       --s6:24px; --s7:32px;  --s8:40px; --s9:48px; --s10:64px;
       --s11:80px; --s12:96px;
     }
+
+    /* ── FAQ AS AN ACCORDION ────────────────────────────────────────────────
+       This was the weakest section on the page by a distance: 1,433px of small
+       text at uniform weight, six answers all open at once, and the only section
+       with no interaction in it at all. Nobody reads a wall; they scan for their
+       own question and leave.
+       Native <details>/<summary>, so it is keyboard-operable and findable by the
+       browser's own in-page search without a line of JavaScript, and the answers
+       stay in the DOM — which matters, because the FAQPage JSON-LD on this page
+       cites them and schema that describes hidden-but-present content is valid
+       while schema describing content that isn't there is not. */
+    .qa { border-bottom: 1px solid var(--line); padding: 0; background: none; }
+    .qa summary { display:flex; align-items:flex-start; justify-content:space-between;
+      gap: var(--s4); cursor:pointer; list-style:none;
+      padding: var(--s5) 0; font-size: clamp(1rem,1.35vw,1.1rem); font-weight:600;
+      letter-spacing:-.01em; color: var(--ink); transition: color .18s ease; }
+    .qa summary::-webkit-details-marker { display:none; }
+    .qa summary:hover { color: var(--ink-2); }
+    .qa summary:focus-visible { outline:2px solid var(--ink); outline-offset:4px; border-radius:6px; }
+    .qa-i { flex:none; width:26px; height:26px; border:1px solid var(--line-2); border-radius:50%;
+      display:grid; place-items:center; color: var(--ink-3);
+      transition: transform .22s cubic-bezier(.2,.7,.3,1), border-color .18s ease; }
+    .qa-i svg { width:12px; height:12px; }
+    .qa[open] .qa-i { transform: rotate(45deg); border-color: var(--ink-3); }
+    .qa > p { margin: 0 0 var(--s5); max-width: 68ch; color: var(--ink-3);
+      font-size:.95rem; line-height:1.68; }
+    @media (prefers-reduced-motion: reduce){ .qa-i { transition: none; } }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: var(--s7) var(--s5); }
@@ -1497,30 +1524,12 @@
         <p class="section-intro">Common questions about working with Kerr &amp; Company — what things cost, how fast they ship, and what we've built.</p>
       </div>
       <div class="faq-list reveal">
-        <div class="faq-item">
-          <h3>How much does a website cost in Grand Rapids?</h3>
-          <p>Kerr &amp; Company starts at <strong>$999</strong> for a starter site, <strong>$2,499</strong> for a business site, and <strong>$4,999</strong> when there is a custom tool involved. Published local rates put most Grand Rapids small business sites between $3,000 and $15,000, and local freelancers between $2,500 and $6,000, so these sit below the local market. You get the scope, the price and the delivery date in writing before you commit.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Does Kerr &amp; Company do AI consulting in Grand Rapids and Michigan?</h3>
-          <p>Yes. Kerr &amp; Company is based in <strong>Grand Rapids, Michigan</strong> and takes on select AI-build and automation engagements for founders, operators, and West Michigan businesses — from AI product development to custom agents and workflow automation.</p>
-        </div>
-        <div class="faq-item">
-          <h3>What has Kerr &amp; Company built?</h3>
-          <p>Outlier, a private offline AI app for macOS with a paying customer and 3 provisional patents; ProposalAI, a live B2B SaaS for contractors; Crisp, Docket and AdPlaybook, each with its own site and working checkout; and Jarvis Factory, an automation engine that orchestrates 100+ AI agents to build software.</p>
-        </div>
-        <div class="faq-item">
-          <h3>How much does a website cost?</h3>
-          <p>A simple business website starts at <strong>$999</strong>, a standard multi-page site around <strong>$2,499</strong>, and a growth site with a custom AI tool from <strong>$4,999</strong>. Care plans start at $199/month. You get a fixed quote before any work begins — never hourly billing. See <a href="#packages">packages</a>.</p>
-        </div>
-        <div class="faq-item">
-          <h3>How much does a product build or AI engagement cost?</h3>
-          <p>Studio work is priced separately from websites: an <strong>AI Build Audit</strong> from $3,500, a <strong>0→1 Product Sprint</strong> from $25,000, or an <strong>Agent &amp; Automation Build</strong> from $15,000 — see <a href="/studio.html">studio engagements</a>.</p>
-        </div>
-        <div class="faq-item">
-          <h3>What makes Kerr &amp; Company different from an AI agency?</h3>
-          <p>Kerr &amp; Company ships its own AI products, one of which has a paying customer, backed by 3 provisional patents — so you hire operators who build and launch software, not an agency learning on your budget. Every first deliverable is reworked until you sign off.</p>
-        </div>
+        <details class="faq-item qa"><summary><span class="qa-q">How much does a website cost in Grand Rapids?</span><span class="qa-i" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2.5v9M2.5 7h9"/></svg></span></summary><p>Kerr &amp; Company starts at <strong>$999</strong> for a starter site, <strong>$2,499</strong> for a business site, and <strong>$4,999</strong> when there is a custom tool involved. Published local rates put most Grand Rapids small business sites between $3,000 and $15,000, and local freelancers between $2,500 and $6,000, so these sit below the local market. You get the scope, the price and the delivery date in writing before you commit.</p></details>
+        <details class="faq-item qa"><summary><span class="qa-q">Does Kerr &amp; Company do AI consulting in Grand Rapids and Michigan?</span><span class="qa-i" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2.5v9M2.5 7h9"/></svg></span></summary><p>Yes. Kerr &amp; Company is based in <strong>Grand Rapids, Michigan</strong> and takes on select AI-build and automation engagements for founders, operators, and West Michigan businesses — from AI product development to custom agents and workflow automation.</p></details>
+        <details class="faq-item qa"><summary><span class="qa-q">What has Kerr &amp; Company built?</span><span class="qa-i" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2.5v9M2.5 7h9"/></svg></span></summary><p>Outlier, a private offline AI app for macOS with a paying customer and 3 provisional patents; ProposalAI, a live B2B SaaS for contractors; Crisp, Docket and AdPlaybook, each with its own site and working checkout; and Jarvis Factory, an automation engine that orchestrates 100+ AI agents to build software.</p></details>
+        <details class="faq-item qa"><summary><span class="qa-q">How much does a website cost?</span><span class="qa-i" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2.5v9M2.5 7h9"/></svg></span></summary><p>A simple business website starts at <strong>$999</strong>, a standard multi-page site around <strong>$2,499</strong>, and a growth site with a custom AI tool from <strong>$4,999</strong>. Care plans start at $199/month. You get a fixed quote before any work begins — never hourly billing. See <a href="#packages">packages</a>.</p></details>
+        <details class="faq-item qa"><summary><span class="qa-q">How much does a product build or AI engagement cost?</span><span class="qa-i" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2.5v9M2.5 7h9"/></svg></span></summary><p>Studio work is priced separately from websites: an <strong>AI Build Audit</strong> from $3,500, a <strong>0→1 Product Sprint</strong> from $25,000, or an <strong>Agent &amp; Automation Build</strong> from $15,000 — see <a href="/studio.html">studio engagements</a>.</p></details>
+        <details class="faq-item qa"><summary><span class="qa-q">What makes Kerr &amp; Company different from an AI agency?</span><span class="qa-i" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 2.5v9M2.5 7h9"/></svg></span></summary><p>Kerr &amp; Company ships its own AI products, one of which has a paying customer, backed by 3 provisional patents — so you hire operators who build and launch software, not an agency learning on your budget. Every first deliverable is reworked until you sign off.</p></details>
       </div>
     </div>
   </section>
