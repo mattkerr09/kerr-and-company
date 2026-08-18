@@ -1,0 +1,17 @@
+<body style="margin:0;background:#0B0B0C;display:grid;place-items:center;height:100vh;font-family:-apple-system,sans-serif;color:#FAFAF8">
+<div style="display:flex;gap:56px;align-items:center">
+  <div style="width:140px" data-m="mark"></div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div style="width:44px" data-m="mark"></div>
+    <div style="border-left:1px solid #34343A;padding-left:14px">
+      <div style="font-family:Didot,'Bodoni 72','Times New Roman',serif;font-size:27px;letter-spacing:.055em;line-height:1">KERR &amp; CO.</div>
+      <div style="font-size:8px;letter-spacing:.34em;color:#8A8A92;margin-top:6px">GRAND RAPIDS</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:20px;align-items:flex-end">
+    <div style="width:32px" data-m="mark-sm"></div>
+    <div style="width:16px" data-m="mark-sm"></div>
+  </div>
+</div>
+<script>(async()=>{const c={};for(const el of document.querySelectorAll('[data-m]')){const n=el.dataset.m;
+c[n]=c[n]||await(await fetch('/assets/'+n+'.svg')).text();el.innerHTML=c[n];}})();</script></body>

@@ -196,11 +196,6 @@
     }
     nav.hidden { transform: translateY(-100%); }
     .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .brand-mark {
-      width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(140deg, var(--accent), #2f6ae0); color: #fff;
-      font-family: var(--serif); font-weight: 700; font-size: 1rem; box-shadow: 0 4px 16px rgba(250,250,248,0.4);
-    }
     /* Two lines split by a hairline, matching the supplied lockup: the name in
        the Didone, the locality in letterspaced caps beneath. It previously ran
        inline as "Kerr & Company / Grand Rapids", which is a breadcrumb rather
@@ -475,7 +470,7 @@
     /* FOOTER */
     footer { border-top: 1px solid var(--line); padding: 2.2rem clamp(1.25rem,5vw,3rem); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
     footer .fl { display: flex; align-items: center; gap: 0.7rem; }
-    footer .fl .brand-mark { width: 26px; height: 26px; font-size: 0.78rem; }
+    footer .fl .brand-mark { width: 34px; height: 34px; }
     footer .fl span { font-size: 0.78rem; color: var(--ink-4); }
     /* wrap: without it the last 7 links — including all three legal pages —
        sit off-screen and unreachable at 375px. assets/pages.css already wraps. */
@@ -756,7 +751,17 @@
    restraint. Literal #FAFAF8 in both themes deliberately: in light mode
    --accent is #111114, so var(--accent) here would land dark brown on
    near-black at 2.4:1. */
-.brand-mark { background: none; color: var(--ink); box-shadow: none; }
+/* THE LOCKUP. Sized here and nowhere else — an earlier edit left TWO
+   .brand-mark rules in this file, the original 32px gradient chip and a
+   replacement, and the one that won was not the one I had written. Removing the
+   duplicate then took the width with it and the mark collapsed to 0px, which
+   the browser reported and I would not have seen in a screenshot of a dark mark
+   on a dark nav. One rule, measured after. */
+.brand-mark { width: 44px; height: 44px; display: flex; align-items: center;
+              justify-content: center; color: var(--ink); flex: none;
+              background: none; box-shadow: none; }
+.brand-mark svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 640px){ .brand-mark { width: 36px; height: 36px; } }
 :root { --glow-violet: rgba(250,250,248,0.10); }
 :root[data-theme="light"] { --glow-violet: rgba(250,250,248,0.06); }
 .eyebrow::before { display: none; }
