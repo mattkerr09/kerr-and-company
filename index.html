@@ -1322,6 +1322,32 @@
       .product-info .product-desc { max-width: none; }
     }
 
+
+    /* ── THE 660px TRAP ─────────────────────────────────────────────────────
+       Matthew: "it literally looks worse." He was right and the cause was mine.
+       .section-head carries max-width:660px, which is correct for a heading and
+       a lede — that is a reading measure. But I inserted the proof strip and the
+       split panel INSIDE it, so both rendered at 644px inside a 1,248px
+       container: 53% of the available width, hard left, with 468px of dead space
+       beside them. Live since I shipped each one.
+
+       Every measurement I took said the container was 1,248px and the cards were
+       1,170px, and both were true — I never measured the two blocks I had just
+       added. It took looking at the page.
+
+       Fixing the container rather than moving markup, because this cannot
+       recur: .section-head no longer constrains anything, and the reading
+       measure moves onto the text elements that actually want it. Any block
+       added to a section head from now on spans the section. */
+    .section-head { max-width: none; }
+    .section-head > .eyebrow,
+    .section-head > .kicker,
+    .section-head > h2,
+    .section-head > .section-title,
+    .section-head > p,
+    .section-head > .section-intro,
+    .section-head > .lede { max-width: 660px; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -1532,6 +1558,7 @@
         <div class="eyebrow" style="color:var(--ink-4);">Why work with us</div>
         <h2 class="section-title">You get the person who builds it</h2>
         <p class="section-intro">No account managers, no junior handoff, no six-week timelines for a five-page site. You work directly with the founder — who ships production software for a living and can prove it.</p>
+      </div>
         <div class="proof-strip">
           <div class="proof-i">
             <p class="proof-n">$3.82</p>
@@ -1555,7 +1582,6 @@
           </div>
         </div>
 
-      </div>
       <div class="why-grid reveal">
         
         
