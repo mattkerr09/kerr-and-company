@@ -1,5 +1,5 @@
 /**
- * End-to-end tests against the LIVE kerrandcompanyholdings.com.
+ * End-to-end tests against the LIVE site, whichever domain that currently is.
  *
  * WHY THE LIVE SITE AND NOT THE REPO
  *
@@ -20,7 +20,45 @@
  */
 import { test, expect, request as pwRequest, APIRequestContext } from '@playwright/test';
 
-const BASE = 'https://kerrandcompanyholdings.com';
+/**
+ * The domain is READ FROM `CNAME`, not typed here.
+ *
+ * It was typed here, as `https://kerrandcompanyholdings.com`, and on
+ * 2026-08-17 this repo's CNAME changed to builtbykerr.com while this constant
+ * did not. That pointed all twenty assertions at a domain this repo no longer
+ * publishes — kerrandcompanyholdings.com is now the LLC entity page, a
+ * different site — where `/studio.html` and every article and case study
+ * return 404. Eight of nine tests failed, so the whole live-site contract for
+ * the business that sells to prospects went unenforced: no check on attributed
+ * testimonials, on retired false claims coming back, on our own prices
+ * agreeing with each other, or on filesystem paths leaking into published
+ * HTML.
+ *
+ * It failed loudly rather than passing vacuously, which was luck rather than
+ * design — six of the eight only failed because `body()` asserts 200 before
+ * returning. A suite that fails on every run is one nobody runs, which is the
+ * same outcome as a suite that passes on nothing.
+ *
+ * RULES.md #4: a value stated in two places has one source of truth and the
+ * other is a copy that will rot. GitHub Pages reads the domain from CNAME, so
+ * CNAME is the source of truth and this derives from it. Changing the domain
+ * now moves the tests with it, and a missing or empty CNAME throws instead of
+ * quietly falling back to a default that would test the wrong site.
+ */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+function liveDomain(): string {
+  const cname = readFileSync(join(__dirname, '..', 'CNAME'), 'utf8').trim();
+  if (!/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(cname)) {
+    throw new Error(
+      `CNAME does not contain a usable domain (read ${JSON.stringify(cname)}). ` +
+      'Refusing to guess — a default here would test a site this repo does not publish.');
+  }
+  return `https://${cname}`;
+}
+
+const BASE = liveDomain();
 
 /** Every page a visitor or crawler can reach. Mirrors the files in the repo. */
 const PAGES = [
