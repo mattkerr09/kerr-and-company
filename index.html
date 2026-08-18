@@ -1179,6 +1179,149 @@
 .pkg .pkg-cta.solid,
 .pkg-tag { color: #111114; }
 
+
+    /* ── PRODUCTS FILL THE PAGE ─────────────────────────────────────────────
+       Matthew: "for the products we shipped, we need to make it fill up more of
+       the page, so make both the website bigger and the writing bigger."
+       Measured: the article was 1,200px wide but its grid ran 520px + 520px, so
+       160px of the widest block on the page went to a gap between two columns,
+       and body copy sat at 16px — the same size as a footnote, on the six
+       things this studio is actually selling.
+       The visual now takes the larger share (it is the evidence), the gap comes
+       down, and the copy steps up to 17.5px with a longer measure. */
+    /* .product-visual carries order:2, so it lands in the SECOND grid column —
+       my first attempt put the larger track on column one and made the TEXT
+       wider instead of the screenshot. Grid tracks are positional; `order` moves
+       the items between them. */
+    .product { grid-template-columns: 0.92fr 1.08fr; gap: clamp(1.75rem, 3.2vw, 2.75rem);
+      padding: clamp(3rem, 5.5vw, 4.5rem) 0; }
+    /* the class is .product-desc, not .product-body p — the rule I wrote matched
+       nothing and reported as applied because I checked that I had written it. */
+    .product-info .product-desc { font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+      line-height: 1.66; max-width: 48ch; }
+    .product-info h2, .product-info .product-name { font-size: clamp(2rem, 3.3vw, 2.9rem);
+      letter-spacing: -.03em; line-height: 1.04; }
+    .product h2, .product .product-name { font-size: clamp(1.9rem, 3.1vw, 2.6rem);
+      letter-spacing: -.03em; line-height: 1.05; }
+    .product .mockup-scroll { height: clamp(360px, 30vw, 520px); }
+
+    /* ── THE BLOCK UNDER THE HERO VIDEO ─────────────────────────────────────
+       "the writing under the video looks bad. The spacing looks bad."
+       It was a 17px mono lede jammed var(--s4) above a 125px flex row, with the
+       domain list and the proof stats sharing one undifferentiated run and a
+       2px gap between rows. Three different kinds of information — what we
+       shipped, the domains, the proof — with no separation between any of them. */
+    .shipwall { margin-top: clamp(3rem, 5vw, 4.5rem); padding-top: clamp(2rem, 3vw, 2.75rem); }
+    .shipwall-lede { font-size: .7rem; margin: 0 0 var(--s6); }
+    .shipwall-row { gap: var(--s4) var(--s8); align-items: baseline; }
+    .shipwall-row + .shipwall-row { margin-top: var(--s6); padding-top: var(--s6);
+      border-top: 1px solid var(--line); }
+    .shipwall-row li, .shipwall-row > * { line-height: 1.5; }
+
+
+    /* ── A REVEAL YOU CAN ACTUALLY SEE ──────────────────────────────────────
+       "Have it come in cool or something when we scroll. Same with everything
+       else." The choreography was already here and already firing — verified:
+       #why goes opacity 0 -> 1 and `rise` -> `rise in` on scroll. The problem
+       was that it was imperceptible: 46px of travel and a 0.985 scale over
+       0.8s reads as a page that loaded slightly late, not as an entrance.
+
+       So: longer travel, a real curve, and a short blur that resolves. Blur is
+       what makes it feel deliberate rather than janky — the element arrives
+       focused rather than simply arriving. It is also the cheapest distinctive
+       thing available to a monochrome site, since we cannot animate colour.
+
+       11 .rise and only 3 .stagger existed, and main#work — the largest block
+       on the page — had neither. The six product articles now stagger in, which
+       is the one place on this site where a sequence genuinely reads as one. */
+    .js .rise { opacity:0; transform: translateY(56px) scale(.975); filter: blur(6px); }
+    .js .rise.in { opacity:1; transform:none; filter: blur(0);
+      transition: opacity .7s cubic-bezier(.16,.84,.28,1),
+                  transform .95s cubic-bezier(.16,.84,.28,1),
+                  filter .7s cubic-bezier(.16,.84,.28,1); }
+    .js .stagger.in > * { transition: opacity .6s cubic-bezier(.16,.84,.28,1),
+                  transform .75s cubic-bezier(.16,.84,.28,1),
+                  filter .6s cubic-bezier(.16,.84,.28,1);
+      transition-delay: calc(var(--i, 0) * 90ms); }
+    .js .stagger > * { filter: blur(4px); }
+    .js .stagger.in > * { filter: blur(0); }
+
+    /* main#work had no reveal at all — the biggest block on the page arrived
+       with no entrance while smaller ones animated. */
+    .js main#work article.product { opacity:0; transform: translateY(48px) scale(.985);
+      filter: blur(5px); }
+    .js main#work article.product.in { opacity:1; transform:none; filter:blur(0);
+      transition: opacity .7s cubic-bezier(.16,.84,.28,1),
+                  transform .9s cubic-bezier(.16,.84,.28,1),
+                  filter .7s cubic-bezier(.16,.84,.28,1); }
+
+    @media (prefers-reduced-motion: reduce){
+      .js .rise, .js .rise.in, .js .stagger > *, .js .stagger.in > *,
+      .js main#work article.product, .js main#work article.product.in {
+        opacity:1 !important; transform:none !important; filter:none !important;
+        transition:none !important; }
+    }
+
+
+    /* ── PANELS THAT KEEP THEIR OWN GROUND INSIDE AN INVERTED SECTION ───────
+       Matthew: "there is too much white space on the How It Works section, and
+       it is hard to read." The second half measured at a contrast ratio of 1.1
+       — text essentially the same colour as what it sits on.
+
+       Cause: #easy inverts, so the section rule sets body text to a DARK colour,
+       which is right for the light panel. But .split-idx and .split-panel set
+       their own background of var(--bg), which in dark theme is also dark. Dark
+       text on a dark panel, inside a light section. Every rule involved was
+       individually correct.
+
+       MY CONTRAST CHECKER MISSED ALL OF IT and reported zero failures, because
+       it compares each element's colour against its OWN computed
+       background-color — which for these <p> elements is transparent. It never
+       walks up to the ancestor actually painting behind them. That is the same
+       defect as reading a section ground from a computed string: it measures
+       the element, not the pixels. Matthew found this by looking at it. */
+    body > section:nth-of-type(even) .split-idx,
+    body > section:nth-of-type(even) .split-panel { color: var(--ink); }
+    body > section:nth-of-type(even) .split-idx h3,
+    body > section:nth-of-type(even) .split-panel .frag-h,
+    body > section:nth-of-type(even) .split-idx strong { color: var(--ink); }
+    body > section:nth-of-type(even) .split-idx p,
+    body > section:nth-of-type(even) .split-panel .frag-b { color: var(--ink-3); }
+    body > section:nth-of-type(even) .split-idx li::before,
+    body > section:nth-of-type(even) .split-panel .chip { color: var(--ink-4); }
+    body > section:nth-of-type(even) .split-panel .chip { border-color: var(--line-2); }
+    body > section:nth-of-type(even) .split-idx li { border-bottom-color: var(--line); }
+    /* the <li> itself carries the section's inverted colour and wraps the h3+p,
+       so styling only its children left the list item dark-on-dark. Targeting
+       every text-bearing node inside a panel that keeps its own ground. */
+    body > section:nth-of-type(even) .split-idx li,
+    body > section:nth-of-type(even) .split-idx,
+    body > section:nth-of-type(even) .split-panel,
+    body > section:nth-of-type(even) .split-panel .frag,
+    body > section:nth-of-type(even) .split-panel .frag * ,
+    body > section:nth-of-type(even) .split-idx * { color: var(--ink); }
+    body > section:nth-of-type(even) .split-idx li p,
+    body > section:nth-of-type(even) .split-panel .frag-b { color: var(--ink-3) !important; }
+    body > section:nth-of-type(even) .split-idx li::before,
+    body > section:nth-of-type(even) .split-panel .chip { color: var(--ink-4) !important; }
+
+    /* the whitespace half: 100.8px of section padding plus the heading block put
+       ~470px of air around an 896px panel */
+    #easy { padding-block: clamp(3rem, 5vw, 4.25rem); }
+    #easy .section-head { margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
+
+
+    /* The two-column product grid never collapsed, so the screenshot — the whole
+       point of the block — shrank to 272px at 768 and 160px at 390 while the
+       copy beside it kept its own column. Measured at four widths, which is the
+       only reason it surfaced: at 1440 it looks correct. */
+    @media (max-width: 900px){
+      .product { grid-template-columns: 1fr; gap: var(--s7); }
+      .product-visual { order: 0; }
+      .product .mockup-scroll { height: clamp(300px, 62vw, 460px); }
+      .product-info .product-desc { max-width: none; }
+    }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -1957,6 +2100,7 @@
 
     const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el));
 
     // Scroll choreography. Kept to IntersectionObserver + one rAF-throttled
     // scroll read: a library would be 40-70KB to do what 20 lines do, on a site
