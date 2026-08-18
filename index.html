@@ -1348,6 +1348,15 @@
     .section-head > .section-intro,
     .section-head > .lede { max-width: 660px; }
 
+
+    /* Six service cards on an auto-fit grid packed 4 across at 1440 and dropped
+       the last two onto a half-empty row — the same 3+1 shape I fixed on the
+       proof strip and did not think to check here. Six wants 3+3, and it only
+       shows up when you look at the whole section rather than one card. */
+    .svc-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1000px){ .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px){ .svc-grid { grid-template-columns: 1fr; } }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
