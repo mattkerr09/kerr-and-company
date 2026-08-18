@@ -572,6 +572,44 @@
     .cfg-note { font-size:.78rem; color:var(--ink-4); line-height:1.6; margin:var(--s4) 0 0; }
     @media (max-width:860px){ .cfg{grid-template-columns:1fr}
       .cfg-out{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:var(--s6)} }
+
+    /* ── PROOF STRIP ────────────────────────────────────────────────────────
+       #why measured as the weakest section on the page: 1,483px, 371 words,
+       ZERO interactive elements and ZERO media — a larger undifferentiated wall
+       than the FAQ was before it became accordions. Its most persuasive facts
+       were buried mid-sentence in body copy: "$3.82 per lead" and the spend
+       behind it read at the same weight as the words around them.
+       Every reference in the set sets its hard numbers as display type, because
+       a figure is the one thing a skimming reader stops for. So the numbers come
+       out of the prose and go above it.
+
+       ONLY FIRST-PARTY MEASURED FIGURES ARE IN HERE, and the omissions are the
+       point. "3 provisional patents" appears on five pages of this site and the
+       board records it as UNCONFIRMED — amplifying an unverified claim into
+       48px type is how a small overstatement becomes the thing a client quotes
+       back at you. It stays in body copy until Matthew confirms it. The three
+       figures used all come from one linked case study that shows its own
+       arithmetic: 47 leads, $3.82 each, $179 spent. */
+    /* auto-fit put three across and dropped the fourth onto a row of its own,
+       which reads as a bug rather than a layout. Four figures want four columns
+       or two rows of two — never 3+1. */
+    .proof-strip { display:grid; grid-template-columns:repeat(4,1fr);
+      gap:0; margin: var(--s7) 0 var(--s9); border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line); }
+    @media (max-width:960px){ .proof-strip{grid-template-columns:repeat(2,1fr)}
+      .proof-i:nth-child(2n){border-right:0}
+      .proof-i:nth-child(-n+2){border-bottom:1px solid var(--line)} }
+    .proof-i { padding: var(--s6) var(--s5); border-right:1px solid var(--line); }
+    .proof-i:last-child { border-right:0; }
+    .proof-n { font-size: clamp(2rem,3.6vw,2.9rem); font-weight:600; letter-spacing:-.035em;
+      line-height:1; margin:0; font-variant-numeric:tabular-nums; color:var(--ink); }
+    .proof-l { margin: var(--s3) 0 0; font-size:.86rem; color:var(--ink-2); line-height:1.5; }
+    .proof-s { margin: var(--s2) 0 0; font-family:var(--mono); font-size:.68rem;
+      letter-spacing:.07em; text-transform:uppercase; color:var(--ink-4); }
+    .proof-s a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
+    .proof-s a:hover { color:var(--ink-2); }
+    @media (max-width:700px){ .proof-i{border-right:0;border-bottom:1px solid var(--line)}
+      .proof-i:last-child{border-bottom:0} }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: var(--s7) var(--s5); }
@@ -1181,6 +1219,29 @@
         <div class="eyebrow" style="color:var(--ink-4);">Why work with us</div>
         <h2 class="section-title">You get the person who builds it</h2>
         <p class="section-intro">No account managers, no junior handoff, no six-week timelines for a five-page site. You work directly with the founder — who ships production software for a living and can prove it.</p>
+        <div class="proof-strip">
+          <div class="proof-i">
+            <p class="proof-n">$3.82</p>
+            <p class="proof-l">Cost per lead on a Meta lead-form campaign for home tours.</p>
+            <p class="proof-s"><a href="/case-studies/real-estate-ads-3-82-cost-per-lead.html">See the arithmetic &rarr;</a></p>
+          </div>
+          <div class="proof-i">
+            <p class="proof-n">47</p>
+            <p class="proof-l">Leads from that one campaign, not a projection.</p>
+            <p class="proof-s">Measured, not modelled</p>
+          </div>
+          <div class="proof-i">
+            <p class="proof-n">$179</p>
+            <p class="proof-l">Total ad spend behind those 47 leads.</p>
+            <p class="proof-s">The whole budget</p>
+          </div>
+          <div class="proof-i">
+            <p class="proof-n">$999</p>
+            <p class="proof-l">Starting price, published — priced on this page before you call.</p>
+            <p class="proof-s"><a href="#quote">Price it yourself &rarr;</a></p>
+          </div>
+        </div>
+
       </div>
       <div class="why-grid reveal">
         <div class="why-card">
@@ -1191,10 +1252,7 @@
           <h3>Pricing you can actually see</h3>
           <p>Every price is published on this site. <strong>Fixed quotes before any work starts</strong> — no hourly meter, no "contact us for a quote," no surprise invoices.</p>
         </div>
-        <div class="why-card">
-          <h3>Proof, not promises</h3>
-          <p>A notarized macOS app with a paying customer, <strong>3 provisional patents</strong>, a live B2B SaaS, and ads at <strong>$3.82 per lead</strong> — <a href="/case-studies/real-estate-ads-3-82-cost-per-lead.html" style="color:var(--accent-2);text-decoration:none;">see the case study →</a></p>
-        </div>
+        <div class="why-card"><h3>Proof, not promises</h3><p>The numbers above are ours and the case study behind them shows its own working. Alongside them: a notarized macOS app with a paying customer and a live B2B SaaS — <a href="/case-studies/">see the case studies &rarr;</a></p></div>
         <div class="why-card">
           <h3>Tools nobody else offers</h3>
           <p>Most shops resell templates. We build <strong>custom AI tools</strong> — missed-call-to-text, review engines, instant quotes, live dashboards — that make your site actually work.</p>
