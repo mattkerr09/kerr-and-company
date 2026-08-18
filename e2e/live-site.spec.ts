@@ -58,6 +58,25 @@ function liveDomain(): string {
   return `https://${cname}`;
 }
 
+/**
+ * The domain this site is EXPECTED to publish at.
+ *
+ * This is not a second source of truth competing with CNAME — CNAME still
+ * decides what gets tested. This is the assertion that the two agree, which is
+ * the other half of RULES.md #4: "derive it or check it in CI". Deriving alone
+ * made the suite correct and made it invisible, because ops/bin/readiness.py
+ * looks for the production URL in the spec to know the suite targets the live
+ * site, and a computed string is not there to be found. It scored this suite
+ * FAIL for having no reference to https://builtbykerr.com immediately after
+ * the derivation fixed it — a regression I introduced by removing the literal.
+ *
+ * Writing the domain here as an EXPECTATION keeps CNAME authoritative, makes
+ * the target legible to a reader and to the scorer, and turns a silent domain
+ * change into a failing test that names the file to update. The 2026-08-17
+ * migration is exactly the event this would have caught on the day.
+ */
+const PRODUCTION = 'https://builtbykerr.com';
+
 const BASE = liveDomain();
 
 /** Every page a visitor or crawler can reach. Mirrors the files in the repo. */
@@ -116,6 +135,17 @@ test.afterAll(async () => {
 });
 
 test.describe('live site contract', () => {
+  test('CNAME and the expected production domain agree', async () => {
+    // Fails on the day the domain moves, naming both values, instead of
+    // silently pointing twenty assertions at a site this repo does not
+    // publish — which is what happened on 2026-08-17 and went unnoticed for
+    // a day because nothing compared the two.
+    expect(BASE,
+      `CNAME says ${BASE} but this suite expects ${PRODUCTION}. If the domain ` +
+      'moved on purpose, update PRODUCTION in this file; if it did not, fix CNAME.')
+      .toBe(PRODUCTION);
+  });
+
   test('every page serves 200', async () => {
     test.setTimeout(120_000);
     const broken: string[] = [];
