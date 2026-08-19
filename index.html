@@ -1450,7 +1450,14 @@
       border-radius: 0; margin-inline: 0;
       margin-block: 0;
       padding-block: clamp(3.5rem, 6vw, 5.5rem);
-      width: 100vw; margin-left: 50%; transform: translateX(-50%);
+      /* FULL BLEED WITHOUT TRANSFORM. The first version used
+         margin-left:50% + translateX(-50%), which is the usual trick and is
+         wrong here: the scroll reveal ALSO animates transform, so
+         `.in { transform: none }` wiped the centring and every white panel slid
+         right and off the page. Two features writing the same property.
+         calc(50% - 50vw) does the identical job in margin, which nothing else
+         touches, so the reveal keeps transform entirely to itself. */
+      width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
       padding-inline: max(calc((100vw - var(--maxw)) / 2), clamp(1.25rem, 5vw, 2.5rem)); }
     main#work article.product:nth-of-type(even) {
       padding-block: clamp(3.5rem, 6vw, 5.5rem); margin-block: 0; }
