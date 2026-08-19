@@ -2031,6 +2031,21 @@
     .book-micro { margin: var(--s3) 0 0; text-align: center; font-size: 0.86rem;
       color: var(--ink-3); }
 
+
+    /* WCAG 2.5.8 Target Size (Minimum), AA: 24x24 CSS px. The shipwall product
+       links measured 17px tall on a 390px viewport — font-size .84rem against
+       line-height 1.5. They are a LIST of links rather than links inline in a
+       sentence, so the inline exception does not cover them.
+
+       Padding rather than a taller line-height, so the row rhythm is untouched;
+       the ::after underline is nudged by the same amount so it stays under the
+       text instead of dropping to the bottom of the taller box. 26px not 24, so
+       a future half-pixel of rounding cannot put it back under the bar. */
+    .shipwall-row a {
+      display: inline-block; min-height: 26px; padding-block: 4px;
+      box-sizing: border-box; }
+    .shipwall-row a::after { bottom: 4px; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
