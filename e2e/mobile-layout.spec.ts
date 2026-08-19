@@ -19,6 +19,21 @@
  * The cost objection was measured rather than assumed: chromium launches from
  * this repo in 197ms. One page load, every assertion read from it.
  *
+ * DO NOT MEASURE THIS SITE WITH A fullPage SCREENSHOT.
+ *
+ * The reveals are deliberately TWO-WAY — the observer calls
+ * toggle('in', isIntersecting), so an element hides again once it leaves the
+ * viewport. Matthew asked for that specifically, to match outlier.host. It means
+ * a fullPage capture comes back almost entirely empty: everything below the fold
+ * is opacity 0 at the moment the shot is taken, and scrolling to the bottom
+ * first does not help, because scrolling back up re-hides it.
+ *
+ * I lost a capture to this and read a solid black image as a broken page. The
+ * honest way to look at this site is viewport by viewport — scroll to each
+ * position, wait ~2.6s for the reveal to settle, then shoot. Anything reading
+ * only the BACKGROUND (seams, band colours) is still fine on a fullPage shot,
+ * because the ground paints regardless of the reveals.
+ *
  *   npx playwright test
  */
 import { test, expect, chromium, Browser, Page } from '@playwright/test';
