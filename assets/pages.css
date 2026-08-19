@@ -161,3 +161,21 @@ button[type="submit"]:hover, .cta-primary:hover {
 :root[data-theme="light"] .cta-primary {
   background: #111114 !important; color: #FBFBF9 !important; border-color: #111114 !important;
 }
+
+
+/* ── MEASURED FIXES, 2026-08-19 ────────────────────────────────────────────
+   These pages had never been through the contrast checker — only index.html
+   had. Three failures, found by pointing it at /studio.html and
+   /services/seo-grand-rapids.html. Every page that links this file carried them.
+
+   .pkg-tag was color:#fff on background:var(--accent), and --accent resolves to
+   rgb(250,250,248) here — near-white. White on white, 1.05. The rule assumed
+   --accent was a saturated colour; on these pages it is the light surface. The
+   label has to be dark to sit on that pill. Same defect as index.html's, which
+   is what made me look.
+
+   .pricing-note and .cmp-note used --ink-4 (rgb(110,110,119)) on the page's dark
+   ground: 3.9 against a 4.5 bar. Set here on the two rules rather than by moving
+   --ink-4, because that token is used elsewhere and this is a local problem. */
+.pkg-tag { color: #14140F !important; }
+.pricing-note, .cmp-note { color: #9A9AA4 !important; }
