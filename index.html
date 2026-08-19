@@ -1860,6 +1860,100 @@
        same change, which is a bigger edit than one tick should carry against a
        live site. Reverted to the measured-better state. */
 
+
+    /* ══ ONE CONTINUOUS GROUND ══════════════════════════════════════════════
+       Matthew: "i like the color but make the background flow through the whole
+       website so we dont see lines."
+
+       The lines were structural, not decorative. The orb layer is position:fixed
+       and already drifts behind the entire document — but every section painted
+       an OPAQUE background on top of it, so each band clipped the atmosphere at
+       its own edge and the seams read as rules across the page. The glowing
+       dividers I added made that worse by drawing the seam deliberately.
+
+       So the bands go translucent instead of opaque. The fixed orbs and the
+       page gradient now show through every section, which means the colour
+       carries across boundaries and the eye reads one surface. The alternation
+       survives as a tonal shift rather than a hard edge — enough to tell
+       sections apart, not enough to cut the page into slabs.
+
+       This does NOT undo the fix for "too much black": the warm tint and the
+       amber ramp are what solved that, and both stay. What is removed is the
+       hard edge between them. */
+
+    /* the atmosphere layer becomes the page's real ground */
+    body { background: var(--bg); }
+    .mesh { opacity: 1; }
+
+    /* bands stop painting over it */
+    body > section:nth-of-type(even),
+    main#work article.product:nth-of-type(odd) {
+      background-color: color-mix(in srgb, var(--ink) 92%, transparent) !important; }
+    body > section:nth-of-type(odd) {
+      background-color: transparent !important; }
+    #services, #why, #fit, #faq, #contact, #approach, #packages, #easy, #founder {
+      background-color: inherit; }
+
+    /* the seams themselves — the literal lines he can see */
+    body > section + section::before,
+    main#work article.product + article.product::before { display: none !important; }
+
+    /* a single page-wide wash so the ground has direction rather than banding */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(120% 80% at 12% 0%, color-mix(in srgb, var(--a2) 9%, transparent), transparent 60%),
+        radial-gradient(100% 70% at 88% 45%, color-mix(in srgb, var(--a3) 7%, transparent), transparent 62%),
+        radial-gradient(120% 90% at 40% 100%, color-mix(in srgb, var(--a1) 6%, transparent), transparent 65%); }
+    body > section, main#work, .hero, footer { position: relative; z-index: 1; }
+
+    /* soften every remaining hairline so nothing reads as a rule across the page */
+    body > section { border-top: 0 !important; border-bottom: 0 !important; }
+
+
+
+
+    /* ── INK KEYED TO THE SAME PARITY THAT PAINTS THE GROUND ────────────────
+       First attempt at this failed because I coloured .product-link uniformly.
+       Product cards ALTERNATE grounds — odd cards paint --ink (inverted), even
+       ones stay on --bg — so a single colour is wrong by construction: the cards
+       already on a dark ground got the dark-ground amber and fell to 3.47.
+
+       So the ink is now keyed to the exact same nth-of-type parity that paints
+       the background a few rules up. If that parity rule ever changes, these
+       must change with it — they are one decision, written in two places.
+
+       A. Inverted ground (paints --ink): ink from --bg, amber from --a-text-inv.
+       B. Normal ground: plain --ink and --a-text.
+       C. Badge nudge applies per ground, not globally. */
+    :root:not([data-theme="light"]) { --a-text-inv: #8A5E12; }
+    :root[data-theme="light"]       { --a-text-inv: #FFD166; }
+
+    /* A — cards and sections on the INVERTED ground */
+    section.rise > div.wrap > p.pricing-note > a { color: var(--bg) !important; }
+    main#work article.product:nth-of-type(odd) div.product-info > a.product-link {
+      color: var(--a-text-inv) !important; }
+    main#work article.product:nth-of-type(odd) div.product-title-row > span.product-badge {
+      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important; }
+
+    /* B — cards on the NORMAL ground */
+    main#work article.product:nth-of-type(even) div.product-info > a.product-link {
+      color: var(--a-text) !important; }
+    main#work article.product:nth-of-type(even) div.product-title-row > span.product-badge {
+      color: color-mix(in srgb, var(--ink) 82%, var(--bg)) !important; }
+
+
+    /* Mockup address-bar text (div.mockup-bar > span): dark 1.78, light 1.60.
+       Found only after the checker started reporting a selector path — I had
+       guessed "shipwall link" three times and inspected the wrong element each
+       time. Its ground follows the theme, so ink follows it too. */
+    div.mockup > div.mockup-bar span {
+      color: color-mix(in srgb, var(--ink) 68%, var(--bg)) !important; }
+
+    /* Odd-card product link: 4.44 against a 4.5 bar — the right hue, a hair
+       too light on rgb(231,227,216). Darkened one step, not re-hued. */
+    :root:not([data-theme="light"]) { --a-text-inv: #7A510E; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
