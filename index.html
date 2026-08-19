@@ -2962,11 +2962,20 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
  * exactly as served — no iframe is created at all, so there is nothing to break
  * and nothing that can look like a working booking form.
  *
- * HELD EMPTY ON PURPOSE, 2026-08-18: the Google Calendar this would point at is
- * set to UTC while Matthew is in Eastern. Pointing a live booking page at a UTC
- * calendar puts every appointment four or five hours off and the person who
- * booked arrives at the wrong time. Do not fill this in until the calendar's
- * timezone is confirmed Eastern.
+ * TIMEZONE PRECONDITION: MET, verified 2026-08-19 against the live API.
+ * admin@kerrandcompanyholdings.com reports timeZone America/Detroit -- Eastern,
+ * and it had been set that way all along.
+ *
+ * The earlier "calendar is UTC" note in this file was WRONG, and the mistake is
+ * worth keeping written down because it is easy to repeat: Google serialises
+ * event times as RFC3339 UTC (a trailing Z) no matter what the calendar's
+ * display timezone is. Reading Z off an event and concluding "the calendar is
+ * UTC" measures the wire format, not the setting. The calendar's own timeZone
+ * field is the only thing that answers the question -- list_calendars, not
+ * list_events.
+ *
+ * So this is now waiting on ONE thing only: the public appointment-schedule URL,
+ * which is generated when the schedule is created and cannot be derived here.
  */
 var BOOKING_URL = '';
 

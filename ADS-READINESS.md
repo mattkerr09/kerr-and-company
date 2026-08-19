@@ -27,11 +27,13 @@ Nothing else to build.
 
 ### 1b. Booking switch-on runbook — exact, so nobody re-derives it
 
-**Order matters. Timezone first, or the schedule is created against UTC and you
-will fix it twice.**
+**Step 1 is already done** — verified 2026-08-19: the calendar reports
+`America/Detroit`. The earlier claim that it read `UTC` was a measurement
+error (event times serialise as UTC `Z` regardless of the calendar's timezone;
+read the calendar's `timeZone` field, not an event's timestamp).
 
-1. Google Calendar → Settings → General → **Timezone** → `America/New_York`.
-   Confirm it saved by reloading; the API reports `UTC` today.
+1. ~~Set the timezone~~ — **DONE.** `admin@kerrandcompanyholdings.com` is
+   `America/Detroit`, and had been all along.
 2. Calendar → **Create → Appointment schedule**. Set duration 20 min, and set
    availability in **your** hours — after step 1 those are Eastern.
 3. Open the schedule → **Share** → copy the **public booking page** URL. It
@@ -162,6 +164,8 @@ EU/UK traffic.
   credits Prelinger Archives for a reason
 - "ProposalAI was built almost entirely by the framework itself" — not
   verifiable from the repo
-- "3 provisional patents" — **UNCONFIRMED** across 7 surfaces. Do not let this
-  reach ad copy: Meta rejects unsubstantiated claims, and an unverifiable patent
-  claim in an ad is a worse problem than on a page.
+- ~~"3 provisional patents"~~ — **CONFIRMED by Matthew, 2026-08-19.** He has
+  stated this more than once; it was this file that kept failing to record it.
+  Treat it as a settled fact. It is fine on the pages and fine in ad copy.
+  Keep the substantiating documents to hand — Meta can ask — but stop
+  re-litigating the claim, and do not re-open this item.
