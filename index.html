@@ -2338,7 +2338,7 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>outlier.host</span></div>
-            <div class="mockup-scroll"><video class="shot" autoplay loop muted playsinline preload="none" poster="assets/video/outlier.jpg" width="1000" height="625" aria-label="Outlier — private offline AI for macOS"><source src="assets/video/outlier.webm" type="video/webm"></video></div>
+            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/outlier.jpg" width="1000" height="625" aria-label="Outlier — private offline AI for macOS"><source data-src="assets/video/outlier.webm" type="video/webm"></video></div>
             <span class="scroll-hint">↕ scroll to explore</span>
           </div>
         </div>
@@ -2361,7 +2361,7 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>crispvideo.app</span></div>
-            <div class="mockup-scroll"><video class="shot" autoplay loop muted playsinline preload="none" poster="assets/video/crisp.jpg" width="1000" height="625" aria-label="Crisp — offline AI video upscaler for macOS"><source src="assets/video/crisp.webm" type="video/webm"></video></div>
+            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/crisp.jpg" width="1000" height="625" aria-label="Crisp — offline AI video upscaler for macOS"><source data-src="assets/video/crisp.webm" type="video/webm"></video></div>
             <span class="scroll-hint">↕ scroll to explore</span>
           </div>
         </div>
@@ -2413,7 +2413,7 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>myproposalai.com</span></div>
-            <div class="mockup-scroll"><video class="shot" autoplay loop muted playsinline preload="none" poster="assets/video/proposalai.jpg" width="1000" height="625" aria-label="ProposalAI — AI proposal software for contractors"><source src="assets/video/proposalai.webm" type="video/webm"></video></div>
+            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/proposalai.jpg" width="1000" height="625" aria-label="ProposalAI — AI proposal software for contractors"><source data-src="assets/video/proposalai.webm" type="video/webm"></video></div>
             <span class="scroll-hint">↕ scroll to explore</span>
           </div>
         </div>
@@ -2435,7 +2435,7 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>docketseo.app</span></div>
-            <div class="mockup-scroll"><video class="shot" autoplay loop muted playsinline preload="none" poster="assets/video/docket.jpg" width="1000" height="625" aria-label="Docket — on-device SEO and marketing audits for Mac"><source src="assets/video/docket.webm" type="video/webm"></video></div>
+            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/docket.jpg" width="1000" height="625" aria-label="Docket — on-device SEO and marketing audits for Mac"><source data-src="assets/video/docket.webm" type="video/webm"></video></div>
             <span class="scroll-hint">↕ scroll to explore</span>
           </div>
         </div>
@@ -2459,7 +2459,7 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>adplaybook.app</span></div>
-            <div class="mockup-scroll"><video class="shot" autoplay loop muted playsinline preload="none" poster="assets/video/adplaybook.jpg" width="1000" height="625" aria-label="AdPlaybook — turns a product page into a platform-checked ad campaign"><source src="assets/video/adplaybook.webm" type="video/webm"></video></div>
+            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/adplaybook.jpg" width="1000" height="625" aria-label="AdPlaybook — turns a product page into a platform-checked ad campaign"><source data-src="assets/video/adplaybook.webm" type="video/webm"></video></div>
             <span class="scroll-hint">↕ scroll to explore</span>
           </div>
         </div>
@@ -3013,6 +3013,54 @@ var BOOKING_URL = '';
   slot.replaceChildren(f);
   var micro = document.getElementById('bookMicro');
   if (micro) micro.hidden = false;          // only true once a calendar is there
+})();
+</script>
+
+<script>
+/* Videos were 2,839KB of a 3,140KB page — 90% of the payload — and ALL SIX
+ * downloaded before a single scroll on a 390px phone. Five of them already
+ * carried preload="none" and it did nothing: per spec `autoplay` overrides the
+ * preload hint, so the browser fetches regardless. The lazy-loading intent was
+ * written down and inert.
+ *
+ * So the source is held in data-src and nothing can fetch it until this runs.
+ * The hero video is untouched and still eager — it is above the fold and it is
+ * the first thing anyone sees.
+ *
+ * Under prefers-reduced-motion the video is never fetched AT ALL and the poster
+ * is what the visitor gets. That is stronger than intended and worth stating
+ * exactly: load() on a preload="none" element does not fetch, it only resets the
+ * element and re-applies the hint, so skipping play() means no request is ever
+ * made. Measured, not assumed — readyState is 0 on all five after scrolling the
+ * whole page under reduce. The poster is a real frame of the product, so someone
+ * who asked for less motion gets a still image and none of the 2.8MB. Same call
+ * already made for the drifting orbs and the reveals.
+ */
+(function () {
+  var vids = document.querySelectorAll('video.lazyshot');
+  if (!vids.length) return;
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function load(v) {
+    var s = v.querySelector('source[data-src]');
+    if (!s) return;
+    s.src = s.getAttribute('data-src');
+    s.removeAttribute('data-src');
+    v.load();
+    if (!still) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+  }
+
+  if (!('IntersectionObserver' in window)) {       // no observer: load them all
+    vids.forEach(load); return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      load(e.target);
+      io.unobserve(e.target);                      // one fetch per video, ever
+    });
+  }, { rootMargin: '300px 0px' });                 // start just before it is needed
+  vids.forEach(function (v) { io.observe(v); });
 })();
 </script>
 </body>
