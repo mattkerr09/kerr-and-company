@@ -1833,7 +1833,24 @@
     :root[data-theme="light"]{ --ink-3: #5C5346; }
 
 
-    /* TOKEN SWAP: TRIED AND REVERTED, recorded so it is not retried blind.
+    /* TOKEN SWAP: TRIED TWICE, REVERTED TWICE, AND NOW DIAGNOSED.
+       Attempt 1 layered the swap on top of the child colour patches: dark 5->7,
+       light 5->8, because the !important children fought it.
+       Attempt 2 removed those patches in the same change — 44 colour
+       declarations stripped, 41 background/border declarations kept — and it
+       was far worse: dark 5->62, light 5->63.
+
+       THE REASON, which neither attempt anticipated: an inverted panel paints
+       its own background with `background: var(--ink)`. Redefining --ink ON
+       THAT SAME ELEMENT makes the background rule self-referential — the panel
+       and everything in it resolve from a token that means two things at once.
+       The circularity I warned about in my own comment, then walked into.
+
+       IF ANYONE RETRIES THIS, the panel background must move to its own token
+       (--panel-bg) FIRST, so the swap has nothing to collide with. Do that as a
+       separate, measured change before touching the children.
+
+       Measured-better state is 5/5 and that is what ships.
        The idea was right — redefine --ink/--bg/--line inside inverted panels so
        every descendant reads correct values without knowing it is inverted,
        killing the bug class instead of its instances. Measured: dark 5 -> 7,
