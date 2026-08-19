@@ -2331,15 +2331,15 @@
       <article class="product reveal">
         <div class="product-visual">
           <div class="term">
-            <div class="term-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>jarvis-factory — supervisor</span></div>
+            <div class="term-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>jarvis — plan · approve · orchestrate</span></div>
             <div class="term-body">
-<span class="c"># the studio's build engine</span><br>
-<span class="g">➜</span> supervisor <span class="p">spawn</span> --agents 50 --sandbox<br>
-&nbsp;&nbsp;<span class="y"></span> memory store online<br>
-&nbsp;&nbsp;<span class="y"></span> 50 agents registered<br>
-<span class="g">➜</span> build <span class="p">ProposalAI</span> --site --stripe<br>
-&nbsp;&nbsp;<span class="y"></span> product, site &amp; payments shipped<br>
-&nbsp;&nbsp;<span class="g">live SaaS ONLINE</span>
+<span class="c"># deterministic CLI operator — every command below is real</span><br>
+<span class="g">➜</span> jarvis <span class="p">plan</span> --project ProposalAI<br>
+&nbsp;&nbsp;<span class="c"># writes an immutable plan</span><br>
+<span class="g">➜</span> jarvis <span class="p">approve</span> --project ProposalAI --phase build<br>
+&nbsp;&nbsp;<span class="c"># nothing executes until this gate passes</span><br>
+<span class="g">➜</span> jarvis <span class="p">orchestrate</span> --project ProposalAI --run<br>
+&nbsp;&nbsp;<span class="c"># --resume picks up exactly where it stopped</span>
             </div>
           </div>
         </div>
