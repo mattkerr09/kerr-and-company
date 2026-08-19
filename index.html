@@ -1410,6 +1410,136 @@
     body > section:nth-of-type(even) .pkg .pkg-meta,
     body > section:nth-of-type(even) .pkg .from { color: color-mix(in srgb, var(--bg) 60%, var(--ink)) !important; }
 
+
+    /* ── 21 STRINGS AT 1.89 ON THE LIVE SITE ────────────────────────────────
+       Found by the pixel checker, filtered to elements big enough for the modal
+       method to be reliable (>4,000px and a ground covering >45% of the box —
+       it lies on small elements and on anything over video). All 21 shared one
+       colour: rgb(68,68,69) on rgb(20,20,22). Dark on dark, plainly unreadable,
+       and exactly what Matthew kept reporting while my old checker said clean.
+
+       They are #fit's two lists and #faq's questions. Both sections invert, so
+       the section rule set their text dark for a light panel — but these
+       elements sit on their own DARK card inside that light section, so the
+       correct-for-the-section colour is wrong for the card underneath them.
+       Same shape as the .split-idx panel and the pricing card. The fix is the
+       same: any panel that keeps its own ground has to opt its text back. */
+    body > section:nth-of-type(even) .fit-card,
+    body > section:nth-of-type(even) .fit-col,
+    body > section:nth-of-type(even) .qa,
+    body > section:nth-of-type(even) .faq-list,
+    body > section:nth-of-type(even) .card { color: var(--ink); }
+    body > section:nth-of-type(even) .fit-card li,
+    body > section:nth-of-type(even) .fit-col li,
+    body > section:nth-of-type(even) .card li,
+    body > section:nth-of-type(even) .card p { color: var(--ink-2) !important; }
+    body > section:nth-of-type(even) .qa summary,
+    body > section:nth-of-type(even) .qa .qa-q { color: var(--ink) !important; }
+    body > section:nth-of-type(even) .qa > p { color: var(--ink-3) !important; }
+    body > section:nth-of-type(even) .qa-i { color: var(--ink-3); border-color: var(--line-2); }
+
+
+    /* ── FULL-BLEED PANELS, NOT BUBBLES ─────────────────────────────────────
+       "i meant the white bubble that is displaying outlier, just make those
+       whole sections white." The product articles were rounded cards floating
+       inside the page with a margin around them; a bubble reads as a component,
+       a full-bleed band reads as a place. Lemon Squeezy's coloured panels run
+       edge to edge for the same reason. */
+    main#work { padding: 0; }
+    main#work article.product:nth-of-type(odd) {
+      border-radius: 0; margin-inline: 0;
+      margin-block: 0;
+      padding-block: clamp(3.5rem, 6vw, 5.5rem);
+      width: 100vw; margin-left: 50%; transform: translateX(-50%);
+      padding-inline: max(calc((100vw - var(--maxw)) / 2), clamp(1.25rem, 5vw, 2.5rem)); }
+    main#work article.product:nth-of-type(even) {
+      padding-block: clamp(3.5rem, 6vw, 5.5rem); margin-block: 0; }
+    /* the same for the alternating page sections — bands, not cards */
+    #approach { border-radius: 0; margin-inline: 0; }
+
+    /* ── GRADIENT GROUNDS ───────────────────────────────────────────────────
+       "add gradient to all backgrounds." Flat panels alternate correctly but
+       read as slabs; a low-contrast gradient gives each band depth without
+       adding a hue, which is the constraint this palette has always had. Kept
+       under 4% so it never becomes a colour — the alternation still does the
+       work of separating sections. */
+    body > section:nth-of-type(odd) {
+      background-image: linear-gradient(168deg,
+        color-mix(in srgb, var(--ink) 4%, transparent) 0%,
+        transparent 42%,
+        color-mix(in srgb, var(--ink) 3%, transparent) 100%) !important; }
+    body > section:nth-of-type(even),
+    main#work article.product:nth-of-type(odd) {
+      background-image: linear-gradient(168deg,
+        color-mix(in srgb, var(--bg) 6%, transparent) 0%,
+        transparent 45%,
+        color-mix(in srgb, var(--bg) 4%, transparent) 100%) !important; }
+    .hero { background-image: linear-gradient(172deg,
+        color-mix(in srgb, var(--ink) 5%, transparent) 0%, transparent 55%); }
+
+    /* ── HOVER: LIFT AND OUTLINE ────────────────────────────────────────────
+       "their boxes look like their hovering and its interactive when you put
+       the mouse over... it puts a border around the text box." Every card gets
+       a real hover state: a small rise, a shadow that implies height, and a
+       border that resolves from nothing. Transform and box-shadow only, so it
+       composites on the GPU and never reflows the page. */
+    .svc, .pkg, .card, .qa, .frag, .proof-i, .fit-card {
+      transition: transform .22s cubic-bezier(.2,.7,.3,1),
+                  box-shadow .22s cubic-bezier(.2,.7,.3,1),
+                  border-color .22s ease, background-color .22s ease; }
+    .svc:hover, .pkg:hover, .card:hover, .frag:hover, .fit-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, currentColor 32%, transparent);
+      box-shadow: 0 14px 34px -18px rgba(0,0,0,.55), 0 2px 8px -4px rgba(0,0,0,.35); }
+    .qa:hover { border-color: color-mix(in srgb, currentColor 26%, transparent); }
+    .svc:focus-visible, .pkg:focus-visible, .qa summary:focus-visible {
+      outline: 2px solid currentColor; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce){
+      .svc, .pkg, .card, .qa, .frag, .proof-i, .fit-card { transition: none; }
+      .svc:hover, .pkg:hover, .card:hover, .frag:hover, .fit-card:hover { transform: none; } }
+
+    /* ── THE TAG CHIPS WERE UNREADABLE ──────────────────────────────────────
+       42 strings still failing, and the worst were these: "Multi-agent", "MCP",
+       "Automation", "Local-first", "macOS app", "On-device", "SEO & AEO" —
+       rgb(68,68,69) on rgb(35,35,38), ratio 1.34. Product tag pills inheriting
+       a dark colour onto a dark chip. */
+    .product .tag, .product .chip, .product-tags > *, .tags > * {
+      color: var(--ink-2) !important;
+      border-color: color-mix(in srgb, currentColor 26%, transparent) !important; }
+    main#work article.product:nth-of-type(odd) .tag,
+    main#work article.product:nth-of-type(odd) .chip,
+    main#work article.product:nth-of-type(odd) .product-tags > *,
+    main#work article.product:nth-of-type(odd) .tags > * {
+      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important; }
+
+
+    /* The tag chips carry their own background. On an inverted product panel the
+       TEXT flipped correctly and the CHIP did not, so dark text landed on a dark
+       chip inside a light panel — ratio 1.31 on "macOS", "Local LLMs", "Apple
+       Silicon" and the rest. Third instance of the same shape today: a panel
+       that keeps its own ground has to flip everything, not just the text. */
+    main#work article.product:nth-of-type(odd) .tags .tag {
+      background: color-mix(in srgb, var(--ink) 8%, transparent) !important;
+      color: color-mix(in srgb, var(--ink) 78%, var(--bg)) !important;
+      border-color: color-mix(in srgb, var(--ink) 20%, transparent) !important; }
+    main#work article.product:nth-of-type(even) .tags .tag {
+      background: color-mix(in srgb, var(--bg) 8%, transparent) !important;
+      color: color-mix(in srgb, var(--bg) 78%, var(--ink)) !important;
+      border-color: color-mix(in srgb, var(--bg) 20%, transparent) !important; }
+
+
+    /* Terminal and code mockups keep a dark ground on purpose — a light code
+       block would stop reading as a terminal — so their text must be light
+       REGARDLESS of which panel they sit on. The inversion rules were flipping
+       them with the panel and landing dark-on-dark at 1.47. These opt out of
+       the alternation entirely, which is the correct answer for any element
+       whose ground is fixed by what it depicts. */
+    pre, code, .term, .terminal, .mock, .mockup, .codeblock,
+    pre *, .term *, .terminal *, .mock *, .codeblock * {
+      color: color-mix(in srgb, #FAFAF8 82%, #111114) !important; }
+    pre .comment, .term .comment, .codeblock .comment,
+    pre .muted, .term .muted { color: color-mix(in srgb, #FAFAF8 55%, #111114) !important; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
