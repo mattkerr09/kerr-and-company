@@ -25,6 +25,47 @@ booking section on the site is **already built and live**, showing an email
 fallback; it upgrades itself to the real widget the moment that URL is set.
 Nothing else to build.
 
+### 1b. Booking switch-on runbook — exact, so nobody re-derives it
+
+**Order matters. Timezone first, or the schedule is created against UTC and you
+will fix it twice.**
+
+1. Google Calendar → Settings → General → **Timezone** → `America/New_York`.
+   Confirm it saved by reloading; the API reports `UTC` today.
+2. Calendar → **Create → Appointment schedule**. Set duration 20 min, and set
+   availability in **your** hours — after step 1 those are Eastern.
+3. Open the schedule → **Share** → copy the **public booking page** URL. It
+   looks like:
+   `https://calendar.google.com/calendar/appointments/schedules/AcZssZ...`
+   Use that form, **not** `/calendar/u/0/r/...` (that is your private admin
+   view and shows a stranger a Google sign-in wall).
+4. Send it to me. It goes in one line: `var BOOKING_URL = '...'` in
+   `index.html`. The section upgrades itself from the fallback to the widget.
+
+**How it gets verified — not by assuming:** I load the live page in a browser
+pinned to `America/New_York`, read the *rendered* slot times out of the iframe,
+and check the earliest offered slot against the availability you set. A
+timezone bug shows up as a clean 4-hour offset, which is obvious in rendered
+text and invisible in the URL. I will not call it done off the URL alone.
+
+### 1c. Confirmations — one recommendation, not options
+
+**Email only, native, at launch.** Google's appointment schedules send booking
+confirmations and email reminders themselves; that covers the person who books
+with no new vendor.
+
+**Do not add SMS yet.** Google Calendar cannot send SMS natively at all, so it
+means a third-party Marketplace app. That is a monthly cost, a new company
+receiving your customers' phone numbers, and a matching disclosure in the
+privacy policy — to reduce no-shows on a booking page that currently has zero
+traffic. Revisit once no-shows are a real, measured number.
+
+**One thing to check that I cannot see from here:** automated email reminders
+and verified bookings are **Business Standard+** features. On a free or Starter
+plan you get the booking page and confirmation, but not the reminder
+automation. Worth confirming which plan `kerrandcompanyholdings.com` is on
+before promising a reminder cadence.
+
 ### 2. Create the pixel and give me the ID
 
 The pixel is scaffolded and **dark** — `META_PIXEL_ID = ''` in `index.html`.
