@@ -1994,6 +1994,43 @@
     body > nav {
       border-bottom: 0 !important; }
 
+
+    /* Booking block. The frame is third-party content on a page we control:
+       it gets an explicit title for screen readers, and the slot clips its own
+       overflow so a wide embed can never push the PAGE into horizontal scroll —
+       that is the first failure I would expect on a phone. */
+    .book { margin: var(--s6) 0 var(--s5); }
+    .book-h { font-family: var(--display); font-size: clamp(1.1rem, 3.4vw, 1.5rem);
+      margin: 0 0 var(--s3); text-align: center; }
+    .book-slot { width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden;
+      border-radius: 14px; border: 1px solid var(--line-2);
+      background: color-mix(in srgb, var(--surface) 60%, transparent); }
+    .book-slot > iframe { display: block; width: 100%; min-width: 300px;
+      height: clamp(560px, 78vh, 760px); border: 0; }
+    /* On phones the card's 40px side padding was starving the calendar: 260px
+       of usable width at a 390px viewport, under the 300px the embed needs, so
+       it scrolled inside its own slot. The slot now spans the card's padding as
+       well, which buys back 80px — 340px at 390, clear of the minimum. Measured,
+       not guessed: card padding is 40px a side at both 390 and 320.
+       At 320 the slot is 272px and still scrolls internally; that is a rare
+       viewport and the scroll stays inside the slot, never on the page. */
+    @media (max-width: 640px) {
+      /* width:auto was not enough: .contact-card is a flex column, so an auto
+         width shrinks to content and the negative margins only shifted the box
+         (measured -40px margin but still 268px wide), so the width is explicit.
+         Then it STILL measured 260px: the base rule's own max-width:100%, added
+         defensively to stop overflow, was clamping the wider width straight back
+         down. The guard defeated the fix. max-width has to move with it. */
+      .book-slot { margin-left: -40px; margin-right: -40px;
+        width: calc(100% + 80px); max-width: calc(100% + 80px);
+        border-radius: 0; border-left: 0; border-right: 0; }
+    }
+    .book-fallback { margin: 0; padding: var(--s4); text-align: center;
+      font-size: 0.98rem; line-height: 1.6; }
+    .book-fallback a { text-decoration: underline; }
+    .book-micro { margin: var(--s3) 0 0; text-align: center; font-size: 0.86rem;
+      color: var(--ink-3); }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -2654,6 +2691,33 @@
       <div class="contact-card reveal">
         <h2>Have something you want <em>shipped</em>?</h2>
         <p>Tell us what you need built. We'll tell you honestly whether we're the right partner, and if we're not, who is. No pitch, no pressure.</p>
+
+        <!-- ── BOOK A TIME ──────────────────────────────────────────────────
+             Google Calendar appointment schedule, embedded inline rather than
+             as a popup button: on a phone a popup is the worse experience, and
+             this page's intent is already "I want to talk to someone".
+
+             The fallback is what lives in the HTML, and JS only UPGRADES it to
+             the iframe once BOOKING_URL is set. So an empty constant, a blocked
+             iframe and a no-JS visitor all land on something real — never an
+             empty box, and never a widget that looks like it worked when it did
+             not. A booking form that silently fails is worse than none, because
+             the visitor believes they booked.
+
+             HELD DELIBERATELY EMPTY. See the note in the booking panel. -->
+        <div class="book" id="book">
+          <h3 class="book-h">Pick a time that works</h3>
+          <div class="book-slot" id="bookSlot">
+            <p class="book-fallback">
+              Online booking is being switched on. Until it is, email
+              <a href="mailto:matthew@kerrandcompanyholdings.com?subject=20-minute%20call">matthew@kerrandcompanyholdings.com</a>
+              or use the form below and Matthew will send you times.
+            </p>
+          </div>
+          <!-- Hidden until the calendar actually exists: "pick a slot" describes
+               a widget that is not on the page while the fallback is showing. -->
+          <p class="book-micro" id="bookMicro" hidden>Pick a slot and it is confirmed by email. Nothing else to fill in.</p>
+        </div>
         <form class="cform" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="e0740bc7-8ad1-4673-8f93-f565532aa47f">
           <input type="hidden" name="subject" value="New inquiry from builtbykerr.com">
@@ -2906,5 +2970,35 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
 })();
 </script>
 
+
+<script>
+/* Booking embed.
+ *
+ * ONE constant. Empty means "not switched on yet", and the HTML fallback stays
+ * exactly as served — no iframe is created at all, so there is nothing to break
+ * and nothing that can look like a working booking form.
+ *
+ * HELD EMPTY ON PURPOSE, 2026-08-18: the Google Calendar this would point at is
+ * set to UTC while Matthew is in Eastern. Pointing a live booking page at a UTC
+ * calendar puts every appointment four or five hours off and the person who
+ * booked arrives at the wrong time. Do not fill this in until the calendar's
+ * timezone is confirmed Eastern.
+ */
+var BOOKING_URL = '';
+
+(function () {
+  if (!BOOKING_URL) return;                  // fallback stays; nothing to do
+  var slot = document.getElementById('bookSlot');
+  if (!slot) return;
+  var f = document.createElement('iframe');
+  f.src = BOOKING_URL;
+  f.title = 'Book a 20-minute call with Matthew Kerr';
+  f.loading = 'lazy';
+  f.setAttribute('frameborder', '0');
+  slot.replaceChildren(f);
+  var micro = document.getElementById('bookMicro');
+  if (micro) micro.hidden = false;          // only true once a calendar is there
+})();
+</script>
 </body>
 </html>
