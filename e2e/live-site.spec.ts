@@ -234,6 +234,26 @@ test.describe('claims that must never come back', () => {
       needle: /50\+\s*AI agents over MCP/i,
       why: 'wrong architecture: 104 agent modules, but only 6 MCP servers',
     },
+    /*
+     * The Jarvis Factory panel was hand-written HTML styled as a terminal.
+     * A terminal frame reads as a transcript — as something that happened —
+     * so invented lines inside one are a fabricated demonstration, not copy.
+     * Checked 2026-08-18 against ~/jarvis: all three phrases returned 0
+     * occurrences and there is no `spawn` command in the repo at all. The
+     * real lifecycle is plan -> approve -> orchestrate, which is better.
+     */
+    {
+      needle: /supervisor\s+spawn\s+--agents/i,
+      why: 'no `spawn` command exists in ~/jarvis — invented terminal output',
+    },
+    {
+      needle: /\d+\s*agents registered/i,
+      why: 'invented result line; the real CLI never prints this',
+    },
+    {
+      needle: /product,\s*site\s*&(?:amp;)?\s*payments shipped/i,
+      why: 'invented result line; the real CLI never prints this',
+    },
   ];
 
   /**
@@ -254,6 +274,9 @@ test.describe('claims that must never come back', () => {
       [FORBIDDEN[0].needle, 'Over 2,800+ monthly downloads across our models'],
       [FORBIDDEN[1].needle, 'Trusted by 5K+ developers'],
       [FORBIDDEN[2].needle, 'Orchestrating 50+ AI agents over MCP'],
+      [FORBIDDEN[3].needle, '\u279c supervisor spawn --agents 50 --sandbox'],
+      [FORBIDDEN[4].needle, '50 agents registered'],
+      [FORBIDDEN[5].needle, 'product, site & payments shipped'],
     ];
     const blind: string[] = [];
     for (const [needle, sample] of SAMPLES) {
