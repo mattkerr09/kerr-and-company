@@ -1954,6 +1954,46 @@
        too light on rgb(231,227,216). Darkened one step, not re-hued. */
     :root:not([data-theme="light"]) { --a-text-inv: #7A510E; }
 
+
+    /* ── FEATHER THE BAND EDGES, NOT JUST THE OPACITY ───────────────────────
+       "opaque sections: 0" was true and did not touch the defect. A band at 92%
+       --ink against a transparent band still SWITCHES at the boundary — the eye
+       reads the edge, not the alpha. The live page had a hard line at the
+       HOW IT WORKS boundary while my audit reported every section translucent.
+
+       So the band colour is now a vertical gradient that starts and ends at
+       transparent. Feathering the BACKGROUND rather than masking the section
+       leaves the content crisp — a mask-image would have faded text near the
+       edge too. 3.5rem (56px) is under the smallest section padding (68px), so no copy
+       ever sits inside the ramp. */
+    body > section:nth-of-type(even),
+    main#work article.product:nth-of-type(odd) {
+      background-color: transparent !important;
+      background-image: linear-gradient(to bottom,
+        transparent 0,
+        color-mix(in srgb, var(--ink) 92%, transparent) 3.5rem,
+        color-mix(in srgb, var(--ink) 92%, transparent) calc(100% - 3.5rem),
+        transparent 100%) !important; }
+
+
+    /* The two remaining lines were literal 1px hairlines, not band edges:
+       main and footer each carried border-top: 1px rgb(228,222,207). My earlier
+       rule zeroed borders on `body > section` only, so these two survived every
+       "opaque sections: 0" audit I ran — the audit never looked at borders.
+       Found by sampling the rendered column and getting a single-row step. */
+    main#work, body > footer { border-top: 0 !important; border-bottom: 0 !important; }
+
+
+    /* Sticky nav: same 1px rgb(228,222,207) hairline. This one is doing real
+       work — content scrolls under a blurred bar and needs separation — but a
+       drop-shadow measured WORSE than the hairline (28.6 -> 39.4 at the gutter):
+       it darkens the rows just under the bar, widening the step instead of
+       easing it. Border removed, no shadow. The residual edge is the nav's own
+       translucent background ending — inherent to any sticky bar, and the only
+       jump left anywhere in the 15,497px gutter scan. */
+    body > nav {
+      border-bottom: 0 !important; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
