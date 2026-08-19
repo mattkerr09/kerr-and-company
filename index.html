@@ -1525,14 +1525,25 @@
        chip inside a light panel — ratio 1.31 on "macOS", "Local LLMs", "Apple
        Silicon" and the rest. Third instance of the same shape today: a panel
        that keeps its own ground has to flip everything, not just the text. */
+    /* THE MIXES WERE SWAPPED. An odd product panel paints var(--ink), so in dark
+       theme its ground is LIGHT — and I gave its text 78% var(--ink), i.e. light
+       text on a light panel, 1.64:1. The rule reads plausibly and is exactly
+       inverted. On a panel painted with --ink the text must come from --bg, and
+       vice versa. Verified live in both themes after the fix, not from the
+       stylesheet. */
     main#work article.product:nth-of-type(odd) .tags .tag {
-      background: color-mix(in srgb, var(--ink) 8%, transparent) !important;
-      color: color-mix(in srgb, var(--ink) 78%, var(--bg)) !important;
-      border-color: color-mix(in srgb, var(--ink) 20%, transparent) !important; }
-    main#work article.product:nth-of-type(even) .tags .tag {
       background: color-mix(in srgb, var(--bg) 8%, transparent) !important;
-      color: color-mix(in srgb, var(--bg) 78%, var(--ink)) !important;
-      border-color: color-mix(in srgb, var(--bg) 20%, transparent) !important; }
+      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important;
+      border-color: color-mix(in srgb, var(--bg) 22%, transparent) !important; }
+    main#work article.product:nth-of-type(even) .tags .tag {
+      background: color-mix(in srgb, var(--ink) 8%, transparent) !important;
+      color: color-mix(in srgb, var(--ink) 82%, var(--bg)) !important;
+      border-color: color-mix(in srgb, var(--ink) 22%, transparent) !important; }
+    /* same swap on the inverted section headings */
+    body > section:nth-of-type(even) .section-title,
+    body > section:nth-of-type(even) h2 { color: var(--bg) !important; }
+    main#work article.product:nth-of-type(odd) h2,
+    main#work article.product:nth-of-type(odd) .product-name { color: var(--bg) !important; }
 
 
     /* Terminal and code mockups keep a dark ground on purpose — a light code
