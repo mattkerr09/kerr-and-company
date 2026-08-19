@@ -72,23 +72,4 @@
     <loc>https://builtbykerr.com/case-studies/street-outfitters-organic-instagram-ecommerce.html</loc>
     <lastmod>2026-08-06</lastmod>
   </url>
-
-  <url>
-    <loc>https://builtbykerr.com/legal/privacy.html</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://builtbykerr.com/legal/terms.html</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://builtbykerr.com/legal/disclaimer.html</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
 </urlset>
