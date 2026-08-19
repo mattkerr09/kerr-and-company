@@ -416,69 +416,34 @@
        because it is positional. This is what Lemon Squeezy does with white,
        tinted and purple panels; monochrome just means our version swaps value
        instead of hue. */
-    body > section:nth-of-type(even) {
-      background: var(--ink) !important; color: var(--bg);
-    }
-    body > section:nth-of-type(even) h1,
-    body > section:nth-of-type(even) h2,
-    body > section:nth-of-type(even) h3,
-    body > section:nth-of-type(even) .section-title,
-    body > section:nth-of-type(even) strong,
-    body > section:nth-of-type(even) b { color: var(--bg); }
-    body > section:nth-of-type(even) p,
-    body > section:nth-of-type(even) li,
-    body > section:nth-of-type(even) span,
-    body > section:nth-of-type(even) td,
-    body > section:nth-of-type(even) summary { color: color-mix(in srgb, var(--bg) 76%, var(--ink)); }
-    body > section:nth-of-type(even) .kicker,
-    body > section:nth-of-type(even) .eyebrow,
-    body > section:nth-of-type(even) .src,
-    body > section:nth-of-type(even) .from { color: color-mix(in srgb, var(--bg) 58%, var(--ink)); }
+    
+    
+    
+    
     /* borders and card grounds have to flip too, or they vanish into the panel */
-    body > section:nth-of-type(even) .card,
-    body > section:nth-of-type(even) .svc,
-    body > section:nth-of-type(even) .pkg,
-    body > section:nth-of-type(even) .qa,
-    body > section:nth-of-type(even) .proof-i,
-    body > section:nth-of-type(even) .split,
-    body > section:nth-of-type(even) table,
-    body > section:nth-of-type(even) th,
-    body > section:nth-of-type(even) td { border-color: color-mix(in srgb, var(--bg) 18%, transparent); }
-    body > section:nth-of-type(even) .svc,
-    body > section:nth-of-type(even) .pkg,
-    body > section:nth-of-type(even) .card { background: color-mix(in srgb, var(--bg) 5%, transparent); }
-    body > section:nth-of-type(even) a { color: var(--bg); }
+    
+    
+    
     /* Buttons and CTAs were NOT in the inversion rules, so when #packages
        flipped they kept their dark-ground greys and landed at 1.97:1 on a light
        panel — seven strings, in both themes. That is precisely the "text I still
        have a hard time reading cus of its background" Matthew reported, and the
        contrast checker only caught it because the ground under them is now a
        known colour instead of a video or a transparent stack. */
-    body > section:nth-of-type(even) .seg button { color: color-mix(in srgb, var(--bg) 78%, var(--ink));
-      border-color: color-mix(in srgb, var(--bg) 26%, transparent); }
-    body > section:nth-of-type(even) .seg button[aria-pressed="true"] {
-      background: var(--bg); color: var(--ink); border-color: var(--bg); }
-    body > section:nth-of-type(even) .seg button:hover:not([aria-pressed="true"]) {
-      color: var(--bg); border-color: color-mix(in srgb, var(--bg) 55%, transparent); }
-    body > section:nth-of-type(even) .pkg-cta,
-    body > section:nth-of-type(even) .cfg-field > label,
-    body > section:nth-of-type(even) .cfg-note,
-    body > section:nth-of-type(even) .proof-s { color: color-mix(in srgb, var(--bg) 72%, var(--ink)); }
-    body > section:nth-of-type(even) .cfg { background: color-mix(in srgb, var(--bg) 6%, transparent);
-      border-color: color-mix(in srgb, var(--bg) 20%, transparent); }
-    body > section:nth-of-type(even) .cfg-out { border-left-color: color-mix(in srgb, var(--bg) 20%, transparent); }
+    
+    
+    
+    
+    
+    
     /* `.pkg .pkg-cta.line` is specificity 0-3-0; my inversion rule was 0-2-1 and
        lost, so three CTAs kept dark-ground grey on a light panel at 1.92:1. The
        computed value said var(--ink-2) while the rule I had written said
        otherwise — asking the browser WHICH rules matched and in what order is
        the only way to see that, not reading the stylesheet. */
-    body > section:nth-of-type(even) .pkg .pkg-cta.line {
-      color: color-mix(in srgb, var(--bg) 82%, var(--ink));
-      border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
-    body > section:nth-of-type(even) .pkg .pkg-cta.line:hover {
-      color: var(--bg); border-color: color-mix(in srgb, var(--bg) 60%, transparent); }
-    body > section:nth-of-type(even) .pkg .pkg-cta.solid {
-      background: var(--bg); color: var(--ink); }
+    
+    
+    
 
     /* ── THE BLOCK MY AUDIT NEVER SAW ───────────────────────────────────────
        Every section score I have produced measured `body > section`. main#work
@@ -494,26 +459,14 @@
        The six products now alternate too, ODD light so the seam works both
        ways: #why (dark) -> Outlier (light), and AdPlaybook (dark) -> #packages
        (light). Six products become six rooms instead of one long scroll. */
-    main#work article.product:nth-of-type(odd) {
-      background: var(--ink); color: var(--bg);
-      border-radius: clamp(20px, 2.6vw, 34px);
-      padding: clamp(var(--s7), 4vw, var(--s9));
-      margin-block: var(--s7);
-    }
-    main#work article.product:nth-of-type(odd) h2,
-    main#work article.product:nth-of-type(odd) h3,
-    main#work article.product:nth-of-type(odd) strong { color: var(--bg); }
-    main#work article.product:nth-of-type(odd) p,
-    main#work article.product:nth-of-type(odd) li,
-    main#work article.product:nth-of-type(odd) span { color: color-mix(in srgb, var(--bg) 76%, var(--ink)); }
-    main#work article.product:nth-of-type(odd) .kicker,
-    main#work article.product:nth-of-type(odd) .src,
-    main#work article.product:nth-of-type(odd) .meta { color: color-mix(in srgb, var(--bg) 58%, var(--ink)); }
-    main#work article.product:nth-of-type(odd) a { color: var(--bg); }
-    main#work article.product:nth-of-type(even) {
-      padding: clamp(var(--s7), 4vw, var(--s9)); margin-block: var(--s7); }
+    
+    
+    
+    
+    
+    
 
-    body > section:nth-of-type(even) .btn-primary { background: var(--bg); color: var(--ink); }
+    
 
     /* #approach keeps its rounded full-bleed shape; its colour now comes from
        the alternation above rather than from a rule of its own. */
@@ -1177,7 +1130,10 @@
 .nav-cta,
 .cform button,
 .pkg .pkg-cta.solid,
-.pkg-tag { color: #111114; }
+/* The pill's fill is var(--accent); its label has to be readable on THAT,
+   not on the page. Dark ink was pinned here for the old light panel and
+   scored 1.0 in light theme once the panel went away. */
+.pkg-tag { color: color-mix(in srgb, var(--bg) 92%, var(--ink)) !important; }
 
 
     /* ── PRODUCTS FILL THE PAGE ─────────────────────────────────────────────
@@ -1280,30 +1236,18 @@
        walks up to the ancestor actually painting behind them. That is the same
        defect as reading a section ground from a computed string: it measures
        the element, not the pixels. Matthew found this by looking at it. */
-    body > section:nth-of-type(even) .split-idx,
-    body > section:nth-of-type(even) .split-panel { color: var(--ink); }
-    body > section:nth-of-type(even) .split-idx h3,
-    body > section:nth-of-type(even) .split-panel .frag-h,
-    body > section:nth-of-type(even) .split-idx strong { color: var(--ink); }
-    body > section:nth-of-type(even) .split-idx p,
-    body > section:nth-of-type(even) .split-panel .frag-b { color: var(--ink-3); }
-    body > section:nth-of-type(even) .split-idx li::before,
-    body > section:nth-of-type(even) .split-panel .chip { color: var(--ink-4); }
-    body > section:nth-of-type(even) .split-panel .chip { border-color: var(--line-2); }
-    body > section:nth-of-type(even) .split-idx li { border-bottom-color: var(--line); }
+    
+    
+    
+    
+    
+    
     /* the <li> itself carries the section's inverted colour and wraps the h3+p,
        so styling only its children left the list item dark-on-dark. Targeting
        every text-bearing node inside a panel that keeps its own ground. */
-    body > section:nth-of-type(even) .split-idx li,
-    body > section:nth-of-type(even) .split-idx,
-    body > section:nth-of-type(even) .split-panel,
-    body > section:nth-of-type(even) .split-panel .frag,
-    body > section:nth-of-type(even) .split-panel .frag * ,
-    body > section:nth-of-type(even) .split-idx * { color: var(--ink); }
-    body > section:nth-of-type(even) .split-idx li p,
-    body > section:nth-of-type(even) .split-panel .frag-b { color: var(--ink-3) !important; }
-    body > section:nth-of-type(even) .split-idx li::before,
-    body > section:nth-of-type(even) .split-panel .chip { color: var(--ink-4) !important; }
+    
+    
+    
 
     /* the whitespace half: 100.8px of section padding plus the heading block put
        ~470px of air around an 896px panel */
@@ -1399,16 +1343,10 @@
        Dark text on a dark card. The inversion covered p, li, span and the CTAs
        and never covered .pkg-price or the feature list, so the two things a
        buyer actually reads were the two that disappeared. */
-    body > section:nth-of-type(even) .pkg,
-    body > section:nth-of-type(even) .pkg * { color: var(--bg); }
-    body > section:nth-of-type(even) .pkg .pkg-price,
-    body > section:nth-of-type(even) .pkg h3,
-    body > section:nth-of-type(even) .pkg strong { color: var(--bg) !important; }
-    body > section:nth-of-type(even) .pkg li,
-    body > section:nth-of-type(even) .pkg .pkg-sub,
-    body > section:nth-of-type(even) .pkg p { color: color-mix(in srgb, var(--bg) 78%, var(--ink)) !important; }
-    body > section:nth-of-type(even) .pkg .pkg-meta,
-    body > section:nth-of-type(even) .pkg .from { color: color-mix(in srgb, var(--bg) 60%, var(--ink)) !important; }
+    
+    
+    
+    
 
 
     /* ── 21 STRINGS AT 1.89 ON THE LIVE SITE ────────────────────────────────
@@ -1424,19 +1362,11 @@
        correct-for-the-section colour is wrong for the card underneath them.
        Same shape as the .split-idx panel and the pricing card. The fix is the
        same: any panel that keeps its own ground has to opt its text back. */
-    body > section:nth-of-type(even) .fit-card,
-    body > section:nth-of-type(even) .fit-col,
-    body > section:nth-of-type(even) .qa,
-    body > section:nth-of-type(even) .faq-list,
-    body > section:nth-of-type(even) .card { color: var(--ink); }
-    body > section:nth-of-type(even) .fit-card li,
-    body > section:nth-of-type(even) .fit-col li,
-    body > section:nth-of-type(even) .card li,
-    body > section:nth-of-type(even) .card p { color: var(--ink-2) !important; }
-    body > section:nth-of-type(even) .qa summary,
-    body > section:nth-of-type(even) .qa .qa-q { color: var(--ink) !important; }
-    body > section:nth-of-type(even) .qa > p { color: var(--ink-3) !important; }
-    body > section:nth-of-type(even) .qa-i { color: var(--ink-3); border-color: var(--line-2); }
+    
+    
+    
+    
+    
 
 
     /* ── FULL-BLEED PANELS, NOT BUBBLES ─────────────────────────────────────
@@ -1446,21 +1376,8 @@
        a full-bleed band reads as a place. Lemon Squeezy's coloured panels run
        edge to edge for the same reason. */
     main#work { padding: 0; }
-    main#work article.product:nth-of-type(odd) {
-      border-radius: 0; margin-inline: 0;
-      margin-block: 0;
-      padding-block: clamp(3.5rem, 6vw, 5.5rem);
-      /* FULL BLEED WITHOUT TRANSFORM. The first version used
-         margin-left:50% + translateX(-50%), which is the usual trick and is
-         wrong here: the scroll reveal ALSO animates transform, so
-         `.in { transform: none }` wiped the centring and every white panel slid
-         right and off the page. Two features writing the same property.
-         calc(50% - 50vw) does the identical job in margin, which nothing else
-         touches, so the reveal keeps transform entirely to itself. */
-      width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
-      padding-inline: max(calc((100vw - var(--maxw)) / 2), clamp(1.25rem, 5vw, 2.5rem)); }
-    main#work article.product:nth-of-type(even) {
-      padding-block: clamp(3.5rem, 6vw, 5.5rem); margin-block: 0; }
+    
+    
     /* the same for the alternating page sections — bands, not cards */
     #approach { border-radius: 0; margin-inline: 0; }
 
@@ -1475,12 +1392,7 @@
         color-mix(in srgb, var(--ink) 4%, transparent) 0%,
         transparent 42%,
         color-mix(in srgb, var(--ink) 3%, transparent) 100%) !important; }
-    body > section:nth-of-type(even),
-    main#work article.product:nth-of-type(odd) {
-      background-image: linear-gradient(168deg,
-        color-mix(in srgb, var(--bg) 6%, transparent) 0%,
-        transparent 45%,
-        color-mix(in srgb, var(--bg) 4%, transparent) 100%) !important; }
+    
     .hero { background-image: linear-gradient(172deg,
         color-mix(in srgb, var(--ink) 5%, transparent) 0%, transparent 55%); }
 
@@ -1513,11 +1425,7 @@
     .product .tag, .product .chip, .product-tags > *, .tags > * {
       color: var(--ink-2) !important;
       border-color: color-mix(in srgb, currentColor 26%, transparent) !important; }
-    main#work article.product:nth-of-type(odd) .tag,
-    main#work article.product:nth-of-type(odd) .chip,
-    main#work article.product:nth-of-type(odd) .product-tags > *,
-    main#work article.product:nth-of-type(odd) .tags > * {
-      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important; }
+    
 
 
     /* The tag chips carry their own background. On an inverted product panel the
@@ -1531,19 +1439,11 @@
        inverted. On a panel painted with --ink the text must come from --bg, and
        vice versa. Verified live in both themes after the fix, not from the
        stylesheet. */
-    main#work article.product:nth-of-type(odd) .tags .tag {
-      background: color-mix(in srgb, var(--bg) 8%, transparent) !important;
-      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important;
-      border-color: color-mix(in srgb, var(--bg) 22%, transparent) !important; }
-    main#work article.product:nth-of-type(even) .tags .tag {
-      background: color-mix(in srgb, var(--ink) 8%, transparent) !important;
-      color: color-mix(in srgb, var(--ink) 82%, var(--bg)) !important;
-      border-color: color-mix(in srgb, var(--ink) 22%, transparent) !important; }
+    
+    
     /* same swap on the inverted section headings */
-    body > section:nth-of-type(even) .section-title,
-    body > section:nth-of-type(even) h2 { color: var(--bg) !important; }
-    main#work article.product:nth-of-type(odd) h2,
-    main#work article.product:nth-of-type(odd) .product-name { color: var(--bg) !important; }
+    
+    
 
 
     /* Terminal and code mockups keep a dark ground on purpose — a light code
@@ -1625,11 +1525,7 @@
       background-image:
         linear-gradient(120deg, color-mix(in srgb, var(--a2) 5%, transparent), transparent 46%),
         linear-gradient(168deg, color-mix(in srgb, var(--ink) 4%, transparent), transparent 44%) !important; }
-    body > section:nth-of-type(even),
-    main#work article.product:nth-of-type(odd) {
-      background-image:
-        linear-gradient(120deg, color-mix(in srgb, var(--a3) 7%, transparent), transparent 48%),
-        linear-gradient(168deg, color-mix(in srgb, var(--bg) 6%, transparent), transparent 46%) !important; }
+    
 
     /* 4. PER-ELEMENT REVEAL, the mechanism Matthew means by "slides in and out".
           Outlier drives one .reveal rule from --rx/--ry/--rs so different
@@ -1645,8 +1541,8 @@
                   transform .95s cubic-bezier(.16,1,.3,1),
                   filter .8s cubic-bezier(.16,1,.3,1); }
     /* direction per block type — the "slides in" half */
-    main#work article.product:nth-of-type(odd)  { --rx:-26px; --ry:26px; }
-    main#work article.product:nth-of-type(even) { --rx: 26px; --ry:26px; }
+    
+    
     .split-idx   { --rx:-20px; --ry:18px; }
     .split-panel { --rx: 20px; --ry:18px; }
     .proof-i     { --ry:26px; --rs:.97; }
@@ -1690,15 +1586,8 @@
                         color-mix(in srgb, var(--a-text) 70%, var(--ink)) 100%) !important; }
 
     /* an inverted band flips the ground under it, so the accent has to flip back */
-    body > section:nth-of-type(even) .section-title,
-    body > section:nth-of-type(even) h2 {
-      background-image: linear-gradient(112deg, var(--bg) 0%, var(--bg) 40%,
-                        color-mix(in srgb, var(--a2) 66%, var(--bg)) 100%) !important;
-      -webkit-text-fill-color: transparent; color: transparent !important; }
-    body > section:nth-of-type(even) .go,
-    body > section:nth-of-type(even) .proof-s a,
-    main#work article.product:nth-of-type(odd) .product-info a {
-      color: color-mix(in srgb, var(--a2) 80%, var(--bg)) !important; }
+    
+    
 
 
     /* Domain chips in the shipwall were still resolving against a dark ground in
@@ -1706,10 +1595,7 @@
        they are actually on rather than inheriting a band-level assumption. */
     .shipwall-row a, .shipwall-row li, .shipwall-row span,
     .shipwall-row code { color: var(--ink-2) !important; }
-    body > section:nth-of-type(even) .shipwall-row a,
-    body > section:nth-of-type(even) .shipwall-row li,
-    body > section:nth-of-type(even) .shipwall-row span {
-      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important; }
+    
 
 
     /* ── DRIFTING ORBS ──────────────────────────────────────────────────────
@@ -1815,10 +1701,7 @@
           line and 4.27 for the status dots. Under is under. */
     .shipwall-row a, .shipwall-row li, .shipwall-row span, .shipwall-row code {
       color: var(--ink) !important; opacity: 1 !important; }
-    body > section:nth-of-type(even) .shipwall-row a,
-    body > section:nth-of-type(even) .shipwall-row li,
-    body > section:nth-of-type(even) .shipwall-row span {
-      color: var(--bg) !important; }
+    
 
     .scroll-hint, .mockup-scroll .hint, [class*="scroll-to-explore"],
     .mockup-scroll > span, .mockup-scroll > div:last-child {
@@ -1886,9 +1769,7 @@
     .mesh { opacity: 1; }
 
     /* bands stop painting over it */
-    body > section:nth-of-type(even),
-    main#work article.product:nth-of-type(odd) {
-      background-color: color-mix(in srgb, var(--ink) 92%, transparent) !important; }
+    
     body > section:nth-of-type(odd) {
       background-color: transparent !important; }
     #services, #why, #fit, #faq, #contact, #approach, #packages, #easy, #founder {
@@ -1930,17 +1811,14 @@
     :root[data-theme="light"]       { --a-text-inv: #FFD166; }
 
     /* A — cards and sections on the INVERTED ground */
-    section.rise > div.wrap > p.pricing-note > a { color: var(--bg) !important; }
-    main#work article.product:nth-of-type(odd) div.product-info > a.product-link {
-      color: var(--a-text-inv) !important; }
-    main#work article.product:nth-of-type(odd) div.product-title-row > span.product-badge {
-      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important; }
+    /* removed with the band system: this used to be var(--bg) for an inverted
+       panel, which on the single dark ground is dark-on-dark at 1.0. */
+    
+    
 
     /* B — cards on the NORMAL ground */
-    main#work article.product:nth-of-type(even) div.product-info > a.product-link {
-      color: var(--a-text) !important; }
-    main#work article.product:nth-of-type(even) div.product-title-row > span.product-badge {
-      color: color-mix(in srgb, var(--ink) 82%, var(--bg)) !important; }
+    
+    
 
 
     /* Mockup address-bar text (div.mockup-bar > span): dark 1.78, light 1.60.
@@ -1966,14 +1844,7 @@
        leaves the content crisp — a mask-image would have faded text near the
        edge too. 3.5rem (56px) is under the smallest section padding (68px), so no copy
        ever sits inside the ramp. */
-    body > section:nth-of-type(even),
-    main#work article.product:nth-of-type(odd) {
-      background-color: transparent !important;
-      background-image: linear-gradient(to bottom,
-        transparent 0,
-        color-mix(in srgb, var(--ink) 92%, transparent) 3.5rem,
-        color-mix(in srgb, var(--ink) 92%, transparent) calc(100% - 3.5rem),
-        transparent 100%) !important; }
+    
 
 
     /* The two remaining lines were literal 1px hairlines, not band edges:
@@ -2046,6 +1917,38 @@
       box-sizing: border-box; }
     .shipwall-row a::after { bottom: 4px; }
 
+
+    /* ── ONE GROUND ─────────────────────────────────────────────────────────
+       The alternating light/dark band system is gone (62 rules removed). What
+       remained were four sections painting an opaque ground in exactly the body
+       colour — invisible as a seam, but opaque enough to block the fixed mesh
+       orbs and the body::before wash, leaving flat patches where the rest of the
+       page has atmosphere. Outlier varies its sections by about three RGB points
+       and lets the glow through; that is the effect, not a flat fill.
+
+       So every top-level band is transparent and the ground is the body's, once,
+       with the orbs and the wash reading through all of it. */
+    body > section,
+    body > header,
+    body > main,
+    body > footer,
+    main#work article.product {
+      background-color: transparent !important;
+      background-image: none !important; }
+
+
+    /* Left behind by the band removal: this link was coloured var(--bg) because
+       it used to sit on an inverted (light) panel. On the single dark ground
+       that is dark-on-dark at 1.0 — invisible. It takes the accent like every
+       other inline link now. */
+    section .wrap > p.pricing-note > a { color: var(--a-text) !important; }
+
+
+    /* Badge label was 4.28 against a 4.5 bar, measured on its own
+       rgba(...,0.12) fill composited over the page — close, but under. Deepened
+       one step rather than re-hued, so it still reads as the same green pill. */
+    .product-badge { color: color-mix(in srgb, var(--green) 82%, var(--ink)) !important; }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -2055,7 +1958,13 @@
     (function(){
       try {
         var t = localStorage.getItem('theme');
-        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        /* Dark unless the visitor has explicitly chosen otherwise. This used to
+             follow prefers-color-scheme, so anyone on a light-mode Mac — Matthew
+             included — got a near-white page. The two sites this one is held
+             against are dark and only dark: outlier.host rgb(7,5,16),
+             crispvideo.app rgb(6,8,20). The toggle still works and still
+             persists; only the DEFAULT moved. */
+          if (!t) t = 'dark';
         document.documentElement.setAttribute('data-theme', t);
       } catch(e){}
     })();
