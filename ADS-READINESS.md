@@ -1,0 +1,126 @@
+# Facebook Ads Readiness — builtbykerr.com
+
+Audited 2026-08-19 against the live site, not the repo. Every number below was
+measured, and where a check could only ever return "fine", it was also run
+against a planted defect to prove it can fail.
+
+---
+
+## Do these three things before the first ad dollar
+
+### 1. Fix the calendar timezone — 30 seconds, and it is free *today*
+
+`admin@kerrandcompanyholdings.com` is set to **UTC**. You are Eastern (UTC-4 in
+August). Google appointment schedules define your availability in the
+*calendar's* timezone, so "9am–5pm" would publish as **5am–1pm your time**.
+
+The calendar is currently **empty**. That matters: changing the timezone now
+moves nothing. Once bookings exist, the same change reinterprets them and you
+get to work out by hand which are real.
+
+> Google Calendar → Settings → General → Timezone → **America/New_York**
+
+Then create the appointment schedule and send me the public booking URL. The
+booking section on the site is **already built and live**, showing an email
+fallback; it upgrades itself to the real widget the moment that URL is set.
+Nothing else to build.
+
+### 2. Create the pixel and give me the ID
+
+The pixel is scaffolded and **dark** — `META_PIXEL_ID = ''` in `index.html`.
+Verified in both directions: empty makes zero requests to facebook.net and
+leaves `fbq` undefined; a planted test ID loads `fbevents.js` and initialises
+across 3 requests. So it is inert, not broken.
+
+> Events Manager → Data sources → your pixel → the 15–16 digit number
+
+### 3. Verify the domain in Business Manager
+
+> Business Settings → Brand Safety → **Domains** → add `builtbykerr.com`
+> (root, no `www`) → DNS TXT record
+
+Not optional. An unverified domain gets its events **partially or fully
+ignored**, and you would be paying for delivery optimisation against data Meta
+is discarding.
+
+---
+
+## The thing that gets ad accounts restricted
+
+Setting the pixel ID makes **four statements on `/legal/privacy.html` false**:
+
+| Live sentence | Why it breaks |
+|---|---|
+| "we don't run advertising trackers on it" | You would be running one |
+| "This Site sets no cookies at all" | The pixel sets `_fbp` |
+| "no consent banner: there is nothing to consent to" | There would be |
+| "We do not sell or **share** personal information for cross-context behavioral advertising" | CPRA's "sharing" covers exactly this |
+
+The last one is a **legal representation**, not a description. Meta also
+requires a reachable privacy policy disclosing pixel use and an opt-out route;
+burying or omitting it is grounds for suspension.
+
+This page has drifted this way once already — on 2026-08-13 it said analytics
+"may be added in future" while Plausible was already loading. That drift cost
+nothing. This one costs the ad account.
+
+**So it is enforced rather than remembered:**
+- `legal/privacy-pixel-revision.html` — the rewritten sections, ready to apply
+- `e2e/ads-readiness.spec.ts` — fails if the pixel goes live while the policy
+  denies it, **and** fails if the policy starts describing a pixel that is not
+  running. Either half alone is the bug.
+
+Apply the revision in the **same commit** that sets the ID. A CPRA "Do Not Sell
+or Share" footer link is also required at that point — the gate checks for it.
+
+---
+
+## Already good — measured, not assumed
+
+| Check | Result |
+|---|---|
+| First contentful paint (mobile) | **252ms** |
+| Load event | **463ms** |
+| Page weight | **0.92MB / 15 requests** |
+| Horizontal overflow at 390px | none |
+| Tap targets vs WCAG 2.5.8 | all pass |
+| Contrast, both themes | 0 failures of 313 / 314 |
+| E2E suite | **21 passing** |
+| OG share card | 200, 103KB PNG |
+| Structured data | ProfessionalService + PostalAddress + GeoCoordinates |
+| Conversion event | fires on `res.ok`, not on click |
+
+Speed is not what will hold these ads back. Landing-page load time is a real
+Meta quality signal and this site is comfortably inside it.
+
+---
+
+## Decisions that are yours, not mine
+
+**Conversions API.** Browser pixels lose roughly a third of events to iOS and
+content blockers. CAPI recovers them server-side, but this site is static on
+GitHub Pages — **there is no server**. It needs a Cloudflare Worker or similar.
+Every event already carries an `eventID` so the two dedupe to one Lead when you
+add it; retrofitting that later means a period of double-counted conversions in
+exactly the numbers you would use to judge the ads.
+
+**One page per ad.** Best practice is message match — the landing page headline
+continues the ad's hook. This homepage is **27 screens tall on a phone** and
+sells six products plus services. It is a good site; it is a diffuse ad target.
+If you run more than one angle, each wants its own short page.
+
+**Consent banner.** Michigan has no state privacy law requiring one, and the US
+industry opt-out links cover you. Only worth building if you deliberately target
+EU/UK traffic.
+
+---
+
+## Still blocked on you, unrelated to ads
+
+- Provenance of `crisp/samples/dark.mp4` — no license file, and crispvideo.app
+  credits Prelinger Archives for a reason
+- "ProposalAI was built almost entirely by the framework itself" — not
+  verifiable from the repo
+- "3 provisional patents" — **UNCONFIRMED** across 7 surfaces. Do not let this
+  reach ad copy: Meta rejects unsubstantiated claims, and an unverifiable patent
+  claim in an ad is a worse problem than on a page.
