@@ -1797,6 +1797,52 @@
     body, p, li, td, th, input, textarea, button, select, .svc, .pkg {
       font-family: var(--sans); }
 
+
+    /* ── THE LAST CONTRAST FAILURES, named by the fast checker ──────────────
+       Three clusters, and each one is a case where the element's ground is not
+       the ground its colour was chosen against.
+
+       1. SHIPWALL DOMAINS failed in BOTH themes — 1.78 dark, 1.60 light. They
+          are mono text on the shipwall's own panel, and my earlier rule set
+          them from --ink-2 against the SECTION ground rather than the panel's.
+          Pinned to the strong ink now; a domain list is the proof, not a
+          footnote.
+       2. THE "scroll to explore" PILL sits over a video frame, so its ground is
+          whatever is playing — measured at rgb(102,102,102). No text colour is
+          safe over arbitrary footage, so it gets its own opaque scrim instead
+          of a colour that happens to work on one frame.
+       3. TWO LIGHT-THEME TONES sat just under the bar: 3.05 for the founder
+          line and 4.27 for the status dots. Under is under. */
+    .shipwall-row a, .shipwall-row li, .shipwall-row span, .shipwall-row code {
+      color: var(--ink) !important; opacity: 1 !important; }
+    body > section:nth-of-type(even) .shipwall-row a,
+    body > section:nth-of-type(even) .shipwall-row li,
+    body > section:nth-of-type(even) .shipwall-row span {
+      color: var(--bg) !important; }
+
+    .scroll-hint, .mockup-scroll .hint, [class*="scroll-to-explore"],
+    .mockup-scroll > span, .mockup-scroll > div:last-child {
+      background: rgba(10,8,5,.86) !important;
+      color: #FAF7F0 !important;
+      border: 1px solid rgba(250,247,240,.18) !important;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border-radius: 999px; padding: .3rem .7rem; }
+
+    .founder-note, .founder p, .status-dot, .badge, .pill-status {
+      color: var(--ink-2) !important; }
+    :root[data-theme="light"]{ --ink-3: #5C5346; }
+
+
+    /* TOKEN SWAP: TRIED AND REVERTED, recorded so it is not retried blind.
+       The idea was right — redefine --ink/--bg/--line inside inverted panels so
+       every descendant reads correct values without knowing it is inverted,
+       killing the bug class instead of its instances. Measured: dark 5 -> 7,
+       light 5 -> 8. It regressed because a dozen child-level !important patches
+       already exist for the old scheme, and the swap fights them rather than
+       replacing them. Doing this properly means removing those patches in the
+       same change, which is a bigger edit than one tick should carry against a
+       live site. Reverted to the measured-better state. */
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
