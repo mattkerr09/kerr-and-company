@@ -1755,6 +1755,48 @@
       margin-top: var(--s6); padding-top: var(--s6);
       border-top: 1px solid var(--line); }
 
+
+    /* ══ TYPEFACES ══════════════════════════════════════════════════════════
+       Researched as of today rather than chosen by taste. What the research
+       ruled OUT mattered as much as what it ruled in: Poppins fatigue is real
+       in 2026 — it reads as default rather than chosen — and Inter is saturated
+       to the same point.
+
+       What we had was worse than either. --display was Didot / Bodoni /
+       Playfair, a high-contrast Victorian serif, which is precisely the "church
+       website" Matthew named on day one; --sans was -apple-system, which is not
+       a choice at all, it is the absence of one, and it is why the page read
+       generic no matter what else changed.
+
+       Space Grotesk for display and General Sans for body. Both are current
+       picks; neither is Outlier's pair. That last part is deliberate — Outlier
+       runs Clash Display + Satoshi, and a studio whose whole argument is that it
+       builds distinct products cannot ship its own site in its product's
+       clothes. Same quality bar, different voice.
+
+       SELF-HOSTED, latin subset only, 175K across eight files. Google served
+       twelve for Space Grotesk alone because it splits vietnamese and latin-ext
+       into separate faces — dead weight here. No third-party request, which
+       also keeps the privacy page honest. */
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/space-grotesk-400.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/space-grotesk-500.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/space-grotesk-600.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/space-grotesk-700.woff2') format('woff2');}
+@font-face{font-family:'General Sans';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/general-sans-400.woff2') format('woff2');}
+@font-face{font-family:'General Sans';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/general-sans-500.woff2') format('woff2');}
+@font-face{font-family:'General Sans';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/general-sans-600.woff2') format('woff2');}
+@font-face{font-family:'General Sans';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/general-sans-700.woff2') format('woff2');}
+
+    :root{
+      --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --sans:    'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --serif:   var(--sans);
+    }
+    .section-title, .hero h1, h1, h2, .product-name, .pkg h3, .cfg-price {
+      font-family: var(--display); letter-spacing: -.028em; }
+    body, p, li, td, th, input, textarea, button, select, .svc, .pkg {
+      font-family: var(--sans); }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
