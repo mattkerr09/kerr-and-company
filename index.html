@@ -1558,6 +1558,203 @@
     pre .comment, .term .comment, .codeblock .comment,
     pre .muted, .term .muted { color: color-mix(in srgb, #FAFAF8 55%, #111114) !important; }
 
+
+    /* ══ THE OUTLIER SYSTEM, PORTED ═════════════════════════════════════════
+       Matthew: "Outlier is basically the bar... you can literally just copy how
+       we did it — the gradient, how it moves with the scrolling, how the page
+       slides in and out, the different colors to make it feel more textured."
+
+       Read from outlier-site/index.html rather than guessed from screenshots.
+       The finding that matters: OUTLIER HAS NO NEUTRAL GREYS. Every ground is
+       tinted — #070510, #0a0814, #0d0b18, #100d1c, #16122a, #1d1836 — and even
+       its white is #f3f1fa. Ours were dead neutral (#0B0B0C, #111114), which is
+       exactly why the page read flat however many bands it had. The tint IS the
+       texture; the alternation only separates.
+
+       Its accent is a five-step violet ramp (--v0..--v4) used four ways:
+       gradient text on headlines, low-opacity washes over surfaces, a glowing
+       divider rule, and a solid button. Ours is amber, because the mark is a
+       sunflower — the same structure, tied to the brand we actually have. This
+       is NOT the old #8a5a12 gold that read as a church: that was a muddy
+       mid-tone under serif type on cream. A saturated ramp used sparingly over
+       tinted near-black is the opposite thing. */
+    :root{
+      --a0:#FFE9B8; --a1:#FFD166; --a2:#F5B841; --a3:#D99A2B; --a4:#A8741C;
+      --tint: 38;
+    }
+    :root:not([data-theme="light"]){
+      --bg:      #0C0A07;   --bg-2:  #100D09;   --bg-3:  #14100B;
+      --surface: #191308;   --surface-2:#1F1810; --surface-3:#2A2115;
+      --ink:     #FAF7F0;   --ink-2: #C9C2B4;    --ink-3: #A79E8C;
+      --ink-4:   #8A8171;   --line:  #241D12;    --line-2:#362C1C;
+    }
+    :root[data-theme="light"]{
+      --bg:      #FBFAF7;   --bg-2:  #F5F2EA;   --bg-3:  #EFEBE0;
+      --surface: #FFFFFF;   --surface-2:#F7F4EC; --surface-3:#EDE8DB;
+      --ink:     #17130C;   --ink-2: #453D2E;    --ink-3: #6B6152;
+      /* --ink-4 was #8A8171 in BOTH themes — a tint that reads fine on near-black
+         and lands at 3.5:1 on near-white, which is under AA and was 12 of the
+         27 light-theme failures. A faint tone still has to clear the bar. */
+      --ink-4:   #6B6355;   --line:  #E4DECF;    --line-2:#D3CAB5;
+    }
+
+    /* 1. GRADIENT TEXT on the headline of every section — Outlier's
+          linear-gradient(112deg,...) clipped to the text. */
+    .section-title, .hero h1 {
+      background-image: linear-gradient(112deg, var(--ink) 0%, var(--ink) 38%,
+                        color-mix(in srgb, var(--a2) 62%, var(--ink)) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent !important; }
+    @supports not (background-clip: text) {
+      .section-title, .hero h1 { color: var(--ink) !important;
+        -webkit-text-fill-color: currentColor; } }
+
+    /* 2. A GLOWING DIVIDER between bands — outlier's
+          linear-gradient(90deg,transparent,#c77dff,#a855f7,#6366f1,transparent) */
+    body > section + section::before,
+    main#work article.product + article.product::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent,
+        color-mix(in srgb, var(--a2) 55%, transparent) 28%,
+        color-mix(in srgb, var(--a1) 70%, transparent) 50%,
+        color-mix(in srgb, var(--a2) 55%, transparent) 72%, transparent) !important; }
+
+    /* 3. TINTED SURFACE WASH — depth on every band, from the accent rather than
+          from black, which is what stops it reading as grey-on-grey. */
+    body > section:nth-of-type(odd) {
+      background-image:
+        linear-gradient(120deg, color-mix(in srgb, var(--a2) 5%, transparent), transparent 46%),
+        linear-gradient(168deg, color-mix(in srgb, var(--ink) 4%, transparent), transparent 44%) !important; }
+    body > section:nth-of-type(even),
+    main#work article.product:nth-of-type(odd) {
+      background-image:
+        linear-gradient(120deg, color-mix(in srgb, var(--a3) 7%, transparent), transparent 48%),
+        linear-gradient(168deg, color-mix(in srgb, var(--bg) 6%, transparent), transparent 46%) !important; }
+
+    /* 4. PER-ELEMENT REVEAL, the mechanism Matthew means by "slides in and out".
+          Outlier drives one .reveal rule from --rx/--ry/--rs so different
+          elements arrive from different distances and directions instead of the
+          whole page fading uniformly. */
+    .js .rise, .js .reveal, .js main#work article.product {
+      opacity:0;
+      transform: translate(var(--rx, 0), var(--ry, 34px)) scale(var(--rs, .985));
+      filter: blur(var(--rb, 5px)); }
+    .js .rise.in, .js .reveal.in, .js main#work article.product.in {
+      opacity:1; transform:none; filter:blur(0);
+      transition: opacity .8s cubic-bezier(.16,1,.3,1),
+                  transform .95s cubic-bezier(.16,1,.3,1),
+                  filter .8s cubic-bezier(.16,1,.3,1); }
+    /* direction per block type — the "slides in" half */
+    main#work article.product:nth-of-type(odd)  { --rx:-26px; --ry:26px; }
+    main#work article.product:nth-of-type(even) { --rx: 26px; --ry:26px; }
+    .split-idx   { --rx:-20px; --ry:18px; }
+    .split-panel { --rx: 20px; --ry:18px; }
+    .proof-i     { --ry:26px; --rs:.97; }
+    .svc         { --ry:30px; }
+    .pkg         { --ry:38px; --rs:.975; }
+    @media (prefers-reduced-motion: reduce){
+      .js .rise, .js .reveal, .js main#work article.product,
+      .js .rise.in, .js .reveal.in, .js main#work article.product.in {
+        opacity:1 !important; transform:none !important; filter:none !important;
+        transition:none !important; } }
+
+    /* 5. ACCENT ON THE THINGS THAT ACT — links, the live dot, the progress bar */
+    .scroll-progress { background: linear-gradient(90deg, var(--a3), var(--a1), var(--a2)) !important; }
+    .go, .product-info a, .proof-s a { color: var(--a2) !important; }
+    .go:hover, .product-info a:hover { color: var(--a1) !important; }
+    .svc:hover, .pkg:hover, .card:hover, .frag:hover, .fit-card:hover {
+      border-color: color-mix(in srgb, var(--a2) 42%, transparent) !important;
+      box-shadow: 0 14px 34px -18px rgba(0,0,0,.6),
+                  0 0 0 1px color-mix(in srgb, var(--a2) 18%, transparent) !important; }
+
+
+    /* ── THE ACCENT NEEDS A TEXT VARIANT PER THEME ──────────────────────────
+       #F5B841 is tuned for a near-black ground: 12.35:1 there, and 1.63:1 on
+       near-white, which is what every amber link became in light theme. Outlier
+       never hits this because it ships dark only; we support both, so the ramp
+       needs a text-safe step that flips with the theme. --a-text is that step:
+       the bright rung on dark, a deep rung on light. The DECORATIVE uses
+       (washes, dividers, glows) keep --a2 in both, because they carry no text. */
+    :root:not([data-theme="light"]){ --a-text: var(--a1); }
+    :root[data-theme="light"]{ --a-text: #8A5E12; }
+
+    .go, .product-info a, .proof-s a, .cfg-note a, .split-idx a {
+      color: var(--a-text) !important; }
+    .go:hover, .product-info a:hover, .proof-s a:hover {
+      color: color-mix(in srgb, var(--a-text) 72%, var(--ink)) !important; }
+
+    /* the headline gradient has to end on a rung that is legible on ITS ground,
+       so it runs ink -> accent-text rather than ink -> raw accent */
+    .section-title, .hero h1 {
+      background-image: linear-gradient(112deg, var(--ink) 0%, var(--ink) 40%,
+                        color-mix(in srgb, var(--a-text) 70%, var(--ink)) 100%) !important; }
+
+    /* an inverted band flips the ground under it, so the accent has to flip back */
+    body > section:nth-of-type(even) .section-title,
+    body > section:nth-of-type(even) h2 {
+      background-image: linear-gradient(112deg, var(--bg) 0%, var(--bg) 40%,
+                        color-mix(in srgb, var(--a2) 66%, var(--bg)) 100%) !important;
+      -webkit-text-fill-color: transparent; color: transparent !important; }
+    body > section:nth-of-type(even) .go,
+    body > section:nth-of-type(even) .proof-s a,
+    main#work article.product:nth-of-type(odd) .product-info a {
+      color: color-mix(in srgb, var(--a2) 80%, var(--bg)) !important; }
+
+
+    /* Domain chips in the shipwall were still resolving against a dark ground in
+       light theme — light text on a light band at 1.66. They take the ground
+       they are actually on rather than inheriting a band-level assumption. */
+    .shipwall-row a, .shipwall-row li, .shipwall-row span,
+    .shipwall-row code { color: var(--ink-2) !important; }
+    body > section:nth-of-type(even) .shipwall-row a,
+    body > section:nth-of-type(even) .shipwall-row li,
+    body > section:nth-of-type(even) .shipwall-row span {
+      color: color-mix(in srgb, var(--bg) 82%, var(--ink)) !important; }
+
+
+    /* ── DRIFTING ORBS ──────────────────────────────────────────────────────
+       Read from outlier-site/index.html, not approximated: three radial orbs on
+       drift1/2/3 at 26s, 32s and 38s, ease-in-out infinite, each translating a
+       few vw and scaling 1.08–1.15. The CEO measured every site in the
+       portfolio and this was the only one with ZERO — which is the first thing
+       Matthew named: "the gradient — how it moves with the scrolling".
+       Amber instead of violet, and lower alpha, because our ground is warm
+       near-black rather than Outlier's deep indigo. */
+    .mesh { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            overflow: hidden; contain: strict; }
+    .mesh > i { position: absolute; display: block; border-radius: 50%;
+                filter: blur(46px); will-change: transform; }
+    .mesh .m1 { width:60vw; height:60vw; max-width:820px; max-height:820px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--a2) 26%, transparent), transparent 68%);
+      top:-22vw; left:-8vw; animation: drift1 26s ease-in-out infinite; }
+    .mesh .m2 { width:52vw; height:52vw; max-width:700px; max-height:700px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--a3) 22%, transparent), transparent 66%);
+      top:18vw; right:-12vw; animation: drift2 32s ease-in-out infinite; }
+    .mesh .m3 { width:46vw; height:46vw; max-width:620px; max-height:620px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--a1) 18%, transparent), transparent 70%);
+      bottom:-16vw; left:22vw; animation: drift3 38s ease-in-out infinite; }
+    @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,4vw) scale(1.12)}}
+    @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vw,6vw) scale(1.08)}}
+    @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-4vw,-5vw) scale(1.15)}}
+    @media (prefers-reduced-motion: reduce){ .mesh > i { animation: none !important; } }
+    body > section, main#work, .hero, footer { position: relative; z-index: 1; }
+
+    /* ── THE SHIPWALL BOX ───────────────────────────────────────────────────
+       "fix this box, it looks bad." It was a bordered panel holding three
+       unrelated things at one weight — a mono lede, six domains in two sparse
+       columns with a chasm between them, and four proof stats crammed on one
+       line with a floating pill overlapping them. Now: domains on a real grid
+       that fills the width, the stats separated by a rule, and the pill out of
+       the flow. */
+    .shipwall-row { display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+      gap: var(--s4) var(--s6) !important; }
+    .shipwall-row li, .shipwall-row > * { white-space: nowrap; }
+    .shipwall .proofline, .shipwall-stats { display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--s5);
+      margin-top: var(--s6); padding-top: var(--s6);
+      border-top: 1px solid var(--line); }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -1573,7 +1770,7 @@
     })();
   </script>
 </head>
-<body>
+<body><div class="mesh" aria-hidden="true"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
   <div class="glows" aria-hidden="true">
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
@@ -2334,7 +2531,11 @@
       });
     })();
 
-    const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
+    // TWO-WAY, which is what Matthew means by "appearing and disappearing both
+// ways like outlier": unobserve() turns a reveal into a one-shot that fills
+// in once and then sits there forever. Keeping the element observed and
+// toggling the class means scrolling back up replays it.
+const io = new IntersectionObserver((es)=>{es.forEach(e=>{e.target.classList.toggle('in', e.isIntersecting);});},{threshold:0.08,rootMargin:'0px 0px -8% 0px'});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el));
 
@@ -2361,9 +2562,7 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
         .forEach(g => { g.classList.add('stagger');
           [...g.children].forEach((c,i) => c.style.setProperty('--i', i)); });
 
-      const io = new IntersectionObserver(es => es.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      }), {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+      const io = new IntersectionObserver(es => es.forEach(e => { /* TWO-WAY. unobserve() made this a one-shot: a section filled in once and stayed filled, so scrolling back up showed nothing move. Outlier keeps its elements observed and toggles, which is why its sections appear AND disappear. This is the observer that actually drives the page — .rise is on all nine sections. */ e.target.classList.toggle('in', e.isIntersecting); }), {threshold:.12, rootMargin:'0px 0px -8% 0px'});
       document.querySelectorAll('.rise, .stagger').forEach(el => io.observe(el));
     })();
 
