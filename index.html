@@ -2723,6 +2723,51 @@
   <script>
     document.documentElement.classList.add('js');
 
+    /* ── META PIXEL ─────────────────────────────────────────────────────────
+     * HELD EMPTY, deliberately, exactly like BOOKING_URL above.
+     *
+     * Setting this ID is NOT a one-line change. The moment it ships it makes
+     * four statements on /legal/privacy.html false:
+     *   1. "we don't run advertising trackers on it"
+     *   2. "This Site sets no cookies at all"      <- the pixel sets _fbp
+     *   3. "there is no consent banner: there is nothing to consent to"
+     *   4. "We do not sell or share personal information for cross-context
+     *      behavioral advertising" -- under CCPA/CPRA, sending pixel data to
+     *      Meta for ad targeting is the textbook example of "sharing". That
+     *      one is a legal representation, not a description.
+     *
+     * The rewritten sections are in legal/privacy-pixel-revision.html. Apply
+     * them in the SAME commit that sets this ID. e2e/ads-readiness.spec.ts
+     * FAILS if the pixel is live while the policy still claims no trackers,
+     * so this cannot ship half-done by forgetting.
+     *
+     * Get the ID: Events Manager -> Data sources -> your pixel -> the 15-16
+     * digit number under the name. It is not a secret; it ships in client JS
+     * by design and is visible to anyone who views source.
+     */
+    var META_PIXEL_ID = '';
+
+    /* One id per conversion, shared by the browser pixel and (later) the
+     * Conversions API, so Meta counts one Lead instead of two. Generating it
+     * now costs nothing; retrofitting dedup after CAPI is live means a period
+     * of double-counted conversions that quietly inflates every number you
+     * would use to judge whether the ads are working. */
+    function kcEventId() {
+      try { return crypto.randomUUID(); }
+      catch (e) { return 'kc-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10); }
+    }
+
+    (function () {
+      if (!META_PIXEL_ID) return;              // dark until an ID exists
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+    })();
+
     // Contact form — submits without leaving the page
     (function () {
       const form = document.getElementById('contactForm');
@@ -2746,6 +2791,17 @@
             body: new FormData(form)
           });
           if (res.ok) {
+            /* Lead fires HERE -- inside res.ok -- not on click and not on submit.
+             * A pixel wired to the click counts people who typed a bad email, hit
+             * a network error, or were rejected as spam, and Meta then optimises
+             * delivery toward whoever generates those. The conversion is the reply
+             * landing in the inbox, so that is the moment measured. */
+            if (window.fbq && META_PIXEL_ID) {
+              fbq('track', 'Lead', {
+                content_name: 'Contact form',
+                content_category: (form.querySelector('[name=service]') || {}).value || 'unspecified'
+              }, { eventID: kcEventId() });
+            }
             form.style.display = 'none';
             show('ok', "<strong>Got it — thank you.</strong><br>I'll reply personally within one business day.");
           } else {

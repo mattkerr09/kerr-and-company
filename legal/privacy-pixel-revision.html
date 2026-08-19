@@ -1,0 +1,78 @@
+<!--
+  PREPARED REVISION — NOT LIVE, NOT LINKED, NOT INDEXED.
+
+  Apply these three replacements to legal/privacy.html in the SAME COMMIT that
+  sets META_PIXEL_ID in index.html. Not before (the policy would describe
+  tracking that does not exist — which is the exact bug that already happened
+  once on this page, see the 2026-08-13 comment about Plausible) and not after
+  (the policy would deny tracking that does exist, which is the version that
+  costs an ad account).
+
+  e2e/ads-readiness.spec.ts enforces both directions and fails the build on
+  either mismatch, so neither half can ship alone by accident.
+
+  ─────────────────────────────────────────────────────────────────────────────
+  REPLACEMENT 1 — the "short version" callout
+  ─────────────────────────────────────────────────────────────────────────────
+  FIND:
+    We don't sell your information, we don't run advertising trackers on it,
+    and we only use what you voluntarily send us in order to respond to you.
+
+  REPLACE WITH:
+    We don't sell your information. We do run one advertising tracker — the
+    Meta pixel, described in section 1 — so that we can tell which ads bring
+    people here. Everything else we hold is what you voluntarily sent us.
+
+  ─────────────────────────────────────────────────────────────────────────────
+  REPLACEMENT 2 — the Cookies section, replaced in full
+  ─────────────────────────────────────────────────────────────────────────────
+  FIND the paragraph beginning "This Site sets no cookies at all"
+  REPLACE the whole paragraph with:
+-->
+
+<h3>Cookies and advertising technology</h3>
+
+<p>This Site runs the <strong>Meta pixel</strong> (Facebook/Instagram advertising).
+It sets a first-party cookie named <code>_fbp</code> and sends Meta the page you
+viewed, your IP address, your browser user-agent, and — if you submit the contact
+form — the fact that a form submission happened. We use it for two things only:
+to see which ads bring people to this Site, and to avoid paying to show ads to
+people who have already contacted us.</p>
+
+<p>We do <strong>not</strong> send Meta the contents of your contact form. The
+conversion event records that an inquiry occurred, not your name, your email
+address, your phone number, or what you wrote.</p>
+
+<p>Plausible Analytics, described above, remains cookieless.</p>
+
+<h3>How to opt out</h3>
+<ul>
+  <li>Your Meta ad settings: <a href="https://www.facebook.com/adpreferences/ad_settings" rel="nofollow noopener" target="_blank">facebook.com/adpreferences/ad_settings</a></li>
+  <li>Industry opt-out (US): <a href="https://optout.aboutads.info/" rel="nofollow noopener" target="_blank">optout.aboutads.info</a></li>
+  <li>Industry opt-out (EU/UK): <a href="https://www.youronlinechoices.eu/" rel="nofollow noopener" target="_blank">youronlinechoices.eu</a></li>
+  <li>Browser-level: blocking third-party cookies, or any content blocker, stops the pixel loading entirely. Nothing on this Site breaks if you do.</li>
+  <li>Global Privacy Control: we honour the <a href="https://globalprivacycontrol.org/" rel="nofollow noopener" target="_blank">GPC</a> signal where your browser sends one.</li>
+</ul>
+
+<!--
+  ─────────────────────────────────────────────────────────────────────────────
+  REPLACEMENT 3 — section 6, the CCPA/CPRA sentence. THIS ONE IS A LEGAL
+  REPRESENTATION, NOT A DESCRIPTION. Getting it wrong is not a copy problem.
+  ─────────────────────────────────────────────────────────────────────────────
+  FIND:
+    We do not sell or share personal information for cross-context behavioral
+    advertising.
+
+  REPLACE WITH:
+    We do not sell personal information for money. California's CPRA defines
+    "sharing" broadly enough to include sending pixel data to Meta for
+    advertising purposes, so we treat the Meta pixel described in section 1 as
+    "sharing" and give you the right to opt out of it. Use the opt-out links in
+    section 1, send a Global Privacy Control signal, or email us and we will
+    honour the request.
+
+  A "Do Not Sell or Share My Personal Information" link is required in the
+  footer for California visitors once the pixel is live. It can point at the
+  opt-out list in section 1. index.html footer, next to the existing legal
+  links. THIS IS A SEPARATE EDIT TO index.html AND IS EASY TO FORGET.
+-->

@@ -1,5 +1,9 @@
 # builtbykerr.com — allow all crawlers, including AI search bots
 User-agent: *
 Allow: /
+# Prepared-but-unapplied policy revision. It is a working document, not a
+# published policy, and an indexed copy would compete with the real one at
+# /legal/privacy.html and describe tracking the site does not yet run.
+Disallow: /legal/privacy-pixel-revision.html
 
 Sitemap: https://builtbykerr.com/sitemap.xml
