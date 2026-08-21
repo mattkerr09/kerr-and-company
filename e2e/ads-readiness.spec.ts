@@ -59,7 +59,14 @@ test('pixel and privacy policy agree', async () => {
   const hasOptOut      = /aboutads\.info|youronlinechoices|ad_settings/i.test(policy);
 
   if (pixelLive) {
-    expect(id, 'a Meta pixel id is 15-16 digits').toMatch(/^\d{15,16}$/);
+    // Shape only: digits, and long enough not to be a stray character. The
+    // earlier version asserted 15-16 digits and FAILED THE REAL ID, which is 17.
+    // That range was invented from the examples to hand, not from anything Meta
+    // publishes -- a proxy for "is this id valid" that was wrong in the one
+    // direction that mattered. Whether Meta accepts the id is measured by
+    // 'Meta accepts the live pixel id' below, which asks Meta rather than
+    // guessing from the string.
+    expect(id, 'pixel id should be digits only').toMatch(/^\d{8,25}$/);
     expect(deniesTrackers,
       'PIXEL IS LIVE but the policy still says the site runs no advertising trackers. ' +
       'Apply legal/privacy-pixel-revision.html.').toBe(false);
@@ -110,4 +117,41 @@ test('booking stays dark while its calendar is misconfigured', async () => {
     expect(/Online booking is being switched on/i.test(home),
       'BOOKING_URL is set but the "booking is being switched on" fallback copy is still in the HTML.').toBe(false);
   }
+});
+
+/**
+ * Does Meta actually ACCEPT the id?
+ *
+ * Everything else in this file reads HTML. None of it can tell a correct id
+ * from a typo, because a wrong id fails silently: measured on this site with a
+ * deliberately invalid id, fbevents.js still loaded, signals/config still
+ * returned 200, facebook.com/tr still returned 200, and window.fbq was still a
+ * function. Every signal a normal check looks at stayed green while Meta
+ * recorded nothing.
+ *
+ * The discriminator is the _fbp cookie. Confirmed in BOTH directions:
+ *   invalid id 1234567890123456  -> only Meta's own `fr` cookie, no _fbp
+ *   real id    28202025336060922 -> _fbp set
+ *
+ * If this fails while the id looks right, the id is wrong. Check Events
+ * Manager -- the fix is there, not in this repo.
+ */
+test('Meta accepts the live pixel id', async ({ browser }) => {
+  const home = await fetchText('/');
+  const id = (pixelIdFrom(home) ?? '').trim();
+  test.skip(!id, 'pixel is dark; nothing to validate');
+
+  const ctx = await browser.newContext();
+  const page = await ctx.newPage();
+  await page.goto(SITE, { waitUntil: 'load' });
+  await page.waitForTimeout(9000);
+  const cookies = await ctx.cookies();
+  await ctx.close();
+
+  expect(
+    cookies.some(c => c.name === '_fbp'),
+    `pixel id ${id} is live but Meta did not set _fbp. An id Meta rejects still ` +
+    `loads fbevents.js and still returns 200 on every request, so this cookie is ` +
+    `the only signal that it was accepted. Verify the id in Events Manager.`
+  ).toBe(true);
 });

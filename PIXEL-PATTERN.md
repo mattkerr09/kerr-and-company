@@ -19,7 +19,7 @@ Top-level, in the same script block as the loader, **not** in a config object
 and **not** injected at build time. It must be greppable from the *served*
 HTML, because the test reads the live site rather than the repo.
 
-Empty string = dark. Any 15–16 digit value = live. No other states, no
+Empty string = dark. Any digit string = live. No other states, no
 `enabled: true` flag — a second switch is a second thing to get wrong.
 
 ## 2. The loader
@@ -172,9 +172,13 @@ const cookies = await context.cookies();
 const ok = cookies.some(c => c.name === '_fbp');
 ```
 
-Caveat, stated because it matters: this was measured only in the invalid
-direction. `_fbp` absent with a bad id is confirmed; `_fbp` present with a good
-id is inferred and should be confirmed the first time a real id ships. If it is
+**Confirmed in both directions**, which is what makes this trustworthy:
+
+    invalid id  1234567890123456   -> only Meta's `fr` cookie, NO _fbp
+    real id     28202025336060922  -> _fbp set
+
+The invalid case was measured on a scratch copy; the valid case on the live
+site the day the real id shipped. If it is
 absent with an id you believe is correct, **check the id in Events Manager
 before assuming the code is wrong** — and confirm receipt on Meta's side, which
 is the only authority on whether events actually arrived.
