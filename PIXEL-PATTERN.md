@@ -143,3 +143,44 @@ In `kerr-and-company`, if reading it is easier than reimplementing:
 | `legal/privacy-pixel-revision.html` | prepared diff, with the reasoning per sentence |
 | `robots.txt` | why the prepared revision is disallowed from indexing |
 | `ADS-READINESS.md` | the launch audit this came out of |
+## A wrong id does not fail. Verify the id, not the loader.
+
+Measured on this site with a deliberately invalid 16-digit id
+(`1234567890123456`):
+
+    fbevents.js               loaded
+    signals/config/<id>       HTTP 200
+    facebook.com/tr/          HTTP 200
+    window.fbq                function
+    cookies set               fr only
+    _fbp                      NOT SET     <- the only tell
+
+**Every network signal a normal check looks at is healthy.** The script loads,
+the config request succeeds, the PageView beacon returns 200, `fbq` is defined.
+A site could ship a typo'd id, watch all of that go green, and conclude the
+pixel works — while Meta records nothing and the ads optimise against no data.
+It looks identical to "the campaign has not warmed up yet".
+
+The discriminator observed here is **`_fbp`**. Meta's own `fr` cookie was set;
+`_fbp`, which the pixel writes for a dataset it accepts, was not.
+
+**So after setting a real id, assert `_fbp` exists** — not that `fbevents.js`
+loaded:
+
+```js
+const cookies = await context.cookies();
+const ok = cookies.some(c => c.name === '_fbp');
+```
+
+Caveat, stated because it matters: this was measured only in the invalid
+direction. `_fbp` absent with a bad id is confirmed; `_fbp` present with a good
+id is inferred and should be confirmed the first time a real id ships. If it is
+absent with an id you believe is correct, **check the id in Events Manager
+before assuming the code is wrong** — and confirm receipt on Meta's side, which
+is the only authority on whether events actually arrived.
+
+**Check the shape before shipping.** Meta pixel/dataset ids are **15–16
+digits**. Anything longer or shorter is a transcription error until proven
+otherwise — a 17-digit value reached this repo, which is what prompted this
+section.
+
