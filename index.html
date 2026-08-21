@@ -1540,14 +1540,45 @@
       transition: opacity .8s cubic-bezier(.16,1,.3,1),
                   transform .95s cubic-bezier(.16,1,.3,1),
                   filter .8s cubic-bezier(.16,1,.3,1); }
-    /* direction per block type — the "slides in" half */
-    
-    
-    .split-idx   { --rx:-20px; --ry:18px; }
-    .split-panel { --rx: 20px; --ry:18px; }
-    .proof-i     { --ry:26px; --rs:.97; }
-    .svc         { --ry:30px; }
-    .pkg         { --ry:38px; --rs:.975; }
+    /* Direction per block, keyed to classes MEASURED on the rendered page.
+       The previous set named .split-idx / .split-panel / .proof-i / .svc /
+       .pkg. Those elements exist -- but none of them carries .rise or .reveal,
+       so they never animate, and a --rx on an element that does not reveal is
+       read by nothing. All 39 revealed elements came back with --rx unset,
+       rising an identical 34px: the page had no lateral movement anywhere.
+
+       Sections stay vertical-only on purpose. A section that slides sideways
+       drags every child with it, the offsets compound, and the page overflows
+       horizontally mid-transition. Only blocks INSIDE a section move laterally. */
+
+    /* Pairs -- opposite sides, so the movement states the relationship. */
+    .founder-photo { --rx:-38px; --ry:16px; }
+    .founder-body  { --rx: 38px; --ry:16px; }
+    .appr-body     { --rx:-30px; --ry:18px; }
+    .appr-list     { --rx: 30px; --ry:18px; }
+
+    /* Shipped products alternate down the page. */
+    main#work article.product:nth-of-type(odd)  { --rx:-40px; --ry:22px; --rs:.975; }
+    main#work article.product:nth-of-type(even) { --rx: 40px; --ry:22px; --rs:.975; }
+
+    /* Grids take more scale and no sideways drift, so their cards do not shear. */
+    .svc-grid, .why-grid, .fit-grid, .pkg-grid { --ry:36px; --rs:.972; }
+
+    /* Single blocks, alternating so consecutive ones differ. */
+    .shipwall     { --rx:-26px; --ry:20px; }
+    .cmp-wrap     { --rx: 26px; --ry:20px; }
+    .buildstory   { --rx:-24px; --ry:20px; }
+    .guarantee    { --rx: 24px; --ry:20px; }
+    .faq-list     { --rx:-22px; --ry:22px; }
+    .contact-card { --rx: 22px; --ry:22px; }
+
+    /* Headings lead their section, from the left, so the eye lands on the
+       heading a beat before the body arrives. */
+    .section-head { --rx:-18px; --ry:14px; }
+
+    /* Sections and the hero proof: vertical only. */
+    body > section { --rx:0; --ry:30px; }
+    .hero-proof    { --rx:0; --ry:0; --rs:1; --rb:0px; }
     @media (prefers-reduced-motion: reduce){
       .js .rise, .js .reveal, .js main#work article.product,
       .js .rise.in, .js .reveal.in, .js main#work article.product.in {
