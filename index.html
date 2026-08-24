@@ -1904,11 +1904,34 @@
     .book { margin: var(--s6) 0 var(--s5); }
     .book-h { font-family: var(--display); font-size: clamp(1.1rem, 3.4vw, 1.5rem);
       margin: 0 0 var(--s3); text-align: center; }
+    /* ⚠️ THE EMBED IS LIGHT-THEMED AND WE ARE NOT, so the slot has to supply a
+       light surface. Measured on the live widget: body background is
+       rgba(0,0,0,0) — fully TRANSPARENT — and its text colour is rgb(0,0,0).
+       Over our dark card that rendered black-on-near-black: the "20-minute call
+       with Matthew Kerr" heading, the duration and the "Phone call" line were
+       all but invisible, while the slot buttons stayed legible because Google
+       paints those a solid white itself. The result read as a broken embed
+       rather than a themed one. It is cross-origin, so we cannot restyle the
+       inside — the only lever is what sits behind it.
+
+       ⚠️ AND THE HEIGHT WAS CLIPPING THE LAST ROW. `overflow-y: hidden` plus a
+       760px ceiling against a widget that needs more is a guaranteed cut, and it
+       cut the bottom row of times off. Measured natural heights, at four widths:
+
+           1100px wide -> 1008px tall
+            820px wide -> 1023px
+            560px wide -> 1625px   <- reflows to a stacked layout
+            390px wide -> 1652px
+
+       So one height cannot serve both layouts; the phone case needs roughly
+       60% more. Values below carry headroom over the measurement rather than
+       matching it exactly, because the widget grows with the length of a day's
+       slot list and ours is a four-hour window that may widen. */
     .book-slot { width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden;
       border-radius: 14px; border: 1px solid var(--line-2);
-      background: color-mix(in srgb, var(--surface) 60%, transparent); }
+      background: #fff; }
     .book-slot > iframe { display: block; width: 100%; min-width: 300px;
-      height: clamp(560px, 78vh, 760px); border: 0; }
+      height: 1060px; border: 0; background: #fff; }
     /* On phones the card's 40px side padding was starving the calendar: 260px
        of usable width at a 390px viewport, under the 300px the embed needs, so
        it scrolled inside its own slot. The slot now spans the card's padding as
@@ -1926,6 +1949,10 @@
       .book-slot { margin-left: -40px; margin-right: -40px;
         width: calc(100% + 80px); max-width: calc(100% + 80px);
         border-radius: 0; border-left: 0; border-right: 0; }
+      /* The embed reflows to a stacked layout below ~560px and grows from
+         ~1023px to ~1652px. Measured, not assumed — the desktop height here
+         would clip roughly a third of the times. */
+      .book-slot > iframe { height: 1700px; }
     }
     .book-fallback { margin: 0; padding: var(--s4); text-align: center;
       font-size: 0.98rem; line-height: 1.6; }
@@ -2670,7 +2697,14 @@
           </div>
           <!-- Hidden until the calendar actually exists: "pick a slot" describes
                a widget that is not on the page while the fallback is showing. -->
-          <p class="book-micro" id="bookMicro" hidden>Pick a slot and it is confirmed by email. Nothing else to fill in.</p>
+          <!-- ⚠️ THIS SAID "Nothing else to fill in" AND THAT WAS FALSE. Google's
+               booking form is configured to collect First name, Last name, Email
+               address and Phone number — read off the schedule's own settings, not
+               guessed. A visitor told there is nothing to fill in, who then meets a
+               four-field form, has been misled at the exact moment they were about
+               to commit. The intent behind the sentence was right — you do not ALSO
+               need the form below — so that is what it says now. -->
+          <p class="book-micro" id="bookMicro" hidden>Pick a slot, add your name and email, and Google confirms it by email. You do not need the form below as well.</p>
         </div>
         <form class="cform" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="e0740bc7-8ad1-4673-8f93-f565532aa47f">
