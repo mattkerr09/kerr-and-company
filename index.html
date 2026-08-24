@@ -982,7 +982,13 @@
        the one the visitor came to do. */
     .cform .cf-optin { display: flex; gap: .6rem; align-items: flex-start; margin-top: var(--s3);
       font-size: 0.78rem; color: var(--ink-4); line-height: 1.5; text-align: left; cursor: pointer; }
-    .cform .cf-optin input { flex: 0 0 auto; margin-top: .18rem; accent-color: var(--accent); cursor: pointer; }
+    /* WIDTH IS EXPLICIT, and it has to be. `.cform input, .cform select,
+       .cform textarea { width: 100% }` sits above this and applies to the
+       checkbox too, so `flex: 0 0 auto` alone left it 543px wide and 13px tall —
+       a full-width sliver that pushed the label to 290px. flex-basis does not
+       override an inherited width. Caught in the browser, not in review. */
+    .cform .cf-optin input { flex: 0 0 auto; width: 1.15rem; height: 1.15rem;
+      margin: .1rem 0 0; accent-color: var(--accent); cursor: pointer; }
     .cform .cf-optin input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .form-status { display: none; margin-top: 1rem; padding: var(--s4) var(--s4); border-radius: 10px; font-size: 0.88rem; line-height: 1.55; }
     .form-status.ok { display: block; background: rgba(52,168,110,0.12); border: 1px solid rgba(52,168,110,0.4); color: #7fdcae; }
