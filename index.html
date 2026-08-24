@@ -990,6 +990,11 @@
     .cform .cf-optin input { flex: 0 0 auto; width: 1.15rem; height: 1.15rem;
       margin: .1rem 0 0; accent-color: var(--accent); cursor: pointer; }
     .cform .cf-optin input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    /* The text must CLAIM the remaining space. Without this the span sized to
+       70px and wrapped into a 290px-tall ribbon beside an 18px box — flex items
+       shrink below their content unless told not to, and `min-width: 0` is the
+       half everyone forgets. */
+    .cform .cf-optin span { flex: 1 1 auto; min-width: 0; }
     .form-status { display: none; margin-top: 1rem; padding: var(--s4) var(--s4); border-radius: 10px; font-size: 0.88rem; line-height: 1.55; }
     .form-status.ok { display: block; background: rgba(52,168,110,0.12); border: 1px solid rgba(52,168,110,0.4); color: #7fdcae; }
     .form-status.err { display: block; background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.35); color: #ff9d9d; }
