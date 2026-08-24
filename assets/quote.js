@@ -51,9 +51,18 @@
         { key: "pages", label: "How many pages", opts: [
           { v: "s", t: "1–3" }, { v: "b", t: "5–8" }, { v: "g", t: "9+" } ] },
         { key: "tool", label: "Anything else", multi: true, opts: [
-          { v: "tool", t: "A custom AI tool" }, { v: "care", t: "Ongoing care plan" } ] }
+          { v: "tool", t: "A custom AI tool" }, { v: "care", t: "Ongoing care plan" },
+          { v: "monthly", t: "Pay monthly instead" } ] }
       ],
       pick: function (s) {
+        /* Monthly is only offered on the Starter build — it is a way to pay for
+           that one, not a discount route into the bigger tiers. Saying so here
+           beats letting the widget quote a monthly figure we do not sell. */
+        if (s.tool.indexOf("monthly") > -1 && s.pages === "s" && s.tool.indexOf("tool") < 0)
+          return { name: "Own It Monthly", price: 149, per: "mo", lead: 5,
+            scope: ["The Starter Site build", "Yours outright at month 12",
+                    "Buy out any time at the remaining balance",
+                    "$1,788 over a year vs $999 up front"] };
         if (s.tool.indexOf("tool") > -1 || s.pages === "g") return WEB.growth;
         if (s.pages === "b") return WEB.business;
         return WEB.starter;

@@ -842,6 +842,22 @@
        same auto-fit pattern as .pkg-grid so it cannot disagree with it at any
        width. Deliberately plain: this is the block a buyer reads to find the
        catch, and it should look like terms rather than marketing. */
+    /* The monthly option. Visually a band rather than a card, so it reads as an
+       alternative to the grid above rather than another item in it. */
+    .ownit { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--s5); margin: var(--s6) 0 0; padding: var(--s5);
+      border: 1px solid var(--line-2); border-radius: 16px;
+      background: color-mix(in srgb, var(--surface) 70%, transparent); }
+    .ownit-eyebrow { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-4); margin-bottom: var(--s2); }
+    .ownit h3 { font-family: var(--sans); font-size: 1.25rem; margin: 0 0 var(--s3); }
+    .ownit p { font-size: .92rem; line-height: 1.65; color: var(--ink-2); margin: 0 0 var(--s3); }
+    .ownit-honest { color: var(--ink-3); font-size: .87rem; }
+    .ownit-points { list-style: none; margin: 0; padding: 0; align-self: center; }
+    .ownit-points li { font-size: .9rem; line-height: 1.6; color: var(--ink-2);
+      padding: var(--s2) 0 var(--s2) var(--s4); position: relative; }
+    .ownit-points li::before { content: "—"; position: absolute; left: 0; color: var(--ink-4); }
+    .ownit-points strong { color: var(--ink-1); }
     .terms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: var(--s5); margin: var(--s6) 0 0; }
     .terms-col h3 { font-family: var(--sans); font-size: 1rem; margin: 0 0 var(--s3);
@@ -2301,14 +2317,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Website cost</td><td class="us">From $999</td><td>$8,000–$15,000</td><td>$20–$50/mo + your time</td><td>$67–$699/mo, ongoing</td><td>$300–$1,000</td></tr>
+            <tr><td>Website cost</td><td class="us">From $999 once, or $149/mo</td><td>$8,000–$15,000</td><td>$20–$50/mo + your time</td><td>$67–$699/mo, ongoing</td><td>$300–$1,000</td></tr>
             <tr><td>Time to live</td><td class="us">Days</td><td>4–8 weeks</td><td>Weeks of your evenings</td><td>Days to weeks</td><td>3–8 weeks, timezone lag</td></tr>
             <tr><td>Pricing shown up front</td><td class="us">Yes — published</td><td>Rarely — "contact us"</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
             <tr><td>Who does the work</td><td class="us">The founder, directly</td><td>Account manager → junior</td><td>You</td><td>Agency team</td><td>Rotating contractors</td></tr>
             <tr><td>Custom AI tools</td><td class="us">Included option</td><td>Rarely offered</td><td>No</td><td>Not offered</td><td>No</td></tr>
             <tr><td>SEO &amp; local search</td><td class="us">Built in</td><td>Separate retainer</td><td>Plugin, DIY</td><td>Usually bundled</td><td>Usually none</td></tr>
             <tr><td>Ongoing care plan</td><td class="us">From $199/mo</td><td>$150–$500/mo</td><td>Self-managed</td><td>Included — and required</td><td>Usually none</td></tr>
-          <tr><td>If you stop paying</td><td class="us">You keep the site — code, content and domain are yours</td><td>You keep the site</td><td>Site goes offline</td><td>Not stated on their pricing pages</td><td>You keep the site</td></tr></tbody>
+          <tr><td>If you stop paying</td><td class="us">You keep it. Bought up front it is yours from day one; on monthly it is yours at month 12, or sooner if you settle the balance</td><td>You keep the site</td><td>Site goes offline</td><td>Not stated on their pricing pages</td><td>You keep the site</td></tr></tbody>
         </table>
       </div>
       <p class="cmp-note">Comparison figures are typical ranges for small-business web projects, not quotes from any specific company — your project always gets its own fixed quote. Agency build and maintenance-retainer ranges are from <a href="https://www.digitalapplied.com/blog/website-development-cost-2026-complete-pricing-data" rel="nofollow noopener" target="_blank">Digital Applied’s 2026 pricing data</a> (published 8 April 2026, read 18 August 2026), which puts a boutique agency build at $8,000–$15,000 and a small-business maintenance retainer at $1,800–$6,000 a year. Our $199/mo sits inside that range rather than under it: the difference is what the plan includes and who does the work, not the price.</p>
@@ -2579,6 +2595,38 @@
            confirmed, not a default I chose — copy included, photos and logo yours,
            three rounds, 50/50 negotiable. Do not soften any of them without asking
            him: they are the terms, not marketing. -->
+      <!-- ⚠️ DELIBERATELY NOT A SIXTH CARD IN THE GRID ABOVE. The research on
+           tiered pricing is consistent that three is the sweet spot and past four
+           you get decision paralysis; the grid is already at five. This is not a
+           different product, it is a different way to pay for the same build, and
+           presenting it as a peer tier would both add a sixth choice and imply the
+           site you get is different. It is not.
+
+           The numbers are stated against each other on purpose: $1,788 total
+           versus $999 up front. Hiding that monthly costs more would be the exact
+           move this page spends three columns arguing against. -->
+      <div class="ownit reveal">
+        <div class="ownit-main">
+          <div class="ownit-eyebrow">Or pay monthly</div>
+          <h3>Own It Monthly — <strong>$149/mo</strong></h3>
+          <p>The same Starter Site build, paid over twelve months. At month twelve
+          the site is <strong>yours outright</strong> — code, content and domain —
+          and the payments stop. Hosting, updates and edits are included the whole
+          time.</p>
+          <p class="ownit-honest">Paying up front is cheaper: <strong>$999 once</strong>
+          against <strong>$1,788</strong> over a year. This exists so that price is not
+          the reason you wait, not because it is the better deal.</p>
+        </div>
+        <ul class="ownit-points">
+          <li><strong>You own it at month 12.</strong> Not a licence, not a lease.</li>
+          <li><strong>Buy out whenever you like.</strong> Pay the remaining balance and
+          it is yours that day.</li>
+          <li><strong>Nobody else here does this.</strong> Local subscription studios
+          run $67–$699/mo with no end date and no ownership stated on their pricing
+          pages — checked 2026-08-24 on their own sites.</li>
+        </ul>
+      </div>
+
       <div class="terms-grid reveal">
         <div class="terms-col">
           <h3>On every project, whatever the size</h3>
