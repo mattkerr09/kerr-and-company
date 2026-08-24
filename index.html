@@ -838,6 +838,19 @@
 
     /* PACKAGES */
     #packages { border-top: 1px solid var(--line); background: var(--bg-2); }
+    /* Terms + price drivers. Three equal columns on desktop, stacked on phones —
+       same auto-fit pattern as .pkg-grid so it cannot disagree with it at any
+       width. Deliberately plain: this is the block a buyer reads to find the
+       catch, and it should look like terms rather than marketing. */
+    .terms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--s5); margin: var(--s6) 0 0; }
+    .terms-col h3 { font-family: var(--sans); font-size: 1rem; margin: 0 0 var(--s3);
+      color: var(--ink-1); }
+    .terms-col ul { list-style: none; margin: 0; padding: 0; }
+    .terms-col li { font-size: .9rem; line-height: 1.6; color: var(--ink-2);
+      padding: var(--s2) 0 var(--s2) var(--s4); position: relative; }
+    .terms-col li::before { content: "—"; position: absolute; left: 0; color: var(--ink-4); }
+    .terms-col strong { color: var(--ink-1); font-weight: 600; }
     .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: var(--s4); }
     .pkg { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: var(--s7) var(--s6); transition: border-color .2s, transform .2s; position: relative; }
     .pkg:hover { border-color: var(--line-2); transform: translateY(-3px); }
@@ -2474,10 +2487,25 @@
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow" style="color:var(--ink-4);">Pricing</div>
-        <h2 class="section-title">Websites, priced up front</h2>
-        <p class="section-intro">Fixed scope, fixed price — you get a quote before any work begins, never an hourly meter. Every build can attach a monthly care plan.</p>
+        <h2 class="section-title">Priced up front, in writing</h2>
+        <p class="section-intro">Fixed scope, fixed price, agreed before any work begins — never an hourly meter. Not sure what you need? Start with the audit and find out what a fix is worth before you spend on one.</p>
       </div>
       <div class="pkg-grid reveal">
+
+        <div class="pkg">
+          <span class="pkg-tag">Start here</span>
+          <h3>Site &amp; Business Audit</h3>
+          <div class="price">$499 <small>one-off</small></div>
+          <div class="meta">written report · 3 business days</div>
+          <p class="desc">Find out what is actually costing you customers before you pay anyone to change it. Run through <a href="https://docketseo.app" rel="noopener">Docket</a> &mdash; our own audit software &mdash; plus a human review of your copy, offer and ads.</p>
+          <ul class="feat">
+            <li>Technical + SEO scan, every page</li>
+            <li>Copy, conversion and ads review</li>
+            <li>Ranked fix list: cost, effort, impact</li>
+            <li>Yours to keep, or hand to anyone</li>
+          </ul>
+          <a href="#contact" class="pkg-cta line">Get the report</a>
+        </div>
 
         <div class="pkg">
           <h3>Starter Site</h3>
@@ -2534,6 +2562,52 @@
 
       </div>
       <p class="pricing-note"><strong>Introductory pricing</strong> while we build our West Michigan client roster — locked in for clients who start now. Prices are starting points and depend on scope; you always get a fixed quote before any work begins.</p>
+
+      <!-- ⚠️ THE SINGLE BIGGEST SOURCE OF SCOPE DISPUTES IS WHAT NOBODY WROTE DOWN.
+           Matthew's own words for why this block exists: "if you told me to make a
+           website and saas product for 2500 that could mean alot of things". A price
+           without a boundary is not a price. Every line below is a commitment he has
+           confirmed, not a default I chose — copy included, photos and logo yours,
+           three rounds, 50/50 negotiable. Do not soften any of them without asking
+           him: they are the terms, not marketing. -->
+      <div class="terms-grid reveal">
+        <div class="terms-col">
+          <h3>On every project, whatever the size</h3>
+          <ul>
+            <li><strong>We write the copy.</strong> You do not hand us finished text and hope.</li>
+            <li><strong>Three rounds of revisions</strong> are included. Anything after that is quoted before a minute of work happens.</li>
+            <li><strong>50% to start, 50% on launch.</strong> Negotiable on larger builds &mdash; ask.</li>
+            <li><strong>A fixed price and a date, in writing</strong>, before you commit. No hourly meter, ever.</li>
+            <li><strong>You own all of it</strong> at the end: code, content, domain, accounts. No lock-in.</li>
+          </ul>
+        </div>
+        <div class="terms-col">
+          <h3>What the price does <em>not</em> include</h3>
+          <ul>
+            <li><strong>Photography and logo design.</strong> You supply images and brand assets, or we use stock. Logo work is quoted separately.</li>
+            <li><strong>Domain and third-party fees</strong> &mdash; your domain, your ad spend, any paid app you ask us to connect.</li>
+            <li><strong>Hosting after launch</strong>, unless you take a care plan. Static sites can be handed to you to host free.</li>
+            <li><strong>Regulated copy</strong> &mdash; medical, legal or financial claims that need a specialist to sign off.</li>
+          </ul>
+        </div>
+        <div class="terms-col">
+          <h3>What moves the price</h3>
+          <ul>
+            <li><strong>How many pages</strong> &mdash; the main driver, and the one you control.</li>
+            <li><strong>Whether you need a custom tool</strong>, and how many of your existing systems it has to talk to. One integration is not four.</li>
+            <li><strong>Whether the content exists.</strong> A business with photos, a price list and a clear offer is faster to build for.</li>
+            <li><strong>Your deadline.</strong> Normal turnarounds are already days; compressing further costs more.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pricing-note" style="margin-top:var(--s5);">
+        Two things that are separate builds, because pretending otherwise is how quotes go wrong:
+        a <strong>website</strong> and a <strong>custom tool</strong> are priced apart. A 6-page site
+        with copywriting is $2,499. The same site plus a working booking or quoting tool is $4,999,
+        because the tool is software that has to be built, connected and maintained &mdash; not a page.
+        If you only want the tool and already have a site, that starts at $2,500 on its own.
+      </p>
       <p class="pricing-note" style="margin-top:var(--s2);">Building a product rather than a website? <a href="/studio.html" style="color:var(--accent-2);font-weight:600;text-decoration:none;">See studio engagements →</a> — AI build audits, 0→1 product sprints, and agent &amp; automation builds.</p>
 
       <div class="guarantee reveal">
@@ -2689,10 +2763,21 @@
         <div class="book" id="book">
           <h3 class="book-h">Pick a time that works</h3>
           <div class="book-slot" id="bookSlot">
+            <!-- ⚠️ THIS COPY HAS TO BE TRUE FOR A READER WHO NEVER SEES THE WIDGET.
+                 It used to say "Online booking is being switched on", which was
+                 true while BOOKING_URL was empty and became FALSE the moment
+                 booking went live: JS replaces this node with the calendar, so
+                 the only person still reading it is someone whose JavaScript did
+                 not run — and they were being told the feature does not exist
+                 yet. The repo's own ads-readiness suite caught it, failing with
+                 "BOOKING_URL is set but the fallback copy is still in the HTML".
+                 Now it describes the real situation: the calendar needs JS, and
+                 here is what to do instead. True in both worlds. -->
             <p class="book-fallback">
-              Online booking is being switched on. Until it is, email
+              The booking calendar needs JavaScript to load. If you are reading this,
+              it did not run &mdash; email
               <a href="mailto:matthew@kerrandcompanyholdings.com?subject=20-minute%20call">matthew@kerrandcompanyholdings.com</a>
-              or use the form below and Matthew will send you times.
+              or use the form below and Matthew will send you times the same day.
             </p>
           </div>
           <!-- Hidden until the calendar actually exists: "pick a slot" describes
