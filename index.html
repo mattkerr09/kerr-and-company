@@ -2994,6 +2994,10 @@
       try { return crypto.randomUUID(); }
       catch (e) { return 'kc-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10); }
     }
+    /* Exposed, not copied. The Calendly booking listener further down needs the
+       same generator, and a second implementation of "make a dedupe id" is two
+       things that can drift into counting one conversion twice. */
+    window.kcEventId = kcEventId;
 
     (function () {
       if (!META_PIXEL_ID) return;              // dark until an ID exists
@@ -3264,6 +3268,32 @@ var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min?hide_
 
   var micro = document.getElementById('bookMicro');
   if (micro) micro.hidden = false;          // only true once a calendar is there
+
+    /* A BOOKED CALL WAS INVISIBLE TO META. The contact form fires Lead; booking a
+       meeting fired nothing at all — so delivery was being optimised toward people
+       who fill in a form over people who put a call in the diary, which is the
+       stronger buying signal by a distance.
+
+       ORIGIN IS CHECKED, and that is not decoration. A message listener that
+       trusts any sender lets any embedded frame or browser extension fabricate a
+       conversion, and a fabricated conversion is worse than a missing one: it
+       teaches the campaign to chase whatever produced it.
+
+       ONLY event_scheduled COUNTS. Calendly also posts profile_page_viewed and
+       date_and_time_selected. Counting those would tell Meta that opening the
+       widget is worth as much as booking — the same mistake as firing Lead on
+       click instead of on the reply landing. */
+    window.addEventListener('message', function (e) {
+      if (!/^https:\/\/([a-z0-9-]+\.)*calendly\.com$/.test(e.origin)) return;
+      var d = e.data;
+      if (!d || d.event !== 'calendly.event_scheduled') return;
+      if (window.fbq && typeof window.kcEventId === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Booked call',
+          content_category: 'calendly'
+        }, { eventID: window.kcEventId() });
+      }
+    });
 })();
 </script>
 
