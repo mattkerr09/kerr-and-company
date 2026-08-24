@@ -71,7 +71,7 @@
       pick: function (s) {
         if (s.depth === "fix") return { name: "Audit + Fix", price: 2500, lead: 10, from: true,
           scope: ["Everything in the report", "We implement the ranked fixes", "The audit fee comes off the build"] };
-        return { name: "Site & Business Audit", price: 499, lead: 3,
+        return { name: "Site & Business Audit", price: 750, lead: 3,
           scope: ["Technical + SEO scan, every page", "Copy, conversion and ads review", "Ranked fix list: cost, effort, impact"] };
       },
       recur: function () { return null; }
@@ -91,10 +91,10 @@
           scope: ["1 week · the plan is yours", "What to automate, in order", "No obligation to build with us"] };
         if (s.size === "multi") return { name: "Automation System", price: 7500, lead: 20, from: true,
           scope: ["Multi-step, custom build", "Connected to your existing tools", "Tested against your real workflow"] };
-        return { name: "Single Automation", price: 2500, lead: 10, from: true,
+        return { name: "Single Automation", price: 3500, lead: 10, from: true,
           scope: ["Built + integrated with your tools", "Tested with your real workflow", "Training + documentation"] };
       },
-      recur: function (s) { return s.add.indexOf("managed") > -1 ? { label: "managed", amount: 300 } : null; }
+      recur: function (s) { return s.add.indexOf("managed") > -1 ? { label: "managed", amount: 400 } : null; }
     },
 
     seo: {
