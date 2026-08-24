@@ -81,7 +81,7 @@
         if (s.depth === "fix") return { name: "Audit + Fix", price: 2500, lead: 10, from: true,
           scope: ["Everything in the report", "We implement the ranked fixes", "The audit fee comes off the build"] };
         return { name: "Site & Business Audit", price: 750, lead: 3,
-          scope: ["Technical + SEO scan, every page", "Copy, conversion and ads review", "Ranked fix list: cost, effort, impact"] };
+          scope: ["190+ checks on every page", "Your copy, offer and ads reviewed", "Ranked by impact vs effort, with fixes"] };
       },
       recur: function () { return null; }
     },

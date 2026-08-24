@@ -354,4 +354,48 @@ test.describe('claims that must never come back', () => {
     }
     expect(hits, 'attributed testimonial found').toEqual([]);
   });
+
+  /**
+   * The audit must not advertise the tool it is run with.
+   *
+   * The $750 Site & Business Audit card read "Run through <a>Docket</a> — our
+   * own audit software", linking a $750 prospect straight to a $200 product
+   * that does the scanning half themselves. That is not a disclosure problem,
+   * it is a pricing leak: the card was routing its own buyers to the cheaper
+   * substitute, from inside the sentence meant to justify the price.
+   *
+   * Docket stays on the page in the PORTFOLIO — it is real shipped work and
+   * proof of competence — so this cannot be a whole-page needle. It is scoped
+   * to the section that sells services, and only there.
+   *
+   * What justifies $750 is what the tool does NOT do: a person reading the
+   * copy, offer and ads, and a ranked list costed against effort.
+   */
+  test('the services we sell never name or link the software behind them', async () => {
+    const html = await body('/');
+
+    // The pricing section, from its heading to the end of that section.
+    const seg = /Priced up front[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    expect(seg.length, 'pricing section not found — has the heading changed?')
+      .toBeGreaterThan(500);
+
+    const leaks = [
+      /docketseo\.app/i,
+      /\bDocket\b/,
+      /our own (?:audit )?software/i,
+    ];
+
+    // The detector must be able to see: run it against the exact string that
+    // shipped, or this passes because it went blind rather than because the
+    // leak is gone.
+    const SHIPPED = 'Run through <a href="https://docketseo.app" rel="noopener">Docket</a> &mdash; our own audit software &mdash; plus a human review';
+    const blind = leaks.filter(re => !re.test(SHIPPED));
+    expect(blind.map(String), 'detector no longer matches the copy it was written for')
+      .toEqual([]);
+
+    const found = leaks.filter(re => re.test(seg)).map(String);
+    expect(found, 'the pricing section names the software behind a service')
+      .toEqual([]);
+  });
+
 });
