@@ -1940,11 +1940,22 @@
        60% more. Values below carry headroom over the measurement rather than
        matching it exactly, because the widget grows with the length of a day's
        slot list and ours is a four-hour window that may widen. */
-    .book-slot { width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden;
+    /* ⚠️ RETUNED FOR CALENDLY, 2026-08-24 — the previous values were measured
+       against Google's appointment embed and do not transfer. That one was a
+       bare <iframe> we sized ourselves (1060px desktop / 1700px phone, found by
+       measuring its natural height at four widths). Calendly injects its own
+       iframe inside .calendly-inline-widget and sizes itself, so a fixed height
+       on our side would fight it — and `overflow-y: hidden` against a widget
+       that manages its own scrolling is how the last embed lost its bottom row.
+
+       The white background stays for the same reason it was added: the embed is
+       light-themed and this page is dark, and we cannot restyle across origins. */
+    .book-slot { width: 100%; max-width: 100%; overflow-x: auto;
       border-radius: 14px; border: 1px solid var(--line-2);
       background: #fff; }
+    .book-slot .calendly-inline-widget { width: 100%; }
     .book-slot > iframe { display: block; width: 100%; min-width: 300px;
-      height: 1060px; border: 0; background: #fff; }
+      border: 0; background: #fff; }
     /* On phones the card's 40px side padding was starving the calendar: 260px
        of usable width at a 390px viewport, under the 300px the embed needs, so
        it scrolled inside its own slot. The slot now spans the card's padding as
@@ -1962,10 +1973,8 @@
       .book-slot { margin-left: -40px; margin-right: -40px;
         width: calc(100% + 80px); max-width: calc(100% + 80px);
         border-radius: 0; border-left: 0; border-right: 0; }
-      /* The embed reflows to a stacked layout below ~560px and grows from
-         ~1023px to ~1652px. Measured, not assumed — the desktop height here
-         would clip roughly a third of the times. */
-      .book-slot > iframe { height: 1700px; }
+      /* No phone-specific height any more: that 1700px was Google's stacked
+         layout, measured at 390px wide. Calendly sizes its own frame. */
     }
     .book-fallback { margin: 0; padding: var(--s4); text-align: center;
       font-size: 0.98rem; line-height: 1.6; }
@@ -3128,39 +3137,60 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
 
 
 <script>
-/* Booking embed.
+/* BOOKING — Calendly since 2026-08-24.
  *
- * ONE constant. Empty means "not switched on yet", and the HTML fallback stays
- * exactly as served — no iframe is created at all, so there is nothing to break
- * and nothing that can look like a working booking form.
+ * WAS a Google Calendar appointment schedule. Matthew moved to Calendly and
+ * supplied the embed. Swapped rather than added: two booking widgets on one
+ * page is two sources of truth for when someone can be called.
  *
- * TIMEZONE PRECONDITION: MET, verified 2026-08-19 against the live API.
- * admin@kerrandcompanyholdings.com reports timeZone America/Detroit -- Eastern,
- * and it had been set that way all along.
+ * ⚠️ THE SLUG SAYS 30min AND THE EVENT IS 20 MINUTES. Calendly keeps the
+ * original slug when an event is renamed, so the URL is not evidence of
+ * duration. Rendered the live page before touching any copy: it reads
+ * "20 Minute Meeting with Matthew Kerr / 20 min". The site's five
+ * "20-minute call" strings are therefore CORRECT and were left alone — had I
+ * trusted the URL I would have rewritten five true sentences into false ones.
  *
- * The earlier "calendar is UTC" note in this file was WRONG, and the mistake is
- * worth keeping written down because it is easy to repeat: Google serialises
- * event times as RFC3339 UTC (a trailing Z) no matter what the calendar's
- * display timezone is. Reading Z off an event and concluding "the calendar is
- * UTC" measures the wire format, not the setting. The calendar's own timeZone
- * field is the only thing that answers the question -- list_calendars, not
- * list_events.
+ * ⚠️ THIS ONE LOADS A THIRD-PARTY SCRIPT, WHICH THE IFRAME DID NOT.
+ * assets.calendly.com executes on the page and Calendly sets its own cookies.
+ * /legal/privacy.html enumerates every third party by name, so it is updated in
+ * THIS commit — the ordering rule this portfolio does not bend. (The Google
+ * Calendar embed it replaces was never disclosed there at all; that gap closes
+ * with the same edit.)
  *
- * So this is now waiting on ONE thing only: the public appointment-schedule URL,
- * which is generated when the schedule is created and cannot be derived here.
+ * Kept from the old implementation: the widget is injected rather than inlined,
+ * so if the script does not load the email fallback stays exactly as served and
+ * nothing claims to be a booking form that is not one.
  */
-var BOOKING_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3YNfXPh-XPQpbBfv4Dp99hTWFye3fV0TKvledLBSzDsEWnMl9AcWb0dgQ8dnmBd57eeR9s2ofc';
+var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min?hide_event_type_details=1';
 
 (function () {
   if (!BOOKING_URL) return;                  // fallback stays; nothing to do
   var slot = document.getElementById('bookSlot');
   if (!slot) return;
-  var f = document.createElement('iframe');
-  f.src = BOOKING_URL;
-  f.title = 'Book a 20-minute call with Matthew Kerr';
-  f.loading = 'lazy';
-  f.setAttribute('frameborder', '0');
-  slot.replaceChildren(f);
+
+  var box = document.createElement('div');
+  box.className = 'calendly-inline-widget';
+  box.setAttribute('data-url', BOOKING_URL);
+  box.style.minWidth = '320px';
+  box.style.height = '700px';
+  slot.replaceChildren(box);
+
+  var sc = document.createElement('script');
+  sc.src = 'https://assets.calendly.com/assets/external/widget.js';
+  sc.async = true;
+  /* If Calendly cannot be reached, put the fallback back rather than leaving an
+     empty 700px hole where a booking form should be. An absent widget with an
+     email address beats a silent blank box. */
+  sc.onerror = function () {
+    slot.innerHTML = '<p class="book-fallback">The booking calendar could not load. '
+      + 'Email <a href="mailto:matthew@kerrandcompanyholdings.com?subject=20-minute%20call">'
+      + 'matthew@kerrandcompanyholdings.com</a> or use the form below and Matthew will '
+      + 'send you times the same day.</p>';
+    var m = document.getElementById('bookMicro');
+    if (m) m.hidden = true;
+  };
+  document.head.appendChild(sc);
+
   var micro = document.getElementById('bookMicro');
   if (micro) micro.hidden = false;          // only true once a calendar is there
 })();
