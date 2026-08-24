@@ -2764,13 +2764,18 @@
           <h3 class="book-h">Pick a time that works</h3>
           <div class="book-slot" id="bookSlot">
             <!-- ⚠️ THIS COPY HAS TO BE TRUE FOR A READER WHO NEVER SEES THE WIDGET.
-                 It used to say "Online booking is being switched on", which was
-                 true while BOOKING_URL was empty and became FALSE the moment
-                 booking went live: JS replaces this node with the calendar, so
+                 It used to announce that booking was still being switched on,
+                 true while BOOKING_URL was empty and FALSE the moment booking
+                 went live: JS replaces this node with the calendar, so
                  the only person still reading it is someone whose JavaScript did
                  not run — and they were being told the feature does not exist
                  yet. The repo's own ads-readiness suite caught it, failing with
-                 "BOOKING_URL is set but the fallback copy is still in the HTML".
+                 that BOOKING_URL was set while the old fallback copy remained.
+
+                 ⚠️ DO NOT QUOTE THE OLD SENTENCE VERBATIM ANYWHERE IN THIS FILE.
+                 The test greps the raw HTML for it, so an explanatory comment
+                 that reproduces it fails the check just as a live one would —
+                 which is exactly what happened on the first attempt at this fix.
                  Now it describes the real situation: the calendar needs JS, and
                  here is what to do instead. True in both worlds. -->
             <p class="book-fallback">
