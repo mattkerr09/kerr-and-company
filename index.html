@@ -977,6 +977,13 @@
     .cform button:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 10px 26px rgba(250,250,248,0.4); }
     .cform button:disabled { opacity: 0.6; cursor: wait; transform: none; }
     .cform .micro { font-size: 0.78rem; color: var(--ink-4); text-align: center; margin-top: var(--s3); line-height: 1.55; }
+    /* Deliberately quieter than the submit button and deliberately not centred:
+       it is an aside to the enquiry, not a second call to action competing with
+       the one the visitor came to do. */
+    .cform .cf-optin { display: flex; gap: .6rem; align-items: flex-start; margin-top: var(--s3);
+      font-size: 0.78rem; color: var(--ink-4); line-height: 1.5; text-align: left; cursor: pointer; }
+    .cform .cf-optin input { flex: 0 0 auto; margin-top: .18rem; accent-color: var(--accent); cursor: pointer; }
+    .cform .cf-optin input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .form-status { display: none; margin-top: 1rem; padding: var(--s4) var(--s4); border-radius: 10px; font-size: 0.88rem; line-height: 1.55; }
     .form-status.ok { display: block; background: rgba(52,168,110,0.12); border: 1px solid rgba(52,168,110,0.4); color: #7fdcae; }
     .form-status.err { display: block; background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.35); color: #ff9d9d; }
@@ -2917,6 +2924,18 @@
               placeholder="A link to your current site, a rough deadline, what's not working now — whatever helps. Or leave it blank and we'll sort it out on the call."></textarea>
           </div>
 
+
+          <!-- UNCHECKED BY DEFAULT, and that is load-bearing rather than polite.
+               The line under this button promises "no sales sequence". A ticked
+               box would make that promise false for everyone who did not notice
+               it, on the page where the promise is made. Opt-in keeps both true:
+               submit the form and nothing happens to you; tick the box and you
+               asked for it. -->
+          <label class="cf-optin">
+            <input type="checkbox" id="cf-list" name="joinlist" value="yes">
+            <span>Email me when something changes in local search or ads that
+            would affect a business like mine. Occasional, and you can remove yourself any time.</span>
+          </label>
           <button type="submit" id="cf-submit">Send it →</button>
           <p class="micro">Four required fields, about 20 seconds — the notes are optional. No obligation and no sales sequence: you'll hear back from Matthew personally, usually same day.</p>
         </form>
@@ -3043,6 +3062,25 @@
                 content_name: 'Contact form',
                 content_category: (form.querySelector('[name=service]') || {}).value || 'unspecified'
               }, { eventID: kcEventId() });
+            }
+
+            /* The list join is SEPARATE from the enquiry and deliberately cannot
+               harm it. It runs only if the box was ticked, only after the enquiry
+               actually delivered, and its failure is swallowed: a subscriber is
+               worth something, a lost lead is worth far more, and an error here
+               must never turn a delivered enquiry into an error message.
+               Fire-and-forget on purpose — nothing waits on it. */
+            if (form.querySelector('#cf-list') && form.querySelector('#cf-list').checked) {
+              try {
+                fetch('https://kerr-subscribe.kerrco.workers.dev', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    email: (form.querySelector('[name=email]') || {}).value || '',
+                    source: 'builtbykerr-contact'
+                  })
+                }).catch(function () {});
+              } catch (e) {}
             }
             form.style.display = 'none';
             show('ok', "<strong>Got it — thank you.</strong><br>I'll reply personally within one business day.");
