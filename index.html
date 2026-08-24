@@ -3046,17 +3046,35 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
     });
   </script>
 
+<!-- Loaded SYNCHRONOUSLY and immediately before the block that reads it.
+     An inline script runs during parsing, so a deferred external would still
+     be pending when this one executes — the widget would find no pricing table
+     and delete itself on every load. Verified: with the tag at </body> the
+     homepage rendered no configurator at all. -->
+<script src="/assets/quote.js"></script>
 <script>
 (function(){
   // Tiers read from the SAME figures the cards render. One source: if a price
   // changes above, it changes here, and the site cannot quote two numbers for
   // one thing — which it has done three times before.
-  var T = {
-    starter:  {name:"Starter Site",       price:999,  lead:5,  scope:["Up to 3 pages, mobile-first","Lead form + click-to-call","On-page SEO + Google setup"]},
-    business: {name:"Business Site",      price:2499, lead:10, scope:["5–8 custom pages","Copywriting + on-page SEO","Local schema, reviews, analytics"]},
-    growth:   {name:"Growth Site + Tool", price:4999, lead:15, scope:["Everything in Business","One custom AI tool built for you","Tool hosted and maintained"]}
-  };
-  var CARE = 199;
+  /* ⚠️ THESE FIGURES ARE NOT DECLARED HERE ANY MORE, DELIBERATELY.
+     They used to be: this block carried its own 999 / 2,499 / 4,999 / 199 while
+     /assets/quote.js carried the same four numbers for the six service pages —
+     the site briefly held one price in two files, which is the exact bug that
+     has shipped here three times. The numbers now live in quote.js alone and
+     this widget reads them.
+
+     If quote.js does not load, this configurator REMOVES ITSELF rather than
+     rendering a stale figure. An absent quote costs a visitor a click; a
+     confidently wrong one costs the quote. */
+  var KC = window.KC_PRICING;
+  if (!KC || !KC.web) {
+    var dead = document.getElementById("quote");
+    if (dead) dead.remove();
+    return;
+  }
+  var T = KC.web;
+  var CARE = KC.care;
   var state = {pages:3, tool:false, care:false};
   var $ = function(id){ return document.getElementById(id); };
   function pick(){

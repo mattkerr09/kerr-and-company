@@ -22,6 +22,27 @@
 (function () {
   "use strict";
 
+  /* ⚠️ THE WEBSITE TIERS ARE HOISTED AND EXPOSED ON PURPOSE. index.html is a
+   * fully self-contained page with its own, nicer configurator, and when this
+   * file was first written that widget kept its OWN copy of 999 / 2,499 /
+   * 4,999 / 199 — so adding quote.js briefly made the site carry those numbers
+   * in TWO places, which is the precise failure this file exists to prevent. I
+   * created it in the same commit that argued against it.
+   *
+   * Rather than replace a better widget with a worse one, the numbers live here
+   * and the homepage reads them off window.KC_PRICING. If this file fails to
+   * load, that widget hides itself rather than rendering stale figures — an
+   * absent quote is recoverable, a confidently wrong one is not. */
+  var WEB = {
+    starter:  { name: "Starter Site", price: 999, lead: 5,
+                scope: ["Up to 3 pages, mobile-first", "Lead form + click-to-call", "On-page SEO + Google setup"] },
+    business: { name: "Business Site", price: 2499, lead: 10,
+                scope: ["5–8 custom pages", "Copywriting + on-page SEO", "Local schema, reviews, analytics"] },
+    growth:   { name: "Growth Site + Tool", price: 4999, lead: 15,
+                scope: ["Everything in Business", "One custom AI tool built for you", "Tool hosted and maintained"] }
+  };
+  var CARE = 199;
+
   var P = {
     websites: {
       title: "Price your site",
@@ -33,15 +54,11 @@
           { v: "tool", t: "A custom AI tool" }, { v: "care", t: "Ongoing care plan" } ] }
       ],
       pick: function (s) {
-        if (s.tool.indexOf("tool") > -1 || s.pages === "g")
-          return { name: "Growth Site + Tool", price: 4999, lead: 15,
-            scope: ["Everything in Business", "One custom AI tool built for you", "Tool hosted and maintained"] };
-        if (s.pages === "b") return { name: "Business Site", price: 2499, lead: 10,
-          scope: ["5–8 custom pages", "Copywriting + on-page SEO", "Local schema, reviews, analytics"] };
-        return { name: "Starter Site", price: 999, lead: 5,
-          scope: ["Up to 3 pages, mobile-first", "Lead form + click-to-call", "On-page SEO + Google setup"] };
+        if (s.tool.indexOf("tool") > -1 || s.pages === "g") return WEB.growth;
+        if (s.pages === "b") return WEB.business;
+        return WEB.starter;
       },
-      recur: function (s) { return s.tool.indexOf("care") > -1 ? { label: "care plan", amount: 199 } : null; }
+      recur: function (s) { return s.tool.indexOf("care") > -1 ? { label: "care plan", amount: CARE } : null; }
     },
 
     audit: {
@@ -164,6 +181,8 @@
       recur: function () { return null; }
     }
   };
+
+  window.KC_PRICING = { web: WEB, care: CARE };
 
   var money = function (n) { return "$" + n.toLocaleString(); };
 
