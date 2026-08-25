@@ -30,14 +30,27 @@ const NO_PIXEL = /\/legal\//;
 test.describe('meta pixel coverage', () => {
   test('every commercial page carries the pixel, and legal pages do not', async () => {
     const api = await request.newContext();
-    const home = await (await api.get(`https://${DOMAIN}/`)).text();
 
-    const paths = [...new Set([...home.matchAll(/href="(\/[^"#?]*)"/g)].map(m => m[1]))]
-      .filter(p => p.endsWith('.html') || p.endsWith('/'));
-    const urls = [`https://${DOMAIN}/`, ...paths.map(p => `https://${DOMAIN}${p}`)];
+    /* THE SITEMAP, NOT THE NAV — and the first version of this test got it wrong.
+     *
+     * Scraping the homepage's links finds 15 pages. The sitemap lists 19. The six
+     * article pages are reachable only from /articles/, so a nav scrape never sees
+     * them, and this test would have passed while six pages quietly lost their
+     * pixel. That is the identical blind spot the test exists to close, rebuilt
+     * inside the test — one source, believed because it was convenient.
+     *
+     * The sitemap is what we tell Google the site IS, so it is the right list to
+     * hold ourselves to: a page good enough to submit for indexing is a page good
+     * enough to measure. If the two ever disagree, the sitemap is the claim. */
+    const sm = await api.get(`https://${DOMAIN}/sitemap.xml`);
+    expect(sm.ok(), 'no sitemap — page discovery has no trustworthy source').toBeTruthy();
+    const urls = [...(await sm.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].trim());
 
-    expect(urls.length, 'discovered too few pages — the nav scrape probably broke, ' +
-      'and a test that checks nothing passes').toBeGreaterThan(8);
+    /* A floor tied to the real figure. An empty or truncated sitemap would
+       otherwise make this test pass by checking nothing, which is the failure
+       mode that looks most like success. */
+    expect(urls.length, 'sitemap returned too few pages — a test that checks ' +
+      'nothing reports success').toBeGreaterThanOrEqual(15);
 
     const missing: string[] = [];
     const unexpected: string[] = [];
