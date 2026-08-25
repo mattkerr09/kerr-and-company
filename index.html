@@ -3339,7 +3339,15 @@ var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min?hide_
       if (window.fbq && typeof window.kcEventId === 'function') {
         fbq('track', 'Lead', {
           content_name: 'Booked call',
-          content_category: 'calendly'
+          /* 'unspecified', not 'calendly'. content_category on the OTHER Lead
+             this page fires is the SERVICE the visitor picked — Website, SEO,
+             Ads, AI automation. Writing the booking TOOL into the same field
+             makes one column mean two things, and a report grouping Leads by
+             category then mixes service demand with tooling. Calendly does not
+             ask which service they want, so the honest value is the same
+             'unspecified' the form uses when nobody chose one. The channel is
+             already carried by content_name. */
+          content_category: 'unspecified'
         }, { eventID: window.kcEventId() });
       }
     });
