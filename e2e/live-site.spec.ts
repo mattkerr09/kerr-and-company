@@ -379,17 +379,44 @@ test.describe('claims that must never come back', () => {
     expect(seg.length, 'pricing section not found — has the heading changed?')
       .toBeGreaterThan(500);
 
+    /* BAN THE FAMILY, NOT THE INSTANCE.
+     *
+     * This gate first shipped listing only Docket, because Docket was the leak
+     * that was found. A ban written around the instances you found passes on the
+     * ones you did not — and there is nothing special about Docket here. The
+     * same sentence could just as easily have said the audit runs through Crisp,
+     * or that the SEO retainer is powered by Outlier, and this test would have
+     * waved it through while congratulating itself.
+     *
+     * So the rule is the family: NO product we own may be named or linked from
+     * the block that sells services. They are welcome in the portfolio block —
+     * that is proof of work — which is why this is scoped to the pricing
+     * section rather than the page.
+     *
+     * (Lesson from the Docket session, which removed five instances of a bug,
+     * banned those five, and found three more of the identical bug in the next
+     * pass — two in a file the first pass never opened.)
+     */
+    const OURS = ['Crisp', 'Docket', 'Outlier', 'AdPlaybook'];
+    const OUR_DOMAINS = ['crispvideo.app', 'docketseo.app', 'outlier.host', 'adplaybook.app'];
     const leaks = [
-      /docketseo\.app/i,
-      /\bDocket\b/,
+      ...OUR_DOMAINS.map(d => new RegExp(d.replace('.', '\\.'), 'i')),
+      ...OURS.map(n => new RegExp(`\\b${n}\\b`)),
       /our own (?:audit )?software/i,
+      /powered by (?:our|the) own/i,
     ];
 
     // The detector must be able to see: run it against the exact string that
     // shipped, or this passes because it went blind rather than because the
     // leak is gone.
+    /* Every needle must be shown to SEE. The real shipped sentence covers the
+       Docket ones; the rest get a synthetic line of the same shape, because a
+       needle for a leak that has not happened yet is exactly the needle most
+       likely to be silently wrong. */
     const SHIPPED = 'Run through <a href="https://docketseo.app" rel="noopener">Docket</a> &mdash; our own audit software &mdash; plus a human review';
-    const blind = leaks.filter(re => !re.test(SHIPPED));
+    const SYNTHETIC = 'Upscaled with Crisp, ranked by Outlier on outlier.host, ads drawn by AdPlaybook '
+      + 'at adplaybook.app, restored via crispvideo.app, powered by our own engine';
+    const blind = leaks.filter(re => !re.test(SHIPPED) && !re.test(SYNTHETIC));
     expect(blind.map(String), 'detector no longer matches the copy it was written for')
       .toEqual([]);
 
