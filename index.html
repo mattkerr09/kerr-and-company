@@ -3120,10 +3120,36 @@
         }
         btn.disabled = true; btn.textContent = 'Sending…';
         try {
+          /* A SUBJECT LINE THAT SAYS WHO AND WHAT, not "New inquiry" forty times.
+             Every enquiry arrived under an identical subject, so the inbox list
+             showed forty rows of the same sentence and the only way to tell a
+             roofer pricing a Starter Site from someone wanting an audit was to
+             open each one. The name and the service are already in the form;
+             putting them in the subject makes the list triageable at a glance
+             and makes a mail rule exact rather than approximate.
+
+             Built here rather than in the hidden field because a hidden value is
+             static and this one has to read what the person actually typed.
+             Falls back to the static subject if anything is missing — an enquiry
+             must never fail to send because its subject could not be composed. */
+          const fd = new FormData(form);
+          try {
+            const val = (n) => ((form.querySelector('[name=' + n + ']') || {}).value || '').trim();
+            const who = val('name');
+            const svcEl = form.querySelector('[name=service]');
+            const svc = svcEl && svcEl.selectedIndex > -1 && svcEl.options
+              ? (svcEl.options[svcEl.selectedIndex].text || '').trim()
+              : val('service');
+            const bits = ['builtbykerr'];
+            if (svc && !/^(choose|select|—|-)/i.test(svc)) bits.push(svc);
+            if (who) bits.push(who);
+            if (bits.length > 1) fd.set('subject', bits.join(' · '));
+          } catch (e) { /* keep the static subject */ }
+
           const res = await fetch(form.action, {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
-            body: new FormData(form)
+            body: fd
           });
           if (res.ok) {
             /* Lead fires HERE -- inside res.ok -- not on click and not on submit.
