@@ -16,6 +16,11 @@
   <meta name="theme-color" content="#07090e">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <!-- /favicon.ico as well as the SVG: Google shows a favicon beside the site
+         name in mobile results, and crawlers that do not read the SVG fall back to
+         the root .ico. Without one the result gets a generic globe, which reads as
+         less established than the competitors listed around it. -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
@@ -233,7 +238,13 @@
     .fl-area a { color:var(--ink-2); text-decoration:none; white-space:nowrap; }
     .fl-area a:hover { color:var(--ink); }
     .nav-phone { display:inline-flex; align-items:center; color:var(--ink-2); text-decoration:none;
-      font-size:.86rem; letter-spacing:-0.01em; margin-right:var(--s3); white-space:nowrap; }
+      font-size:.86rem; letter-spacing:-0.01em; margin-right:var(--s3); white-space:nowrap;
+      /* 44px, not 24. The repo's own WCAG 2.5.8 check caught this at 24 and it was
+         right to: a phone link is the one control on the page a person taps while
+         holding the phone one-handed, and 24px is the floor for "not a bug" rather
+         than a size anyone wants to hit. Apple's guideline is 44. The text stays
+         small; the target does not. */
+      min-height:44px; }
     .nav-phone:hover { color:var(--ink); }
     /* NOT hidden on mobile — that would be exactly backwards. A phone number
        exists to be tapped, the ask is to TEXT it, and the device that texts is the
@@ -3049,7 +3060,14 @@
      *      Meta for ad targeting is the textbook example of "sharing". That
      *      one is a legal representation, not a description.
      *
-     * The rewritten sections are in legal/privacy-pixel-revision.html. Apply
+     * APPLIED 2026-08-24, and the revision file has been deleted — it was a
+ * working document that served HTTP 200 with no robots tag while its own
+ * first line read "NOT LIVE, NOT LINKED, NOT INDEXED". A second, shorter,
+ * headingless privacy fragment being publicly indexable is worse than the
+ * mess it was written to prevent. All four contradicting claims are gone
+ * from legal/privacy.html and the pixel is disclosed there in section 1.
+ * Originally: apply the rewritten sections in the SAME COMMIT that sets
+ * META_PIXEL_ID. Apply
      * them in the SAME commit that sets this ID. e2e/ads-readiness.spec.ts
      * FAILS if the pixel is live while the policy still claims no trackers,
      * so this cannot ship half-done by forgetting.

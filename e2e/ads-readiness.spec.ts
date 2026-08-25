@@ -69,10 +69,10 @@ test('pixel and privacy policy agree', async () => {
     expect(id, 'pixel id should be digits only').toMatch(/^\d{8,25}$/);
     expect(deniesTrackers,
       'PIXEL IS LIVE but the policy still says the site runs no advertising trackers. ' +
-      'Apply legal/privacy-pixel-revision.html.').toBe(false);
+      'Update legal/privacy.html so it describes the tracking that is actually live.').toBe(false);
     expect(deniesCookies,
       'PIXEL IS LIVE but the policy still says the site sets no cookies. The pixel sets _fbp. ' +
-      'Apply legal/privacy-pixel-revision.html.').toBe(false);
+      'Update legal/privacy.html so it describes the tracking that is actually live.').toBe(false);
     expect(describesPixel, 'PIXEL IS LIVE but the policy never mentions the Meta pixel.').toBe(true);
     expect(namesFbp, 'PIXEL IS LIVE but the policy does not name the _fbp cookie it sets.').toBe(true);
     expect(hasOptOut, 'PIXEL IS LIVE but the policy offers no opt-out route. Meta requires one.').toBe(true);
