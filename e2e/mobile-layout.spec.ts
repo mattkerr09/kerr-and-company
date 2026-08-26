@@ -143,3 +143,46 @@ test.describe('mobile layout', () => {
     expect(caught, 'the collector cannot see an obviously undersized target').toContain('x — 14x14');
   });
 });
+
+/* ⚠️ A CLIPPED ELEMENT DOES NOT SCROLL SIDEWAYS.
+ *
+ * The header's "Contact" button — the primary CTA above the fold — was rendering
+ * 19px past the right edge on an iPhone SE and 4px past on an iPhone 14, and
+ * every check on this page said the layout was fine. `body{overflow-x:hidden}`
+ * makes scrollWidth == clientWidth, so the sideways-scroll assertion that guards
+ * the rest of this file cannot see it: the guard converts a visible overflow into
+ * an invisible amputation, with no scrollbar left to reveal what was cut.
+ *
+ * It also survived because 412px (Pixel) fits. Testing one Android width and a
+ * desktop width and calling it covered is how a bug lives on the two most common
+ * phone sizes in the US.
+ *
+ * So this measures the ELEMENT against the viewport, which is the only thing that
+ * can catch it, and does it at the widths where it actually broke.
+ */
+for (const [label, width] of [['320px', 320], ['iPhone SE', 375], ['iPhone 14', 390], ['Pixel', 412]] as const) {
+  test(`the header CTA is fully on screen at ${label}`, async ({ browser }) => {
+    const page = await browser.newPage({
+      viewport: { width, height: 800 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true,
+    });
+    await page.goto(`https://${DOMAIN}/`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+
+    const r = await page.evaluate(() => {
+      const vw = document.documentElement.clientWidth;
+      const cta = [...document.querySelectorAll('header a, nav a')]
+        .find(a => /contact/i.test((a as HTMLElement).innerText));
+      if (!cta) return null;
+      const b = cta.getBoundingClientRect();
+      return { vw, left: Math.round(b.left), right: Math.round(b.right), height: Math.round(b.height) };
+    });
+    await page.close();
+
+    expect(r, 'a Contact control must exist in the header').not.toBeNull();
+    expect(r!.right, `Contact ends at ${r!.right} against a ${r!.vw}px viewport`)
+      .toBeLessThanOrEqual(r!.vw);
+    expect(r!.left, 'Contact must not start off the left edge either').toBeGreaterThanOrEqual(0);
+    expect(r!.height, 'the primary header CTA must be a 44px tap target')
+      .toBeGreaterThanOrEqual(44);
+  });
+}

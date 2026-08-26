@@ -338,6 +338,33 @@
     .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(250,250,248,0.4); }
     @media (max-width: 720px){ .nav-links { display: none; } }
 
+    /* ⚠️ THE HEADER CTA WAS AMPUTATED ON IPHONES, and nothing reported it.
+       Measured on the live site: "Contact" ended at x=394 against a 375px iPhone
+       SE and a 390px iPhone 14 — 19px and 4px past the edge. Pixel at 412px was
+       fine, which is why desktop and Android checks both called the header healthy.
+
+       Cause: .nav-right kept `gap: var(--s7)` — 32px — at every width. Four items
+       plus three 32px gaps do not fit in 375px and nothing was allowed to give.
+
+       ⚠️ AND THE OVERFLOW GUARD HID IT. body{overflow-x:hidden} makes
+       scrollWidth == clientWidth, so my own mobile check reported "sideways: 0px"
+       on all three devices while the primary CTA sat off-screen. The guard turns
+       a visible overflow into an invisible amputation — there is no scrollbar left
+       to reveal what was cut. A sideways-scroll check cannot find a clipped
+       element; measure the element's right edge against the viewport instead.
+
+       The 36px tap height was found by the same measurement and is fixed here too:
+       under the 44px minimum, on the one control in the header that matters. */
+    @media (max-width: 480px) {
+      .nav-right { gap: var(--s3); }
+      .nav-cta { padding: var(--s2) var(--s3); font-size: .74rem; }
+    }
+    @media (max-width: 380px) {
+      .nav-right { gap: var(--s2); }
+      .nav-phone { display: none; }   /* same number is a full-width card below */
+    }
+    .nav-cta { display: inline-flex; align-items: center; min-height: 44px; }
+
     /* HERO */
     .hero { padding: clamp(3rem, 6.5vw, 5rem) 0 clamp(3rem, 6vw, 5rem); }
     .eyebrow {
