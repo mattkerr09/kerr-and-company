@@ -2329,7 +2329,19 @@
   <script>
     (function(){
       try {
-        var t = localStorage.getItem('theme');
+        /* ⚠️ VERSIONED KEY — 'kc-theme-2', not 'theme'.
+           Changing the DEFAULT does nothing for anyone who has already been here.
+           The old key was written the moment a visitor touched the toggle, and it
+           was also written for everyone during the period when dark WAS the
+           default — so after switching the default to light, every returning
+           visitor still got dark and the redesign was invisible to exactly the
+           people most likely to come back. Matthew included: "the background still
+           looks the same."
+           A stored preference is a preference about a design that no longer
+           exists, so the key is versioned and the old one is ignored once. Bump
+           the number again the next time the default meaningfully changes; do not
+           reuse a key across a redesign. */
+        var t = localStorage.getItem('kc-theme-2');
         /* LIGHT unless the visitor has chosen otherwise. Changed 2026-08-24.
 
            The previous default was dark, reasoned from outlier.host and
@@ -2529,45 +2541,6 @@
   </section>
 
   <!-- EASY -->
-        <!-- EXAMPLE BUILDS — DEMONSTRATIONS, NOT CLIENTS, AND LABELLED AS SUCH ON
-           EVERY PAGE. The portfolio above is real shipped software, and it is all
-           SaaS: a roofer looking for a website sees five developer tools and
-           concludes we are not for them. These three show the actual thing they
-           are buying.
-           They are NOT presented as client work and never will be. Naming a local
-           business we have not worked for would be inventing a client, which is
-           the one thing a business selling "checkable claims" cannot do — and a
-           prospect who later discovers it loses every other claim on this page
-           with it. Each demo carries a black banner saying it is fictional, and
-           each is noindex so it cannot rank as a real company. -->
-      <div class="ex-band reveal">
-        <p class="ex-lede">Not a software company? These are the sites we build for businesses like yours.
-          <span>Real pages you can open and scroll — built to show the work rather than describe it.
-          Each one is a demonstration, not a client.</span></p>
-        <div class="ex-grid">
-          <a class="ex" href="/examples/roofing/" rel="noopener">
-            <span class="ex-shot"><img src="/assets/examples/roofing.jpg" alt="The Vandenberg Roofing demonstration site"
-              width="720" height="492" loading="lazy" decoding="async"></span>
-            <span class="ex-kind">Home services</span>
-            <strong>Vandenberg Roofing</strong>
-            <em>Estimate form, storm-damage focus, insurance language.</em>
-            <span class="ex-go">Open it &rarr;</span></a>
-          <a class="ex" href="/examples/restaurant/" rel="noopener">
-            <span class="ex-shot"><img src="/assets/examples/restaurant.jpg" alt="The Verde &amp; Co. demonstration site"
-              width="720" height="492" loading="lazy" decoding="async"></span>
-            <span class="ex-kind">Restaurant</span>
-            <strong>Verde &amp; Co.</strong>
-            <em>Weekly menu, hours, reservations, photography-led.</em>
-            <span class="ex-go">Open it &rarr;</span></a>
-          <a class="ex" href="/examples/salon/" rel="noopener">
-            <span class="ex-shot"><img src="/assets/examples/salon.jpg" alt="The Linden Skin Studio demonstration site"
-              width="720" height="492" loading="lazy" decoding="async"></span>
-            <span class="ex-kind">Appointments</span>
-            <strong>Linden Skin Studio</strong>
-            <em>Priced service list, online booking, no phone tag.</em>
-            <span class="ex-go">Open it &rarr;</span></a>
-        </div>
-      </div>
 
       <section id="easy">
     <div class="wrap">
@@ -2860,6 +2833,47 @@
       </div>
     </div>
   </main>
+
+        <!-- EXAMPLE BUILDS — DEMONSTRATIONS, NOT CLIENTS, AND LABELLED AS SUCH ON
+           EVERY PAGE. The portfolio above is real shipped software, and it is all
+           SaaS: a roofer looking for a website sees five developer tools and
+           concludes we are not for them. These three show the actual thing they
+           are buying.
+           They are NOT presented as client work and never will be. Naming a local
+           business we have not worked for would be inventing a client, which is
+           the one thing a business selling "checkable claims" cannot do — and a
+           prospect who later discovers it loses every other claim on this page
+           with it. Each demo carries a black banner saying it is fictional, and
+           each is noindex so it cannot rank as a real company. -->
+      <div class="ex-band reveal">
+        <p class="ex-lede">Not a software company? These are the sites we build for businesses like yours.
+          <span>Real pages you can open and scroll — built to show the work rather than describe it.
+          Each one is a demonstration, not a client.</span></p>
+        <div class="ex-grid">
+          <a class="ex" href="/examples/roofing/" rel="noopener">
+            <span class="ex-shot"><img src="/assets/examples/roofing.jpg" alt="The Vandenberg Roofing demonstration site"
+              width="720" height="492" loading="lazy" decoding="async"></span>
+            <span class="ex-kind">Home services</span>
+            <strong>Vandenberg Roofing</strong>
+            <em>Estimate form, storm-damage focus, insurance language.</em>
+            <span class="ex-go">Open it &rarr;</span></a>
+          <a class="ex" href="/examples/restaurant/" rel="noopener">
+            <span class="ex-shot"><img src="/assets/examples/restaurant.jpg" alt="The Verde &amp; Co. demonstration site"
+              width="720" height="492" loading="lazy" decoding="async"></span>
+            <span class="ex-kind">Restaurant</span>
+            <strong>Verde &amp; Co.</strong>
+            <em>Weekly menu, hours, reservations, photography-led.</em>
+            <span class="ex-go">Open it &rarr;</span></a>
+          <a class="ex" href="/examples/salon/" rel="noopener">
+            <span class="ex-shot"><img src="/assets/examples/salon.jpg" alt="The Linden Skin Studio demonstration site"
+              width="720" height="492" loading="lazy" decoding="async"></span>
+            <span class="ex-kind">Appointments</span>
+            <strong>Linden Skin Studio</strong>
+            <em>Priced service list, online booking, no phone tag.</em>
+            <span class="ex-go">Open it &rarr;</span></a>
+        </div>
+      </div>
+
 
   <!-- PACKAGES -->
 
@@ -3565,7 +3579,7 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
     if (themeBtn) themeBtn.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch(e){}
+      try { localStorage.setItem('kc-theme-2', next); localStorage.removeItem('theme'); } catch(e){}
     });
   </script>
 
