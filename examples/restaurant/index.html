@@ -21,7 +21,11 @@
   .brand{font-size:clamp(1.35rem,3.4vw,1.7rem);letter-spacing:.2em;text-transform:uppercase;font-weight:400}
   .brand em{color:var(--ember);font-style:normal}
   nav{margin-top:.85rem;font:600 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
-  nav a{color:var(--ink-3);text-decoration:none;margin:0 .7rem;padding:.5rem 0;display:inline-block;
+  /* 44px tap targets. These were 29px — a phone-sized finger on a restaurant
+     site, which is the device almost everyone books a table from. Padding rather
+     than font-size so the type stays the small-caps scale the design wants. */
+  nav a{color:var(--ink-3);text-decoration:none;margin:0 .35rem;padding:.85rem .55rem;
+    display:inline-flex;align-items:center;min-height:44px;
     border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
   nav a:hover{color:var(--ink);border-color:var(--ember)}
   .field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
