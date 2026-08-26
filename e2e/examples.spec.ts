@@ -41,6 +41,20 @@ for (const demo of DEMOS) {
         declaresDemo: /demonstration build/i.test(document.body.innerText),
         saysFictional: /fictional|not a real/i.test(document.body.innerText),
         linksToPricing: !!document.querySelector('a[href="/#services"]'),
+        /* The demo disclosure has to exist in the STRUCTURED DATA too, not only
+           in the visible text. These pages carry LocalBusiness markup so they
+           demonstrate the SEO work being sold — and structured data is read by
+           machines that never see the banner or the noindex. A fictional business
+           asserted as real in JSON-LD is the one place this could mislead
+           something, so the disclosure travels inside the data. */
+        schemaDeclaresDemo: (() => {
+          const el = document.querySelector('script[type="application/ld+json"]');
+          if (!el) return false;
+          try {
+            const d = JSON.parse(el.textContent || '{}');
+            return /fictional/i.test(d.disambiguatingDescription || '');
+          } catch { return false; }
+        })(),
         noindex: !!document.querySelector('meta[name="robots"][content*="noindex"]'),
       };
     });
@@ -59,5 +73,8 @@ for (const demo of DEMOS) {
     expect(r.saysFictional, 'must say the business is fictional').toBeTruthy();
     expect(r.noindex, 'must be noindex so it cannot rank as a real company').toBeTruthy();
     expect(r.linksToPricing, 'must link back to pricing — it is the reason it exists').toBeTruthy();
+    expect(r.schemaDeclaresDemo,
+      'the JSON-LD must say the business is fictional — a machine never sees the banner')
+      .toBeTruthy();
   });
 }
