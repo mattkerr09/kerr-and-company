@@ -8,6 +8,21 @@
 builtbykerr.com publicly promises. Have a Michigan attorney read it before the
 first client signs.
 
+⚠️ **FOUR TERMS HERE ARE NOT ON YOUR WEBSITE — I wrote them.** A contract has to
+answer questions a pricing page never had to. None of these cost you money, but
+they are still mine rather than yours, and the point of this section is that you
+know which is which:
+
+| § | Term | Why it is here |
+|---|---|---|
+| 5 | **14 days** before anything happens when a payment stops | A failed card should not end a project. Pick a different number if you prefer. |
+| 3 | **10 business days** to complete the transfer at month twelve | "It becomes yours" needs a deadline or it is a sentiment. |
+| 11 | Michigan law, Kent County courts | Standard. You are a Michigan LLC. |
+| 10 | We may end it over unlawful or false copy | Protects you. Standard. |
+
+The **90-day** window in §5 is on the website too — it went up there in the same
+change that settled this clause, so the two cannot drift apart.
+
 ---
 
 ## 1. What you are buying
