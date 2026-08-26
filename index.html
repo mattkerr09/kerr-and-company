@@ -1006,6 +1006,21 @@
        sits 75% down a 17,000px page. Docket puts it 4% down, under the price,
        which is the version that works. */
     /* example builds */
+    /* three ways to reach him, none of them preferred.
+       ⚠️ NO PREFILLED BODY ON THE sms: LINKS. iOS wants sms:NUMBER&body=…,
+       Android wants sms:NUMBER?body=… and there is no form that works on both —
+       the wrong one can be parsed as part of the NUMBER, so the link opens a
+       message to nobody, or does not open at all. A prefilled greeting is not
+       worth a contact link that silently fails on half of phones. */
+    .reach { display:grid; gap:var(--s3); grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      margin-top:var(--s4); text-align:left; }
+    .reach-card { display:flex; flex-direction:column; gap:.15rem; padding:var(--s4);
+      background:var(--surface); border:1px solid var(--line); border-radius:12px;
+      text-decoration:none; transition:border-color .2s, transform .2s; }
+    .reach-card:hover { border-color:var(--line-2); transform:translateY(-2px); }
+    .reach-card b { font-size:.95rem; color:var(--ink); }
+    .reach-card span { font-size:.86rem; color:var(--ink-2); overflow-wrap:anywhere; }
+    .reach-card em { font-style:normal; font-size:.78rem; color:var(--ink-4); margin-top:.3rem; }
     .ex-band { margin: var(--s6) 0 0; }
     .ex-lede { font-size:1.02rem; color:var(--ink); margin:0 0 var(--s4); max-width:62ch; }
     .ex-lede span { display:block; font-size:.88rem; color:var(--ink-3); margin-top:.4rem; line-height:1.6; }
@@ -2333,6 +2348,7 @@
              users). Pricing is in the nav and the section is one scroll down. -->
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Book a 20-minute call →</a>
+            <a href="sms:+16163201280" class="btn btn-ghost">or text me instead</a>
         </div>      </div>
 
       <!-- The fold had no evidence in it. Cursor, Warp and Linear all give most of the first
@@ -3171,9 +3187,31 @@
         </form>
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
 
-        <div class="or-line"><span>OR REACH ME DIRECTLY</span></div>
-        <div class="contact-actions" style="flex-direction:column;gap:var(--s2);align-items:center;margin-top:1rem;">
-          <span style="font-family:var(--serif);font-size:clamp(0.95rem,4.2vw,1.45rem);color:var(--ink);font-weight:500;letter-spacing:-0.01em;display:inline-block;max-width:100%;overflow-wrap:anywhere;">matthew@kerrandcompanyholdings.com</span>
+        <div class="or-line"><span>OR SKIP THE FORM</span></div>
+        <!-- THREE WAYS, NONE OF THEM PREFERRED. Matthew: "allow people to text and
+             email me too, sometimes calling is a blocker". A booking link is the
+             lowest-friction option only for people who are comfortable being on a
+             call; for everyone else it IS the friction, and a page offering one
+             route loses whoever that route does not suit.
+             The email was previously a <span> — plain text, not a link — so the
+             one contact method that asks least of a person was the one that
+             required selecting and copying it by hand. -->
+        <div class="reach">
+          <a class="reach-card" href="sms:+16163201280">
+            <b>Text me</b>
+            <span>(616) 320-1280</span>
+            <em>Fastest. No call, no form.</em>
+          </a>
+          <a class="reach-card" href="mailto:matthew@kerrandcompanyholdings.com?subject=From%20builtbykerr.com">
+            <b>Email me</b>
+            <span>matthew@kerrandcompanyholdings.com</span>
+            <em>Write as much or as little as you like.</em>
+          </a>
+          <a class="reach-card" href="#book">
+            <b>Book a call</b>
+            <span>20 minutes, by phone</span>
+            <em>If you would rather just talk it through.</em>
+          </a>
         </div>
         <div class="resp-promise" style="justify-content:center;">Matthew replies personally — within one business day.</div>
         <div class="bs-steps" style="justify-content:center;position:relative;margin-top:var(--s7);">
