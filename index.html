@@ -1033,6 +1033,39 @@
        sits 75% down a 17,000px page. Docket puts it 4% down, under the price,
        which is the version that works. */
     /* example builds */
+    /* ⚠️ WCAG 2.5.8 Target Size (Minimum), AA: 24x24 CSS px — NOT 44.
+       44x44 is Apple's HIG and WCAG 2.5.5, which is AAA. I first swept this site
+       against 44 and reported 27 undersized controls. Three were real.
+
+       The other 24 were my instrument, in two ways, both already in
+       DO-NOT-REBREAK:
+
+       1. WRONG BAR. The 26px shipwall links were sized to AA deliberately, with
+          a comment saying exactly that. Measuring an AA site against AAA
+          manufactures twenty defects and invites you to overwrite a documented
+          decision with an undocumented one.
+
+       2. MEASURED THROUGH A TRANSFORM. .product-link declares min-height:24px
+          and measured 23.4 — impossible unless something scales it, and the
+          scroll-reveal does, at .972-.985. Dividing by the accumulated ancestor
+          scale gives exactly 24. It always passed.
+
+       ⚠️ NOT IN A COARSE-POINTER MEDIA QUERY. My first fix put these inside
+       @media (pointer: coarse), so they did nothing on the desktop where the
+       17px nav links live. Target size is not a touch-only requirement. */
+    .nav-links a { display: inline-flex; align-items: center; min-height: 24px; }
+    .proof-s a   { display: inline-flex; align-items: center; min-height: 24px; }
+    /* The checkbox itself renders ~18px in every browser and inflating the box
+       looks wrong, so the target is the label row a finger actually aims at. */
+    label.cf-optin { display: flex; align-items: center; gap: .6rem; min-height: 24px; }
+    /* 24px, not 20. The wrapping label is already a valid target — clicking it
+       toggles the box — and WCAG's spacing exception would likely cover a 20px
+       control with nothing near it. But "likely covered by an exception" is an
+       argument, and 24px is compliance. A form control is the wrong place to be
+       clever about a bar this cheap to clear. */
+    label.cf-optin input[type="checkbox"] { width: 24px; height: 24px; flex: none; }
+    }
+
     /* three ways to reach him, none of them preferred.
        ⚠️ NO PREFILLED BODY ON THE sms: LINKS. iOS wants sms:NUMBER&body=…,
        Android wants sms:NUMBER?body=… and there is no form that works on both —
