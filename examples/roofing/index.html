@@ -1,0 +1,121 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vandenberg Roofing — Demonstration build by Kerr &amp; Company</title>
+<meta name="description" content="A demonstration site built by Kerr &amp; Company to show what a roofing contractor's site looks like. Not a real company.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--ink:#12100e;--ink-2:#4a4540;--line:#e6e1da;--bg:#fbf9f6;--card:#fff;
+        --brand:#b8451f;--brand-2:#8f3416;--shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06)}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.65 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .demo{background:#12100e;color:#fbf9f6;font-size:.8rem;padding:.6rem 1rem;text-align:center;line-height:1.5}
+  .demo a{color:#fff}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+  header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
+  .logo{font-weight:800;letter-spacing:-.02em;font-size:1.12rem}
+  .logo span{color:var(--brand)}
+  .call{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:.6rem 1.05rem;
+        background:var(--brand);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:.92rem}
+  .hero{padding:clamp(2.5rem,7vw,4.5rem) 0;display:grid;gap:2.5rem;grid-template-columns:1.15fr .85fr;align-items:center}
+  h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;letter-spacing:-.03em;margin:0 0 .9rem}
+  .lede{font-size:1.08rem;color:var(--ink-2);margin:0 0 1.5rem;max-width:46ch}
+  .cta-row{display:flex;flex-wrap:wrap;gap:.7rem}
+  .btn2{display:inline-flex;align-items:center;min-height:44px;padding:.7rem 1.15rem;border-radius:8px;
+        border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-weight:600;font-size:.92rem}
+  .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;font-size:.8rem;color:var(--ink-2)}
+  .badges b{background:var(--card);border:1px solid var(--line);border-radius:100px;padding:.35rem .75rem;font-weight:600}
+  .shot{background:linear-gradient(160deg,#2b2723,#4a423b);border-radius:14px;aspect-ratio:4/3;
+        box-shadow:var(--shadow);display:grid;place-items:center;color:#fbf9f6;text-align:center;padding:1.5rem}
+  .shot small{display:block;opacity:.6;font-size:.72rem;margin-top:.6rem;line-height:1.5}
+  section{padding:clamp(2.2rem,5vw,3.4rem) 0}
+  h2{font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:-.02em;margin:0 0 1.4rem}
+  .grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem;box-shadow:var(--shadow)}
+  .card h3{margin:.2rem 0 .5rem;font-size:1.03rem}
+  .card p{margin:0;color:var(--ink-2);font-size:.92rem}
+  .dot{width:34px;height:34px;border-radius:9px;background:#f4e7e1;display:grid;place-items:center;color:var(--brand);font-weight:800}
+  .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .steps{counter-reset:s;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .steps li{list-style:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:1.2rem}
+  .steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:26px;height:26px;
+        border-radius:50%;background:var(--brand);color:#fff;font-size:.78rem;font-weight:700;margin-bottom:.6rem}
+  .steps b{display:block;margin-bottom:.25rem}
+  .steps span{color:var(--ink-2);font-size:.9rem}
+  form{display:grid;gap:.8rem;max-width:520px}
+  label{font-size:.85rem;font-weight:600}
+  input,select,textarea{width:100%;padding:.7rem .8rem;border:1px solid var(--line);border-radius:8px;
+        font:inherit;font-size:.94rem;background:var(--card);min-height:44px}
+  textarea{min-height:96px;resize:vertical}
+  button{min-height:46px;padding:.75rem 1.2rem;border:0;border-radius:8px;background:var(--brand);
+        color:#fff;font-weight:700;font-size:.96rem;cursor:pointer}
+  footer{padding:2rem 0 2.5rem;color:var(--ink-2);font-size:.86rem;border-top:1px solid var(--line)}
+  @media(max-width:840px){.hero{grid-template-columns:1fr}.shot{order:-1;aspect-ratio:16/10}}
+</style>
+
+<p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real company, and not a client.
+  It exists to show what a contractor's site looks like when we build one.
+  <a href="/#services">See what this costs &rarr;</a></p>
+
+<header><div class="wrap nav">
+  <div class="logo">Vandenberg <span>Roofing</span></div>
+  <a class="call" href="#quote">Get a free estimate</a>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>Your roof stops leaking, or you don't pay us.</h1>
+      <p class="lede">Storm damage, tear-offs and repairs across Grand Rapids and Kent County.
+        Same-week inspections. We handle the insurance paperwork.</p>
+      <div class="cta-row">
+        <a class="call" href="#quote">Get a free estimate</a>
+        <a class="btn2" href="#work">See recent work</a>
+      </div>
+      <div class="badges"><b>Licensed &amp; insured</b><b>25-year warranty</b><b>Insurance claims handled</b><b>Family owned since 1998</b></div>
+    </div>
+    <div class="shot">Photo of a finished roof
+      <small>A real build puts the client's own photography here.<br>Kerr &amp; Company writes the copy; you supply images.</small></div>
+  </div>
+</div>
+
+<div class="band"><div class="wrap"><section>
+  <h2>What we do</h2>
+  <div class="grid">
+    <div class="card"><div class="dot">1</div><h3>Storm &amp; hail damage</h3><p>Free inspection, full photo report, and we deal with the adjuster so you don't have to.</p></div>
+    <div class="card"><div class="dot">2</div><h3>Full tear-off &amp; replacement</h3><p>Architectural shingle, standing seam metal, or flat roofing. Most homes done in a day.</p></div>
+    <div class="card"><div class="dot">3</div><h3>Repairs &amp; leak tracing</h3><p>We find where the water actually enters, which is rarely where it drips.</p></div>
+    <div class="card"><div class="dot">4</div><h3>Gutters &amp; ventilation</h3><p>The two things that quietly shorten a roof's life. Fixed at the same time.</p></div>
+  </div>
+</section></div></div>
+
+<div class="wrap"><section id="work">
+  <h2>How it goes</h2>
+  <ol class="steps">
+    <li><b>You call or book</b><span>Same-week inspection, usually within 48 hours.</span></li>
+    <li><b>We climb it</b><span>Full photo report, emailed to you the same day.</span></li>
+    <li><b>Fixed price, in writing</b><span>Before anyone starts. No surprises on the invoice.</span></li>
+    <li><b>Done and cleaned up</b><span>Magnet sweep for nails. You would not know we were there.</span></li>
+  </ol>
+</section></div>
+
+<div class="band"><div class="wrap"><section id="quote">
+  <h2>Get a free estimate</h2>
+  <form onsubmit="event.preventDefault();this.innerHTML='<p><strong>This is a demonstration form.</strong><br>On a real build this delivers to your inbox and your phone within seconds.</p>'">
+    <div><label for="n">Your name</label><input id="n" required></div>
+    <div><label for="p">Phone</label><input id="p" type="tel" required></div>
+    <div><label for="s">What's going on?</label>
+      <select id="s"><option>Storm or hail damage</option><option>Leak</option><option>Full replacement</option><option>Gutters</option><option>Not sure</option></select></div>
+    <div><label for="m">Anything else</label><textarea id="m" placeholder="Optional"></textarea></div>
+    <button type="submit">Request my estimate</button>
+  </form>
+</section></div></div>
+
+<footer><div class="wrap">
+  <p><strong>Vandenberg Roofing</strong> is a fictional business. This page is a demonstration build by
+  <a href="/">Kerr &amp; Company</a>, Grand Rapids — shown so you can see the work rather than read about it.
+  Sites like this start at $999. <a href="/#services">See pricing &rarr;</a></p>
+</div></footer>

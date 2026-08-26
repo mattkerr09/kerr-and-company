@@ -1,0 +1,109 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verde &amp; Co. — Demonstration build by Kerr &amp; Company</title>
+<meta name="description" content="A demonstration site built by Kerr &amp; Company to show what a restaurant's site looks like. Not a real business.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--ink:#1c1917;--ink-2:#57534e;--line:#e7e2dc;--bg:#f7f4ef;--card:#fff;--brand:#3f5c46;--accent:#c2703d}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.7 ui-serif,Georgia,"Times New Roman",serif}
+  .demo{background:#1c1917;color:#f7f4ef;font:400 .8rem/1.5 ui-sans-serif,-apple-system,sans-serif;padding:.6rem 1rem;text-align:center}
+  .demo a{color:#fff}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 1.25rem}
+  header{padding:1.4rem 0;text-align:center;border-bottom:1px solid var(--line)}
+  .brand{font-size:1.5rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+  .brand em{color:var(--accent);font-style:normal}
+  nav{margin-top:.7rem;font:600 .78rem/1 ui-sans-serif,-apple-system,sans-serif;
+      letter-spacing:.12em;text-transform:uppercase}
+  nav a{color:var(--ink-2);text-decoration:none;margin:0 .6rem;display:inline-block;padding:.5rem 0}
+  .hero{text-align:center;padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(2rem,5vw,3rem)}
+  h1{font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.1;margin:0 0 1rem;font-weight:400}
+  .lede{color:var(--ink-2);max-width:52ch;margin:0 auto 1.8rem;font-size:1.06rem}
+  .btn{display:inline-block;min-height:44px;padding:.8rem 1.6rem;background:var(--brand);color:#fff;
+    text-decoration:none;font:700 .82rem/1.6 ui-sans-serif,-apple-system,sans-serif;
+    letter-spacing:.1em;text-transform:uppercase;border-radius:2px}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);margin-left:.5rem}
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:2rem 0}
+  .strip div{background:linear-gradient(160deg,#3f5c46,#2b3f30);aspect-ratio:1;display:grid;place-items:center;
+    color:#f7f4ef;text-align:center;padding:1rem;font:400 .8rem/1.5 ui-sans-serif,-apple-system,sans-serif;opacity:.92}
+  section{padding:clamp(2rem,5vw,3.2rem) 0}
+  h2{font-size:clamp(1.4rem,3.4vw,2rem);text-align:center;font-weight:400;margin:0 0 1.6rem}
+  .menu{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .menu h3{font:700 .78rem/1 ui-sans-serif,-apple-system,sans-serif;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}
+  .item{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-bottom:1px dotted var(--line)}
+  .item span:last-child{color:var(--ink-2)}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.6rem;text-align:center}
+  .hours dl{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1rem;max-width:340px;margin:1rem auto 0;
+    font:400 .92rem/1.7 ui-sans-serif,-apple-system,sans-serif;text-align:left}
+  .hours dt{color:var(--ink-2)}
+  .hours dd{margin:0;font-weight:600;text-align:right}
+  footer{padding:2rem 0 2.6rem;border-top:1px solid var(--line);color:var(--ink-2);
+    font:400 .86rem/1.7 ui-sans-serif,-apple-system,sans-serif;text-align:center}
+  @media(max-width:640px){.strip{grid-template-columns:1fr}.strip div{aspect-ratio:16/9}}
+</style>
+
+<p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real restaurant, and not a client.
+  <a href="/#services">See what this costs &rarr;</a></p>
+
+<header>
+  <div class="brand">Verde <em>&amp;</em> Co.</div>
+  <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#book">Reservations</a></nav>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Wood fire, short menu,<br>whatever the farm sent.</h1>
+    <p class="lede">A twenty-eight seat room on Cherry Street. The menu changes when the produce does,
+      which is often. Walk-ins welcome at the bar.</p>
+    <a class="btn" href="#book">Reserve a table</a><a class="btn ghost" href="#menu">See the menu</a>
+  </div>
+</div>
+
+<div class="strip">
+  <div>Dining room<br><small style="opacity:.65">your photo here</small></div>
+  <div>The wood oven<br><small style="opacity:.65">your photo here</small></div>
+  <div>Tonight's plate<br><small style="opacity:.65">your photo here</small></div>
+</div>
+
+<div class="wrap"><section id="menu">
+  <h2>This week</h2>
+  <div class="menu">
+    <div>
+      <h3>To start</h3>
+      <div class="item"><span>Charred bread, cultured butter</span><span>7</span></div>
+      <div class="item"><span>Little gems, anchovy, lemon</span><span>13</span></div>
+      <div class="item"><span>Squash, brown butter, sage</span><span>14</span></div>
+    </div>
+    <div>
+      <h3>Mains</h3>
+      <div class="item"><span>Wood-fired chicken for two</span><span>38</span></div>
+      <div class="item"><span>Lake trout, fennel, dill</span><span>29</span></div>
+      <div class="item"><span>Cavatelli, pork ragù</span><span>26</span></div>
+    </div>
+    <div>
+      <h3>After</h3>
+      <div class="item"><span>Olive oil cake</span><span>11</span></div>
+      <div class="item"><span>Affogato</span><span>9</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="hours">
+  <div class="hours">
+    <h2 style="margin:0">Hours</h2>
+    <dl><dt>Tuesday – Thursday</dt><dd>5 – 10pm</dd>
+        <dt>Friday – Saturday</dt><dd>5 – 11pm</dd>
+        <dt>Sunday</dt><dd>4 – 9pm</dd>
+        <dt>Monday</dt><dd>Closed</dd></dl>
+    <p style="margin:1.4rem 0 0"><a class="btn" href="#book" id="book">Reserve a table</a></p>
+  </div>
+</section></div>
+
+<footer><div class="wrap">
+  <p><strong>Verde &amp; Co.</strong> is fictional. This page is a demonstration build by
+  <a href="/">Kerr &amp; Company</a>, Grand Rapids. Sites like this start at $999.
+  <a href="/#services">See pricing &rarr;</a></p>
+</div></footer>

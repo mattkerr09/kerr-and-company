@@ -978,6 +978,19 @@
        Same defect measured on Crisp the same day, where the instalment line
        sits 75% down a 17,000px page. Docket puts it 4% down, under the price,
        which is the version that works. */
+    /* example builds */
+    .ex-band { margin: var(--s6) 0 0; }
+    .ex-lede { font-size:1.02rem; color:var(--ink-1); margin:0 0 var(--s4); max-width:62ch; }
+    .ex-lede span { display:block; font-size:.88rem; color:var(--ink-3); margin-top:.4rem; line-height:1.6; }
+    .ex-grid { display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+    .ex { display:flex; flex-direction:column; gap:.3rem; text-decoration:none; padding:var(--s5);
+      background:var(--surface); border:1px solid var(--line); border-radius:14px;
+      transition:border-color .2s, transform .2s; }
+    .ex:hover { border-color:var(--line-2); transform:translateY(-3px); }
+    .ex-kind { font-size:.68rem; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-4); font-weight:700; }
+    .ex strong { font-family:var(--serif); font-size:1.12rem; color:var(--ink-1); letter-spacing:-.01em; }
+    .ex em { font-style:normal; font-size:.86rem; color:var(--ink-3); line-height:1.55; margin-top:.15rem; }
+    .ex-go { font-size:.82rem; color:var(--ink-2); margin-top:.6rem; }
     .pkg-split { font-size:.76rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
       letter-spacing:-0.005em; }
     .pkg .price { font-family: var(--serif); font-weight: 600; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
@@ -2658,6 +2671,41 @@
   </main>
 
   <!-- PACKAGES -->
+
+      <!-- EXAMPLE BUILDS — DEMONSTRATIONS, NOT CLIENTS, AND LABELLED AS SUCH ON
+           EVERY PAGE. The portfolio above is real shipped software, and it is all
+           SaaS: a roofer looking for a website sees five developer tools and
+           concludes we are not for them. These three show the actual thing they
+           are buying.
+           They are NOT presented as client work and never will be. Naming a local
+           business we have not worked for would be inventing a client, which is
+           the one thing a business selling "checkable claims" cannot do — and a
+           prospect who later discovers it loses every other claim on this page
+           with it. Each demo carries a black banner saying it is fictional, and
+           each is noindex so it cannot rank as a real company. -->
+      <div class="ex-band reveal">
+        <p class="ex-lede">Not a software company? These are the sites we build for businesses like yours.
+          <span>Real pages you can open and scroll — built to show the work rather than describe it.
+          Each one is a demonstration, not a client.</span></p>
+        <div class="ex-grid">
+          <a class="ex" href="/examples/roofing/" rel="noopener">
+            <span class="ex-kind">Home services</span>
+            <strong>Vandenberg Roofing</strong>
+            <em>Estimate form, storm-damage focus, insurance language, trust badges.</em>
+            <span class="ex-go">Open it &rarr;</span></a>
+          <a class="ex" href="/examples/restaurant/" rel="noopener">
+            <span class="ex-kind">Restaurant</span>
+            <strong>Verde &amp; Co.</strong>
+            <em>Menu that changes weekly, hours, reservations, photography-led.</em>
+            <span class="ex-go">Open it &rarr;</span></a>
+          <a class="ex" href="/examples/salon/" rel="noopener">
+            <span class="ex-kind">Appointments</span>
+            <strong>Linden Skin Studio</strong>
+            <em>Service list with prices, online booking, no phone tag.</em>
+            <span class="ex-go">Open it &rarr;</span></a>
+        </div>
+      </div>
+
   <section id="packages">
     <div class="wrap">
       <div class="section-head reveal">

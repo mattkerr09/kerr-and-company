@@ -1,0 +1,97 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Linden Skin Studio — Demonstration build by Kerr &amp; Company</title>
+<meta name="description" content="A demonstration site built by Kerr &amp; Company showing an appointment-led service business. Not a real business.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--ink:#221f26;--ink-2:#615c69;--line:#e9e5ee;--bg:#faf8fc;--card:#fff;
+        --brand:#6b4e8f;--soft:#f0eaf7}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.68 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .demo{background:#221f26;color:#faf8fc;font-size:.8rem;padding:.6rem 1rem;text-align:center;line-height:1.5}
+  .demo a{color:#fff}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 1.25rem}
+  header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 0}
+  .logo{font-weight:700;font-size:1.1rem;letter-spacing:-.02em}
+  .logo b{color:var(--brand)}
+  .book{min-height:44px;display:inline-flex;align-items:center;padding:.65rem 1.15rem;border-radius:100px;
+    background:var(--brand);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
+  .hero{display:grid;gap:2rem;grid-template-columns:1fr 1fr;align-items:center;padding:clamp(1.5rem,5vw,3rem) 0}
+  h1{font-size:clamp(1.95rem,5vw,2.9rem);line-height:1.12;letter-spacing:-.03em;margin:0 0 .9rem}
+  .lede{color:var(--ink-2);font-size:1.04rem;margin:0 0 1.5rem;max-width:44ch}
+  .trust{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.3rem;font-size:.78rem;color:var(--ink-2)}
+  .trust b{background:var(--soft);border-radius:100px;padding:.35rem .8rem;font-weight:600;color:var(--brand)}
+  .shot{background:linear-gradient(150deg,#6b4e8f,#3f2c58);border-radius:20px;aspect-ratio:1;
+    display:grid;place-items:center;text-align:center;color:#faf8fc;padding:1.5rem}
+  .shot small{display:block;opacity:.65;font-size:.72rem;margin-top:.6rem;line-height:1.5}
+  section{padding:clamp(1.8rem,4.5vw,3rem) 0}
+  h2{font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:-.02em;margin:0 0 1.3rem}
+  .svc{display:grid;gap:.7rem}
+  .row{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem}
+  .row div strong{display:block;font-size:.98rem}
+  .row div span{color:var(--ink-2);font-size:.86rem}
+  .row .p{font-weight:700;white-space:nowrap;color:var(--brand)}
+  .cal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.6rem;text-align:center}
+  .slots{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.1rem 0 0}
+  .slots button{min-height:44px;padding:.6rem 1rem;border-radius:10px;border:1px solid var(--line);
+    background:var(--bg);font:inherit;font-size:.88rem;cursor:pointer;color:var(--ink)}
+  .slots button:hover{border-color:var(--brand);color:var(--brand)}
+  .note{font-size:.82rem;color:var(--ink-2);margin-top:1rem}
+  footer{padding:2rem 0 2.6rem;border-top:1px solid var(--line);color:var(--ink-2);font-size:.86rem}
+  @media(max-width:760px){.hero{grid-template-columns:1fr}.shot{order:-1;aspect-ratio:16/10}}
+</style>
+
+<p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real business, and not a client.
+  It shows an appointment-led service site. <a href="/#services">See what this costs &rarr;</a></p>
+
+<div class="wrap">
+  <header>
+    <div class="logo">Linden <b>Skin Studio</b></div>
+    <a class="book" href="#book">Book online</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Skin that behaves, on a schedule that suits you.</h1>
+      <p class="lede">Facials, peels and laser in a quiet two-room studio in East Grand Rapids.
+        Book online in about thirty seconds — no phone tag, no deposit.</p>
+      <a class="book" href="#book">See this week's openings</a>
+      <div class="trust"><b>Licensed esthetician</b><b>Evening appointments</b><b>No membership required</b><b>First visit consult free</b></div>
+    </div>
+    <div class="shot">The studio
+      <small>A real build uses the client's own photography.<br>We write the copy; you supply the images.</small></div>
+  </div>
+
+  <section>
+    <h2>Services</h2>
+    <div class="svc">
+      <div class="row"><div><strong>Signature facial</strong><span>60 minutes · cleanse, exfoliate, extract, mask</span></div><div class="p">$95</div></div>
+      <div class="row"><div><strong>Chemical peel</strong><span>45 minutes · light to medium depth</span></div><div class="p">$140</div></div>
+      <div class="row"><div><strong>Laser hair removal</strong><span>Per session · small to large areas</span></div><div class="p">from $75</div></div>
+      <div class="row"><div><strong>Consultation</strong><span>20 minutes · first visit, no obligation</span></div><div class="p">Free</div></div>
+    </div>
+  </section>
+
+  <section id="book">
+    <h2>Book online</h2>
+    <div class="cal">
+      <strong>Thursday, 27 August</strong>
+      <div class="slots">
+        <button type="button">9:00</button><button type="button">10:30</button>
+        <button type="button">1:00</button><button type="button">2:30</button>
+        <button type="button">4:00</button><button type="button">5:30</button>
+      </div>
+      <p class="note">On a real build these are live openings from the studio's calendar, and booking one
+        sends a confirmation by text. <strong>This is a demonstration — the times are not real.</strong></p>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap">
+  <p><strong>Linden Skin Studio</strong> is fictional. This page is a demonstration build by
+  <a href="/">Kerr &amp; Company</a>, Grand Rapids. Sites like this start at $999.
+  <a href="/#services">See pricing &rarr;</a></p>
+</div></footer>
