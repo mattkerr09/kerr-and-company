@@ -1,0 +1,137 @@
+# Own It Monthly — Website Build Agreement
+
+**Kerr & Company LLC** (Michigan) — "we", "us"
+**Client:** ____________________  — "you"
+**Date:** ____________________
+
+⚠️ **Not legal advice.** This was drafted to match, word for word, what
+builtbykerr.com publicly promises. Have a Michigan attorney read it before the
+first client signs. One clause (§5) encodes a commercial decision that is yours
+to make, and it is marked.
+
+---
+
+## 1. What you are buying
+
+A **Starter Site** — up to 3 pages, mobile-first, with a lead form,
+click-to-call, on-page SEO and Google Business Profile setup — paid over twelve
+months instead of up front.
+
+    $149.00 per month × 12 months = $1,788.00 total
+
+The same build bought outright is **$999.00**. Paying monthly costs more. We
+say so on the website and we say so here: this exists so price is not the reason
+you wait, not because it is the better deal.
+
+## 2. What is included for the whole twelve months
+
+- Hosting
+- Software updates and security patches
+- Content edits and small changes
+- Email support, answered personally, within one business day
+
+No separate hosting or care-plan charge during the term.
+
+## 3. What you own, and when
+
+**At month twelve, on receipt of the twelfth payment, the site becomes yours
+outright.** That means all of the following transfer to you, at no further cost:
+
+- The complete source code of the site
+- All copy, page content and site assets we produced for it
+- The **domain name**, transferred to a registrar account in your name
+- Any analytics, form and hosting accounts we created for the site
+
+The monthly payments then **stop**. There is no renewal, no continuing licence
+fee, and no further payment of any kind.
+
+We will complete the transfer within **10 business days** of the twelfth
+payment clearing, without you having to ask.
+
+## 4. Buying out early
+
+You may end the term early **at any time** by paying the remaining balance:
+
+    Buy-out = $1,788.00 − (payments already made)
+
+On receipt, everything in §3 transfers to you **that day**. No penalty, no fee,
+no notice period.
+
+## 5. ⚠️ If you stop paying before month twelve
+
+> **MATTHEW — THIS IS THE CLAUSE TO DECIDE. The website currently says two
+> things that contradict each other: "You keep it" and "it is yours at month
+> 12". A client who stops at month four will read the first sentence. Pick one
+> of the options below, delete the other, and I will make the website match
+> whichever you choose. Leaving both live is how the first dispute starts.**
+
+**Option A — ownership at month twelve (drafted below, and what §3 assumes).**
+
+If payments stop before the twelfth, ownership does **not** transfer. We will:
+
+1. Email you, and wait **14 days** for payment or for you to tell us to stop.
+2. If nothing is resolved, take the site offline. We will not sell it, reuse it
+   for another client, or hold it against a future payment.
+3. Keep a complete copy for **90 days**. At any point in those 90 days you can
+   pay the outstanding balance under §4 and receive everything in §3.
+4. After 90 days we delete it.
+
+You are never charged for months in which the site was offline.
+
+**Option B — you keep the site whatever happens.**
+
+*(If you choose this, replace all of Option A with:)* If payments stop, the site
+stays live and you keep using it. Ownership under §3 still transfers only on the
+twelfth payment or on a buy-out under §4, but we will not take the site down.
+
+## 6. Revisions
+
+**Three rounds of revisions are included.** Anything after that is quoted in
+writing and agreed before any work begins. We never start unquoted work and bill
+for it afterwards.
+
+## 7. Content
+
+**We write the copy.** You do not hand us finished text and hope.
+
+**You supply photographs and brand assets**, or we use stock images. Logo design
+is quoted separately and is not part of this agreement.
+
+## 8. Not included
+
+- Photography and logo design
+- Your domain registration fee, ad spend, and any paid third-party service you
+  ask us to connect
+- **Regulated copy** — medical, legal or financial claims requiring a licensed
+  specialist to approve. We will tell you before, not after, if your project
+  needs this.
+
+## 9. Timeline
+
+We give you a **fixed scope and a date in writing before you commit**, and
+before any payment. There is no hourly meter on this agreement, ever.
+
+Your build starts when we have (a) the first payment and (b) the photos and
+brand assets from §7. Delays in supplying those move the date; they do not
+change the price.
+
+## 10. Ending it from our side
+
+We may end this agreement if you ask us to publish content that is unlawful,
+that we reasonably believe to be false, or that requires a licence we do not
+hold. In that case we refund every payment made and nothing transfers.
+
+## 11. Plain terms
+
+- **Michigan law**, and the courts of Kent County, Michigan.
+- If any part of this is unenforceable, the rest still stands.
+- This document is the whole agreement. Changes have to be in writing and
+  signed by both of us.
+- The published pricing on builtbykerr.com is the price. Anything we agreed in
+  conversation that is not written here is not part of the deal.
+
+---
+
+**Client**  ______________________________   Date __________
+
+**Kerr & Company LLC**  ______________________   Date __________
