@@ -4,12 +4,15 @@
 <meta name="description" content="A demonstration site built by Kerr &amp; Company showing what a restaurant's site looks like. Not a real business.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box}
   :root{--ink:#191512;--ink-2:#574d43;--ink-3:#8a7d6f;--line:#e5ddd1;--paper:#faf6ef;--card:#fff;
     --olive:#3f5c46;--olive-2:#2d4433;--ember:#bf6b34;--sand:#f2e9db;
-    --serif:ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
-    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+    --serif:'Fraunces',ui-serif,'Iowan Old Style',Georgia,serif;
+    --sans:'Inter',ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     --shadow-l:0 30px 70px -26px rgba(25,21,18,.42)}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 var(--serif);
@@ -33,7 +36,8 @@
   .field .a{width:560px;height:560px;top:-220px;left:-180px;background:radial-gradient(circle,#d9e3d0 0%,rgba(217,227,208,0) 70%)}
   .field .b{width:520px;height:520px;top:60px;right:-200px;background:radial-gradient(circle,#f3d9c2 0%,rgba(243,217,194,0) 70%)}
   .hero{position:relative;z-index:2;text-align:center;padding:clamp(2.4rem,6vw,4rem) 0 clamp(1.8rem,4vw,2.6rem)}
-  h1{font-size:clamp(2.2rem,6.2vw,3.6rem);line-height:1.08;margin:0 0 1.1rem;font-weight:400;letter-spacing:-.022em}
+  h1{font-size:clamp(2.3rem,6.4vw,3.8rem);line-height:1.06;margin:0 0 1.1rem;font-weight:300;
+    letter-spacing:-.026em;font-optical-sizing:auto}
   h1 em{font-style:italic;color:var(--olive)}
   .lede{color:var(--ink-2);max-width:50ch;margin:0 auto 1.9rem;font-size:1.08rem}
   .btn{display:inline-flex;align-items:center;min-height:46px;padding:.8rem 1.7rem;background:var(--olive);
@@ -77,6 +81,15 @@
     color:var(--ink-3);font:400 .85rem/1.7 var(--sans);text-align:center}
   footer a{color:var(--ink-2)}
   @media(max-width:620px){.plates{grid-template-columns:1fr}.plate{aspect-ratio:16/9}.btn.ghost{margin:.5rem 0 0}}
+
+  .days{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 0 1.1rem}
+  .days button{min-height:44px;padding:.55rem 1.05rem;border-radius:100px;border:1px solid var(--line);
+    background:var(--card);font:600 .78rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);cursor:pointer;transition:border-color .16s,color .16s,background .16s}
+  .days button.on{border-color:var(--olive);color:#fff;background:var(--olive)}
+  .haul{text-align:center;font-size:.85rem;color:var(--ink-3);margin:0 0 1.8rem;
+    font-family:var(--sans);min-height:1.3em}
+  .haul b{color:var(--ember);font-weight:600}
 </style>
 
 <p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real restaurant, and not a client.
@@ -108,20 +121,22 @@
 
   <section id="menu">
     <h2>This week</h2>
-    <p class="sub">Changes Tuesday · always short</p>
-    <div class="menu">
-      <div><h3>To start</h3>
-        <div class="item"><b>Charred bread, cultured butter</b><i></i><span>7</span></div>
-        <div class="item"><b>Little gems, anchovy, lemon</b><i></i><span>13</span></div>
-        <div class="item"><b>Squash, brown butter, sage</b><i></i><span>14</span></div></div>
-      <div><h3>Mains</h3>
-        <div class="item"><b>Wood-fired chicken for two</b><i></i><span>38</span></div>
-        <div class="item"><b>Lake trout, fennel, dill</b><i></i><span>29</span></div>
-        <div class="item"><b>Cavatelli, pork ragù</b><i></i><span>26</span></div></div>
-      <div><h3>After</h3>
-        <div class="item"><b>Olive oil cake</b><i></i><span>11</span></div>
-        <div class="item"><b>Affogato</b><i></i><span>9</span></div></div>
+    <p class="sub">The kitchen writes it Tuesday · always short</p>
+
+    <!-- THE SIGNATURE ELEMENT. Every restaurant site has a menu; almost none show
+         that it CHANGES, which is the entire claim this restaurant makes. Six
+         tabs, six genuinely different menus, and the header names what came in
+         that day — so the positioning is demonstrated rather than asserted. -->
+    <div class="days" role="tablist" aria-label="Menu by night">
+      <button role="tab" aria-selected="true"  class="on" data-d="0">Tue</button>
+      <button role="tab" aria-selected="false" data-d="1">Wed</button>
+      <button role="tab" aria-selected="false" data-d="2">Thu</button>
+      <button role="tab" aria-selected="false" data-d="3">Fri</button>
+      <button role="tab" aria-selected="false" data-d="4">Sat</button>
+      <button role="tab" aria-selected="false" data-d="5">Sun</button>
     </div>
+    <p class="haul" id="haul" aria-live="polite"></p>
+    <div class="menu" id="menuBody"></div>
   </section>
 
   <section id="hours">
@@ -142,3 +157,61 @@
   <a href="/">Kerr &amp; Company</a>, Grand Rapids. Sites like this start at $999.
   <a href="/#services">See pricing &rarr;</a></p>
 </div></footer>
+<script>
+/* Six different menus, because "the menu changes when the produce does" is the
+   claim the whole restaurant is built on and a single static list quietly
+   contradicts it. The haul line names what arrived that morning — the reason the
+   menu is what it is, which is the part a static menu can never show. */
+(function () {
+  var DAYS = [
+    { haul: "In this morning: <b>squash, little gems, lake trout</b>",
+      s: [["Charred bread, cultured butter",7],["Little gems, anchovy, lemon",13],["Squash, brown butter, sage",14]],
+      m: [["Lake trout, fennel, dill",29],["Wood-fired chicken for two",38],["Cavatelli, pork ragù",26]],
+      a: [["Olive oil cake",11],["Affogato",9]] },
+    { haul: "In this morning: <b>chicory, guinea fowl, first apples</b>",
+      s: [["Chicory, walnut, blue cheese",12],["Charred bread, cultured butter",7],["Chicken liver, apple",13]],
+      m: [["Guinea fowl, bread sauce",31],["Cavatelli, pork ragù",26],["Squash, sage, brown butter",22]],
+      a: [["Apple tart",11],["Affogato",9]] },
+    { haul: "In this morning: <b>mussels, leeks, late tomatoes</b>",
+      s: [["Mussels, cider, thyme",15],["Tomato, basil, sourdough",12],["Charred bread, cultured butter",7]],
+      m: [["Hake, leeks, brown butter",28],["Wood-fired chicken for two",38],["Rigatoni, tomato, ricotta",24]],
+      a: [["Olive oil cake",11],["Panna cotta",10]] },
+    { haul: "In this morning: <b>ribeye, girolles, cavolo nero</b>",
+      s: [["Girolles on toast",14],["Little gems, anchovy, lemon",13],["Charred bread, cultured butter",7]],
+      m: [["Ribeye for two, girolles",64],["Lake trout, fennel, dill",29],["Cavolo nero, chilli, pasta",24]],
+      a: [["Chocolate pot",11],["Affogato",9]] },
+    { haul: "In this morning: <b>turbot, artichokes, figs</b>",
+      s: [["Artichoke, lemon, pecorino",14],["Figs, prosciutto, honey",15],["Charred bread, cultured butter",7]],
+      m: [["Turbot on the bone, for two",72],["Wood-fired chicken for two",38],["Cavatelli, pork ragù",26]],
+      a: [["Fig leaf ice cream",11],["Olive oil cake",11]] },
+    { haul: "Sunday: <b>one roast, until it goes</b>",
+      s: [["Charred bread, cultured butter",7],["Little gems, anchovy, lemon",13]],
+      m: [["Roast sirloin, all the trimmings",34],["Roast squash, all the trimmings",26]],
+      a: [["Sticky toffee",11],["Affogato",9]] },
+  ];
+  var tabs = document.querySelector('.days'), body = document.getElementById('menuBody'),
+      haul = document.getElementById('haul');
+  if (!tabs || !body) return;
+  function rows(list) {
+    return list.map(function (r) {
+      return '<div class="item"><b>' + r[0] + '</b><i></i><span>' + r[1] + '</span></div>';
+    }).join('');
+  }
+  function draw(i) {
+    var d = DAYS[i];
+    haul.innerHTML = d.haul;
+    body.innerHTML =
+      '<div><h3>To start</h3>' + rows(d.s) + '</div>' +
+      '<div><h3>Mains</h3>'    + rows(d.m) + '</div>' +
+      '<div><h3>After</h3>'    + rows(d.a) + '</div>';
+  }
+  tabs.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    [].forEach.call(tabs.querySelectorAll('button'), function (x) {
+      x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b);
+    });
+    draw(+b.dataset.d);
+  });
+  draw(0);
+})();
+</script>
