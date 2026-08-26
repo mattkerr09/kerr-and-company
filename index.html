@@ -1083,6 +1083,18 @@
     .pkg-alt b { color:var(--ink-2); font-weight:600; }
     .pkg-split { font-size:.76rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
       letter-spacing:-0.005em; }
+    /* ⚠️ HOW IT IS PAID SITS WITH THE PRICE, NOT UNDER IT IN GREY.
+       Matthew, five times: "bnpl right next to it and not in sub text." On this
+       site the terms were not subtext — they were ABSENT from the cards entirely
+       and lived only in the project agreement, which nobody reads before deciding
+       whether they can afford something.
+       A price answers "how much". It does not answer "can I do this", and that is
+       the question that stops people. So the terms are part of the price block:
+       same container, no scroll between them, accent-weighted rather than the
+       grey a reader's eye is trained to skip. */
+    .payline { margin-top: .3rem; font-size: .82rem; font-weight: 600;
+      color: var(--a3); letter-spacing: -.005em; }
+    :root[data-theme="light"] .payline { color: #8a5f14; }
     .pkg .price { font-family: var(--serif); font-weight: 600; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
     .pkg .price small { font-size: 0.78rem; color: var(--ink-3); font-family: var(--sans); font-weight: 400; }
     .pkg .meta { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); margin: var(--s2) 0 1rem; letter-spacing: 0.02em; }
@@ -2908,7 +2920,8 @@
         <div class="pkg">
           <span class="pkg-tag">Start here</span>
           <h3>Site &amp; Business Audit</h3>
-          <div class="price">$750 <small>one-off</small></div><div class="pkg-alt">Paid once. The report is yours to keep, or hand to anyone</div>
+          <div class="price">$750 <small>one-off</small></div>
+          <div class="payline">Paid in full up front</div><div class="pkg-alt">Paid once. The report is yours to keep, or hand to anyone</div>
           <div class="meta">written report · 3 business days</div>
           <p class="desc">Find out what is actually costing you customers before you pay anyone to change it &mdash; including us. Every page is scanned against 190+ technical, SEO, local and conversion checks, then a person reads your copy, offer and ads and tells you what to fix first.</p>
           <ul class="feat">
@@ -2924,7 +2937,8 @@
 
         <div class="pkg">
           <h3>Starter Site</h3>
-          <div class="price">$999 <small>starting at</small></div><div class="pkg-alt"><b>or $149/mo for 12 months</b> &mdash; then it stops and the site is yours, for good</div>
+          <div class="price">$999 <small>starting at</small></div>
+          <div class="payline">50% to start, 50% on launch</div><div class="pkg-alt"><b>or $149/mo for 12 months</b> &mdash; then it stops and the site is yours, for good</div>
           <div class="meta">1–3 pages · live in days</div>
           <p class="desc">A sharp, single-purpose site for a local business that needs to look credible and capture leads.</p>
           <ul class="feat">
@@ -2938,7 +2952,8 @@
         <div class="pkg feature">
           <span class="pkg-tag">Most popular</span>
           <h3>Business Site</h3>
-          <div class="price">$2,499 <small>starting at</small></div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
+          <div class="price">$2,499 <small>starting at</small></div>
+          <div class="payline">50% to start, 50% on launch</div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
           <div class="meta">5–8 pages · services + gallery</div>
           <p class="desc">A full multi-page site with services, gallery, and content built to rank and convert.</p>
           <ul class="feat">
@@ -2951,7 +2966,8 @@
 
         <div class="pkg">
           <h3>Growth Site + Tool</h3>
-          <div class="price">$4,999 <small>starting at</small></div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
+          <div class="price">$4,999 <small>starting at</small></div>
+          <div class="payline">50% to start, 50% on launch</div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
           <div class="meta">site + one custom AI tool</div>
           <p class="desc">A conversion-focused site <em>plus</em> a working AI tool built for your business — the version competitors can't copy.</p>
           <ul class="feat">
@@ -2965,6 +2981,7 @@
         <div class="pkg">
           <h3>Care Plan</h3>
           <div class="price">$199<small>/mo starting</small></div>
+          <div class="payline">Monthly, cancel any time</div>
           <div class="meta">hosting · updates · edits</div>
           <p class="desc">Keep the site fast, secure, and current — hosting, backups, monitoring, and monthly change requests handled for you.</p>
           <ul class="feat">
