@@ -47,12 +47,18 @@
     border:1px solid var(--line);border-radius:100px;padding:.36rem .78rem;box-shadow:var(--shadow-s)}
   .art{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1;
     background:linear-gradient(158deg,#7a5aa0 0%,#4a3268 60%,#2f2044 100%);box-shadow:var(--shadow-l)}
-  .art svg{position:absolute;inset:0;width:100%;height:100%}
+  .art img{width:100%;height:100%;object-fit:cover;display:block}
+  .art{margin:0}
   .art-tag{position:absolute;left:1rem;right:1rem;bottom:1rem;background:rgba(250,248,252,.95);
     backdrop-filter:blur(8px);border-radius:13px;padding:.75rem .9rem;box-shadow:var(--shadow-m)}
   .art-tag b{display:block;font-size:.855rem}
   .art-tag span{font-size:.79rem;color:var(--ink-3)}
   section{position:relative;z-index:2;padding:clamp(1.8rem,4.5vw,3rem) 0}
+  .shelf{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.4rem,3.5vw,2.6rem);align-items:center}
+  .shelf figure{margin:0;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-m)}
+  .shelf img{width:100%;height:auto;display:block;aspect-ratio:16/11;object-fit:cover}
+  .shelf h2{margin-top:0}
+  @media(max-width:780px){.shelf{grid-template-columns:1fr}}
   h2{font-size:clamp(1.4rem,3.2vw,1.95rem);letter-spacing:-.028em;margin:0 0 1.3rem;font-weight:760}
   .svc{display:grid;gap:.7rem}
   .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--card);
@@ -101,25 +107,11 @@
       <a class="book" href="#book">See this week's openings</a>
       <div class="trust"><b>Licensed esthetician</b><b>Evening appointments</b><b>No membership</b><b>First consult free</b></div>
     </div>
-    <div class="art">
-      <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-label="Illustration of a treatment room">
-        <defs>
-          <radialGradient id="gl" cx="50%" cy="34%"><stop offset="0" stop-color="rgba(255,232,246,.6)"/>
-            <stop offset="1" stop-color="rgba(255,232,246,0)"/></radialGradient>
-          <linearGradient id="bed" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#f6f0fb"/><stop offset="1" stop-color="#d9cbe9"/></linearGradient></defs>
-        <rect width="300" height="300" fill="none"/>
-        <circle cx="150" cy="104" r="120" fill="url(#gl)"/>
-        <circle cx="150" cy="98" r="52" fill="none" stroke="rgba(255,240,250,.4)" stroke-width="1.2"/>
-        <circle cx="150" cy="98" r="72" fill="none" stroke="rgba(255,240,250,.22)" stroke-width="1.2"/>
-        <rect x="52" y="196" width="196" height="20" rx="10" fill="url(#bed)"/>
-        <rect x="70" y="216" width="10" height="42" rx="4" fill="#3a2a52"/>
-        <rect x="220" y="216" width="10" height="42" rx="4" fill="#3a2a52"/>
-        <ellipse cx="104" cy="190" rx="30" ry="12" fill="#fdf7ff" opacity=".9"/>
-        <path d="M232 122c14 0 22 10 22 22s-8 22-22 22" fill="none" stroke="rgba(255,240,250,.5)" stroke-width="2.4" stroke-linecap="round"/>
-        <circle cx="232" cy="144" r="7" fill="#ffe9f6" opacity=".85"/>
-      </svg>
-      <div class="art-tag"><b>Two rooms, one esthetician</b><span>Never double-booked, never rushed</span></div>
+    <figure class="art">
+      <img src="/assets/examples/photos/spa-hero.jpg" alt="A treatment in progress"
+           width="1600" height="1000" fetchpriority="high" decoding="async">
+      <figcaption class="art-tag"><b>Two rooms, one esthetician</b><span>Never double-booked, never rushed</span></figcaption>
+    </figure>
     </div>
   </div>
 
@@ -130,6 +122,16 @@
       <div class="row"><div><strong>Chemical peel</strong><span>45 minutes · light to medium depth</span></div><div class="p">$140</div></div>
       <div class="row"><div><strong>Laser hair removal</strong><span>Per session · small to large areas</span></div><div class="p">from $75</div></div>
       <div class="row"><div><strong>Consultation</strong><span>20 minutes · first visit, no obligation</span></div><div class="p">Free</div></div>
+    </div>
+  </section>
+
+  <section class="shelf">
+    <figure><img src="/assets/examples/photos/spa-detail.jpg"
+      alt="Skincare products on a counter" width="1600" height="1000" loading="lazy" decoding="async"></figure>
+    <div>
+      <h2>What we use on you</h2>
+      <p>Professional-grade, fragrance-free, and we will tell you exactly what is going on your
+        skin and why. Nothing is sold to you at the end of an appointment.</p>
     </div>
   </section>
 

@@ -43,13 +43,18 @@
   .btn:hover{background:var(--olive-2);transform:translateY(-1.5px)}
   .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none;margin-left:.4rem}
   .btn.ghost:hover{border-color:var(--ink-3);background:transparent}
-  .plates{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-    background:var(--line);margin:clamp(1.6rem,4vw,2.6rem) 0;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-l)}
-  .plate{position:relative;aspect-ratio:1;display:grid;place-items:center;overflow:hidden}
-  .plate svg{position:absolute;inset:0;width:100%;height:100%}
-  .plate span{position:relative;font:600 .7rem/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
-    color:rgba(250,246,239,.92);background:rgba(25,21,18,.42);backdrop-filter:blur(6px);
-    padding:.42rem .8rem;border-radius:100px}
+  .plates{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line);margin:clamp(1.6rem,4vw,2.6rem) 0;border-radius:16px;overflow:hidden;
+    box-shadow:var(--shadow-l)}
+  .plate{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden}
+  .plate img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+  .plate:hover img{transform:scale(1.04)}
+  .plate figcaption{position:absolute;left:.9rem;bottom:.9rem;
+    font:600 .7rem/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    color:rgba(250,246,239,.95);background:rgba(25,21,18,.5);backdrop-filter:blur(6px);
+    padding:.44rem .82rem;border-radius:100px}
+  @media(max-width:620px){.plates{grid-template-columns:1fr}.plate{aspect-ratio:16/10}}
   section{position:relative;z-index:2;padding:clamp(2.2rem,5vw,3.4rem) 0}
   h2{font-size:clamp(1.5rem,3.4vw,2.1rem);text-align:center;font-weight:400;margin:0 0 .5rem;letter-spacing:-.02em}
   .sub{text-align:center;color:var(--ink-3);font:400 .84rem/1.6 var(--sans);letter-spacing:.06em;
@@ -93,39 +98,12 @@
   </div>
 
   <div class="plates">
-    <div class="plate">
-      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs><linearGradient id="p1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#40402f"/><stop offset="1" stop-color="#1e2018"/></linearGradient></defs>
-        <rect width="200" height="200" fill="url(#p1)"/>
-        <circle cx="100" cy="104" r="62" fill="#f6f1e6" opacity=".93"/>
-        <circle cx="100" cy="104" r="46" fill="#efe6d6"/>
-        <path d="M74 104q26-24 52 0-26 22-52 0z" fill="#b5632f" opacity=".85"/>
-        <circle cx="88" cy="98" r="5" fill="#6d8b4a"/><circle cx="112" cy="110" r="4" fill="#6d8b4a"/>
-      </svg><span>Tonight's plate</span></div>
-    <div class="plate">
-      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs><linearGradient id="p2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#5a3520"/><stop offset="1" stop-color="#241409"/></linearGradient>
-          <radialGradient id="fl"><stop offset="0" stop-color="#ffb85c"/><stop offset="1" stop-color="rgba(255,184,92,0)"/></radialGradient></defs>
-        <rect width="200" height="200" fill="url(#p2)"/>
-        <ellipse cx="100" cy="140" rx="86" ry="46" fill="url(#fl)" opacity=".85"/>
-        <path d="M60 150h80l-8-30H68z" fill="#160c05"/>
-        <path d="M84 128q6-22 16 0-8 12-16 0z" fill="#ffcf7a"/>
-        <path d="M100 132q7-26 18 0-9 14-18 0z" fill="#ff9b3d" opacity=".9"/>
-      </svg><span>The wood oven</span></div>
-    <div class="plate">
-      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs><linearGradient id="p3" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#3f5c46"/><stop offset="1" stop-color="#1d2b21"/></linearGradient></defs>
-        <rect width="200" height="200" fill="url(#p3)"/>
-        <rect x="24" y="120" width="152" height="8" rx="4" fill="#c9a06a" opacity=".7"/>
-        <rect x="40" y="60" width="26" height="60" rx="3" fill="rgba(250,246,239,.16)"/>
-        <rect x="86" y="44" width="26" height="76" rx="3" fill="rgba(250,246,239,.22)"/>
-        <rect x="132" y="70" width="26" height="50" rx="3" fill="rgba(250,246,239,.13)"/>
-        <circle cx="53" cy="52" r="6" fill="#ffd89a" opacity=".8"/>
-        <circle cx="99" cy="36" r="6" fill="#ffd89a" opacity=".9"/>
-      </svg><span>The dining room</span></div>
+    <figure class="plate"><img src="/assets/examples/photos/food-hero.jpg"
+      alt="A plated brunch dish" width="1600" height="1000" fetchpriority="high" decoding="async">
+      <figcaption>Tonight's plate</figcaption></figure>
+    <figure class="plate"><img src="/assets/examples/photos/food-room.jpg"
+      alt="The dining room, laid for service" width="1600" height="1000" loading="lazy" decoding="async">
+      <figcaption>The dining room</figcaption></figure>
   </div>
 
   <section id="menu">

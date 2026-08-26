@@ -40,7 +40,10 @@
   .logo svg{width:26px;height:26px;color:var(--brand);flex:none}
   .logo em{font-style:normal;color:var(--brand)}
   .nav-r{display:flex;align-items:center;gap:1.1rem}
-  .nav-tel{font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+  /* 44px even on desktop: it is a phone number, and the whole point is that it
+     is tapped. It measured 24px, which is a mouse target pretending to be one. */
+  .nav-tel{font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:none;
+    white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
   .nav-tel:hover{color:var(--ink)}
   .cta{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:.62rem 1.15rem;
     background:var(--brand);color:#fff;border-radius:10px;text-decoration:none;font-weight:650;
@@ -83,6 +86,19 @@
   .art-tag b{display:block;font-size:.855rem}
   .art-tag span{color:var(--ink-3)}
 
+  .art{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:5/4;margin:0;
+    box-shadow:var(--shadow-l);background:#241d17}
+  .art img{width:100%;height:100%;object-fit:cover;display:block}
+  .art-tag em{display:block;font-style:normal;color:var(--ink-3);font-size:.8rem}
+  .strip{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .strip-grid{display:grid;gap:clamp(1.6rem,4vw,3rem);grid-template-columns:1.05fr .95fr;align-items:center}
+  .strip figure{margin:0;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-m);position:relative}
+  .strip figure img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
+  .strip figcaption{position:absolute;left:.9rem;bottom:.9rem;background:rgba(253,251,247,.94);
+    backdrop-filter:blur(8px);border-radius:9px;padding:.4rem .7rem;font-size:.78rem;font-weight:600}
+  .strip-copy h2{margin-top:0}
+  .strip-note{font-size:.84rem;color:var(--ink-3)}
+  @media(max-width:820px){.strip-grid{grid-template-columns:1fr}}
   section{position:relative;z-index:2;padding:clamp(2.6rem,5.5vw,4rem) 0}
   .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .sec-head{max-width:56ch;margin-bottom:1.9rem}
@@ -170,37 +186,35 @@
       <div class="badges"><b>Licensed &amp; insured</b><b>25-year warranty</b><b>Insurance claims handled</b><b>Family owned since 1998</b></div>
     </div>
 
-    <div class="art">
-      <span class="sun"></span>
-      <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMax slice" aria-label="Illustration of a roofline at dusk">
-        <defs>
-          <linearGradient id="rf" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#6b4a33"/><stop offset="1" stop-color="#3b2a1e"/></linearGradient>
-          <linearGradient id="rf2" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#8a5a3a"/><stop offset="1" stop-color="#5a3c28"/></linearGradient>
-          <pattern id="sh" width="26" height="13" patternUnits="userSpaceOnUse">
-            <rect width="26" height="13" fill="none"/>
-            <path d="M0 12.5h26M6.5 0v12.5M19.5 0v12.5" stroke="rgba(0,0,0,.22)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <path d="M0 200 L120 118 L240 200 Z" fill="url(#rf2)"/>
-        <path d="M0 200 L120 118 L240 200 Z" fill="url(#sh)" opacity=".55"/>
-        <path d="M150 210 L275 120 L400 210 Z" fill="url(#rf)"/>
-        <path d="M150 210 L275 120 L400 210 Z" fill="url(#sh)" opacity=".5"/>
-        <rect x="0" y="198" width="240" height="122" fill="#2b211a"/>
-        <rect x="150" y="208" width="250" height="112" fill="#221a14"/>
-        <rect x="36" y="228" width="34" height="44" rx="3" fill="#f0c98a" opacity=".82"/>
-        <rect x="96" y="228" width="34" height="44" rx="3" fill="#f0c98a" opacity=".55"/>
-        <rect x="212" y="238" width="30" height="40" rx="3" fill="#f0c98a" opacity=".7"/>
-        <rect x="300" y="238" width="30" height="40" rx="3" fill="#f0c98a" opacity=".38"/>
-        <path d="M0 200h240M150 210h250" stroke="rgba(255,220,180,.35)" stroke-width="2"/>
-      </svg>
-      <div class="art-tag">
+    <figure class="art">
+      <img src="/assets/examples/photos/roof-hero.jpg" alt="A slate roof with dormer windows"
+           width="1600" height="1000" fetchpriority="high" decoding="async">
+      <figcaption class="art-tag">
         <span class="tick">✓</span>
-        <div><b>Cedar Springs · full tear-off</b><span>Completed in one day, 2,400 sq ft</span></div>
+        <span><b>Cedar Springs · full tear-off</b><em>Completed in one day, 2,400 sq ft</em></span>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- A BAND OF REAL WORK. The single biggest gap between this and the sites on
+     saaspo is that they show the thing being sold, repeatedly and large. An
+     illustration says "we could not get a photograph". -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-grid">
+      <figure><img src="/assets/examples/photos/roof-detail.jpg" alt="Slate roof tiles laid in courses"
+        width="1600" height="1000" loading="lazy" decoding="async">
+        <figcaption>Slate, laid to a 100mm lap</figcaption></figure>
+      <div class="strip-copy">
+        <h2>We photograph everything</h2>
+        <p>Before, during and after — every job comes with a full photo report, emailed the
+          same day. You see what we saw, whether or not you were home.</p>
+        <p class="strip-note">On a real build this gallery holds your own completed jobs.</p>
       </div>
     </div>
   </div>
+</section>
 </div>
 
 <div class="band"><div class="wrap"><section>
