@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark" lang="en">
+<html data-theme="light" lang="en">
 <head>
 
   <!-- Privacy-friendly analytics by Plausible -->
@@ -1738,6 +1738,37 @@
       --ink-4:   #6B6355;   --line:  #E4DECF;    --line-2:#D3CAB5;
     }
 
+    /* ── COLOUR, WITHOUT REPAINTING ANYTHING ──────────────────────
+       Matthew, with two references: Lumen's pastel hero wash, and a page of bold
+       geometric colour. "brighten things up by changing the background, make it fun."
+
+       The move both references actually make is the one worth copying: THE COLOUR
+       IS IN THE AIR, NOT ON THE CONTROLS. Lumen's hero is a pink-to-blue wash and
+       its button is flat black. Colour is atmosphere; the thing you click stays
+       high-contrast.
+
+       So this is a background layer only. The gold ramp keeps every job it had —
+       buttons, badges, gradient headlines, focus rings — because those are the
+       elements where contrast is a requirement rather than a mood. Putting pink
+       and blue on THOSE would mean re-checking 27 contrast pairs I already fixed
+       once, in order to make the page harder to read.
+
+       Fixed to the viewport behind everything, so it costs one paint and does not
+       tile, move or reflow on scroll. Hidden from assistive tech and from print. */
+    .sky { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(58% 44% at 14% 8%,  rgba(255,158,196,.34) 0%, rgba(255,158,196,0) 62%),
+        radial-gradient(52% 42% at 86% 4%,  rgba(150,190,255,.32) 0%, rgba(150,190,255,0) 62%),
+        radial-gradient(46% 38% at 52% 22%, rgba(206,168,255,.26) 0%, rgba(206,168,255,0) 66%),
+        radial-gradient(64% 46% at 92% 58%, rgba(255,214,150,.26) 0%, rgba(255,214,150,0) 66%),
+        radial-gradient(56% 44% at 6%  74%, rgba(150,232,214,.24) 0%, rgba(150,232,214,0) 66%),
+        var(--bg);
+    }
+    /* At full strength on near-black these read as smeared neon, so the dark
+       theme takes them at a third and lets the background carry the page. */
+    :root:not([data-theme="light"]) .sky { opacity: .32; }
+    @media print { .sky { display: none; } }
+
     /* 1. GRADIENT TEXT on the headline of every section — Outlier's
           linear-gradient(112deg,...) clipped to the text. */
     .section-title, .hero h1 {
@@ -2177,12 +2208,19 @@
 
        The white background stays for the same reason it was added: the embed is
        light-themed and this page is dark, and we cannot restyle across origins. */
+    /* ⚠️ NO WHITE CARD. This was `background:#fff` with a border, and the comment
+       above said why: "the embed is light-themed and this page is dark". That
+       reason expired the moment the page became light by default, leaving a white
+       slab inside a bordered box inside a card — three nested rectangles around a
+       calendar. Matthew: "make it just the calendar part and not white
+       background, it looks bad."
+       The embed is now told its own background through the URL, so the frame and
+       the page agree and no container is needed to hide the seam. */
     .book-slot { width: 100%; max-width: 100%; overflow-x: auto;
-      border-radius: 14px; border: 1px solid var(--line-2);
-      background: #fff; }
+      border-radius: 14px; background: transparent; }
     .book-slot .calendly-inline-widget { width: 100%; }
     .book-slot > iframe { display: block; width: 100%; min-width: 300px;
-      border: 0; background: #fff; }
+      border: 0; background: transparent; }
     /* On phones the card's 40px side padding was starving the calendar: 260px
        of usable width at a 390px viewport, under the 300px the embed needs, so
        it scrolled inside its own slot. The slot now spans the card's padding as
@@ -2293,14 +2331,25 @@
                nearly invisible, unnoticed until someone switched. Flipping the
                default does not fix a theme, it only changes which one decays
                unseen. e2e/contrast.spec.ts measures BOTH on every run. */
-            if (!t) t = 'dark';
+            /* LIGHT again, 2026-08-26 (later the same day), on Matthew's
+                 instruction: "brighten things up by changing the background, make
+                 it fun like these" — attached to two references that are both
+                 light. This REVERSES his own earlier instruction the same day
+                 ("flip it to night theme"), which is worth recording rather than
+                 quietly overwriting: both are his call, the newer one wins, and
+                 the toggle still switches in one click either way.
+                 What changed alongside it is that the brightness now comes from a
+                 pastel .sky layer rather than from bare paper — "dark" and "flat"
+                 were never the same complaint. */
+              if (!t) t = 'light';
         document.documentElement.setAttribute('data-theme', t);
       } catch(e){}
     })();
   </script>
   <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
-<body><div class="mesh" aria-hidden="true"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
+<body>
+<div class="sky" aria-hidden="true"></div><div class="mesh" aria-hidden="true"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
   <div class="glows" aria-hidden="true">
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
@@ -3599,7 +3648,28 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
  * so if the script does not load the email fallback stays exactly as served and
  * nothing claims to be a booking form that is not one.
  */
-var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min?hide_event_type_details=1';
+/* ⚠️ EVERY ONE OF THESE PARAMETERS IS LOAD-BEARING — do not "tidy" them.
+ *
+ *   hide_event_type_details=1  drops the duplicate "20 minute meeting" panel;
+ *                              the page above the embed already says all of it.
+ *   hide_gdpr_banner=1         removes Calendly's own cookie notice, which was
+ *                              rendering ON TOP OF THE CALENDAR and covering the
+ *                              bookable dates. A consent banner nobody can book
+ *                              past is worse for the visitor than for us, and our
+ *                              privacy policy already discloses Calendly.
+ *   background_color etc.      the embed cannot be styled across origins, so
+ *                              these are the ONLY way to stop it being a white
+ *                              slab. Hex WITHOUT the leading #; include one and
+ *                              Calendly discards the value and falls back to
+ *                              white, which looks exactly like the bug.
+ *
+ * Colours track the LIGHT theme, which is now the default. */
+var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min'
+  + '?hide_event_type_details=1'
+  + '&hide_gdpr_banner=1'
+  + '&background_color=fbfaf7'
+  + '&text_color=17130c'
+  + '&primary_color=b8811f';
 
 (function () {
   if (!BOOKING_URL) return;                  // fallback stays; nothing to do
