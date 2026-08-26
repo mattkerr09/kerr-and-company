@@ -234,6 +234,50 @@
                      font-family: var(--sans); font-size: .62rem; letter-spacing: .3em; line-height: 1; }
     @media (max-width: 640px){ .brand-name em{display:none} .brand-name{border-left:0;padding-left:.15rem} }
     .nav-right { display: flex; align-items: center; gap: var(--s7); }
+
+    /* ── answer-now assistant ── */
+    #kc-agent { position: fixed; right: var(--s4); bottom: var(--s4); z-index: 90;
+      font-family: var(--sans); }
+    #kc-agent-toggle { display:inline-flex; align-items:center; gap:.5rem; min-height:44px;
+      padding:.7rem 1.1rem; border-radius:100px; cursor:pointer;
+      background:var(--accent); color:#fff; border:1px solid var(--accent);
+      font-size:.88rem; font-weight:500; letter-spacing:-0.01em;
+      box-shadow:0 10px 30px rgba(0,0,0,.45); transition:transform .18s, box-shadow .18s; }
+    #kc-agent-toggle:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.55); }
+    #kc-agent-toggle svg { width:1.05em; height:1.05em; }
+    #kc-agent-panel { width:min(370px, calc(100vw - 2rem)); background:var(--surface);
+      border:1px solid var(--line-2); border-radius:16px; overflow:hidden;
+      box-shadow:0 24px 70px rgba(0,0,0,.6); display:flex; flex-direction:column; }
+    .kc-a-head { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem;
+      padding:var(--s4) var(--s4) var(--s3); border-bottom:1px solid var(--line); }
+    .kc-a-head strong { display:block; font-size:.95rem; color:var(--ink-1); }
+    .kc-a-head span { display:block; font-size:.74rem; color:var(--ink-3); margin-top:.15rem; }
+    #kc-agent-close { background:none; border:0; color:var(--ink-3); font-size:1.5rem;
+      line-height:1; cursor:pointer; min-width:44px; min-height:44px; }
+    #kc-agent-close:hover { color:var(--ink); }
+    #kc-agent-log { padding:var(--s4); display:flex; flex-direction:column; gap:var(--s3);
+      max-height:min(46vh, 340px); overflow-y:auto; font-size:.86rem; line-height:1.6; }
+    .kc-m { padding:.6rem .8rem; border-radius:12px; max-width:88%; white-space:pre-wrap; }
+    .kc-m.you { align-self:flex-end; background:var(--accent); color:#fff; }
+    .kc-m.bot { align-self:flex-start; background:var(--surface-2, rgba(255,255,255,.05));
+      color:var(--ink-2); border:1px solid var(--line); }
+    .kc-m a { color:inherit; text-decoration:underline; }
+    #kc-agent-form { display:flex; gap:.5rem; padding:var(--s3) var(--s4) var(--s3);
+      border-top:1px solid var(--line); }
+    #kc-agent-input { flex:1; background:transparent; border:1px solid var(--line-2);
+      border-radius:10px; padding:.6rem .75rem; color:var(--ink-1); font-size:.86rem;
+      font-family:inherit; min-height:44px; }
+    #kc-agent-input:focus { outline:none; border-color:var(--ink-3); }
+    #kc-agent-form button { min-width:44px; min-height:44px; border-radius:10px; cursor:pointer;
+      background:var(--accent); color:#fff; border:0; font-size:1rem; }
+    .kc-a-foot { margin:0; padding:0 var(--s4) var(--s3); font-size:.7rem; color:var(--ink-4);
+      line-height:1.5; }
+    .kc-a-foot a { color:var(--ink-3); }
+    @media (max-width: 520px) {
+      #kc-agent { right:var(--s3); bottom:var(--s3); left:var(--s3); }
+      #kc-agent-toggle { width:100%; justify-content:center; }
+      #kc-agent-panel { width:100%; }
+    }
     /* Docket's top finding: no phone number anywhere. Google uses the number as a
        primary key when matching a site to its Google Business Profile, so this is a
        local-ranking item as much as a contact one. Text-first because the number is a
@@ -3540,5 +3584,120 @@ var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min?hide_
   vids.forEach(function (v) { io.observe(v); });
 })();
 </script>
+
+  <!-- ── ANSWER-NOW ASSISTANT ────────────────────────────────────────────────
+       Measured 2026-08-25: a lead answered within five minutes is 21x more likely
+       to qualify than one answered at thirty (MIT/InsideSales), 78% of buyers buy
+       from whoever replies FIRST, the average B2B reply takes 42 hours, and over
+       half of contractors take five days or more. This page already promises a
+       personal reply within one business day — better than that average, and still
+       slower than anyone answering right now.
+
+       It answers from facts SCRAPED OFF THIS RENDERED PAGE, so it cannot quote a
+       price the page does not show. It will not agree a discount, a deadline or a
+       term — those are Matthew's, on the call — and every path ends at booking.
+       Backend: ops/lead-agent, Cloudflare Workers AI. -->
+  <div id="kc-agent" hidden>
+    <button id="kc-agent-toggle" type="button" aria-expanded="false" aria-controls="kc-agent-panel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Ask a question</span>
+    </button>
+    <div id="kc-agent-panel" role="dialog" aria-label="Ask about pricing and scope" hidden>
+      <div class="kc-a-head">
+        <div><strong>Ask about the work</strong><span>Answers now · Matthew reads every one</span></div>
+        <button type="button" id="kc-agent-close" aria-label="Close">&times;</button>
+      </div>
+      <div id="kc-agent-log" aria-live="polite"></div>
+      <form id="kc-agent-form">
+        <input id="kc-agent-input" type="text" autocomplete="off" maxlength="500"
+               placeholder="What does a 5-page site cost?" aria-label="Your question">
+        <button type="submit" aria-label="Send">&rarr;</button>
+      </form>
+      <p class="kc-a-foot">Straight answers, real prices. Anything it will not guess at goes to <a href="#contact">Matthew</a>.</p>
+    </div>
+  </div>
+
+  <script>
+  /* The assistant is PROGRESSIVELY ENHANCED — the markup ships hidden and only
+     appears once this script runs and the endpoint is reachable. A chat button
+     that opens a box which cannot answer is worse than no button: it reads as a
+     broken site at the moment someone is deciding whether to trust one. */
+  (function () {
+    var EP = 'https://kerr-lead-agent.kerrco.workers.dev';
+    var root = document.getElementById('kc-agent');
+    if (!root) return;
+    var toggle = document.getElementById('kc-agent-toggle'),
+        panel  = document.getElementById('kc-agent-panel'),
+        log    = document.getElementById('kc-agent-log'),
+        form   = document.getElementById('kc-agent-form'),
+        input  = document.getElementById('kc-agent-input'),
+        close  = document.getElementById('kc-agent-close');
+    var history = [], busy = false, greeted = false;
+
+    root.hidden = false;
+
+    function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    function linkify(t) {
+      /* escape FIRST, then linkify — the reverse order lets a model-authored
+         string inject markup into our own page. */
+      return esc(t).replace(/(https?:\/\/[^\s<]+)/g,
+        function (u) { return '<a href="' + u + '" target="_blank" rel="noopener">' + u + '</a>'; });
+    }
+    function add(role, text) {
+      var d = document.createElement('div');
+      d.className = 'kc-m ' + (role === 'user' ? 'you' : 'bot');
+      d.innerHTML = linkify(text);
+      log.appendChild(d); log.scrollTop = log.scrollHeight;
+      return d;
+    }
+    function open() {
+      panel.hidden = false; toggle.setAttribute('aria-expanded', 'true'); toggle.hidden = true;
+      if (!greeted) {
+        greeted = true;
+        add('bot', "Ask me anything about scope, pricing or timelines and I'll answer straight. If I don't know, I'll say so rather than guess.");
+      }
+      input.focus();
+    }
+    function shut() {
+      panel.hidden = true; toggle.hidden = false; toggle.setAttribute('aria-expanded', 'false'); toggle.focus();
+    }
+    toggle.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) shut(); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = (input.value || '').trim();
+      if (!q || busy) return;
+      busy = true; input.value = '';
+      add('user', q);
+      history.push({ role: 'user', content: q });
+      var thinking = add('bot', '…');
+
+      fetch(EP, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history.slice(-12) })
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var reply = (d && d.reply) || "I can't answer that right now — book a call and Matthew will.";
+        thinking.innerHTML = linkify(reply);
+        history.push({ role: 'assistant', content: reply });
+        /* Lead signal, not a conversion. The Lead pixel event is reserved for a
+           DELIVERED enquiry; someone asking a question has not become a lead, and
+           teaching Meta otherwise optimises toward people who chat and leave. */
+        if (window.fbq && typeof META_PIXEL_ID !== 'undefined' && META_PIXEL_ID && history.length === 2) {
+          fbq('trackCustom', 'AssistantOpened');
+        }
+      })
+      .catch(function () {
+        thinking.innerHTML = linkify("I can't reach my answers right now. Text (616) 320-1280 or use the form below and Matthew will pick it up.");
+      })
+      .then(function () { busy = false; input.focus(); });
+    });
+  })();
+  </script>
 </body>
 </html>
