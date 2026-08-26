@@ -15,7 +15,7 @@ monthly agreement. Decide these before anyone signs:
 | § | Term | Why it is here |
 |---|---|---|
 | **10** | **30 days of fixes included** | ⚠️ **Costs you.** A buyer will ask "what if it breaks next week"; silence favours whoever argues hardest. Change the number or delete it — but answer it somewhere. |
-| **8** | **Cancellation: full refund before we start, pay-for-work-done after** | ⚠️ **Costs you.** The alternative is keeping deposits for work not done, which contradicts the rest of the page. |
+| **8** | **Cancellation: full refund before we start, pay-for-work-done after, ownership on settlement** | ⚠️ **Costs you.** The alternative is keeping deposits for work not done, which contradicts the rest of the page. |
 | 11 | Michigan law, Kent County courts | Standard. You are a Michigan LLC. |
 | 9 | We may end it over unlawful or false copy | Protects you. Standard. |
 
@@ -106,10 +106,18 @@ You may cancel at any time, in writing.
 
 - **Before we start:** full refund of the deposit.
 - **After we start:** you pay for the work done to that point, and we invoice or
-  refund the difference against your deposit. You receive everything produced so
-  far — files, copy, and anything already built.
+  refund the difference against your deposit.
 
 We do not keep a deposit for work we have not done.
+
+**Ownership follows payment, not cancellation.** On settlement of that final
+invoice, everything produced up to the cancellation is yours on the same terms as
+§3 — files, copy, and anything already built, handed over cleanly. Until it is
+settled, the work remains ours and is not licensed for use.
+
+This is not a penalty and there is nothing to negotiate here: it is the same rule
+as §3, applied at the point a project stops early. Without it, cancelling is a
+cheaper way to buy the work than finishing is.
 
 ## 9. If we cancel
 
@@ -119,10 +127,17 @@ hold. In that case we refund **every payment made** and nothing transfers.
 
 ## 10. After launch
 
-Thirty days of **fixes** are included — anything that does not work as agreed,
-we repair at no cost.
+Thirty days of **fixes** are included: anything that does not do what §1 says it
+does, we repair at no cost. That is a warranty on our work, and we stand behind it.
 
-That is separate from **changes**, which are new work and are quoted. A Care
+Three things are outside it, stated here so nobody has to argue about them later:
+
+- **Changes** — new work, or a different decision about something that already
+  works as agreed. Quoted like any other work.
+- **Things we did not build** — breakage caused by edits made by you or another
+  developer, or by a third-party service changing its own behaviour.
+- **Content you supplied** — we are not responsible for the accuracy of copy,
+  images, prices or claims you gave us to publish. A Care
 Plan at $199/mo covers hosting, backups, monitoring and ongoing edits if you
 would rather not think about it.
 
