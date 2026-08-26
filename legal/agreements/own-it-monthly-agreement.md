@@ -6,8 +6,7 @@
 
 ⚠️ **Not legal advice.** This was drafted to match, word for word, what
 builtbykerr.com publicly promises. Have a Michigan attorney read it before the
-first client signs. One clause (§5) encodes a commercial decision that is yours
-to make, and it is marked.
+first client signs.
 
 ---
 
@@ -57,32 +56,27 @@ You may end the term early **at any time** by paying the remaining balance:
 On receipt, everything in §3 transfers to you **that day**. No penalty, no fee,
 no notice period.
 
-## 5. ⚠️ If you stop paying before month twelve
+## 5. If you stop paying before month twelve
 
-> **MATTHEW — THIS IS THE CLAUSE TO DECIDE. The website currently says two
-> things that contradict each other: "You keep it" and "it is yours at month
-> 12". A client who stops at month four will read the first sentence. Pick one
-> of the options below, delete the other, and I will make the website match
-> whichever you choose. Leaving both live is how the first dispute starts.**
+If payments stop before the twelfth, **ownership does not transfer** and the
+site comes down. In full:
 
-**Option A — ownership at month twelve (drafted below, and what §3 assumes).**
+1. We email you and wait **14 days**, so a failed card or a bad month is never
+   the thing that ends this.
+2. If it is not resolved, we take the site offline. We will not sell it, reuse
+   it for another client, or hold it against any future payment.
+3. **We keep a complete copy for 90 days.** At any point in those 90 days you
+   can pay the outstanding balance under §4 and receive everything in §3 — the
+   code, the content, the domain and the accounts. The buy-out stays open even
+   after the site is down.
+4. After 90 days we delete it, and we will email you before we do.
 
-If payments stop before the twelfth, ownership does **not** transfer. We will:
+You are never charged for a month in which the site was offline.
 
-1. Email you, and wait **14 days** for payment or for you to tell us to stop.
-2. If nothing is resolved, take the site offline. We will not sell it, reuse it
-   for another client, or hold it against a future payment.
-3. Keep a complete copy for **90 days**. At any point in those 90 days you can
-   pay the outstanding balance under §4 and receive everything in §3.
-4. After 90 days we delete it.
-
-You are never charged for months in which the site was offline.
-
-**Option B — you keep the site whatever happens.**
-
-*(If you choose this, replace all of Option A with:)* If payments stop, the site
-stays live and you keep using it. Ownership under §3 still transfers only on the
-twelfth payment or on a buy-out under §4, but we will not take the site down.
+**Why it works this way.** The site is being built and paid for over twelve
+months; ownership arrives when the twelve payments do, or the moment you settle
+the balance. What you always keep is the option to buy it — that is what §4 is
+for, and it does not expire when the site goes dark.
 
 ## 6. Revisions
 
