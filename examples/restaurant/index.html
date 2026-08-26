@@ -1,106 +1,159 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Verde &amp; Co. — Demonstration build by Kerr &amp; Company</title>
-<meta name="description" content="A demonstration site built by Kerr &amp; Company to show what a restaurant's site looks like. Not a real business.">
+<meta name="description" content="A demonstration site built by Kerr &amp; Company showing what a restaurant's site looks like. Not a real business.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  :root{--ink:#1c1917;--ink-2:#57534e;--line:#e7e2dc;--bg:#f7f4ef;--card:#fff;--brand:#3f5c46;--accent:#c2703d}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font:16px/1.7 ui-serif,Georgia,"Times New Roman",serif}
-  .demo{background:#1c1917;color:#f7f4ef;font:400 .8rem/1.5 ui-sans-serif,-apple-system,sans-serif;padding:.6rem 1rem;text-align:center}
-  .demo a{color:#fff}
-  .wrap{max-width:1020px;margin:0 auto;padding:0 1.25rem}
-  header{padding:1.4rem 0;text-align:center;border-bottom:1px solid var(--line)}
-  .brand{font-size:1.5rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
-  .brand em{color:var(--accent);font-style:normal}
-  nav{margin-top:.7rem;font:600 .78rem/1 ui-sans-serif,-apple-system,sans-serif;
-      letter-spacing:.12em;text-transform:uppercase}
-  nav a{color:var(--ink-2);text-decoration:none;margin:0 .6rem;display:inline-block;padding:.5rem 0}
-  .hero{text-align:center;padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(2rem,5vw,3rem)}
-  h1{font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.1;margin:0 0 1rem;font-weight:400}
-  .lede{color:var(--ink-2);max-width:52ch;margin:0 auto 1.8rem;font-size:1.06rem}
-  .btn{display:inline-block;min-height:44px;padding:.8rem 1.6rem;background:var(--brand);color:#fff;
-    text-decoration:none;font:700 .82rem/1.6 ui-sans-serif,-apple-system,sans-serif;
-    letter-spacing:.1em;text-transform:uppercase;border-radius:2px}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);margin-left:.5rem}
-  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:2rem 0}
-  .strip div{background:linear-gradient(160deg,#3f5c46,#2b3f30);aspect-ratio:1;display:grid;place-items:center;
-    color:#f7f4ef;text-align:center;padding:1rem;font:400 .8rem/1.5 ui-sans-serif,-apple-system,sans-serif;opacity:.92}
-  section{padding:clamp(2rem,5vw,3.2rem) 0}
-  h2{font-size:clamp(1.4rem,3.4vw,2rem);text-align:center;font-weight:400;margin:0 0 1.6rem}
-  .menu{display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .menu h3{font:700 .78rem/1 ui-sans-serif,-apple-system,sans-serif;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}
-  .item{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-bottom:1px dotted var(--line)}
-  .item span:last-child{color:var(--ink-2)}
-  .hours{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.6rem;text-align:center}
-  .hours dl{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1rem;max-width:340px;margin:1rem auto 0;
-    font:400 .92rem/1.7 ui-sans-serif,-apple-system,sans-serif;text-align:left}
+  :root{--ink:#191512;--ink-2:#574d43;--ink-3:#8a7d6f;--line:#e5ddd1;--paper:#faf6ef;--card:#fff;
+    --olive:#3f5c46;--olive-2:#2d4433;--ember:#bf6b34;--sand:#f2e9db;
+    --serif:ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+    --shadow-l:0 30px 70px -26px rgba(25,21,18,.42)}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 var(--serif);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .demo{background:#191512;color:#faf6ef;font:400 .78rem/1.5 var(--sans);padding:.62rem 1rem;text-align:center}
+  .demo a{color:#fff;text-underline-offset:3px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 1.4rem}
+  header{padding:1.5rem 0 1.1rem;text-align:center;position:relative;z-index:3}
+  .brand{font-size:clamp(1.35rem,3.4vw,1.7rem);letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+  .brand em{color:var(--ember);font-style:normal}
+  nav{margin-top:.85rem;font:600 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+  nav a{color:var(--ink-3);text-decoration:none;margin:0 .7rem;padding:.5rem 0;display:inline-block;
+    border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+  nav a:hover{color:var(--ink);border-color:var(--ember)}
+  .field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .field i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;display:block}
+  .field .a{width:560px;height:560px;top:-220px;left:-180px;background:radial-gradient(circle,#d9e3d0 0%,rgba(217,227,208,0) 70%)}
+  .field .b{width:520px;height:520px;top:60px;right:-200px;background:radial-gradient(circle,#f3d9c2 0%,rgba(243,217,194,0) 70%)}
+  .hero{position:relative;z-index:2;text-align:center;padding:clamp(2.4rem,6vw,4rem) 0 clamp(1.8rem,4vw,2.6rem)}
+  h1{font-size:clamp(2.2rem,6.2vw,3.6rem);line-height:1.08;margin:0 0 1.1rem;font-weight:400;letter-spacing:-.022em}
+  h1 em{font-style:italic;color:var(--olive)}
+  .lede{color:var(--ink-2);max-width:50ch;margin:0 auto 1.9rem;font-size:1.08rem}
+  .btn{display:inline-flex;align-items:center;min-height:46px;padding:.8rem 1.7rem;background:var(--olive);
+    color:#fff;text-decoration:none;font:700 .78rem/1.6 var(--sans);letter-spacing:.12em;
+    text-transform:uppercase;border-radius:3px;box-shadow:0 10px 26px -10px rgba(63,92,70,.7);
+    transition:background .18s,transform .18s}
+  .btn:hover{background:var(--olive-2);transform:translateY(-1.5px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none;margin-left:.4rem}
+  .btn.ghost:hover{border-color:var(--ink-3);background:transparent}
+  .plates{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);margin:clamp(1.6rem,4vw,2.6rem) 0;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-l)}
+  .plate{position:relative;aspect-ratio:1;display:grid;place-items:center;overflow:hidden}
+  .plate svg{position:absolute;inset:0;width:100%;height:100%}
+  .plate span{position:relative;font:600 .7rem/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    color:rgba(250,246,239,.92);background:rgba(25,21,18,.42);backdrop-filter:blur(6px);
+    padding:.42rem .8rem;border-radius:100px}
+  section{position:relative;z-index:2;padding:clamp(2.2rem,5vw,3.4rem) 0}
+  h2{font-size:clamp(1.5rem,3.4vw,2.1rem);text-align:center;font-weight:400;margin:0 0 .5rem;letter-spacing:-.02em}
+  .sub{text-align:center;color:var(--ink-3);font:400 .84rem/1.6 var(--sans);letter-spacing:.06em;
+    text-transform:uppercase;margin:0 0 2rem}
+  .menu{display:grid;gap:2rem 2.4rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .menu h3{font:700 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ember);
+    margin:0 0 1rem;padding-bottom:.6rem;border-bottom:1px solid var(--line)}
+  .item{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;align-items:baseline}
+  .item i{flex:1;border-bottom:1px dotted #d8cec0;margin:0 .3rem;transform:translateY(-3px)}
+  .item b{font-weight:400}
+  .item span{color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .hours{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:clamp(1.6rem,4vw,2.4rem);text-align:center;box-shadow:0 20px 50px -28px rgba(25,21,18,.3)}
+  .hours dl{display:grid;grid-template-columns:1fr auto;gap:.5rem 1.6rem;max-width:330px;margin:1.3rem auto 0;
+    font:400 .93rem/1.7 var(--sans);text-align:left}
   .hours dt{color:var(--ink-2)}
-  .hours dd{margin:0;font-weight:600;text-align:right}
-  footer{padding:2rem 0 2.6rem;border-top:1px solid var(--line);color:var(--ink-2);
-    font:400 .86rem/1.7 ui-sans-serif,-apple-system,sans-serif;text-align:center}
-  @media(max-width:640px){.strip{grid-template-columns:1fr}.strip div{aspect-ratio:16/9}}
+  .hours dd{margin:0;font-weight:650;text-align:right;font-variant-numeric:tabular-nums}
+  .hours .closed{color:var(--ink-3);font-weight:400}
+  footer{position:relative;z-index:2;padding:2.2rem 0 2.8rem;border-top:1px solid var(--line);
+    color:var(--ink-3);font:400 .85rem/1.7 var(--sans);text-align:center}
+  footer a{color:var(--ink-2)}
+  @media(max-width:620px){.plates{grid-template-columns:1fr}.plate{aspect-ratio:16/9}.btn.ghost{margin:.5rem 0 0}}
 </style>
 
 <p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real restaurant, and not a client.
   <a href="/#services">See what this costs &rarr;</a></p>
 
+<div class="field" aria-hidden="true"><i class="a"></i><i class="b"></i></div>
+
 <header>
   <div class="brand">Verde <em>&amp;</em> Co.</div>
-  <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#book">Reservations</a></nav>
+  <nav><a href="#menu">Menu</a><a href="#hours">Hours</a><a href="#hours">Reservations</a></nav>
 </header>
 
 <div class="wrap">
   <div class="hero">
-    <h1>Wood fire, short menu,<br>whatever the farm sent.</h1>
-    <p class="lede">A twenty-eight seat room on Cherry Street. The menu changes when the produce does,
+    <h1>Wood fire, short menu,<br><em>whatever the farm sent.</em></h1>
+    <p class="lede">Twenty-eight seats on Cherry Street. The menu changes when the produce does,
       which is often. Walk-ins welcome at the bar.</p>
-    <a class="btn" href="#book">Reserve a table</a><a class="btn ghost" href="#menu">See the menu</a>
+    <a class="btn" href="#hours">Reserve a table</a><a class="btn ghost" href="#menu">See the menu</a>
   </div>
+
+  <div class="plates">
+    <div class="plate">
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs><linearGradient id="p1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#40402f"/><stop offset="1" stop-color="#1e2018"/></linearGradient></defs>
+        <rect width="200" height="200" fill="url(#p1)"/>
+        <circle cx="100" cy="104" r="62" fill="#f6f1e6" opacity=".93"/>
+        <circle cx="100" cy="104" r="46" fill="#efe6d6"/>
+        <path d="M74 104q26-24 52 0-26 22-52 0z" fill="#b5632f" opacity=".85"/>
+        <circle cx="88" cy="98" r="5" fill="#6d8b4a"/><circle cx="112" cy="110" r="4" fill="#6d8b4a"/>
+      </svg><span>Tonight's plate</span></div>
+    <div class="plate">
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs><linearGradient id="p2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a3520"/><stop offset="1" stop-color="#241409"/></linearGradient>
+          <radialGradient id="fl"><stop offset="0" stop-color="#ffb85c"/><stop offset="1" stop-color="rgba(255,184,92,0)"/></radialGradient></defs>
+        <rect width="200" height="200" fill="url(#p2)"/>
+        <ellipse cx="100" cy="140" rx="86" ry="46" fill="url(#fl)" opacity=".85"/>
+        <path d="M60 150h80l-8-30H68z" fill="#160c05"/>
+        <path d="M84 128q6-22 16 0-8 12-16 0z" fill="#ffcf7a"/>
+        <path d="M100 132q7-26 18 0-9 14-18 0z" fill="#ff9b3d" opacity=".9"/>
+      </svg><span>The wood oven</span></div>
+    <div class="plate">
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs><linearGradient id="p3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3f5c46"/><stop offset="1" stop-color="#1d2b21"/></linearGradient></defs>
+        <rect width="200" height="200" fill="url(#p3)"/>
+        <rect x="24" y="120" width="152" height="8" rx="4" fill="#c9a06a" opacity=".7"/>
+        <rect x="40" y="60" width="26" height="60" rx="3" fill="rgba(250,246,239,.16)"/>
+        <rect x="86" y="44" width="26" height="76" rx="3" fill="rgba(250,246,239,.22)"/>
+        <rect x="132" y="70" width="26" height="50" rx="3" fill="rgba(250,246,239,.13)"/>
+        <circle cx="53" cy="52" r="6" fill="#ffd89a" opacity=".8"/>
+        <circle cx="99" cy="36" r="6" fill="#ffd89a" opacity=".9"/>
+      </svg><span>The dining room</span></div>
+  </div>
+
+  <section id="menu">
+    <h2>This week</h2>
+    <p class="sub">Changes Tuesday · always short</p>
+    <div class="menu">
+      <div><h3>To start</h3>
+        <div class="item"><b>Charred bread, cultured butter</b><i></i><span>7</span></div>
+        <div class="item"><b>Little gems, anchovy, lemon</b><i></i><span>13</span></div>
+        <div class="item"><b>Squash, brown butter, sage</b><i></i><span>14</span></div></div>
+      <div><h3>Mains</h3>
+        <div class="item"><b>Wood-fired chicken for two</b><i></i><span>38</span></div>
+        <div class="item"><b>Lake trout, fennel, dill</b><i></i><span>29</span></div>
+        <div class="item"><b>Cavatelli, pork ragù</b><i></i><span>26</span></div></div>
+      <div><h3>After</h3>
+        <div class="item"><b>Olive oil cake</b><i></i><span>11</span></div>
+        <div class="item"><b>Affogato</b><i></i><span>9</span></div></div>
+    </div>
+  </section>
+
+  <section id="hours">
+    <div class="hours">
+      <h2 style="margin:0 0 .3rem">Hours &amp; reservations</h2>
+      <p class="sub" style="margin-bottom:0">Cherry Street, Grand Rapids</p>
+      <dl><dt>Tuesday – Thursday</dt><dd>5 – 10pm</dd>
+          <dt>Friday – Saturday</dt><dd>5 – 11pm</dd>
+          <dt>Sunday</dt><dd>4 – 9pm</dd>
+          <dt>Monday</dt><dd class="closed">Closed</dd></dl>
+      <p style="margin:1.6rem 0 0"><a class="btn" href="#hours">Reserve a table</a></p>
+    </div>
+  </section>
 </div>
-
-<div class="strip">
-  <div>Dining room<br><small style="opacity:.65">your photo here</small></div>
-  <div>The wood oven<br><small style="opacity:.65">your photo here</small></div>
-  <div>Tonight's plate<br><small style="opacity:.65">your photo here</small></div>
-</div>
-
-<div class="wrap"><section id="menu">
-  <h2>This week</h2>
-  <div class="menu">
-    <div>
-      <h3>To start</h3>
-      <div class="item"><span>Charred bread, cultured butter</span><span>7</span></div>
-      <div class="item"><span>Little gems, anchovy, lemon</span><span>13</span></div>
-      <div class="item"><span>Squash, brown butter, sage</span><span>14</span></div>
-    </div>
-    <div>
-      <h3>Mains</h3>
-      <div class="item"><span>Wood-fired chicken for two</span><span>38</span></div>
-      <div class="item"><span>Lake trout, fennel, dill</span><span>29</span></div>
-      <div class="item"><span>Cavatelli, pork ragù</span><span>26</span></div>
-    </div>
-    <div>
-      <h3>After</h3>
-      <div class="item"><span>Olive oil cake</span><span>11</span></div>
-      <div class="item"><span>Affogato</span><span>9</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="hours">
-  <div class="hours">
-    <h2 style="margin:0">Hours</h2>
-    <dl><dt>Tuesday – Thursday</dt><dd>5 – 10pm</dd>
-        <dt>Friday – Saturday</dt><dd>5 – 11pm</dd>
-        <dt>Sunday</dt><dd>4 – 9pm</dd>
-        <dt>Monday</dt><dd>Closed</dd></dl>
-    <p style="margin:1.4rem 0 0"><a class="btn" href="#book" id="book">Reserve a table</a></p>
-  </div>
-</section></div>
 
 <footer><div class="wrap">
   <p><strong>Verde &amp; Co.</strong> is fictional. This page is a demonstration build by
