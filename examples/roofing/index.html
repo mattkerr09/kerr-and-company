@@ -4,13 +4,17 @@
 <meta name="description" content="A demonstration site built by Kerr &amp; Company showing what a roofing contractor's site looks like. Not a real company.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box}
   :root{
     --ink:#14100c; --ink-2:#4f463c; --ink-3:#7d7264; --line:#e8e0d5;
     --paper:#fdfbf7; --card:#fff; --brand:#b0431c; --brand-2:#8a3313; --brand-soft:#fdf0e9;
     --slate:#1c1814;
-    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    --sans:'Inter',ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --display:'Bricolage Grotesque','Inter',ui-sans-serif,system-ui,sans-serif;
     --shadow-s:0 1px 2px rgba(28,24,20,.05),0 2px 8px rgba(28,24,20,.04);
     --shadow-m:0 2px 6px rgba(28,24,20,.05),0 16px 40px -12px rgba(28,24,20,.14);
     --shadow-l:0 30px 70px -24px rgba(28,24,20,.34);
@@ -58,7 +62,8 @@
     letter-spacing:.1em;text-transform:uppercase;color:var(--brand);
     background:var(--brand-soft);border:1px solid #f6ddd0;padding:.34rem .72rem;border-radius:100px;margin-bottom:1.1rem}
   .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
-  h1{font-size:clamp(2.15rem,5.4vw,3.5rem);line-height:1.04;letter-spacing:-.038em;margin:0 0 1rem;font-weight:800}
+  h1{font-family:var(--display);font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.0;
+    letter-spacing:-.04em;margin:0 0 1rem;font-weight:800;font-optical-sizing:auto}
   h1 span{background:linear-gradient(96deg,var(--brand) 0%,#d46a3a 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .lede{font-size:1.09rem;color:var(--ink-2);margin:0 0 1.7rem;max-width:44ch;line-height:1.66}
@@ -102,7 +107,7 @@
   section{position:relative;z-index:2;padding:clamp(2.6rem,5.5vw,4rem) 0}
   .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .sec-head{max-width:56ch;margin-bottom:1.9rem}
-  h2{font-size:clamp(1.55rem,3.2vw,2.15rem);letter-spacing:-.03em;margin:0 0 .55rem;font-weight:780}
+  h2{font-family:var(--display);font-size:clamp(1.6rem,3.3vw,2.2rem);letter-spacing:-.032em;margin:0 0 .55rem;font-weight:700}
   .sec-head p{margin:0;color:var(--ink-2);font-size:1rem}
   .grid{display:grid;gap:1.05rem;grid-template-columns:repeat(auto-fit,minmax(228px,1fr))}
   .card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:1.5rem 1.35rem;
@@ -155,6 +160,38 @@
   footer a{color:var(--ink-2)}
   @media(max-width:860px){.hero{grid-template-columns:1fr}.art{order:-1;aspect-ratio:16/11}
     .nav-tel{display:none}.f2{grid-template-columns:1fr}}
+
+  .proof{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem 1.15rem;margin:1.5rem 0 0;padding:0;
+    font-size:.8rem;color:var(--ink-2)}
+  .proof li{display:flex;align-items:center;gap:.38rem}
+  .proof li::before{content:"";width:14px;height:14px;border-radius:50%;flex:none;
+    background:var(--brand-soft);border:1px solid #eec9b4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.2 2.2 4.8-4.8' fill='none' stroke='%23b0431c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:center}
+
+  .est-band{background:linear-gradient(180deg,var(--paper) 0%,var(--brand-soft) 100%);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .est{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3.2rem);align-items:center}
+  .est-copy h2{margin-top:.4rem}
+  .est-fine{font-size:.83rem;color:var(--ink-3)}
+  .est-card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:clamp(1.3rem,3vw,1.8rem);box-shadow:var(--shadow-m)}
+  .est-card label{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:.8rem;font-weight:650;color:var(--ink-2);margin:0 0 .5rem}
+  .est-card output{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+  .est-card input[type=range]{width:100%;margin:0 0 1.15rem;accent-color:var(--brand);height:26px}
+  .seg{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+  .seg button{flex:1 1 auto;min-height:44px;padding:.5rem .7rem;border-radius:10px;
+    border:1px solid var(--line);background:var(--paper);font:inherit;font-size:.82rem;font-weight:600;
+    color:var(--ink-2);cursor:pointer;transition:border-color .16s,color .16s,background .16s}
+  .seg button.on{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+  .est-out{text-align:center;padding:1.1rem;border-radius:13px;background:var(--paper);
+    border:1px solid var(--line);margin-bottom:1rem}
+  .est-lab{display:block;font-size:.76rem;color:var(--ink-3)}
+  .est-out strong{display:block;font-family:var(--display);font-size:clamp(1.5rem,4vw,2.05rem);
+    letter-spacing:-.03em;margin:.25rem 0;font-variant-numeric:tabular-nums}
+  .est-card .cta{width:100%;justify-content:center}
+  @media(max-width:860px){.est{grid-template-columns:1fr}}
 </style>
 
 <p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real company, and not a client.
@@ -183,7 +220,10 @@
         <a class="cta" href="#quote">Get a free estimate</a>
         <a class="ghost" href="#how">How it works</a>
       </div>
-      <div class="badges"><b>Licensed &amp; insured</b><b>25-year warranty</b><b>Insurance claims handled</b><b>Family owned since 1998</b></div>
+      <ul class="proof">
+        <li>Licensed &amp; insured</li><li>25-year warranty</li>
+        <li>We handle the claim</li><li>Family owned since 1998</li>
+      </ul>
     </div>
 
     <figure class="art">
@@ -216,6 +256,35 @@
   </div>
 </section>
 </div>
+
+<section class="est-band"><div class="wrap">
+  <div class="est">
+    <div class="est-copy">
+      <span class="eyebrow">No phone call required</span>
+      <h2>What will it actually cost?</h2>
+      <p>Most contractors make you book a visit to find out. Move the two sliders and
+        you get the real range we would quote, in about four seconds.</p>
+      <p class="est-fine">A range, not a quote — the roof decides the final number, and we
+        confirm it in writing after we have been up there.</p>
+    </div>
+    <div class="est-card">
+      <label for="sqft">Roof size <output id="sqftOut">2,000 sq ft</output></label>
+      <input id="sqft" type="range" min="800" max="4500" step="100" value="2000">
+      <label for="mat">Material</label>
+      <div class="seg" id="mat" role="radiogroup" aria-label="Material">
+        <button type="button" role="radio" aria-checked="true"  data-k="1"    class="on">Architectural shingle</button>
+        <button type="button" role="radio" aria-checked="false" data-k="1.55">Standing seam metal</button>
+        <button type="button" role="radio" aria-checked="false" data-k="1.25">Flat / EPDM</button>
+      </div>
+      <div class="est-out">
+        <span class="est-lab">Typical range</span>
+        <strong id="estOut" aria-live="polite">$9,000 – $12,600</strong>
+        <span class="est-lab">Most homes finish in one day</span>
+      </div>
+      <a class="cta" href="#quote">Get this confirmed in writing</a>
+    </div>
+  </div>
+</div></section>
 
 <div class="band"><div class="wrap"><section>
   <div class="sec-head"><h2>What we do</h2><p>Four things, done properly. If your job is not one of them we will tell you who does it.</p></div>
@@ -265,3 +334,32 @@
   <a href="/">Kerr &amp; Company</a>, Grand Rapids — shown so you can see the work rather than read about it.
   Sites like this start at $999. <a href="/#services">See pricing &rarr;</a></p>
 </div></footer>
+<script>
+/* The estimator is the point of this page. A contractor site that makes you ring
+   up to learn a price loses everyone who is not ready to talk yet — which, at the
+   "is this a $9k or a $40k problem" stage, is nearly everyone.
+   Numbers are illustrative: $4.50-$6.30 a sq ft for architectural shingle is a
+   normal 2026 Midwest range, and the material multipliers are relative to it. On
+   a real build these come from the contractor's own pricing. */
+(function () {
+  var sq = document.getElementById('sqft'), out = document.getElementById('estOut'),
+      sqOut = document.getElementById('sqftOut'), seg = document.getElementById('mat');
+  if (!sq || !out || !seg) return;
+  var k = 1;
+  function fmt(n){ return '$' + (Math.round(n/100)*100).toLocaleString('en-US'); }
+  function draw() {
+    var s = +sq.value;
+    sqOut.textContent = s.toLocaleString('en-US') + ' sq ft';
+    out.textContent = fmt(s * 4.5 * k) + ' – ' + fmt(s * 6.3 * k);
+  }
+  sq.addEventListener('input', draw);
+  seg.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    [].forEach.call(seg.querySelectorAll('button'), function (x) {
+      x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b);
+    });
+    k = parseFloat(b.dataset.k) || 1; draw();
+  });
+  draw();
+})();
+</script>
