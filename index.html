@@ -247,9 +247,14 @@
        screenshot check passes because the layout is perfect. */
     #kc-agent { position: fixed; right: var(--s4); bottom: var(--s4); z-index: 90;
       font-family: var(--sans); }
+    /* ⚠️ NO background/color HERE. This button said `background:var(--accent);
+       color:#fff`, which is the exact line the BUTTON CONTRAST note above exists
+       to prevent: --accent is near-WHITE in the dark theme, so the label measured
+       1.05:1 — invisible, and the thing Matthew reported. It now joins the
+       per-theme group with every other accent button, so it cannot drift from
+       them again. */
     #kc-agent-toggle { display:inline-flex; align-items:center; gap:.5rem; min-height:44px;
-      padding:.7rem 1.1rem; border-radius:100px; cursor:pointer;
-      background:var(--accent); color:#fff; border:1px solid var(--accent);
+      padding:.7rem 1.1rem; border-radius:100px; cursor:pointer; border:1px solid transparent;
       font-size:.88rem; font-weight:500; letter-spacing:-0.01em;
       box-shadow:0 10px 30px rgba(0,0,0,.45); transition:transform .18s, box-shadow .18s; }
     #kc-agent-toggle:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.55); }
@@ -278,7 +283,7 @@
       font-family:inherit; min-height:44px; }
     #kc-agent-input:focus { outline:none; border-color:var(--ink-3); }
     #kc-agent-form button { min-width:44px; min-height:44px; border-radius:10px; cursor:pointer;
-      background:var(--accent); color:#fff; border:0; font-size:1rem; }
+      border:0; font-size:1rem; }
     .kc-a-foot { margin:0; padding:0 var(--s4) var(--s3); font-size:.7rem; color:var(--ink-4);
       line-height:1.5; }
     .kc-a-foot a { color:var(--ink-3); }
@@ -430,17 +435,21 @@
        Set explicitly per theme now, inverted rather than tinted, so neither can
        collapse into its own background again. Verified by measuring rendered
        pixels in both themes, not by reading the rule. */
-    .btn-primary, .nav-cta, .pkg .pkg-cta.solid, button[type="submit"] {
+    .btn-primary, .nav-cta, .pkg .pkg-cta.solid, button[type="submit"],
+      #kc-agent-toggle, #kc-agent-form button {
       background: #FAFAF8 !important; color: #0B0B0C !important;
       border-color: #FAFAF8 !important;
     }
-    .btn-primary:hover, .nav-cta:hover, .pkg .pkg-cta.solid:hover, button[type="submit"]:hover {
+    .btn-primary:hover, .nav-cta:hover, .pkg .pkg-cta.solid:hover, button[type="submit"]:hover,
+      #kc-agent-toggle:hover, #kc-agent-form button:hover {
       background: #FFFFFF !important; color: #000 !important; box-shadow: none !important;
     }
     :root[data-theme="light"] .btn-primary,
     :root[data-theme="light"] .nav-cta,
     :root[data-theme="light"] .pkg .pkg-cta.solid,
-    :root[data-theme="light"] button[type="submit"] {
+    :root[data-theme="light"] button[type="submit"],
+    :root[data-theme="light"] #kc-agent-toggle,
+    :root[data-theme="light"] #kc-agent-form button {
       background: #111114 !important; color: #FBFBF9 !important; border-color: #111114 !important;
     }
     :root[data-theme="light"] .btn-primary:hover,
@@ -2240,7 +2249,18 @@
            made the default.
 
            The toggle still works and still persists. */
-          if (!t) t = 'light';
+          /* DARK by default again, 2026-08-26, on Matthew's instruction:
+               "flip it to night theme". The light-mode reasoning below stays on
+               record and is not wrong — it is an argument about which reader this
+               page is for, and that is his call, not something measurable.
+
+               ⚠️ WHAT IS MEASURABLE is in the note below by example: THE
+               NON-DEFAULT THEME ROTS. When dark was the default, light mode had
+               its headline gradient at 1.75:1 — the largest words on the page,
+               nearly invisible, unnoticed until someone switched. Flipping the
+               default does not fix a theme, it only changes which one decays
+               unseen. e2e/contrast.spec.ts measures BOTH on every run. */
+            if (!t) t = 'dark';
         document.documentElement.setAttribute('data-theme', t);
       } catch(e){}
     })();

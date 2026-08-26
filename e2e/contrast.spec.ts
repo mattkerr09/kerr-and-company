@@ -29,7 +29,20 @@ const TARGETS = [
   ['.ex em',            'examples blurb'],
   ['.terms-col strong', 'terms bold'],
   ['.ownit-points strong', 'own-it bold'],
-  ['.pkg-split',        'payment split line'],
+  ['.pkg-alt',          'payment line'],
+  /* ⚠️ BUTTONS, because the first version of this list contained only text and
+     the bug Matthew reported was a BUTTON. #kc-agent-toggle carried
+     `background:var(--accent); color:#fff` — and --accent is near-WHITE in the
+     dark theme, so its label measured 1.05:1. The identical defect is recorded
+     in index.html's BUTTON CONTRAST note, where four buttons once measured
+     1.00:1, and I reproduced it on a new button written after reading it.
+     A list of things to check is only as good as what someone remembered to
+     put in it, which is why these are here by name. */
+  ['#kc-agent-toggle',  'assistant button'],
+  ['#kc-agent-form button', 'assistant send button'],
+  ['.btn-primary',      'hero button'],
+  ['.nav-cta',          'nav button'],
+  ['.pkg-cta',          'package button'],
 ];
 
 for (const theme of ['dark', 'light']) {
