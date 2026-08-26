@@ -259,6 +259,15 @@
       box-shadow:0 10px 30px rgba(0,0,0,.45); transition:transform .18s, box-shadow .18s; }
     #kc-agent-toggle:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.55); }
     #kc-agent-toggle svg { width:1.05em; height:1.05em; }
+    /* ⚠️ `hidden` LOSES TO ANY AUTHOR `display` RULE. The attribute only gets
+       display:none from the browser's default stylesheet, so the `display:flex`
+       below silently defeated it and the panel was OPEN on every page load,
+       covering the comparison table and the pricing cards.
+       Nothing in the suite caught it: every test CLICKS the toggle first, so all
+       of them opened a panel that was already open and then measured it happily.
+       Found by scrolling a screenshot of the live page — the same method that
+       found the invisible button, and the same blind spot in the tests. */
+    #kc-agent [hidden] { display: none !important; }
     #kc-agent-panel { width:min(370px, calc(100vw - 2rem)); background:var(--surface);
       border:1px solid var(--line-2); border-radius:16px; overflow:hidden;
       box-shadow:0 24px 70px rgba(0,0,0,.6); display:flex; flex-direction:column; }

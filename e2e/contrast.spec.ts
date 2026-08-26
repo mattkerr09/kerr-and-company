@@ -52,6 +52,19 @@ for (const theme of ['dark', 'light']) {
     await page.goto(`https://${DOMAIN}/`, { waitUntil: 'networkidle' });
     await page.evaluate(t => document.documentElement.setAttribute('data-theme', t), theme);
     await page.waitForTimeout(500);
+    /* ⚠️ ASSERT IT IS SHUT BEFORE OPENING IT. Every test in this suite clicked
+       the toggle first, so all of them opened a panel that was ALREADY OPEN and
+       measured it without noticing — `hidden` was being defeated by an author
+       `display:flex`, and the widget covered the page on every load for hours.
+       A test that puts a thing into the state it wants can never report that the
+       thing was in the wrong state to begin with. */
+    const panelShut = await page.evaluate(() => {
+      const e = document.getElementById('kc-agent-panel');
+      return !e || getComputedStyle(e).display === 'none';
+    });
+    expect(panelShut, 'the assistant panel must be CLOSED on load — an open panel ' +
+      'covers the page for every visitor').toBeTruthy();
+
     await page.evaluate(() => (document.getElementById('kc-agent-toggle') as HTMLElement)?.click());
     await page.waitForTimeout(400);
 
