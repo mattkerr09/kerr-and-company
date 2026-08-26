@@ -192,72 +192,89 @@
     letter-spacing:-.03em;margin:.25rem 0;font-variant-numeric:tabular-nums}
   .est-card .cta{width:100%;justify-content:center}
   @media(max-width:860px){.est{grid-template-columns:1fr}}
+
+  /* ── VERDE'S COMPOSITION, THIS BUSINESS'S VOICE ───────────────────────
+     Matthew: "verde and co looks the best of all of them, make the others just
+     as good." What Verde does that the other two did not: a CENTRED hero with a
+     letterspaced wordmark, a roman line answered by an italic line in the accent
+     colour, and full-bleed paired photography immediately under it. The other
+     two were left-aligned split heroes with a floating card — the default SaaS
+     template, which is exactly what "generic" meant.
+     Copied as COMPOSITION, not as skin: the rust palette, the display grotesque
+     and the estimator all stay. */
+  header{padding:1.5rem 0 1rem;text-align:center;position:relative;z-index:3;background:none;border:0}
+  .mark{display:inline-flex;align-items:center;flex-wrap:nowrap;white-space:nowrap;min-height:44px;font-family:var(--display);font-size:clamp(1.15rem,3.2vw,1.5rem);
+    letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--ink);text-decoration:none}
+  .mark em{margin-left:.5em;font-style:normal;color:var(--brand)}
+  .mnav{margin-top:.9rem;display:flex;gap:.4rem 1.4rem;justify-content:center;flex-wrap:wrap;
+    font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+  .mnav a{color:var(--ink-3);text-decoration:none;padding:.7rem 0;min-height:44px;
+    display:inline-flex;align-items:center;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+  .mnav a:hover{color:var(--ink);border-color:var(--brand)}
+  .mnav-tel{color:var(--brand)!important}
+  .hero{display:block;text-align:center;padding:clamp(2.4rem,6vw,4.2rem) 0 clamp(2rem,4.5vw,3rem)}
+  .hero h1 em{font-style:italic;color:var(--brand);font-weight:600}
+  .hero .lede{margin-left:auto;margin-right:auto;max-width:46ch}
+  .hero .row{justify-content:center}
+  .hero .proof{justify-content:center}
+  .shots{padding:0 0 clamp(2rem,5vw,3.2rem)}
+  .shot-pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+    border-radius:18px;overflow:hidden;box-shadow:var(--shadow-l)}
+  .shot-pair figure{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden}
+  .shot-pair img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+  .shot-pair figure:hover img{transform:scale(1.04)}
+  .shot-pair figcaption{position:absolute;left:.9rem;bottom:.9rem;font:600 .7rem/1 var(--sans);
+    letter-spacing:.1em;text-transform:uppercase;color:rgba(253,251,247,.96);
+    background:rgba(36,29,23,.55);backdrop-filter:blur(6px);padding:.44rem .8rem;border-radius:100px}
+  @media(max-width:620px){.shot-pair{grid-template-columns:1fr}.shot-pair figure{aspect-ratio:16/10}}
 </style>
 
 <p class="demo">A <strong>demonstration build</strong> by Kerr &amp; Company — not a real company, and not a client.
   It shows what a contractor's site looks like when we build one. <a href="/#services">See what this costs &rarr;</a></p>
 
-<header><div class="wrap nav">
-  <div class="logo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11.5 12 3l10 8.5"/><path d="M5 10.5V21h14V10.5"/><path d="M9.5 21v-6h5v6"/></svg>
-    Vandenberg <em>Roofing</em>
+<header>
+  <div class="wrap">
+    <a class="mark" href="#">Vandenberg <em>Roofing</em></a>
+    <nav class="mnav">
+      <a href="#work">Work</a><a href="#cost">What it costs</a><a href="#how">How it goes</a>
+      <a class="mnav-tel" href="tel:+16165550142">(616) 555-0142</a>
+    </nav>
   </div>
-  <div class="nav-r">
-    <a class="nav-tel" href="tel:+16165550142">(616) 555-0142</a>
-    <a class="cta" href="#quote">Free estimate</a>
-  </div>
-</div></header>
+</header>
 
 <div class="wrap" style="position:relative">
   <div class="field" aria-hidden="true"><i class="a"></i><i class="b"></i></div>
   <div class="hero">
-    <div>
-      <span class="eyebrow">Same-week inspections</span>
-      <h1>Your roof stops leaking,<br><span>or you don't pay us.</span></h1>
-      <p class="lede">Storm damage, tear-offs and repairs across Grand Rapids and Kent County.
-        We photograph everything, handle the insurance paperwork, and finish in a day.</p>
-      <div class="row">
-        <a class="cta" href="#quote">Get a free estimate</a>
-        <a class="ghost" href="#how">How it works</a>
-      </div>
-      <ul class="proof">
-        <li>Licensed &amp; insured</li><li>25-year warranty</li>
-        <li>We handle the claim</li><li>Family owned since 1998</li>
-      </ul>
+    <span class="eyebrow">Same-week inspections · Grand Rapids</span>
+    <h1>Your roof stops leaking,<br><em>or you don't pay us.</em></h1>
+    <p class="lede">Storm damage, tear-offs and repairs across Kent County. We photograph
+      everything, handle the insurance paperwork, and finish in a day.</p>
+    <div class="row">
+      <a class="cta" href="#quote">Get a free estimate</a>
+      <a class="ghost" href="#cost">What will it cost?</a>
     </div>
-
-    <figure class="art">
-      <img src="/assets/examples/photos/roof-hero.jpg" alt="A slate roof with dormer windows"
-           width="1600" height="1000" fetchpriority="high" decoding="async">
-      <figcaption class="art-tag">
-        <span class="tick">✓</span>
-        <span><b>Cedar Springs · full tear-off</b><em>Completed in one day, 2,400 sq ft</em></span>
-      </figcaption>
-    </figure>
+    <ul class="proof">
+      <li>Licensed &amp; insured</li><li>25-year warranty</li>
+      <li>We handle the claim</li><li>Family owned since 1998</li>
+    </ul>
   </div>
 </div>
 
-<!-- A BAND OF REAL WORK. The single biggest gap between this and the sites on
-     saaspo is that they show the thing being sold, repeatedly and large. An
-     illustration says "we could not get a photograph". -->
-<section class="strip">
-  <div class="wrap">
-    <div class="strip-grid">
-      <figure><img src="/assets/examples/photos/roof-detail.jpg" alt="Slate roof tiles laid in courses"
-        width="1600" height="1000" loading="lazy" decoding="async">
-        <figcaption>Slate, laid to a 100mm lap</figcaption></figure>
-      <div class="strip-copy">
-        <h2>We photograph everything</h2>
-        <p>Before, during and after — every job comes with a full photo report, emailed the
-          same day. You see what we saw, whether or not you were home.</p>
-        <p class="strip-note">On a real build this gallery holds your own completed jobs.</p>
-      </div>
-    </div>
+<section id="work" class="shots"><div class="wrap">
+  <div class="shot-pair">
+    <figure><img src="/assets/examples/photos/roof-hero.jpg" alt="A slate roof with dormer windows"
+      width="1600" height="1000" fetchpriority="high" decoding="async">
+      <figcaption>Cedar Springs · full tear-off, one day</figcaption></figure>
+    <figure><img src="/assets/examples/photos/roof-detail.jpg" alt="Slate tiles laid in courses"
+      width="1600" height="1000" loading="lazy" decoding="async">
+      <figcaption>Slate, laid to a 100mm lap</figcaption></figure>
   </div>
-</section>
+</div></section>
+
 </div>
 
-<section class="est-band"><div class="wrap">
+<section class="est-band" id="cost"><div class="wrap">
   <div class="est">
     <div class="est-copy">
       <span class="eyebrow">No phone call required</span>
