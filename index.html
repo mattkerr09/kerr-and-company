@@ -925,6 +925,17 @@
     .pkg.feature { border-color: rgba(250,250,248,0.45); box-shadow: 0 0 0 1px rgba(250,250,248,0.25), 0 20px 50px rgba(0,0,0,0.4); }
     .pkg-tag { position: absolute; top: -11px; left: 1.6rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: var(--accent); padding: var(--s1) var(--s2); border-radius: 100px; }
     .pkg h3 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.01em; margin-bottom: var(--s1); }
+    /* THE PAYMENT SPLIT BELONGS BESIDE THE PRICE, NOT 1,660px BELOW IT.
+       Measured on the live page: the cards sit at 9,668px and "50% to start,
+       50% on launch" sat at 11,328px — so someone reading $4,999 had to scroll
+       another sixteen hundred pixels to learn they pay half of it now. The
+       person who needs that sentence is the one deciding whether $4,999 is
+       possible, and they decide at the card.
+       Same defect measured on Crisp the same day, where the instalment line
+       sits 75% down a 17,000px page. Docket puts it 4% down, under the price,
+       which is the version that works. */
+    .pkg-split { font-size:.76rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
+      letter-spacing:-0.005em; }
     .pkg .price { font-family: var(--serif); font-weight: 600; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
     .pkg .price small { font-size: 0.78rem; color: var(--ink-3); font-family: var(--sans); font-weight: 400; }
     .pkg .meta { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); margin: var(--s2) 0 1rem; letter-spacing: 0.02em; }
@@ -2631,7 +2642,7 @@
 
         <div class="pkg">
           <h3>Starter Site</h3>
-          <div class="price">$999 <small>starting at</small></div>
+          <div class="price">$999 <small>starting at</small></div><div class="pkg-split">50% to start · 50% on launch</div>
           <div class="meta">1–3 pages · live in days</div>
           <p class="desc">A sharp, single-purpose site for a local business that needs to look credible and capture leads.</p>
           <ul class="feat">
@@ -2645,7 +2656,7 @@
         <div class="pkg feature">
           <span class="pkg-tag">Most popular</span>
           <h3>Business Site</h3>
-          <div class="price">$2,499 <small>starting at</small></div>
+          <div class="price">$2,499 <small>starting at</small></div><div class="pkg-split">50% to start · 50% on launch</div>
           <div class="meta">5–8 pages · services + gallery</div>
           <p class="desc">A full multi-page site with services, gallery, and content built to rank and convert.</p>
           <ul class="feat">
@@ -2658,7 +2669,7 @@
 
         <div class="pkg">
           <h3>Growth Site + Tool</h3>
-          <div class="price">$4,999 <small>starting at</small></div>
+          <div class="price">$4,999 <small>starting at</small></div><div class="pkg-split">50% to start · 50% on launch</div>
           <div class="meta">site + one custom AI tool</div>
           <p class="desc">A conversion-focused site <em>plus</em> a working AI tool built for your business — the version competitors can't copy.</p>
           <ul class="feat">
