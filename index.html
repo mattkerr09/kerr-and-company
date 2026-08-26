@@ -235,7 +235,16 @@
     @media (max-width: 640px){ .brand-name em{display:none} .brand-name{border-left:0;padding-left:.15rem} }
     .nav-right { display: flex; align-items: center; gap: var(--s7); }
 
-    /* ── answer-now assistant ── */
+    /* ── answer-now assistant ──
+       ⚠️ THE INK VARIABLE IS --ink, NOT --ink-1. There is --ink, --ink-2, --ink-3
+       and --ink-4, so "--ink-1" reads as the obvious name for the brightest one
+       and does not exist. An UNDEFINED custom property makes the whole `color`
+       declaration invalid, so the element silently inherits — which on a light
+       surface is white text on white.
+       It failed silently in seven places, three of them pre-existing in the
+       Own It band and the terms grid, where bold text has been invisible for as
+       long as those rules have been there. Nothing errors, nothing logs, and a
+       screenshot check passes because the layout is perfect. */
     #kc-agent { position: fixed; right: var(--s4); bottom: var(--s4); z-index: 90;
       font-family: var(--sans); }
     #kc-agent-toggle { display:inline-flex; align-items:center; gap:.5rem; min-height:44px;
@@ -250,7 +259,7 @@
       box-shadow:0 24px 70px rgba(0,0,0,.6); display:flex; flex-direction:column; }
     .kc-a-head { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem;
       padding:var(--s4) var(--s4) var(--s3); border-bottom:1px solid var(--line); }
-    .kc-a-head strong { display:block; font-size:.95rem; color:var(--ink-1); }
+    .kc-a-head strong { display:block; font-size:.95rem; color:var(--ink); }
     .kc-a-head span { display:block; font-size:.74rem; color:var(--ink-3); margin-top:.15rem; }
     #kc-agent-close { background:none; border:0; color:var(--ink-3); font-size:1.5rem;
       line-height:1; cursor:pointer; min-width:44px; min-height:44px; }
@@ -265,7 +274,7 @@
     #kc-agent-form { display:flex; gap:.5rem; padding:var(--s3) var(--s4) var(--s3);
       border-top:1px solid var(--line); }
     #kc-agent-input { flex:1; background:transparent; border:1px solid var(--line-2);
-      border-radius:10px; padding:.6rem .75rem; color:var(--ink-1); font-size:.86rem;
+      border-radius:10px; padding:.6rem .75rem; color:var(--ink); font-size:.86rem;
       font-family:inherit; min-height:44px; }
     #kc-agent-input:focus { outline:none; border-color:var(--ink-3); }
     #kc-agent-form button { min-width:44px; min-height:44px; border-radius:10px; cursor:pointer;
@@ -953,16 +962,16 @@
     .ownit-points li { font-size: .9rem; line-height: 1.6; color: var(--ink-2);
       padding: var(--s2) 0 var(--s2) var(--s4); position: relative; }
     .ownit-points li::before { content: "—"; position: absolute; left: 0; color: var(--ink-4); }
-    .ownit-points strong { color: var(--ink-1); }
+    .ownit-points strong { color: var(--ink); }
     .terms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: var(--s5); margin: var(--s6) 0 0; }
     .terms-col h3 { font-family: var(--sans); font-size: 1rem; margin: 0 0 var(--s3);
-      color: var(--ink-1); }
+      color: var(--ink); }
     .terms-col ul { list-style: none; margin: 0; padding: 0; }
     .terms-col li { font-size: .9rem; line-height: 1.6; color: var(--ink-2);
       padding: var(--s2) 0 var(--s2) var(--s4); position: relative; }
     .terms-col li::before { content: "—"; position: absolute; left: 0; color: var(--ink-4); }
-    .terms-col strong { color: var(--ink-1); font-weight: 600; }
+    .terms-col strong { color: var(--ink); font-weight: 600; }
     .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: var(--s4); }
     .pkg { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: var(--s7) var(--s6); transition: border-color .2s, transform .2s; position: relative; }
     .pkg:hover { border-color: var(--line-2); transform: translateY(-3px); }
@@ -980,7 +989,7 @@
        which is the version that works. */
     /* example builds */
     .ex-band { margin: var(--s6) 0 0; }
-    .ex-lede { font-size:1.02rem; color:var(--ink-1); margin:0 0 var(--s4); max-width:62ch; }
+    .ex-lede { font-size:1.02rem; color:var(--ink); margin:0 0 var(--s4); max-width:62ch; }
     .ex-lede span { display:block; font-size:.88rem; color:var(--ink-3); margin-top:.4rem; line-height:1.6; }
     .ex-grid { display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
     .ex { display:flex; flex-direction:column; gap:.3rem; text-decoration:none; padding:var(--s5);
@@ -988,7 +997,7 @@
       transition:border-color .2s, transform .2s; }
     .ex:hover { border-color:var(--line-2); transform:translateY(-3px); }
     .ex-kind { font-size:.68rem; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-4); font-weight:700; }
-    .ex strong { font-family:var(--serif); font-size:1.12rem; color:var(--ink-1); letter-spacing:-.01em; }
+    .ex strong { font-family:var(--serif); font-size:1.12rem; color:var(--ink); letter-spacing:-.01em; }
     .ex em { font-style:normal; font-size:.86rem; color:var(--ink-3); line-height:1.55; margin-top:.15rem; }
     .ex-go { font-size:.82rem; color:var(--ink-2); margin-top:.6rem; }
     .pkg-split { font-size:.76rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
