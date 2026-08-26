@@ -1791,9 +1791,28 @@
         radial-gradient(56% 44% at 6%  74%, rgba(150,232,214,.24) 0%, rgba(150,232,214,0) 66%),
         var(--bg);
     }
-    /* At full strength on near-black these read as smeared neon, so the dark
-       theme takes them at a third and lets the background carry the page. */
-    :root:not([data-theme="light"]) .sky { opacity: .32; }
+    /* ⚠️ DARK GETS ITS OWN WASHES, NOT THE LIGHT ONES DIMMED.
+       The first version reused the light palette at opacity .32 and it read as a
+       muddy brown stain across the top right — Matthew: "fix the dark theme
+       background as well". Warm pastels do not dim over near-black, they turn to
+       dirt: pink+gold+blue at low alpha over #0C0A07 average out to sludge,
+       because the thing that makes them work on paper is the paper.
+
+       So dark gets deep, cool, saturated light SOURCES instead — indigo, violet,
+       teal — placed like lamps rather than spread like a wash, plus one warm ember
+       low on the right so it agrees with the gold accent ramp instead of fighting
+       it. Same idea, opposite physics.
+
+       This is the same error as reusing a preference key across a redesign, one
+       level down: one implementation serving two contexts that only look alike. */
+    :root:not([data-theme="light"]) .sky {
+      background:
+        radial-gradient(48% 38% at 12% 4%,   rgba(88,101,242,.20) 0%, rgba(88,101,242,0) 68%),
+        radial-gradient(44% 34% at 88% 2%,   rgba(139,92,246,.17) 0%, rgba(139,92,246,0) 68%),
+        radial-gradient(52% 40% at 96% 46%,  rgba(217,154,43,.13) 0%, rgba(217,154,43,0) 70%),
+        radial-gradient(46% 36% at 4%  72%,  rgba(20,184,166,.12) 0%, rgba(20,184,166,0) 70%),
+        var(--bg);
+    }
     @media print { .sky { display: none; } }
 
     /* 1. GRADIENT TEXT on the headline of every section — Outlier's
