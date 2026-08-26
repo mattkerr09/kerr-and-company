@@ -1000,6 +1000,18 @@
     .ex strong { font-family:var(--serif); font-size:1.12rem; color:var(--ink); letter-spacing:-.01em; }
     .ex em { font-style:normal; font-size:.86rem; color:var(--ink-3); line-height:1.55; margin-top:.15rem; }
     .ex-go { font-size:.82rem; color:var(--ink-2); margin-top:.6rem; }
+    /* ⚠️ THE PAYMENT OPTION IS PART OF THE PRICE, NOT A FOOTNOTE TO IT.
+       This began as a second line in .pkg-split at .76rem grey — technically
+       "next to" the price and read by nobody, because a smaller, dimmer line
+       under a number is subtext and subtext is what people skip. Matthew:
+       "all bnpl numbers need to be right next to the price and not below in
+       subtext… and say its theirs forever".
+       So it sits tight to the number, the payment figure itself is bold at the
+       body size, and every one of them ends in ownership — which is the actual
+       objection a monthly figure raises. */
+    .pkg-alt { font-size:.82rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
+      line-height:1.5; letter-spacing:-0.005em; }
+    .pkg-alt b { color:var(--ink-2); font-weight:600; }
     .pkg-split { font-size:.76rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
       letter-spacing:-0.005em; }
     .pkg .price { font-family: var(--serif); font-weight: 600; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
@@ -2727,7 +2739,7 @@
         <div class="pkg">
           <span class="pkg-tag">Start here</span>
           <h3>Site &amp; Business Audit</h3>
-          <div class="price">$750 <small>one-off</small></div>
+          <div class="price">$750 <small>one-off</small></div><div class="pkg-alt">Paid once. The report is yours to keep, or hand to anyone</div>
           <div class="meta">written report · 3 business days</div>
           <p class="desc">Find out what is actually costing you customers before you pay anyone to change it &mdash; including us. Every page is scanned against 190+ technical, SEO, local and conversion checks, then a person reads your copy, offer and ads and tells you what to fix first.</p>
           <ul class="feat">
@@ -2743,7 +2755,7 @@
 
         <div class="pkg">
           <h3>Starter Site</h3>
-          <div class="price">$999 <small>starting at</small></div><div class="pkg-split">50% to start · 50% on launch</div>
+          <div class="price">$999 <small>starting at</small></div><div class="pkg-alt"><b>or $149/mo for 12 months</b> &mdash; then it stops and the site is yours, for good</div>
           <div class="meta">1–3 pages · live in days</div>
           <p class="desc">A sharp, single-purpose site for a local business that needs to look credible and capture leads.</p>
           <ul class="feat">
@@ -2757,7 +2769,7 @@
         <div class="pkg feature">
           <span class="pkg-tag">Most popular</span>
           <h3>Business Site</h3>
-          <div class="price">$2,499 <small>starting at</small></div><div class="pkg-split">50% to start · 50% on launch</div>
+          <div class="price">$2,499 <small>starting at</small></div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
           <div class="meta">5–8 pages · services + gallery</div>
           <p class="desc">A full multi-page site with services, gallery, and content built to rank and convert.</p>
           <ul class="feat">
@@ -2770,7 +2782,7 @@
 
         <div class="pkg">
           <h3>Growth Site + Tool</h3>
-          <div class="price">$4,999 <small>starting at</small></div><div class="pkg-split">50% to start · 50% on launch</div>
+          <div class="price">$4,999 <small>starting at</small></div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
           <div class="meta">site + one custom AI tool</div>
           <p class="desc">A conversion-focused site <em>plus</em> a working AI tool built for your business — the version competitors can't copy.</p>
           <ul class="feat">
