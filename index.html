@@ -457,6 +457,20 @@
     .shipwall-row a::after { content:""; position:absolute; left:0; right:100%; bottom:0;
                              height:1px; background: var(--ink); transition: right .28s ease; }
     .shipwall-row a:hover { color: var(--ink); }
+    /* ⚠️ A DOMAIN NAME IS NOT PROOF TO SOMEBODY WHO HAS NOT HEARD OF IT.
+       This row existed to do the job DLM Conversion's client-logo strip does —
+       borrowed credibility directly under the hero. Theirs works because ADA and
+       Allergan are RECOGNISED. "crispvideo.app" is recognised by nobody, so five
+       bare domains read as a list of links rather than as evidence.
+       Copying the format without the recognition does not transfer the effect.
+       What DOES transfer is saying what each one IS: a local business owner
+       cannot evaluate a URL, but "video upscaler", "site audits" and "offline AI
+       for Mac" are four words each and turn an unfamiliar name into a thing that
+       was built. Same links, same facts, same height class — just legible. */
+    .shipwall-row a span { display: block; font-family: var(--sans); font-size: .74rem;
+      letter-spacing: 0; text-transform: none; color: var(--ink-4); margin-top: .15rem; }
+    .shipwall-row a:hover span { color: var(--ink-3); }
+
     .shipwall-row a:hover::after { right: 0; }
     @media (max-width: 560px){ .shipwall-row { gap:var(--s2) var(--s5); } .shipwall-row a{font-size:.84rem} }
 
@@ -2534,11 +2548,11 @@
                step. Same rot as every stale sentence found this week. -->
           <p class="shipwall-lede">Designed, built and shipped by us — every one live right now</p>
           <ul class="shipwall-row">
-            <li><a href="https://crispvideo.app/" rel="noopener">crispvideo.app</a></li>
-            <li><a href="https://docketseo.app/" rel="noopener">docketseo.app</a></li>
-            <li><a href="https://adplaybook.app/" rel="noopener">adplaybook.app</a></li>
-            <li><a href="https://outlier.host/" rel="noopener">outlier.host</a></li>
-            <li><a href="https://myproposalai.com/" rel="noopener">myproposalai.com</a></li>
+            <li><a href="https://crispvideo.app/" rel="noopener">crispvideo.app<span>video upscaler &amp; editor</span></a></li>
+            <li><a href="https://docketseo.app/" rel="noopener">docketseo.app<span>site &amp; SEO audits</span></a></li>
+            <li><a href="https://adplaybook.app/" rel="noopener">adplaybook.app<span>ad campaign builder</span></a></li>
+            <li><a href="https://outlier.host/" rel="noopener">outlier.host<span>offline AI for Mac</span></a></li>
+            <li><a href="https://myproposalai.com/" rel="noopener">myproposalai.com<span>proposals that win bids</span></a></li>
           </ul>
         </div>
         <div class="proofstrip">
