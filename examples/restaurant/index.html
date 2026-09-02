@@ -4,6 +4,22 @@
 <meta name="description" content="A demonstration site built by Kerr &amp; Company showing what a restaurant's site looks like. Not a real business.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
+<!-- The same Meta pixel the rest of the site runs, and the same id.
+     These pages were invisible to it: someone who clicks through to a
+     demonstration is evaluating the work, which is the highest-intent
+     moment on this site, and no ad could be attributed to it or retarget
+     them. Covered by the existing privacy policy, which discloses the
+     pixel for "this Site" — these pages are on it. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','28202025336060922');
+fbq('track','PageView');
+</script>
+
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
