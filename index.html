@@ -35,7 +35,10 @@
   <meta name="twitter:title" content="Kerr &amp; Company — Web Design, SEO &amp; AI Automation">
   <meta name="twitter:description" content="We build and ship real AI products — and help a few companies do the same.">
   <meta name="twitter:image" content="https://builtbykerr.com/assets/og-card.png">
-  <link rel="canonical" href="https://builtbykerr.com">
+  <!-- Trailing slash: the served URL is https://builtbykerr.com/ and a canonical
+     that omits it points at a different string than the one being indexed. Minor,
+     but the whole point of a canonical is to be the exact address. -->
+  <link rel="canonical" href="https://builtbykerr.com/">
 
   <script type="application/ld+json">
   {
