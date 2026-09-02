@@ -160,8 +160,21 @@
       /* was #857c70: 4.07:1 on --surface-2 #221d17, below AA's 4.5. This is
          the THIRD --ink-4 on this site — dark marketing here, light marketing
          at :root below, and a separate dark palette in assets/pages.css for
-         the legal pages. contrast-gate found this one; two greps did not. */
-      --ink-4: #6E6E77;
+         the legal pages. contrast-gate found this one; two greps did not.
+
+         ⚠️ AND THAT FIX WENT STALE WITHOUT BEING TOUCHED. #6E6E77 was chosen
+         against --surface-2 #221d17. The surface later moved to #1A1A1D and
+         nothing re-checked the pair, so the token that had been corrected for
+         contrast was back at 3.44:1 — below the AA it was fixed to meet. A
+         colour is only ever correct against a specific background, and the
+         background is not the colour's to keep track of.
+
+         #82828B is 4.56:1 here. Worth knowing for whoever tunes this next:
+         --ink-3 is 5.07:1, so between AA's floor and the tint above it there
+         is almost no room, and these two greys are close on purpose rather
+         than by accident. A genuinely distinct fourth step needs the whole
+         ramp re-spaced, which is a design change, not a contrast fix. */
+      --ink-4: #82828B;
       /* The accent IS the foreground. Framer earns one violet against pure
          black; a firm whose mark is a line drawing earns none. --gold and
          --green stay as aliases pointing at neutrals so the call sites I did
