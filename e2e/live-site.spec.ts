@@ -98,9 +98,13 @@ const PAGES = [
   '/legal/terms.html',
   '/services/ai-automation.html',
   '/services/ai-consulting.html',
+  '/services/affordable-web-design-grand-rapids.html',
+  '/services/custom-website-design-kent-county.html',
   '/services/digital-marketing-grand-rapids.html',
   '/services/local-seo-google-business-profile.html',
   '/services/seo-grand-rapids.html',
+  '/services/web-design-west-michigan.html',
+  '/services/web-development-grand-rapids.html',
 ];
 
 let api: APIRequestContext;
