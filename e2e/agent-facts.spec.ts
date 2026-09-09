@@ -56,3 +56,42 @@ test('the deployed assistant knows the prices the live page shows', async ({ pag
     'redeploy: node scripts/scrape-agent-facts.mjs, then wrangler deploy in ~/ops/lead-agent.'
   ).toEqual([]);
 });
+
+/* The same check for the three service pages. Their price cards — twelve
+ * retainers and one-time offers — were invisible to the assistant for two
+ * weeks because the scraper and this route only looked at the home page. A
+ * visitor asking "what does local SEO cost" got "I don't want to guess" about
+ * a price written on the site. */
+const SERVICE_PAGES = [
+  '/services/seo-grand-rapids.html',
+  '/services/digital-marketing-grand-rapids.html',
+  '/services/local-seo-google-business-profile.html',
+];
+
+test('the deployed assistant knows the retainers the service pages show', async ({ page }) => {
+  const api = await request.newContext();
+  const res = await api.get(`${AGENT}/facts`, { headers: { Origin: SITE } });
+  expect(res.ok(), 'the agent must answer /facts').toBeTruthy();
+  const known = ((await res.json()).service_pages || {}) as Record<string, { name: string; price: string }[]>;
+  await api.dispose();
+
+  const drift: string[] = [];
+  for (const path of SERVICE_PAGES) {
+    await page.goto(`${SITE}${path}`, { waitUntil: 'networkidle' });
+    const live = await page.evaluate(() => {
+      const t = (e: Element | null) => (e as HTMLElement)?.innerText.replace(/\s+/g, ' ').trim() || '';
+      return [...document.querySelectorAll('.pkg')]
+        .map(e => ({ name: t(e.querySelector('h3')), price: t(e.querySelector('.price')) }))
+        .filter(c => c.name && c.price);
+    });
+    const k = known[`${SITE}${path}`];
+    if (!k) { drift.push(`the agent knows nothing about ${path}`); continue; }
+    if (k.length !== live.length) drift.push(`${path}: agent knows ${k.length} cards, page shows ${live.length}`);
+    for (const l of live) {
+      const m = k.find(x => x.name === l.name);
+      if (!m) drift.push(`${path}: the agent does not know "${l.name}"`);
+      else if (m.price !== l.price) drift.push(`${path} ${l.name}: agent says "${m.price}", page says "${l.price}"`);
+    }
+  }
+  expect(drift, 'the assistant and the service pages disagree. Re-scrape and redeploy.').toEqual([]);
+});
