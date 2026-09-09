@@ -242,12 +242,12 @@
        the Didone, the locality in letterspaced caps beneath. It previously ran
        inline as "Kerr & Company / Grand Rapids", which is a breadcrumb rather
        than a signature. */
-    .brand-name { font-family: var(--display); font-weight: 400; font-size: 1.34rem;
+    .brand-name { font-family: var(--display); font-weight: 400; font-size: 1.35rem;
                   letter-spacing: .055em; line-height: 1; display: flex;
                   flex-direction: column; gap: var(--s1); padding-left: var(--s3);
                   border-left: 1px solid var(--line-2); }
     .brand-name em { font-style: normal; color: var(--ink-3); font-weight: 400;
-                     font-family: var(--sans); font-size: .62rem; letter-spacing: .3em; line-height: 1; }
+                     font-family: var(--sans); font-size: 0.68rem; letter-spacing: .3em; line-height: 1; }
     @media (max-width: 640px){ .brand-name em{display:none} .brand-name{border-left:0;padding-left:.15rem} }
     .nav-right { display: flex; align-items: center; gap: var(--s7); }
 
@@ -289,13 +289,13 @@
       box-shadow:0 24px 70px rgba(0,0,0,.6); display:flex; flex-direction:column; }
     .kc-a-head { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem;
       padding:var(--s4) var(--s4) var(--s3); border-bottom:1px solid var(--line); }
-    .kc-a-head strong { display:block; font-size:.95rem; color:var(--ink); }
-    .kc-a-head span { display:block; font-size:.74rem; color:var(--ink-3); margin-top:.15rem; }
+    .kc-a-head strong { display:block; font-size:1rem; color:var(--ink); }
+    .kc-a-head span { display:block; font-size:0.78rem; color:var(--ink-3); margin-top:.15rem; }
     #kc-agent-close { background:none; border:0; color:var(--ink-3); font-size:1.5rem;
       line-height:1; cursor:pointer; min-width:44px; min-height:44px; }
     #kc-agent-close:hover { color:var(--ink); }
     #kc-agent-log { padding:var(--s4); display:flex; flex-direction:column; gap:var(--s3);
-      max-height:min(46vh, 340px); overflow-y:auto; font-size:.86rem; line-height:1.6; }
+      max-height:min(46vh, 340px); overflow-y:auto; font-size:0.88rem; line-height:1.6; }
     .kc-m { padding:.6rem .8rem; border-radius:12px; max-width:88%; white-space:pre-wrap; }
     .kc-m.you { align-self:flex-end; background:var(--accent); color:#fff; }
     .kc-m.bot { align-self:flex-start; background:var(--surface-2, rgba(255,255,255,.05));
@@ -304,12 +304,12 @@
     #kc-agent-form { display:flex; gap:.5rem; padding:var(--s3) var(--s4) var(--s3);
       border-top:1px solid var(--line); }
     #kc-agent-input { flex:1; background:transparent; border:1px solid var(--line-2);
-      border-radius:10px; padding:.6rem .75rem; color:var(--ink); font-size:.86rem;
+      border-radius:10px; padding:.6rem .75rem; color:var(--ink); font-size:0.88rem;
       font-family:inherit; min-height:44px; }
     #kc-agent-input:focus { outline:none; border-color:var(--ink-3); }
     #kc-agent-form button { min-width:44px; min-height:44px; border-radius:10px; cursor:pointer;
       border:0; font-size:1rem; }
-    .kc-a-foot { margin:0; padding:0 var(--s4) var(--s3); font-size:.7rem; color:var(--ink-4);
+    .kc-a-foot { margin:0; padding:0 var(--s4) var(--s3); font-size:0.68rem; color:var(--ink-4);
       line-height:1.5; }
     .kc-a-foot a { color:var(--ink-3); }
     @media (max-width: 520px) {
@@ -322,12 +322,12 @@
        local-ranking item as much as a contact one. Text-first because the number is a
        Google Voice line and a text genuinely gets answered faster than a call —
        promising a channel we answer slowly is worse than not listing it. */
-    .fl-area { display:block; margin-top:var(--s2); color:var(--ink-3); font-size:.8rem;
+    .fl-area { display:block; margin-top:var(--s2); color:var(--ink-3); font-size:0.78rem;
       line-height:1.55; max-width:52ch; }
     .fl-area a { color:var(--ink-2); text-decoration:none; white-space:nowrap; }
     .fl-area a:hover { color:var(--ink); }
     .nav-phone { display:inline-flex; align-items:center; color:var(--ink-2); text-decoration:none;
-      font-size:.86rem; letter-spacing:-0.01em; margin-right:var(--s3); white-space:nowrap;
+      font-size:0.88rem; letter-spacing:-0.01em; margin-right:var(--s3); white-space:nowrap;
       /* 44px, not 24. The repo's own WCAG 2.5.8 check caught this at 24 and it was
          right to: a phone link is the one control on the page a person taps while
          holding the phone one-handed, and 24px is the floor for "not a bug" rather
@@ -340,7 +340,7 @@
        one holding the small screen. The label collapses to the number alone so it
        fits; the tap target does not change. */
     @media (max-width: 760px) {
-      .nav-phone { font-size:.8rem; margin-right:var(--s2); }
+      .nav-phone { font-size:0.78rem; margin-right:var(--s2); }
       .nav-phone .np-word { display:none; }
     }
     .nav-links { display: flex; gap: var(--s7); list-style: none; }
@@ -373,7 +373,7 @@
        under the 44px minimum, on the one control in the header that matters. */
     @media (max-width: 480px) {
       .nav-right { gap: var(--s3); }
-      .nav-cta { padding: var(--s2) var(--s3); font-size: .74rem; }
+      .nav-cta { padding: var(--s2) var(--s3); font-size: 0.78rem; }
     }
     @media (max-width: 380px) {
       .nav-right { gap: var(--s2); }
@@ -415,7 +415,7 @@
       line-height: 1.02; letter-spacing: -0.018em; margin-bottom: var(--s6); max-width: min(17ch, 100%);
       overflow-wrap: break-word;
     }
-    @media (max-width: 520px){ .hero h1 { font-size: 2.3rem; letter-spacing: -0.028em; } }
+    @media (max-width: 520px){ .hero h1 { font-size: 2.5rem; letter-spacing: -0.028em; } }
     /* Gradient headline — the one flourish, reserved for the emphasised phrase. */
     .hero h1 em {
       font-style: normal;
@@ -426,7 +426,7 @@
     @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
       .hero h1 em { color: var(--accent-2); -webkit-text-fill-color: currentColor; }
     }
-    .hero-sub { font-size: clamp(1rem, 1.7vw, 1.16rem); color: var(--ink-2); max-width: 600px; line-height: 1.62; margin-bottom: var(--s7); }
+    .hero-sub { font-size: clamp(1rem, 1.7vw, 1.125rem); color: var(--ink-2); max-width: 600px; line-height: 1.62; margin-bottom: var(--s7); }
     .hero-sub strong { color: var(--ink); font-weight: 600; }
     .hero-actions { display: flex; gap: var(--s3); flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; gap: var(--s2); font-size: 0.88rem; font-weight: 600; padding: var(--s3) var(--s6); border-radius: 10px; text-decoration: none; transition: all .15s; border: 1px solid transparent; cursor: pointer; }
@@ -467,7 +467,7 @@
                      text-transform: uppercase; color: var(--ink-4); margin: 0 0 var(--s4); }
     .shipwall-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap;
                     gap: var(--s2) var(--s7); }
-    .shipwall-row a { font-family: var(--mono); font-size: .93rem; color: var(--ink-3);
+    .shipwall-row a { font-family: var(--mono); font-size: 0.88rem; color: var(--ink-3);
                       text-decoration: none; position: relative; padding-bottom: 2px;
                       transition: color .25s ease; }
     .shipwall-row a::after { content:""; position:absolute; left:0; right:100%; bottom:0;
@@ -483,12 +483,12 @@
        cannot evaluate a URL, but "video upscaler", "site audits" and "offline AI
        for Mac" are four words each and turn an unfamiliar name into a thing that
        was built. Same links, same facts, same height class — just legible. */
-    .shipwall-row a span { display: block; font-family: var(--sans); font-size: .74rem;
+    .shipwall-row a span { display: block; font-family: var(--sans); font-size: 0.78rem;
       letter-spacing: 0; text-transform: none; color: var(--ink-4); margin-top: .15rem; }
     .shipwall-row a:hover span { color: var(--ink-3); }
 
     .shipwall-row a:hover::after { right: 0; }
-    @media (max-width: 560px){ .shipwall-row { gap:var(--s2) var(--s5); } .shipwall-row a{font-size:.84rem} }
+    @media (max-width: 560px){ .shipwall-row { gap:var(--s2) var(--s5); } .shipwall-row a{font-size:0.88rem} }
 
     /* BUTTON CONTRAST — SHIPPED BROKEN AND MATTHEW COULD NOT READ THEM.
        The palette sweep mapped the gold background (#8a5a12) and the dark label
@@ -695,10 +695,10 @@
       padding: clamp(1rem,2vw,1.5rem) 0; border-bottom: 1px solid var(--line); }
     .split-idx li:last-child { border-bottom: 0; }
     .split-idx li::before { content: "0" counter(step); font-family: var(--mono);
-      font-size: .74rem; color: var(--ink-4); letter-spacing: .08em; }
-    .split-idx h3 { margin: 0; font-size: clamp(1.02rem,1.5vw,1.2rem); font-weight: 600;
+      font-size: 0.78rem; color: var(--ink-4); letter-spacing: .08em; }
+    .split-idx h3 { margin: 0; font-size: clamp(1.02rem, 1.5vw, 1.25rem); font-weight: 600;
       letter-spacing: -.01em; color: var(--ink); }
-    .split-idx p { grid-column: 2; margin: var(--s2) 0 0; font-size: .93rem;
+    .split-idx p { grid-column: 2; margin: var(--s2) 0 0; font-size: 0.88rem;
       color: var(--ink-3); line-height: 1.62; }
 
     /* the panel — a different ground, which is the whole Lemon device */
@@ -716,14 +716,14 @@
     .flow { display: flex; flex-direction: column; gap: 0; }
     .frag { background: var(--bg); border: 1px solid var(--line-2);
       border-radius: 14px; padding: var(--s4) var(--s4); box-shadow: var(--shadow); }
-    .frag-h { display:flex; align-items:center; gap:var(--s2); font-size:.82rem;
+    .frag-h { display:flex; align-items:center; gap:var(--s2); font-size:0.78rem;
       color: var(--ink-2); font-weight:600; }
-    .frag-b { margin:var(--s2) 0 0; font-size:.8rem; color: var(--ink-4); line-height:1.55; }
+    .frag-b { margin:var(--s2) 0 0; font-size:0.78rem; color: var(--ink-4); line-height:1.55; }
     .frag .dot { width:7px; height:7px; border-radius:50%; background: var(--ink-3); flex:none; }
     .flow-arrow { display:flex; justify-content:center; padding:var(--s2) 0; color: var(--ink-4); }
     .flow-arrow svg { width:14px; height:26px; }
     .frag-row { display:flex; gap:var(--s2); flex-wrap:wrap; margin-top:var(--s2); }
-    .chip { font-family: var(--mono); font-size:.66rem; letter-spacing:.06em;
+    .chip { font-family: var(--mono); font-size:0.68rem; letter-spacing:.06em;
       border:1px solid var(--line-2); border-radius:999px; padding:var(--s1) var(--s2); color: var(--ink-3); }
     @media (max-width: 900px){
       .split { grid-template-columns: 1fr; }
@@ -759,7 +759,7 @@
     .qa { border-bottom: 1px solid var(--line); padding: 0; background: none; }
     .qa summary { display:flex; align-items:flex-start; justify-content:space-between;
       gap: var(--s4); cursor:pointer; list-style:none;
-      padding: var(--s5) 0; font-size: clamp(1rem,1.35vw,1.1rem); font-weight:600;
+      padding: var(--s5) 0; font-size: clamp(1rem, 1.35vw, 1.125rem); font-weight:600;
       letter-spacing:-.01em; color: var(--ink); transition: color .18s ease; }
     .qa summary::-webkit-details-marker { display:none; }
     .qa summary:hover { color: var(--ink-2); }
@@ -770,7 +770,7 @@
     .qa-i svg { width:12px; height:12px; }
     .qa[open] .qa-i { transform: rotate(45deg); border-color: var(--ink-3); }
     .qa > p { margin: 0 0 var(--s5); max-width: 68ch; color: var(--ink-3);
-      font-size:.95rem; line-height:1.68; }
+      font-size:1rem; line-height:1.68; }
     @media (prefers-reduced-motion: reduce){ .qa-i { transition: none; } }
 
     /* ── QUOTE CONFIGURATOR ─────────────────────────────────────────────────
@@ -794,10 +794,10 @@
       background: color-mix(in srgb, var(--ink) 5%, var(--bg));
       padding: clamp(var(--s6),3vw,var(--s8)); margin-top: var(--s9);
       display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(var(--s6),3vw,var(--s8)); }
-    .cfg h3 { margin:0 0 var(--s2); font-size: clamp(1.15rem,1.7vw,1.45rem); letter-spacing:-.015em; }
-    .cfg-sub { margin:0 0 var(--s6); color:var(--ink-3); font-size:.92rem; line-height:1.6; }
+    .cfg h3 { margin:0 0 var(--s2); font-size: clamp(1.15rem, 1.7vw, 1.5rem); letter-spacing:-.015em; }
+    .cfg-sub { margin:0 0 var(--s6); color:var(--ink-3); font-size:0.88rem; line-height:1.6; }
     .cfg-field { margin-bottom: var(--s5); }
-    .cfg-field > label { display:block; font-family:var(--mono); font-size:.7rem;
+    .cfg-field > label { display:block; font-family:var(--mono); font-size:0.68rem;
       letter-spacing:.09em; text-transform:uppercase; color:var(--ink-4); margin-bottom: var(--s3); }
     .seg { display:flex; gap: var(--s2); flex-wrap:wrap; }
     .seg button { font:inherit; font-size:.88rem; padding: var(--s3) var(--s4);
@@ -819,14 +819,14 @@
        way a machine does could. */
     .cfg-price { font-size: clamp(2.2rem,4.4vw,3.2rem); font-weight:600; letter-spacing:-.03em;
       line-height:1; margin:0; font-variant-numeric: tabular-nums; }
-    .cfg-price small { display:block; font-size:.72rem; font-weight:500; letter-spacing:.09em;
+    .cfg-price small { display:block; font-size:0.68rem; font-weight:500; letter-spacing:.09em;
       font-family:var(--mono); color:var(--ink-4); text-transform:uppercase; margin-bottom: var(--s3); }
-    .cfg-tier { margin: var(--s3) 0 var(--s5); font-size:.9rem; color:var(--ink-3); }
+    .cfg-tier { margin: var(--s3) 0 var(--s5); font-size:0.88rem; color:var(--ink-3); }
     .cfg-scope { list-style:none; margin:0 0 var(--s5); padding:0; }
-    .cfg-scope li { font-size:.87rem; color:var(--ink-2); padding: var(--s2) 0;
+    .cfg-scope li { font-size:0.88rem; color:var(--ink-2); padding: var(--s2) 0;
       border-bottom:1px solid var(--line); display:flex; gap:var(--s3); }
     .cfg-scope li::before { content:"—"; color:var(--ink-4); }
-    .cfg-date { font-size:.87rem; color:var(--ink-2); margin:0 0 var(--s5); }
+    .cfg-date { font-size:0.88rem; color:var(--ink-2); margin:0 0 var(--s5); }
     .cfg-date b { font-weight:600; color:var(--ink); }
     .cfg-note { font-size:.78rem; color:var(--ink-4); line-height:1.6; margin:var(--s4) 0 0; }
     @media (max-width:860px){ .cfg{grid-template-columns:1fr}
@@ -862,7 +862,7 @@
     .proof-i:last-child { border-right:0; }
     .proof-n { font-size: clamp(2rem,3.6vw,2.9rem); font-weight:600; letter-spacing:-.035em;
       line-height:1; margin:0; font-variant-numeric:tabular-nums; color:var(--ink); }
-    .proof-l { margin: var(--s3) 0 0; font-size:.86rem; color:var(--ink-2); line-height:1.5; }
+    .proof-l { margin: var(--s3) 0 0; font-size:0.88rem; color:var(--ink-2); line-height:1.5; }
     .proof-s { margin: var(--s2) 0 0; font-family:var(--mono); font-size:.68rem;
       letter-spacing:.07em; text-transform:uppercase; color:var(--ink-4); }
     .proof-s a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
@@ -909,7 +909,7 @@
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: clamp(3rem, 6vw, 4.5rem); }
     @media (max-width: 680px){ .stats { grid-template-columns: repeat(2,1fr); } }
     .stat { background: var(--bg-2); padding: var(--s7) var(--s5); }
-    .stat-num { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 3.5vw, 2.4rem); letter-spacing: -0.02em; line-height: 1; }
+    .stat-num { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 3.5vw, 2.5rem); letter-spacing: -0.02em; line-height: 1; }
     .stat-num .accent { color: var(--accent-2); }
     .stat-label { font-size: 0.78rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: var(--s2); }
 
@@ -973,8 +973,8 @@
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--s4); }
     .svc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: var(--s7); transition: border-color .2s, transform .2s; }
     .svc:hover { border-color: var(--line-2); transform: translateY(-3px); }
-    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(250,250,248,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.14rem; margin-bottom: var(--s4); }
-    .svc h3 { font-family: var(--serif); font-weight: 600; font-size: 1.14rem; margin-bottom: var(--s2); letter-spacing: -0.01em; }
+    .svc-ic { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-soft); border: 1px solid rgba(250,250,248,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; margin-bottom: var(--s4); }
+    .svc h3 { font-family: var(--serif); font-weight: 600; font-size: 1.125rem; margin-bottom: var(--s2); letter-spacing: -0.01em; }
     .svc p { font-size: 0.88rem; color: var(--ink-3); line-height: 1.65; }
 
     /* APPROACH */
@@ -1031,10 +1031,10 @@
     .ownit-eyebrow { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
       color: var(--ink-4); margin-bottom: var(--s2); }
     .ownit h3 { font-family: var(--sans); font-size: 1.25rem; margin: 0 0 var(--s3); }
-    .ownit p { font-size: .92rem; line-height: 1.65; color: var(--ink-2); margin: 0 0 var(--s3); }
-    .ownit-honest { color: var(--ink-3); font-size: .87rem; }
+    .ownit p { font-size: 0.88rem; line-height: 1.65; color: var(--ink-2); margin: 0 0 var(--s3); }
+    .ownit-honest { color: var(--ink-3); font-size: 0.88rem; }
     .ownit-points { list-style: none; margin: 0; padding: 0; align-self: center; }
-    .ownit-points li { font-size: .9rem; line-height: 1.6; color: var(--ink-2);
+    .ownit-points li { font-size: 0.88rem; line-height: 1.6; color: var(--ink-2);
       padding: var(--s2) 0 var(--s2) var(--s4); position: relative; }
     .ownit-points li::before { content: "—"; position: absolute; left: 0; color: var(--ink-4); }
     .ownit-points strong { color: var(--ink); }
@@ -1043,7 +1043,7 @@
     .terms-col h3 { font-family: var(--sans); font-size: 1rem; margin: 0 0 var(--s3);
       color: var(--ink); }
     .terms-col ul { list-style: none; margin: 0; padding: 0; }
-    .terms-col li { font-size: .9rem; line-height: 1.6; color: var(--ink-2);
+    .terms-col li { font-size: 0.88rem; line-height: 1.6; color: var(--ink-2);
       padding: var(--s2) 0 var(--s2) var(--s4); position: relative; }
     .terms-col li::before { content: "—"; position: absolute; left: 0; color: var(--ink-4); }
     .terms-col strong { color: var(--ink); font-weight: 600; }
@@ -1108,11 +1108,11 @@
       background:var(--surface); border:1px solid var(--line); border-radius:12px;
       text-decoration:none; transition:border-color .2s, transform .2s; }
     .reach-card:hover { border-color:var(--line-2); transform:translateY(-2px); }
-    .reach-card b { font-size:.95rem; color:var(--ink); }
-    .reach-card span { font-size:.86rem; color:var(--ink-2); overflow-wrap:anywhere; }
+    .reach-card b { font-size:1rem; color:var(--ink); }
+    .reach-card span { font-size:0.88rem; color:var(--ink-2); overflow-wrap:anywhere; }
     .reach-card em { font-style:normal; font-size:.78rem; color:var(--ink-4); margin-top:.3rem; }
     .ex-band { margin: var(--s6) 0 0; }
-    .ex-lede { font-size:1.02rem; color:var(--ink); margin:0 0 var(--s4); max-width:62ch; }
+    .ex-lede { font-size:1rem; color:var(--ink); margin:0 0 var(--s4); max-width:62ch; }
     .ex-lede span { display:block; font-size:.88rem; color:var(--ink-3); margin-top:.4rem; line-height:1.6; }
     .ex-grid { display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
     /* ⚠️ SHOW THE WEBSITES. These were three text cards with ZERO images, on a
@@ -1129,9 +1129,9 @@
       transition:border-color .2s, transform .2s; }
     .ex:hover { border-color:var(--line-2); transform:translateY(-3px); }
     .ex-kind { font-size:.68rem; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-4); font-weight:700; }
-    .ex strong { font-family:var(--serif); font-size:1.12rem; color:var(--ink); letter-spacing:-.01em; }
-    .ex em { font-style:normal; font-size:.86rem; color:var(--ink-3); line-height:1.55; margin-top:.15rem; }
-    .ex-go { font-size:.82rem; color:var(--ink-2); margin-top:.6rem; }
+    .ex strong { font-family:var(--serif); font-size:1.125rem; color:var(--ink); letter-spacing:-.01em; }
+    .ex em { font-style:normal; font-size:0.88rem; color:var(--ink-3); line-height:1.55; margin-top:.15rem; }
+    .ex-go { font-size:0.78rem; color:var(--ink-2); margin-top:.6rem; }
     /* ⚠️ THE PAYMENT OPTION IS PART OF THE PRICE, NOT A FOOTNOTE TO IT.
        This began as a second line in .pkg-split at .76rem grey — technically
        "next to" the price and read by nobody, because a smaller, dimmer line
@@ -1141,10 +1141,10 @@
        So it sits tight to the number, the payment figure itself is bold at the
        body size, and every one of them ends in ownership — which is the actual
        objection a monthly figure raises. */
-    .pkg-alt { font-size:.82rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
+    .pkg-alt { font-size:0.78rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
       line-height:1.5; letter-spacing:-0.005em; }
     .pkg-alt b { color:var(--ink-2); font-weight:600; }
-    .pkg-split { font-size:.76rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
+    .pkg-split { font-size:0.78rem; color:var(--ink-3); margin:calc(var(--s1) * -1) 0 var(--s2);
       letter-spacing:-0.005em; }
     /* ⚠️ HOW IT IS PAID SITS WITH THE PRICE, NOT UNDER IT IN GREY.
        Matthew, five times: "bnpl right next to it and not in sub text." On this
@@ -1155,7 +1155,7 @@
        the question that stops people. So the terms are part of the price block:
        same container, no scroll between them, accent-weighted rather than the
        grey a reader's eye is trained to skip. */
-    .payline { margin-top: .3rem; font-size: .82rem; font-weight: 600;
+    .payline { margin-top: .3rem; font-size: 0.78rem; font-weight: 600;
       color: var(--a3); letter-spacing: -.005em; }
     :root[data-theme="light"] .payline { color: #8a5f14; }
     .pkg .price { font-family: var(--serif); font-weight: 600; font-size: 1.65rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
@@ -1194,7 +1194,7 @@
     /* BUILD STORY */
     .buildstory { background: linear-gradient(160deg, var(--surface), var(--bg-2)); border: 1px solid var(--line-2); border-radius: 18px; padding: clamp(1.8rem, 4vw, 2.6rem); margin-top: var(--s6); }
     .buildstory .bs-eyebrow { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-2); margin-bottom: var(--s3); }
-    .buildstory h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.15; }
+    .buildstory h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.15; }
     .buildstory p { font-size: 1rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; max-width: 70ch; }
     .buildstory p strong { color: var(--ink); font-weight: 600; }
     .bs-steps { display: flex; flex-wrap: wrap; gap: var(--s2); margin: var(--s4) 0 var(--s5); }
@@ -1207,7 +1207,7 @@
     @media (max-width: 640px){ .founder-grid { grid-template-columns: 1fr; gap: var(--s6); } }
     .founder-photo { width: 200px; height: 200px; border-radius: 18px; object-fit: cover; object-position: center top; border: 1px solid var(--line-2); box-shadow: var(--shadow); }
     @media (max-width: 640px){ .founder-photo { width: 130px; height: 130px; } }
-    .founder-body h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 3.5vw, 2.4rem); letter-spacing: -0.025em; line-height: 1.12; margin-bottom: var(--s4); }
+    .founder-body h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 3.5vw, 2.5rem); letter-spacing: -0.025em; line-height: 1.12; margin-bottom: var(--s4); }
     .founder-body h2 em { font-style: italic; color: var(--accent-2); }
     .founder-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; max-width: 60ch; }
     .founder-body p strong { color: var(--ink); font-weight: 600; }
@@ -1223,7 +1223,7 @@
     #faq { border-top: 1px solid var(--line); background: var(--bg-2); }
     .faq-list { display: grid; gap: var(--s4); max-width: 820px; }
     .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: var(--s5) var(--s6); }
-    .faq-item h3 { font-family: var(--serif); font-weight: 600; font-size: 1.14rem; margin-bottom: var(--s2); letter-spacing: -0.01em; color: var(--ink); }
+    .faq-item h3 { font-family: var(--serif); font-weight: 600; font-size: 1.125rem; margin-bottom: var(--s2); letter-spacing: -0.01em; color: var(--ink); }
     .faq-item p { font-size: 0.88rem; color: var(--ink-2); line-height: 1.68; }
     .faq-item p a { color: var(--accent-2); text-decoration: none; font-weight: 600; }
 
@@ -1300,7 +1300,7 @@
     .why-card { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: var(--s6) var(--s6); transition: border-color .2s; }
     .why-card:hover { border-color: var(--line-2); }
     .why-card .wi { font-size: 1.35rem; line-height: 1; margin-bottom: var(--s3); display: block; }
-    .why-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.14rem; letter-spacing: -0.01em; margin-bottom: var(--s2); color: var(--ink); }
+    .why-card h3 { font-family: var(--serif); font-weight: 600; font-size: 1.125rem; letter-spacing: -0.01em; margin-bottom: var(--s2); color: var(--ink); }
     .why-card p { font-size: 0.88rem; color: var(--ink-2); line-height: 1.62; }
     .why-card p strong { color: var(--accent-2); font-weight: 600; }
 
@@ -1386,7 +1386,7 @@
       padding: var(--s6) var(--s6); text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
     .svc:hover { border-color: rgba(250,250,248,0.45); transform: translateY(-3px); box-shadow: var(--shadow-card); }
     .svc-ic { font-size: 1.35rem; line-height: 1; margin-bottom: var(--s3); }
-    .svc h3 { font-family: var(--serif); font-weight: 600; font-size: 1.14rem; letter-spacing: -0.01em; margin-bottom: var(--s2); color: var(--ink); }
+    .svc h3 { font-family: var(--serif); font-weight: 600; font-size: 1.125rem; letter-spacing: -0.01em; margin-bottom: var(--s2); color: var(--ink); }
     .svc p { font-size: 0.88rem; color: var(--ink-2); line-height: 1.6; margin-bottom: var(--s4); }
     .svc .from { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-3); letter-spacing: 0.02em; margin-top: auto; }
     .svc .go { font-size: 0.88rem; font-weight: 600; color: var(--accent-2); margin-top: var(--s2); }
@@ -1495,11 +1495,11 @@
       padding: clamp(3rem, 5.5vw, 4.5rem) 0; }
     /* the class is .product-desc, not .product-body p — the rule I wrote matched
        nothing and reported as applied because I checked that I had written it. */
-    .product-info .product-desc { font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+    .product-info .product-desc { font-size: clamp(1.05rem, 1.25vw, 1.125rem);
       line-height: 1.66; max-width: 48ch; }
     .product-info h2, .product-info .product-name { font-size: clamp(2rem, 3.3vw, 2.9rem);
       letter-spacing: -.03em; line-height: 1.04; }
-    .product h2, .product .product-name { font-size: clamp(1.9rem, 3.1vw, 2.6rem);
+    .product h2, .product .product-name { font-size: clamp(1.9rem, 3.1vw, 2.5rem);
       letter-spacing: -.03em; line-height: 1.05; }
     .product .mockup-scroll { height: clamp(360px, 30vw, 520px); }
 
@@ -1510,7 +1510,7 @@
        2px gap between rows. Three different kinds of information — what we
        shipped, the domains, the proof — with no separation between any of them. */
     .shipwall { margin-top: clamp(3rem, 5vw, 4.5rem); padding-top: clamp(2rem, 3vw, 2.75rem); }
-    .shipwall-lede { font-size: .7rem; margin: 0 0 var(--s6); }
+    .shipwall-lede { font-size: 0.68rem; margin: 0 0 var(--s6); }
     .shipwall-row { gap: var(--s4) var(--s8); align-items: baseline; }
     .shipwall-row + .shipwall-row { margin-top: var(--s6); padding-top: var(--s6);
       border-top: 1px solid var(--line); }
@@ -2363,9 +2363,9 @@
          layout, measured at 390px wide. Calendly sizes its own frame. */
     }
     .book-fallback { margin: 0; padding: var(--s4); text-align: center;
-      font-size: 0.98rem; line-height: 1.6; }
+      font-size: 1rem; line-height: 1.6; }
     .book-fallback a { text-decoration: underline; }
-    .book-micro { margin: var(--s3) 0 0; text-align: center; font-size: 0.86rem;
+    .book-micro { margin: var(--s3) 0 0; text-align: center; font-size: 0.88rem;
       color: var(--ink-3); }
 
 
@@ -2631,7 +2631,7 @@
           <span class="go">AI consulting →</span>
         </a>
       </div>
-      <p class="svc-more reveal" style="margin-top:1.1rem;font-size:0.9rem;color:var(--ink-3);">Also: <a href="/services/web-development-grand-rapids.html">web development in Grand Rapids</a> · <a href="/services/custom-website-design-kent-county.html">custom websites for Kent County</a> · <a href="/services/web-design-west-michigan.html">web design for West Michigan</a> · <a href="/services/affordable-web-design-grand-rapids.html">what a $999 site includes</a></p>
+      <p class="svc-more reveal" style="margin-top:1.1rem;font-size:0.88rem;color:var(--ink-3);">Also: <a href="/services/web-development-grand-rapids.html">web development in Grand Rapids</a> · <a href="/services/custom-website-design-kent-county.html">custom websites for Kent County</a> · <a href="/services/web-design-west-michigan.html">web design for West Michigan</a> · <a href="/services/affordable-web-design-grand-rapids.html">what a $999 site includes</a></p>
     </div>
   </section>
 
