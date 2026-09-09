@@ -17,7 +17,18 @@
 import { chromium } from 'playwright';
 import { writeFileSync } from 'fs';
 
-const OUT = process.env.HOME + '/ops/lead-agent/facts.json';
+/* One assistant, five sites (2026-08-26): the worker imports facts/<host>.json per
+   tenant, so this writes builtbykerr's file, not the old single facts.json. */
+const OUT = process.env.HOME + '/ops/lead-agent/facts/builtbykerr.com.json';
+/* The service pages carry their own price cards (retainers and one-time work)
+   in the same .pkg markup as the home page. The assistant knew none of them
+   until 2026-09-09 — it could quote a $999 Starter Site but not the $750/mo
+   Local SEO retainer written on /services/seo-grand-rapids.html. */
+const SERVICE_PAGES = [
+  '/services/seo-grand-rapids.html',
+  '/services/digital-marketing-grand-rapids.html',
+  '/services/local-seo-google-business-profile.html',
+];
 const browser = await chromium.launch();
 const page = await browser.newPage();
 await page.goto('https://builtbykerr.com/', { waitUntil: 'networkidle', timeout: 60000 });
@@ -61,7 +72,43 @@ facts.booking = 'https://calendly.com/admin-kerrandcompanyholdings/30min';
 facts.text_only_phone = '(616) 320-1280';
 facts.email = 'matthew@kerrandcompanyholdings.com';
 
+/* CURATED TERMS — statements Matthew made that the page does not print, added
+   by hand on 2026-09-01 (ops 90daac5: the assistant was telling prospects there
+   are no refunds; 6976094: it said there is no public portfolio). A rebuild from
+   the page alone erases them, which is how they were lost for a minute on
+   2026-09-09. They are merged into the same term groups on every rebuild; edit
+   them here, not in the JSON. */
+const CURATED_TERMS = {
+  "On every project, whatever the size": [
+    "Cancellation before work starts: a full refund of the deposit. After work starts: you pay only for work done, and anything already paid beyond that is refunded. This is in the signed project agreement, section 8.",
+    "There ARE public examples — three complete demonstration builds on the site, linked from the home page: /examples/roofing/ (home services, estimate form), /examples/restaurant/ (menu, hours, reservations) and /examples/salon/ (priced service list, online booking).",
+    "Those three are DEMONSTRATIONS, not client work. Each says so on the page and the businesses are fictional. Never describe them as clients or imply somebody paid for them.",
+    "On the $149/mo Own It plan: if the site is never delivered, every payment made is refunded and nothing transfers."
+  ]
+};
+for (const [group, lines] of Object.entries(CURATED_TERMS)) {
+  facts.terms[group] = [...(facts.terms[group] || []), ...lines.filter(l => !(facts.terms[group] || []).includes(l))];
+}
+facts.service_pages = {};
+for (const path of SERVICE_PAGES) {
+  await page.goto('https://builtbykerr.com' + path, { waitUntil: 'networkidle', timeout: 60000 });
+  await page.waitForTimeout(1000);
+  facts.service_pages['https://builtbykerr.com' + path] = await page.evaluate(() => {
+    const txt = e => (e?.innerText || '').replace(/\s+/g, ' ').trim();
+    return [...document.querySelectorAll('.pkg')].map(e => ({
+      name: txt(e.querySelector('h3')),
+      price: txt(e.querySelector('.price')),
+      meta: txt(e.querySelector('.meta')),
+      desc: txt(e.querySelector('.desc')),
+      includes: [...e.querySelectorAll('.feat li')].map(txt),
+    })).filter(c => c.name && c.price);
+  });
+}
 writeFileSync(OUT, JSON.stringify(facts, null, 2));
+for (const [u, cards] of Object.entries(facts.service_pages)) {
+  console.log(`  ${u}: ${cards.length} cards`);
+  cards.forEach(c => console.log(`    ${c.name.padEnd(24)} ${c.price}`));
+}
 console.log(`  ${facts.services.length} services, ${withPayment.length} with payment lines, ${Object.keys(facts.terms).length} term groups`);
 facts.services.forEach(s => console.log(`    ${s.name.padEnd(24)} ${s.price.padEnd(20)} ${s.payment || '—'}`));
 await browser.close();
