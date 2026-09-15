@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yes, speed matters for a local business site: ten Grand Rapids contractor sites scored a median 59, and one script cost ours 24 points</title>
+  <meta name="description" content="We ran Google's Lighthouse on ten Grand Rapids contractor home pages: mobile scores 31 to 99, median 59, six taking over 13 s to show their main content. What Google says speed is worth, and the one-script fix that took our own home page from 74 to 98.">
+  <link rel="canonical" href="https://builtbykerr.com/articles/does-website-speed-matter-for-a-local-business.html">
+  <meta name="theme-color" content="#07090e">
+  <meta property="og:title" content="Yes, speed matters for a local business site: ten Grand Rapids contractor sites scored a median 59">
+  <meta property="og:description" content="Ten local contractor home pages measured with Google's Lighthouse: median 59, six over 13 s to first content. Our own home page went 74 to 98 by deferring one script.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://builtbykerr.com/articles/does-website-speed-matter-for-a-local-business.html">
+  <meta property="og:image" content="https://builtbykerr.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/pages.css">
+  <link rel="stylesheet" href="/assets/article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://builtbykerr.com/articles/does-website-speed-matter-for-a-local-business.html#article",
+        "headline": "Yes, speed matters for a local business website. Ten Grand Rapids contractor sites scored a median 59, and one script was costing ours 24 points.",
+        "description": "We ran Google's Lighthouse on ten Grand Rapids contractor home pages: mobile scores 31 to 99, median 59, six taking over 13 s to show their main content. What Google says speed is worth, and the one-script fix that took our own home page from 74 to 98.",
+        "datePublished": "2026-09-15",
+        "dateModified": "2026-09-15",
+        "author": {
+          "@type": "Person",
+          "name": "Matthew Kerr",
+          "url": "https://matthewkerr.dev/",
+          "knowsAbout": [
+            "Web performance",
+            "Core Web Vitals",
+            "Local business websites",
+            "Web design"
+          ]
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Kerr & Co.",
+          "url": "https://builtbykerr.com/"
+        },
+        "mainEntityOfPage": "https://builtbykerr.com/articles/does-website-speed-matter-for-a-local-business.html",
+        "image": "https://builtbykerr.com/assets/og-card.png"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://builtbykerr.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Articles",
+            "item": "https://builtbykerr.com/articles/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Does website speed matter for a local business",
+            "item": "https://builtbykerr.com/articles/does-website-speed-matter-for-a-local-business.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does website speed affect Google rankings for a local business?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Google says it does, as one signal among several. Its Search Central page-experience documentation, read 15 September 2026, says \"Core Web Vitals are used by our ranking systems\" and that its systems \"look to reward content that provides a good page experience\". The same page says Google \"always seeks to show the most relevant content, even if the page experience is sub-par\", so speed does not beat relevance; it is closer to a tiebreaker between pages that are otherwise comparable, and a good score guarantees nothing on its own."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a good speed score for a small business website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Lighthouse, the audit behind Google's PageSpeed Insights, colours a mobile performance score of 90 or above green, 50 to 89 orange and below 50 red. The ten Grand Rapids contractor home pages we measured on 15 September 2026 had a median of 59, with one at 99. Google's own target is for the main content to appear within 2.5 seconds of the page starting to load. A local trade site can hit both: the 99 in our sample was a 1.2 MB page that painted in 1.3 seconds on the test's slow-4G setting."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a new website to fix a slow one?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Usually not. On our own home page one third-party booking widget was loading 3 MB of its own code the moment the page opened; deferring it until the visitor scrolls near the calendar took the page from 74 to 98 with no other change, and an earlier reading that morning had been 35. From what the Lighthouse audits report, most of a bad score usually comes from third-party scripts loading up front, images or video far larger than the space they fill, or files served without compression or caching. Those are a script, an image or a server setting, not a rebuild. Rebuild when an audit shows the whole site is the problem, not for speed alone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does my site score differently from one test to the next?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Lighthouse simulates a mid-range phone on a slow 4G connection and throttles the processor four times, then measures one load; the result moves a few points between runs depending on the server, the network and what a third-party script happened to do that time. Our numbers are one run per page on 15 September 2026, made on our own machine with Lighthouse 13.4.1, so PageSpeed Insights, which runs the same audit on Google's servers, can report something a little different. Real-visitor data, which is what Google's ranking systems actually use, was not part of our test."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script async src="https://plausible.io/js/pa-rTFMzfkd1VEI12bit8C_d.js"></script>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- meta-pixel:begin — DO NOT hand-edit; see the note in index.html.
+     Site-wide because a pixel on the homepage alone measures almost nothing: on
+     2026-08-25 this site had it on 1 of 19 pages, and the 18 without it were the
+     service pages, the articles and the case studies — i.e. every page an ad
+     would actually land on. A visitor arriving on /services/seo-grand-rapids.html
+     was invisible to Meta: no conversion recorded, no retargeting audience.
+     Disclosed site-wide already: legal/privacy.html says "This Site runs the
+     Meta pixel", not "the homepage runs it". -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','28202025336060922');fbq('track','PageView');
+</script>
+<!-- meta-pixel:end -->
+</head>
+<body>
+  <nav>
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" role="img" aria-label="Kerr &amp; Co."><g><path d="M50.78 31.59C52.44 18.54 56.88 15.42 56.88 15.42C56.88 15.42 59.78 20.00 56.33 32.69Z" opacity=".55"/><path d="M57.76 33.29C64.30 21.87 69.59 20.68 69.59 20.68C69.59 20.68 70.52 26.02 62.47 36.43Z" opacity=".55"/><path d="M63.57 37.53C73.98 29.48 79.32 30.41 79.32 30.41C79.32 30.41 78.13 35.70 66.71 42.24Z" opacity=".55"/><path d="M67.31 43.67C80.00 40.22 84.58 43.12 84.58 43.12C84.58 43.12 81.46 47.56 68.41 49.22Z" opacity=".55"/><path d="M68.41 50.78C81.46 52.44 84.58 56.88 84.58 56.88C84.58 56.88 80.00 59.78 67.31 56.33Z" opacity=".55"/><path d="M66.71 57.76C78.13 64.30 79.32 69.59 79.32 69.59C79.32 69.59 73.98 70.52 63.57 62.47Z" opacity=".55"/><path d="M62.47 63.57C70.52 73.98 69.59 79.32 69.59 79.32C69.59 79.32 64.30 78.13 57.76 66.71Z" opacity=".55"/><path d="M56.33 67.31C59.78 80.00 56.88 84.58 56.88 84.58C56.88 84.58 52.44 81.46 50.78 68.41Z" opacity=".55"/><path d="M49.22 68.41C47.56 81.46 43.12 84.58 43.12 84.58C43.12 84.58 40.22 80.00 43.67 67.31Z" opacity=".55"/><path d="M42.24 66.71C35.70 78.13 30.41 79.32 30.41 79.32C30.41 79.32 29.48 73.98 37.53 63.57Z" opacity=".55"/><path d="M36.43 62.47C26.02 70.52 20.68 69.59 20.68 69.59C20.68 69.59 21.87 64.30 33.29 57.76Z" opacity=".55"/><path d="M32.69 56.33C20.00 59.78 15.42 56.88 15.42 56.88C15.42 56.88 18.54 52.44 31.59 50.78Z" opacity=".55"/><path d="M31.59 49.22C18.54 47.56 15.42 43.12 15.42 43.12C15.42 43.12 20.00 40.22 32.69 43.67Z" opacity=".55"/><path d="M33.29 42.24C21.87 35.70 20.68 30.41 20.68 30.41C20.68 30.41 26.02 29.48 36.43 37.53Z" opacity=".55"/><path d="M37.53 36.43C29.48 26.02 30.41 20.68 30.41 20.68C30.41 20.68 35.70 21.87 42.24 33.29Z" opacity=".55"/><path d="M43.67 32.69C40.22 20.00 43.12 15.42 43.12 15.42C43.12 15.42 47.56 18.54 49.22 31.59Z" opacity=".55"/><path d="M46.83 31.27C45.34 14.14 50.00 9.00 50.00 9.00C50.00 9.00 54.66 14.14 53.17 31.27Z"/><path d="M54.24 31.48C59.42 15.09 65.69 12.12 65.69 12.12C65.69 12.12 68.03 18.65 60.10 33.90Z"/><path d="M61.01 34.51C72.06 21.35 78.99 21.01 78.99 21.01C78.99 21.01 78.65 27.94 65.49 38.99Z"/><path d="M66.10 39.90C81.35 31.97 87.88 34.31 87.88 34.31C87.88 34.31 84.91 40.58 68.52 45.76Z"/><path d="M68.73 46.83C85.86 45.34 91.00 50.00 91.00 50.00C91.00 50.00 85.86 54.66 68.73 53.17Z"/><path d="M68.52 54.24C84.91 59.42 87.88 65.69 87.88 65.69C87.88 65.69 81.35 68.03 66.10 60.10Z"/><path d="M65.49 61.01C78.65 72.06 78.99 78.99 78.99 78.99C78.99 78.99 72.06 78.65 61.01 65.49Z"/><path d="M60.10 66.10C68.03 81.35 65.69 87.88 65.69 87.88C65.69 87.88 59.42 84.91 54.24 68.52Z"/><path d="M53.17 68.73C54.66 85.86 50.00 91.00 50.00 91.00C50.00 91.00 45.34 85.86 46.83 68.73Z"/><path d="M45.76 68.52C40.58 84.91 34.31 87.88 34.31 87.88C34.31 87.88 31.97 81.35 39.90 66.10Z"/><path d="M38.99 65.49C27.94 78.65 21.01 78.99 21.01 78.99C21.01 78.99 21.35 72.06 34.51 61.01Z"/><path d="M33.90 60.10C18.65 68.03 12.12 65.69 12.12 65.69C12.12 65.69 15.09 59.42 31.48 54.24Z"/><path d="M31.27 53.17C14.14 54.66 9.00 50.00 9.00 50.00C9.00 50.00 14.14 45.34 31.27 46.83Z"/><path d="M31.48 45.76C15.09 40.58 12.12 34.31 12.12 34.31C12.12 34.31 18.65 31.97 33.90 39.90Z"/><path d="M34.51 38.99C21.35 27.94 21.01 21.01 21.01 21.01C21.01 21.01 27.94 21.35 38.99 34.51Z"/><path d="M39.90 33.90C31.97 18.65 34.31 12.12 34.31 12.12C34.31 12.12 40.58 15.09 45.76 31.48Z"/></g><circle cx="50" cy="50" r="19.0"/><g fill="currentColor" stroke="none"><circle cx="47.83" cy="51.98" r="1.45"/><circle cx="50.36" cy="45.86" r="1.45"/><circle cx="53.09" cy="54.04" r="1.45"/><circle cx="44.22" cy="48.98" r="1.45"/><circle cx="55.54" cy="46.48" r="1.45"/><circle cx="48.13" cy="56.95" r="1.45"/><circle cx="46.42" cy="43.11" r="1.45"/><circle cx="57.80" cy="52.85" r="1.45"/><circle cx="41.86" cy="53.36" r="1.45"/><circle cx="53.94" cy="41.59" r="1.45"/><circle cx="52.91" cy="59.29" r="1.45"/><circle cx="41.20" cy="44.90" r="1.45"/><circle cx="60.34" cy="47.73" r="1.45"/><circle cx="43.68" cy="58.99" r="1.45"/><circle cx="48.54" cy="38.72" r="1.45"/><circle cx="58.98" cy="57.57" r="1.45"/><circle cx="37.90" cy="50.50" r="1.45"/><circle cx="58.83" cy="41.21" r="1.45"/><circle cx="49.41" cy="62.79" r="1.45"/><circle cx="41.59" cy="39.92" r="1.45"/><circle cx="63.34" cy="51.79" r="1.45"/><circle cx="38.69" cy="57.87" r="1.45"/><circle cx="53.09" cy="36.26" r="1.45"/><circle cx="57.15" cy="62.48" r="1.45"/><circle cx="36.01" cy="45.54" r="1.45"/><circle cx="63.59" cy="43.72" r="1.45"/><circle cx="44.11" cy="64.08" r="1.45"/><circle cx="44.74" cy="35.38" r="1.45"/><circle cx="64.00" cy="57.36" r="1.45"/><circle cx="34.45" cy="54.10" r="1.45"/><circle cx="58.84" cy="36.25" r="1.45"/></g></svg></span><span class="brand-name">Kerr &amp; Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/articles/">Articles</a></li>
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="crumb"><a href="/">Home</a> / <a href="/articles/">Articles</a> / Does speed matter</div>
+  </div>
+
+  <header class="phero">
+    <div class="article">
+      <div class="eyebrow">Speed · Local Business Websites</div>
+      <h1>Yes, speed matters for a local business website. Ten Grand Rapids contractor sites scored a median 59, and one script was costing ours 24 points.</h1>
+      <p class="lede">We ran Google's own page-speed audit against ten local contractor home pages one September morning, then against our own. Here are the numbers, what Google actually says they are worth, and the one-script fix that took our home page from 74 to 98 the same morning.</p>
+      <div class="ameta">
+        <span>By Matthew Kerr</span>
+        <span>Published 15 Sep 2026</span>
+        <span>Updated 15 Sep 2026</span>
+        <span>12 min read</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="article" style="padding-top:2.2rem;padding-bottom:1rem;">
+    <div class="qa">
+      <div class="qal">Quick answer</div>
+      <p>Yes. On 15 September 2026 we ran Google's Lighthouse audit on ten Grand Rapids contractor home pages: mobile scores from 31 to 99, median 59, and six of the ten took more than 13 seconds to show their main content on the test's slow-4G connection.</p>
+      <p>Google says Core Web Vitals "are used by our ranking systems" and that main content should appear within 2.5 seconds, but it also says relevance comes first and a good score guarantees nothing.</p>
+      <p>The fix is usually one script, not a rebuild. Our own home page went from 74 to 98 the same morning by deferring a 3 MB booking widget until the visitor scrolls to it.</p>
+    </div>
+
+    <p>Search "does website speed matter" and page one is agency posts that all say yes and none of which measured anything. So we measured something: the home pages of ten independent Grand Rapids contractors, on one morning, with the same tool Google gives away. Then, because it would be dishonest not to, we ran it on our own site. That second part turned out to be the most useful thing on this page.</p>
+
+    <h2>What we measured, and how</h2>
+
+    <p>Ten independent Grand Rapids contractor businesses, two each in roofing, plumbing, HVAC, electrical and landscaping, found by searching each trade on the day. The business's own home page in every case. They are named in our records, not here; the point is what a typical local trade site looks like on a phone, not which company to point at.</p>
+
+    <p>The tool was Google's Lighthouse, version 13.4.1, run on our own machine against the installed Chrome in headless mode, with Lighthouse's default mobile settings: a mid-range phone emulated, a simulated slow-4G connection, the processor throttled four times over, performance category only. Each site was measured once, between 12:18 and 12:22 UTC on 15 September 2026. One run each on the day.</p>
+
+    <p>Two caveats, stated plainly. First, we meant to use PageSpeed Insights, Google's public front end for the same audit, but its free daily quota had been used up before we got to it, so we ran Lighthouse locally instead. It is the same auditing engine PageSpeed Insights runs, but it ran here rather than on Google's servers, so the scores can differ by a few points from what PageSpeed Insights would show you today. Second, this is a lab test: a simulated phone on a simulated network. It says nothing about the real visitors each of these sites gets, which is the data Google's ranking systems actually use and which this method could not reach. Treat the numbers as a diagnosis, not a verdict, and treat any single Lighthouse score as roughly plus or minus a few points.</p>
+
+    <h2>What ten Grand Rapids contractor sites scored</h2>
+
+    <p>Ranked from fastest to slowest. "Mobile score" is Lighthouse's performance score out of 100. "Main content" is largest contentful paint, the moment the biggest thing on the first screen has appeared. "Weight" is everything the page downloaded, as Lighthouse reports it; we round it to megabytes in the text.</p>
+
+    <table class="datatable">
+      <thead><tr><th>Rank</th><th>Mobile score</th><th>Main content shown</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="hi">99</td><td>1.3 s</td><td>1,236 KiB</td></tr>
+        <tr><td>2</td><td>74</td><td>3.4 s</td><td>5,329 KiB</td></tr>
+        <tr><td>3</td><td>72</td><td>4.6 s</td><td>16,763 KiB</td></tr>
+        <tr><td>4</td><td>63</td><td>9.1 s</td><td>1,437 KiB</td></tr>
+        <tr><td>5</td><td>61</td><td>13.3 s</td><td>7,817 KiB</td></tr>
+        <tr><td>6</td><td>57</td><td>19.7 s</td><td>18,553 KiB</td></tr>
+        <tr><td>7</td><td>56</td><td>17.4 s</td><td>6,321 KiB</td></tr>
+        <tr><td>8</td><td>47</td><td>14.5 s</td><td>9,211 KiB</td></tr>
+        <tr><td>9</td><td>47</td><td>17.0 s</td><td>2,795 KiB</td></tr>
+        <tr><td>10</td><td class="hi">31</td><td class="hi">46.0 s</td><td>7,928 KiB</td></tr>
+      </tbody>
+    </table>
+
+    <p>The median score is 59. Lighthouse colours 90 and above green, 50 to 89 orange and anything under 50 red, so that is one green site, six orange and three red. The main content took anywhere from 1.3 seconds to 46.0 seconds to appear; six of the ten took more than 13 seconds, and four took 17 seconds or longer. Page weights ran from about 1.2 MB to about 18.5 MB.</p>
+
+    <p>Two things in the table are worth more than the median. The first is the site at the top: a local trade site <em>can</em> be fast. It is a 1.2 MB page that painted its main content in 1.3 seconds on a throttled connection and scored 99. Nothing about being a roofer or an electrician condemns you to the orange band. The second is that weight and speed are not the same thing. The 1.4 MB page in fourth place took 9.1 seconds to show its main content; the 16.8 MB page in third took 4.6. What loads <em>first</em> matters more than what loads in total, which is the whole story of the next two sections.</p>
+
+    <h2>What Google says speed is worth</h2>
+
+    <p>Rather than tell you what Google thinks, here is what its own pages say, both read 15 September 2026.</p>
+
+    <p>On <a href="https://web.dev/articles/vitals" rel="noopener">web.dev's Core Web Vitals page</a>: "Optimizing for quality of user experience is key to the long-term success of any site on the web." The page defines the loading measure we used in the table: "Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading." And on how Google wants it measured: "a good threshold to measure is the 75th percentile of page loads, segmented across mobile and desktop devices." That last line matters for reading our table honestly. Google's yardstick is real visitors, three-quarters of whom should see the main content inside 2.5 seconds. Our lab test is a single simulated visitor on a slow connection, which is harsher than most real phones on most days. Even so, six of ten local sites were over 13 seconds, five times Google's target, with room to spare.</p>
+
+    <p>On <a href="https://developers.google.com/search/docs/appearance/page-experience" rel="noopener">Google Search Central's page-experience documentation</a>: "Google's core ranking systems look to reward content that provides a good page experience." And, without hedging: "Core Web Vitals are used by our ranking systems." But the same page is careful in both directions, and you should be too. "Google Search always seeks to show the most relevant content, even if the page experience is sub-par." "There is no single signal." And: "getting good results in reports like Search Console's Core Web Vitals report or third-party tools doesn't guarantee that your pages will rank at the top of Google Search results; there's more to great page experience than Core Web Vitals scores alone."</p>
+
+    <p>So the honest reading is this. Speed is a ranking input, from Google's own mouth, but it sits behind relevance. A slow plumber's site will still outrank a fast one that is not about plumbing in Grand Rapids. Between two sites that are both plausibly the answer, though, the faster one is carrying a signal the slower one is not, and in local search the competition is usually exactly that: several plausible answers a few miles apart.</p>
+
+    <p>There is also the plainer reason, which needs no citation. Someone with water on the kitchen floor is holding a phone. We could not open the third-party studies on how many people give up as the seconds pass in time to check them for this page, so we are not going to quote them. You already know what you do with a page that is still blank after ten seconds.</p>
+
+    <h2>What it looked like on our own site: 74 to 98 in a morning</h2>
+
+    <p>We ran the same audit on our own pages in the same session, and the home page came back at 74, carrying 3.8 MB. Orange band, level with the second-best contractor site and 25 points behind the best. Not a good morning for a web shop.</p>
+
+    <p>It was worse than that, because 74 was the kindest of three readings. We had measured the same page twice earlier that morning while trying to get PageSpeed Insights to co-operate: 56 in a local Lighthouse run at 04:21 UTC, and 35 on PageSpeed Insights' own website at 07:18 UTC, the one Google-run result we managed to get that day. Same page, same 3.8 MB, three scores 39 points apart. That scatter was not noise in the tool. It was the widget: a 3 MB script arrives a little differently on every load, and the score swings with it.</p>
+
+    <p>The report made the cause obvious. Our booking calendar is a third-party widget from Calendly, and the way it was installed, it loaded roughly 3 MB of its own code the moment the page opened, for a calendar that sits near the bottom of the page and that most visitors never reach. Everything a visitor actually came for, the headline, the services, the phone number, was waiting behind a scheduling tool.</p>
+
+    <p>The fix was a few lines of code that leave the widget alone until the booking section is about to scroll into view, and only then fetch it. Nothing visible changed for the visitor except that the calendar now appears a moment after they scroll to it. We ran Lighthouse again the same morning.</p>
+
+    <table class="datatable">
+      <thead><tr><th>Page</th><th>Mobile score</th><th>Main content shown</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Home, before: Lighthouse, 04:21 UTC</td><td>56</td><td>19.4 s</td><td>3,777 KiB</td></tr>
+        <tr><td>Home, before: PageSpeed Insights, 07:18 UTC</td><td class="hi">35</td><td>12.8 s</td><td>3,762 KiB</td></tr>
+        <tr><td>Home, before: Lighthouse, 12:21 UTC</td><td class="hi">74</td><td>5.0 s</td><td class="hi">3,777 KiB</td></tr>
+        <tr><td>Home, after the fix: Lighthouse</td><td class="hi">98</td><td>2.0 s</td><td class="hi">721 KiB</td></tr>
+        <tr><td>Demonstration build: roofing</td><td>73</td><td>4.8 s</td><td>833 KiB</td></tr>
+        <tr><td>Demonstration build: restaurant</td><td>78</td><td>4.3 s</td><td>674 KiB</td></tr>
+        <tr><td>Demonstration build: salon</td><td>80</td><td>4.1 s</td><td>534 KiB</td></tr>
+      </tbody>
+    </table>
+
+    <p>Seventy-four to 98 against the last reading before the fix; 35 to 98 against the worst. Call it 24 points, 3 MB and three seconds off the main content, from one script, in one morning, on a site that did not otherwise change. That is the most useful sentence on this page, because it is what the fix usually looks like: not a rebuild, one thing loading before it needs to.</p>
+
+    <p>The other three rows are the honest part we would rather not print. The demonstration builds, which are fictional businesses we made to show what a site could look like, not anyone's real company, score 73 to 80, with the main content taking 4.1 to 4.8 seconds to appear. That is nearly double Google's 2.5-second target and not as fast as pages we made from scratch should be. We opened all three to look. None of them carries a hero photo or a video, which is the usual suspect, so it is not that. Each one loads its display typeface from Google Fonts and its headline is the largest thing on the first screen, which is where we will look first, but we have not yet traced it. When we have, this page will say what it was and what it cost.</p>
+
+    <div class="callout">
+      <span class="clabel">Receipts</span>
+      <p>Method: Lighthouse 13.4.1 run locally against the installed Google Chrome in headless mode, default mobile emulation, simulated slow-4G with 4× CPU throttling, performance category only, one run per page between 12:18 and 12:22 UTC on 15 September 2026. Ten Grand Rapids contractor home pages, two per trade in roofing, plumbing, HVAC, electrical and landscaping, found by searching each trade that day and named in our records. PageSpeed Insights was not used because its free daily quota was exhausted; no field data was available. Our own pages were measured in the same session; the home page had also been measured before the fix at 04:21 UTC (Lighthouse locally, 56) and at 07:18 UTC (<a href="https://pagespeed.web.dev/analysis/https-builtbykerr-com/5f345mawce?form_factor=mobile" rel="noopener">PageSpeed Insights, Google-run, 35</a>), and was re-measured with Lighthouse after the booking-widget change the same morning.</p>
+      <p>Google pages quoted, both read 15 September 2026: <a href="https://web.dev/articles/vitals" rel="noopener">Web Vitals</a> on web.dev, and <a href="https://developers.google.com/search/docs/appearance/page-experience" rel="noopener">Understanding page experience in Google Search results</a> on Google Search Central. No third-party statistics are quoted; the one we wanted to cite could not be opened to check that day.</p>
+    </div>
+
+    <h2>How to check yours in five minutes, and what it usually finds</h2>
+
+    <p>Go to <a href="https://pagespeed.web.dev/" rel="noopener">pagespeed.web.dev</a>. It is PageSpeed Insights, Google's free tool, and it does not need an account. Enter your home page address and run it. Read the mobile result first, because that is where your visitors are and where the scores are worst. It runs the same Lighthouse audit we ran, on Google's machines rather than ours, and when Google has enough real-visitor data for your site it shows that too, which is the number Google's ranking systems care about.</p>
+
+    <p>Then read the list of things it found. From what the Lighthouse audits report on sites like the ten above, most of a bad score usually comes down to three things. Usually, not always; the report tells you which apply to you.</p>
+
+    <p><strong>1. Third-party scripts loading up front.</strong> Chat widgets, booking embeds, review carousels, map embeds, tracking pixels, the fonts service. Each one is somebody else's code, loading on your visitor's phone before your own content, often for a feature halfway down the page. This was our 24 points. The fix is to load them later, or only when needed, or to remove the ones nobody uses.</p>
+
+    <p><strong>2. Oversized images and video.</strong> A photo straight off a phone is often several thousand pixels wide and several megabytes; the space it fills on a mobile screen is a few hundred pixels. A background video in the header is the same problem multiplied. Several of the heaviest sites in our table are almost certainly this. The fix is resizing and compressing what is there, and not loading pictures below the first screen until the visitor scrolls toward them.</p>
+
+    <p><strong>3. No caching or compression.</strong> The server sends every file at full size, every visit, with no instruction to the browser to keep a copy. This one is usually a setting at the host or a content delivery network, not a change to the site at all, and it is the cheapest of the three to fix.</p>
+
+    <p>Whoever built your site can do any of these. If nobody is maintaining it, that is the gap, not the score.</p>
+
+    <h2>How to decide</h2>
+
+    <p>Three questions, in order.</p>
+
+    <p><strong>Is your mobile score under 50, or does your main content take more than twice Google's 2.5 seconds?</strong> If yes, it is worth an hour of a competent person's time this month. From what we see in the audits, that hour usually finds one script or one image, and either is a same-day fix. If your score is in the 70s or 80s and the main content is under three seconds, you have better things to spend money on, and anyone selling you a rebuild for speed alone should be asked to show you the report.</p>
+
+    <p><strong>Do you know who is watching it?</strong> A score is a moment. The widget that costs you 24 points next spring will be the one your marketing person adds in March. If nobody checks, nobody knows. That is part of what a maintenance arrangement is for; our Care Plan is from $199 a month and includes managed hosting and security, monthly edits, and uptime and performance monitoring, which means the number is looked at, not assumed. Whoever you use, ask whether performance is on their monthly list.</p>
+
+    <p><strong>Is speed the only thing wrong?</strong> Be honest. If the site is also thin, hard to find on Google, or not producing calls, a speed fix polishes a page that is not doing its job. Our Site &amp; Business Audit is $750 one-off: a written report in 3 business days, 190+ checks on every page including speed, indexing, security, schema, local pack and conversion. It will tell you whether you have a one-script problem or a whole-site one, and only in the second case should a rebuild be on the table. When it is, our sites start at $999 for a Starter build, 1 to 3 pages, mobile-first, with a lead form, click-to-call, on-page SEO and Google setup, live in days. Rebuild because the audit says so, not because a score did.</p>
+
+    <hr>
+
+    <h2>Common questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does website speed affect Google rankings for a local business?</h3>
+        <p>Google says it does, as one signal among several. Its Search Central page-experience documentation, read 15 September 2026, says "Core Web Vitals are used by our ranking systems" and that its systems "look to reward content that provides a good page experience". The same page says Google "always seeks to show the most relevant content, even if the page experience is sub-par", so speed does not beat relevance; it is closer to a tiebreaker between pages that are otherwise comparable, and a good score guarantees nothing on its own.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is a good speed score for a small business website?</h3>
+        <p>Lighthouse, the audit behind Google's PageSpeed Insights, colours a mobile performance score of 90 or above green, 50 to 89 orange and below 50 red. The ten Grand Rapids contractor home pages we measured on 15 September 2026 had a median of 59, with one at 99. Google's own target is for the main content to appear within 2.5 seconds of the page starting to load. A local trade site can hit both: the 99 in our sample was a 1.2 MB page that painted in 1.3 seconds on the test's slow-4G setting.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need a new website to fix a slow one?</h3>
+        <p>Usually not. On our own home page one third-party booking widget was loading 3 MB of its own code the moment the page opened; deferring it until the visitor scrolls near the calendar took the page from 74 to 98 with no other change, and an earlier reading that morning had been 35. From what the Lighthouse audits report, most of a bad score usually comes from third-party scripts loading up front, images or video far larger than the space they fill, or files served without compression or caching. Those are a script, an image or a server setting, not a rebuild. Rebuild when an audit shows the whole site is the problem, not for speed alone.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why does my site score differently from one test to the next?</h3>
+        <p>Lighthouse simulates a mid-range phone on a slow 4G connection and throttles the processor four times, then measures one load; the result moves a few points between runs depending on the server, the network and what a third-party script happened to do that time. Our numbers are one run per page on 15 September 2026, made on our own machine with Lighthouse 13.4.1, so PageSpeed Insights, which runs the same audit on Google's servers, can report something a little different. Real-visitor data, which is what Google's ranking systems actually use, was not part of our test.</p>
+      </div>
+    </div>
+
+    <div class="author">
+      <div class="abody">
+        <div class="aname">Matthew Kerr</div>
+        <p>I build sites at <a href="/">Kerr &amp; Co.</a> in Grand Rapids. I ran this test on my own site the same morning I ran it on everyone else's, found a 3 MB widget I had installed myself, and fixed it before writing a word of this. The numbers above are one run each on one day; I will re-run them and update this page when they change.</p>
+      </div>
+    </div>
+
+    <div class="anext">
+      <div class="albl">Related</div>
+      <div class="related">
+        <a href="/services/website-maintenance-grand-rapids.html">Website maintenance and the Care Plan</a>
+        <a href="/services/web-design-grand-rapids.html">Website design and build</a>
+        <a href="/articles/how-many-google-reviews-to-rank-in-grand-rapids.html">How many Google reviews it takes to rank in Grand Rapids</a>
+        <a href="/articles/how-much-should-a-plumber-pay-for-a-website.html">How much should a plumber pay for a website?</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Want the number for <em>your</em> site?</h2>
+      <p>Send me your home page address. I'll run the same test, tell you the score and the single biggest thing on the report, and say plainly whether it looks like a one-script fix or something more.</p>
+      <div class="contact-line"><a href="mailto:matthew@kerrandcompanyholdings.com">matthew@kerrandcompanyholdings.com</a></div>
+      <p class="promise">Works whether or not you end up building with me.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <div class="fr">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="/about.html">About</a>
+      <a href="/legal/privacy.html">Privacy</a>
+      <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/disclaimer.html">Disclaimer</a>
+    </div>
+  </footer>
+</body>
+</html>
