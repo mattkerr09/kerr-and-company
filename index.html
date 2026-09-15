@@ -3812,10 +3812,20 @@ var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min'
   + '&text_color=17130c'
   + '&primary_color=b8811f';
 
+/* DEFERRED 2026-09-15. Measured with Lighthouse (mobile) on the live page: the
+   widget script pulled 1,349 kB of JS, 1,271 kB of CSS and Stripe.js (253 kB)
+   on page load — about 3 MB of a 3.8 MB page — for a calendar most visitors
+   never scroll to. It now mounts when the booking slot comes within 800px of
+   the viewport (or at once where IntersectionObserver is missing). Nothing
+   else changes: same URL, same fallback, same conversion listener. */
 (function () {
   if (!BOOKING_URL) return;                  // fallback stays; nothing to do
   var slot = document.getElementById('bookSlot');
   if (!slot) return;
+  var mounted = false;
+  function mountBooking() {
+  if (mounted) return;
+  mounted = true;
 
   var box = document.createElement('div');
   box.className = 'calendly-inline-widget';
@@ -3842,6 +3852,15 @@ var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min'
 
   var micro = document.getElementById('bookMicro');
   if (micro) micro.hidden = false;          // only true once a calendar is there
+  }
+  if ('IntersectionObserver' in window) {
+    var bio = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { bio.disconnect(); mountBooking(); }
+    }, { rootMargin: '800px 0px' });
+    bio.observe(slot);
+  } else {
+    mountBooking();
+  }
 
     /* A BOOKED CALL WAS INVISIBLE TO META. The contact form fires Lead; booking a
        meeting fired nothing at all — so delivery was being optimised toward people
