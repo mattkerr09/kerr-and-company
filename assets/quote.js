@@ -121,7 +121,7 @@
           scope: ["Competitive / multi-service", "Content + technical + links", "Live dashboard"] };
         if (s.kind === "bundle") return { name: "SEO + Ads Bundle", price: 2500, lead: 0, per: "mo", from: true,
           scope: ["Rank long-term, buy leads now", "One team, one report", "Ad spend billed to you direct"] };
-        return { name: "Local SEO", price: 750, lead: 0, per: "mo", from: true,
+        return { name: "Local SEO + landing pages", price: 750, lead: 0, per: "mo", from: true,
           scope: ["Single-location businesses", "Map pack + on-page", "Live dashboard"] };
       },
       recur: function () { return null; }
@@ -183,7 +183,7 @@
         if (s.kind === "train") return { name: "Team Training", price: 2500, lead: 5, from: true,
           scope: ["Workshop on your own tools", "Your workflows, not slideware", "Recorded for the people who miss it"] };
         if (s.kind === "retainer") return { name: "Advisory Retainer", price: 1500, lead: 0, per: "mo", from: true,
-          scope: ["Ongoing · on call", "Answers in hours, not weeks", "Cancel any month"] };
+          scope: ["Ongoing · on call", "Answers in hours, not weeks", "Cancel with 30 days' written notice"] };
         return { name: "Advisory Call", price: 250, per: "hour", lead: 2,
           scope: ["One-off · no commitment", "Come with the real question", "Notes afterwards"] };
       },

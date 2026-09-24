@@ -90,3 +90,12 @@
 .qa{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.25rem;margin:0 0 1.2rem;}
 .qa .qal{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:0.45rem;}
 .qa p{margin:0.4rem 0;}
+
+/* One shared line directly under every quick answer (2026-09-24). The article
+   answers the question in general; this offers the same look at the reader's
+   own site, with the promise the homepage form makes — two business days,
+   not faster. Tokens come from pages.css, which every article loads first. */
+.fc-box{background:var(--surface);border:1px solid var(--line-2);border-left:3px solid var(--accent);
+  border-radius:12px;padding:0.9rem 1.25rem;margin:0 0 1.6rem;}
+.article .fc-box p{margin:0;font-size:0.95rem;line-height:1.6;color:var(--ink-2);}
+.fc-box a{font-weight:600;white-space:nowrap;}

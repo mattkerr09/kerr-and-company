@@ -155,6 +155,38 @@ table.cmp th.us{background:rgba(250,250,248,0.1);border-radius:10px 10px 0 0;bor
   display:block;max-width:100%;overflow-wrap:anywhere;}
 .cta-band .phone{font-size:1rem;color:var(--ink-2);font-weight:600;margin-top:0.3rem;}
 .cta-band .promise{font-size:0.85rem;color:var(--ink-3);margin-top:0.7rem;}
+/* NEXT STEP ON EVERY PAGE, 2026-09-24. The band used to end on an email address
+   in plain text — the one route that makes a reader select and copy by hand.
+   It now carries the homepage's three routes as real buttons (book, text, the
+   free check), and the address is a mailto: link. Plain values only: the
+   spacing tokens (--s1…) live in index.html, not here, and an undefined
+   variable fails silently (e2e/css-vars.spec.ts). */
+.cta-band .cta-actions{display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin:0 auto 1.4rem;}
+.cta-band .cta-actions .btn{min-height:44px;}
+.cta-band .contact-line a{display:inline-block;padding:0.25em 0;color:inherit;text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:0.2em;}   /* 24px+ tap target, WCAG 2.5.8 */
+.cta-band .contact-line a:hover{color:var(--accent-2);}
+/* About page body. main.page (about.html, and only there) had no rules at all, so
+   with the reset above its headings sat flush on the paragraphs and the list
+   bullets hung outside the column. The homepage's "Meet the founder" link lands
+   here now, so it gets the same measure and rhythm as .prose and .phero. */
+main.page{padding:0 0 1.6rem;}
+main.page h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.1;
+  letter-spacing:-0.02em;margin:0 0 0.8rem;}
+main.page .lede{font-size:clamp(1.02rem,1.8vw,1.15rem);color:var(--ink-2);max-width:680px;line-height:1.6;}
+main.page h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,2.6vw,1.6rem);letter-spacing:-0.01em;
+  margin:2.2rem 0 0.7rem;}
+main.page p:not(.crumb){color:var(--ink-2);max-width:720px;margin-bottom:0.9rem;}
+main.page ul{color:var(--ink-2);max-width:720px;margin:0 0 1rem 1.3rem;}
+main.page li{margin-bottom:0.45rem;}
+/* About page: the founder's photo beside the opening, and the same three
+   buttons near the top rather than only at the end of the page. */
+.about-top{display:flex;gap:1.6rem;align-items:center;margin:0.6rem 0 1.2rem;}
+.about-photo{width:132px;height:132px;flex:none;border-radius:18px;object-fit:cover;object-position:center top;
+  border:1px solid var(--line-2);}
+.about-actions{display:flex;flex-wrap:wrap;gap:0.8rem;margin:0 0 2.2rem;}
+.about-actions .btn{min-height:44px;}
+@media(max-width:560px){.about-top{flex-direction:column;align-items:flex-start;gap:1rem;}.about-photo{width:104px;height:104px;}}
 
 /* footer */
 footer{padding:2rem clamp(1.1rem,4vw,2.4rem);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;font-size:0.82rem;color:var(--ink-3);}

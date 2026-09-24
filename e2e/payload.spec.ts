@@ -54,17 +54,29 @@ test.describe('initial payload', () => {
     await page.goto(URL, { waitUntil: 'load', timeout: 120_000 });
     await page.waitForTimeout(2500);   // let anything eager finish arriving
     const kb = Math.round(bytes / 1024);
+    const beforeScroll = [...videos];
+
+    // Lower bound first, and it is not decoration. Without it, a broken URL match
+    // would count zero and sail under the ceiling — the test would pass hardest at
+    // the exact moment it stopped being able to see.
+    //
+    // ⚠️ MOVED ONE STEP, 2026-09-24. Until then the hero WAS a video, eager on
+    // purpose, so "at least one before scroll" proved the collector could see. The
+    // hero is now a still of the roofing demo (the Docket recording in it showed a
+    // stale price) and nothing video loads before a scroll — which is the correct
+    // answer, and proves nothing about the collector. So the proof is taken right
+    // after: bring the first deferred video into view and require the collector to
+    // record it. The ceilings below are unchanged.
+    await page.evaluate(() => document.querySelector('video.lazyshot')
+      ?.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await page.waitForTimeout(4000);
     await ctx.close();
 
-    // Lower bound first, and it is not decoration. The hero video IS eager on
-    // purpose, so a correct collector sees at least one. Without this, a broken
-    // URL match would count zero and sail under the ceiling — the test would
-    // pass hardest at the exact moment it stopped being able to see.
     expect(videos.length,
-      'no video requests seen at all — the collector is broken, not the page')
+      'no video request seen even after scrolling one into view — the collector is broken, not the page')
       .toBeGreaterThanOrEqual(1);
-    expect(videos.length,
-      `${videos.length} videos fetched before any scroll (${videos.join(', ')}) — ` +
+    expect(beforeScroll.length,
+      `${beforeScroll.length} videos fetched before any scroll (${beforeScroll.join(', ')}) — ` +
       `check that autoplay has not come back on a below-fold video, since it overrides preload="none"`)
       .toBeLessThanOrEqual(MAX_VIDEOS_BEFORE_SCROLL);
     expect(kb, `${kb}KB arrived before any scroll`).toBeLessThanOrEqual(MAX_KB_BEFORE_SCROLL);

@@ -25,16 +25,16 @@
   <link rel="manifest" href="site.webmanifest">
 
   <meta property="og:title" content="Websites Built in Days | Web Design &amp; SEO, Grand Rapids MI">
-  <meta property="og:description" content="We build and ship real AI products — and help a few companies do the same.">
+  <meta property="og:description" content="Contractor websites built to get the phone ringing. Grand Rapids web design and local SEO from $999, with the price and launch date in writing before you pay anything.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://builtbykerr.com">
-  <meta property="og:image" content="https://builtbykerr.com/assets/og-card.png">
+  <meta property="og:image" content="https://builtbykerr.com/assets/og-card.png?v=20260924">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kerr &amp; Company — Web Design, SEO &amp; AI Automation">
-  <meta name="twitter:description" content="We build and ship real AI products — and help a few companies do the same.">
-  <meta name="twitter:image" content="https://builtbykerr.com/assets/og-card.png">
+  <meta name="twitter:title" content="Websites Built in Days | Web Design &amp; SEO, Grand Rapids MI">
+  <meta name="twitter:description" content="Contractor websites built to get the phone ringing. Grand Rapids web design and local SEO from $999, with the price and launch date in writing before you pay anything.">
+  <meta name="twitter:image" content="https://builtbykerr.com/assets/og-card.png?v=20260924">
   <!-- Trailing slash: the served URL is https://builtbykerr.com/ and a canonical
      that omits it points at a different string than the one being indexed. Minor,
      but the whole point of a canonical is to be the exact address. -->
@@ -52,7 +52,7 @@
         "description": "Web design, local SEO and AI automation for Grand Rapids businesses, from $999. Also ships its own AI products, including a notarized macOS app with a paying customer.",
         "url": "https://builtbykerr.com/",
         "logo": "https://builtbykerr.com/assets/icon-512.png",
-        "image": "https://builtbykerr.com/assets/og-card.png",
+        "image": "https://builtbykerr.com/assets/og-card.png?v=20260924",
         "email": "matthew@kerrandcompanyholdings.com",
         "telephone": "+1-616-320-1280",
         "contactPoint": {
@@ -2415,6 +2415,89 @@
        one step rather than re-hued, so it still reads as the same green pill. */
     .product-badge { color: color-mix(in srgb, var(--green) 82%, var(--ink)) !important; }
 
+
+    /* ── CONTRACTORS FIRST, 2026-09-24 (CEO work order) ─────────────────────
+       The site gets ~20 visits a month, so each visitor has to be able to tell
+       in five seconds that this is for their trade, and has to have a step to
+       take that is smaller than a call. Everything below is additive: nothing
+       above was restyled, and every colour is a token already defined. */
+
+    /* The quiet proof line under the hero buttons. Each clause is already a
+       written term on this page — fixed price (terms grid), days not months
+       (timelines), the domain is yours ("You own everything") — so the line
+       repeats promises the page makes rather than adding one. */
+    .hero-proofline { margin: var(--s5) 0 0; font-size: 0.88rem; line-height: 1.6;
+      color: var(--ink-3); letter-spacing: -0.005em; }
+
+    /* SHOWCASE: THE ROOFING DEMO, LABELLED ON ITS OWN CHROME. It replaced the
+       Docket recording, which still showed "97 checks · $199 once" after Docket
+       moved to 99 checks and $349. The label sits in the browser bar rather
+       than in a caption so it cannot be scrolled past or cropped off: the site
+       in the frame is a fictional company, and the frame says so. */
+    .hero-proof .mockup-bar .bar-url { min-width: 0; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap; }
+    .hero-proof .mockup-bar .demo-tag { flex: none; margin-left: auto;
+      font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: .02em; line-height: 1.5; color: var(--ink);
+      /* Opaque on purpose: a 7% tint over "transparent" is what the eye sees, but
+         a contrast checker that stops at the first background it finds reads ink
+         on ink at 1.00:1. Mixed onto the bar's own surface, both agree. */
+      background: color-mix(in srgb, var(--ink) 7%, var(--surface-2));
+      border: 1px solid var(--line-2); border-radius: 999px;
+      padding: 1px var(--s3); white-space: nowrap; }
+    @media (max-width: 560px) { .hero-proof .mockup-bar .bar-url { display: none; } }
+    /* The hint used to hang off the whole card, so it floated over the proof
+       line below the video. Anchored to the picture it describes now. */
+    .mockup-view { position: relative; }
+    .demo-open { margin: 0; padding: var(--s3) var(--s4) 0; font-size: 0.88rem; }
+    .demo-open a { display: inline-flex; align-items: center; min-height: 24px;
+      font-weight: 600; color: var(--a-text); text-decoration: none; }
+    .demo-open a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* FREE WEBSITE CHECK. Same Web3Forms endpoint and key as #contactForm and
+       the same success/failure handling, so there is one delivery path to
+       watch, not two. Two columns on a desktop, stacked on a phone. */
+    #free-check { scroll-margin-top: 82px; }
+    #free-check .fc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(var(--s7), 4vw, var(--s10)); align-items: start; }
+    #free-check .section-head { margin-bottom: 0; }
+    #free-check .fc-card { background: var(--surface); border: 1px solid var(--line-2);
+      border-radius: clamp(16px, 1.6vw, 24px); padding: clamp(var(--s5), 3vw, var(--s8));
+      box-shadow: var(--shadow); }
+    #free-check .cform { margin: 0; max-width: none; }
+    #free-check .fc-alt { margin: var(--s4) 0 0; text-align: center; font-size: 0.88rem;
+      line-height: 1.6; color: var(--ink-3); }
+    #free-check .fc-alt a { color: var(--ink); font-weight: 600; white-space: nowrap; }
+    @media (max-width: 860px) { #free-check .fc-grid { grid-template-columns: 1fr; } }
+
+    /* ⚠️ THE CONFIRMATION WAS NEAR-INVISIBLE IN THE DEFAULT THEME. The success
+       and failure lines were tuned for dark only: #7fdcae on a white card is
+       about 1.7:1, so the "Got it" a visitor is waiting for after pressing send
+       barely showed. Light is the default, so these are the colours most
+       visitors get. */
+    :root[data-theme="light"] .form-status.ok  { color: #17613f; }
+    :root[data-theme="light"] .form-status.err { color: #9f2424; }
+
+    /* ⚠️ ON A PHONE THE ASSISTANT IS A 48px ROUND ICON, NOT A FULL-WIDTH BAR.
+       Same rule as the shared widget on the product sites (embed.js, CEO fix of
+       2026-09-24): a bar across the bottom of a 375px screen sits on whatever
+       call to action is there, and this page now has three buttons and a form
+       in its first two screens. The label is hidden under 640px and the button
+       keeps aria-label="Ask a question", so its name does not depend on text
+       that is not displayed.
+       ⚠️ AND THE EMPTY PART OF THE BOX MUST NOT EAT TAPS. Under 520px #kc-agent
+       spans the width (left and right are both set, so the open panel can be
+       full width). With a 48px button inside it, the rest of that box is
+       invisible — and without pointer-events:none it would still swallow a tap
+       meant for the submit button underneath it. */
+    @media (max-width: 640px) {
+      #kc-agent { pointer-events: none; }
+      #kc-agent > * { pointer-events: auto; }
+      #kc-agent-toggle { display: flex; width: 48px; height: 48px; padding: 0;
+        margin-left: auto; justify-content: center; }
+      #kc-agent-toggle .kc-agent-label { display: none; }
+    }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -2522,8 +2605,13 @@
     <div class="glow glow-b" aria-hidden="true"></div>
     <div class="wrap">
       <div class="reveal">
-        <div class="eyebrow">Web Design · SEO · AI Automation — Grand Rapids, MI</div>
-        <h1>Websites built in days, <em>not months</em>.</h1>
+        <!-- REPOSITIONED TO CONTRACTORS, 2026-09-24 (CEO work order). The headline
+             used to be about speed ("Websites built in days, not months") and the
+             kicker listed AI automation first; nothing in the first screen said who
+             the site is for. The trades are named now, and the price and the written
+             launch date moved into the subhead, where the old line already put them. -->
+        <div class="eyebrow">Contractor websites · Local SEO · Grand Rapids, MI</div>
+        <h1>Contractor websites built to <em>get the phone ringing</em>.</h1>
         <!-- 69 words became 21. The old subhead did three jobs at once — what the business
              builds, proof that its founder ships real software, and an argument against
              agencies — and asked a stranger to read a paragraph before anything had been
@@ -2531,16 +2619,23 @@
              Raycast's is two. The software-portfolio claim did not get weaker, it moved: it
              is a proof element, and proof belongs after the promise, not inside it. -->
         <p class="hero-sub">
-          Scope, price and date in writing before you commit — <strong>from $999</strong>.
+          Roofers, plumbers, HVAC, electricians and remodelers around Grand Rapids. <strong>From $999</strong>, with the price and launch date in writing before you pay anything.
         </p>
         <!-- One action. "See pricing" was the same audience at a lower commitment, which is
              the dilution pattern none of the four references use — where they carry a second
              button it is a different AUDIENCE (Cursor: enterprise demo; Raycast: Windows
-             users). Pricing is in the nav and the section is one scroll down. -->
+             users). Pricing is in the nav and the section is one scroll down.
+             The third button, added 2026-09-24, IS a different audience: the owner who is
+             not ready to talk to anyone yet. At ~20 visits a month, a page whose only asks
+             are a call or a text loses everyone who is merely curious; the free check asks
+             for a web address and a phone or email, and nothing else. -->
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Book a 20-minute call →</a>
-            <a href="sms:+16163201280" class="btn btn-ghost">or text me instead</a>
-        </div>      </div>
+          <a href="sms:+16163201280" class="btn btn-ghost">or text me instead</a>
+          <a href="#free-check" class="btn btn-ghost">Free website check</a>
+        </div>
+        <p class="hero-proofline">Fixed price in writing · Live in days, not months · The domain is yours</p>
+      </div>
 
       <!-- The fold had no evidence in it. Cursor, Warp and Linear all give most of the first
            screen to the product itself; this page gave it to a paragraph and eight numbers
@@ -2552,10 +2647,27 @@
            used to sit here was the second of two proof strips in a row; the ticks above it do
            the same job in a quarter of the height, and the four figures still appear further
            down where they have room to be read. -->
+      <!-- ⚠️ THE ROOFING DEMO, NOT A PRODUCT RECORDING, 2026-09-24. This frame played
+           the Docket recording, which still showed "97 checks · $199 once" a month
+           after Docket went to 99 checks and $349: a stale price in the most-seen
+           spot on the site. A contractor also learns nothing from a Mac app. The
+           frame now shows /examples/roofing/ — a still captured from the demo page
+           in this repo, so it cannot drift from a price somewhere else — and the
+           browser bar says it is a demo of a fictional company. Its own page says
+           so again in the black banner at the top of the capture.
+           NO EAGER VIDEO IS LEFT ABOVE THE FOLD. e2e/payload.spec.ts assumed one; see
+           the note there. -->
       <div class="hero-proof reveal">
         <div class="mockup">
-          <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>docketseo.app</span></div>
-          <div class="mockup-scroll"><video class="shot lazyshot" autoplay loop muted playsinline preload="none" poster="assets/video/docket.jpg" width="1000" height="625" aria-label="Docket SEO — a site built and shipped by Kerr &amp; Co."><source data-src="assets/video/docket.webm" data-src-hi="assets/video/docket-hi.webm" type="video/webm"></video></div>
+          <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="bar-url">builtbykerr.com/examples/roofing</span><b class="demo-tag">Demo site, fictional company</b></div>
+          <div class="mockup-view">
+            <div class="mockup-scroll"><img class="shot" src="/assets/examples/roofing-demo-1280.webp"
+              srcset="/assets/examples/roofing-demo-640.webp 640w, /assets/examples/roofing-demo-960.webp 960w, /assets/examples/roofing-demo-1280.webp 1280w, /assets/examples/roofing-demo-2000.webp 2000w"
+              sizes="(min-width: 1280px) 1200px, 92vw" width="1280" height="3621"
+              alt="Vandenberg Roofing, a demo website built for a fictional roofing company" fetchpriority="high" decoding="async"></div>
+            <span class="scroll-hint">↕ scroll it — a demo, not a real company</span>
+          </div>
+          <p class="demo-open"><a href="/examples/roofing/">Open the full demo &rarr;</a></p>
 
         <div class="shipwall reveal" aria-label="Sites designed, built and shipped by Kerr &amp; Co.">
           <!-- No number in this sentence, deliberately. It read "all six live right
@@ -2573,16 +2685,70 @@
         </div>
         <div class="proofstrip">
           <span class="pi"><b>3</b>&nbsp;provisional patents</span><span class="sep">·</span>
-          <span class="pi"><b>Live</b>&nbsp;B2B SaaS in production</span><span class="sep">·</span>
+          <span class="pi"><b>Four</b>&nbsp;paid Mac apps in production</span><span class="sep">·</span>
           <span class="pi"><b>2,300+</b>&nbsp;monthly downloads across 42 published models</span><span class="sep">·</span>
           <span class="pi"><b>Paying</b>&nbsp;customer on a shipped app</span>
         </div>
         <div class="resp-promise">Matthew replies personally — within one business day.</div>
-          <span class="scroll-hint">↕ scroll it — this is a real site we shipped</span>
         </div>
       </div>
     </div>
   </header>
+
+  <!-- FREE WEBSITE CHECK, 2026-09-24 (CEO work order).
+       The step below a call: a web address and a phone or email, nothing else.
+       ⚠️ "2 BUSINESS DAYS" IS THE PROMISE AND IT IS A PERSON'S PROMISE. Matthew
+       reads each site by hand; do not shorten it here, in the success message or in
+       the article box, without him agreeing a faster turnaround.
+       The hidden fields are copied from #contactForm exactly — same Web3Forms
+       endpoint, same public access key — apart from the subject, so these arrive in
+       the same inbox under their own subject line. -->
+  <section id="free-check">
+    <div class="wrap">
+      <div class="fc-grid">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="color:var(--ink-4);">Free website check</div>
+          <h2 class="section-title">Free: your website next to your 3 nearest competitors</h2>
+          <p class="section-intro">Send your web address. Within 2 business days you get a short, plain-English read of your site against the three competitors Google shows next to you: phone tap-to-call, reviews, estimate form, speed, and what to fix first. No call needed, nothing to buy.</p>
+        </div>
+        <div class="fc-card reveal">
+          <form class="cform" id="freeCheckForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="e0740bc7-8ad1-4673-8f93-f565532aa47f">
+            <input type="hidden" name="subject" value="Free website check — builtbykerr.com">
+            <input type="hidden" name="from_name" value="Kerr &amp; Company website">
+            <input type="hidden" name="replyto" value="email">
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+            <div class="field">
+              <label for="fc-site">Website address</label>
+              <input type="url" id="fc-site" name="website" required autocomplete="url" inputmode="url" placeholder="https://yourcompany.com">
+            </div>
+            <div class="field">
+              <label for="fc-contact">Your phone or email</label>
+              <input type="text" id="fc-contact" name="phone_or_email" required autocomplete="tel" placeholder="616-555-0100 or you@email.com">
+            </div>
+            <div class="field">
+              <label for="fc-trade">Trade <span class="opt">(optional)</span></label>
+              <select id="fc-trade" name="trade">
+                <option value="">Choose one</option>
+                <option value="Roofing">Roofing</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="HVAC">HVAC</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Landscaping">Landscaping</option>
+                <option value="Painting">Painting</option>
+                <option value="Remodeling">Remodeling</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <button type="submit" id="fc-submit">Send my free check</button>
+          </form>
+          <div class="form-status" id="fcStatus" role="status" aria-live="polite"></div>
+          <p class="fc-alt">Prefer to text? Send your web address to <a href="sms:+16163201280">(616) 320-1280</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- WORK -->
   <!-- SERVICES HUB -->
@@ -2766,8 +2932,11 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>outlier.host</span></div>
-            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/outlier.jpg" width="1000" height="625" aria-label="Outlier — private offline AI for macOS"><source data-src="assets/video/outlier.webm" data-src-hi="assets/video/outlier-hi.webm" type="video/webm"></video></div>
-            <span class="scroll-hint">↕ scroll to explore</span>
+            <!-- A dated STILL, not the recording (2026-09-24, CEO). The recording showed "macOS 12" and "No seat cap, no countdown"
+                 after Outlier moved to macOS 26 and a 25-buyer founding offer; a video cannot be corrected,
+                 only re-shot. Taken from the live outlier.host on 2026-09-24 with the founding bar closed (it carries a
+                 live seat count). ⚠️ Re-shoot it when Outlier's price or requirements change. -->
+            <div class="mockup-scroll"><img class="shot" src="/assets/outlier-home-2026-09-24.webp" width="1600" height="1002" alt="The outlier.host homepage, captured 24 September 2026" loading="lazy" decoding="async"></div>
           </div>
         </div>
         <div class="product-info">
@@ -2776,10 +2945,12 @@
           <div class="product-year">2025 – Present · outlier.host</div>
           <p class="product-desc">
             A <strong>notarized macOS app</strong> that runs open-weight models up to 397B parameters fully offline on Apple Silicon —
-            a private, local alternative to ChatGPT and Claude. Launched as a live subscription business, with its first sale a Founders Lifetime licence, 42 open
+            a private, local alternative to ChatGPT and Claude. Sold as a one-time licence, with its first sale a Founders Lifetime licence, 42 open
             models on HuggingFace, and <strong>3 provisional U.S. patents</strong> on the underlying inference methods.
           </p>
-          <div class="tags"><span class="tag">macOS</span><span class="tag">Local LLMs</span><span class="tag">Apple Silicon</span><span class="tag">Stripe</span><span class="tag">Patents</span></div>
+          <!-- "Dodo Payments", not "Stripe": Outlier has free tiers, and its one-time
+               $249 licence is sold through Dodo Payments, the merchant of record. -->
+          <div class="tags"><span class="tag">macOS</span><span class="tag">Local LLMs</span><span class="tag">Apple Silicon</span><span class="tag">Dodo Payments</span><span class="tag">Patents</span></div>
           <a href="https://outlier.host" target="_blank" rel="noopener" class="product-link">Visit outlier.host →</a>
         </div>
       </article>
@@ -2789,8 +2960,11 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>crispvideo.app</span></div>
-            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/crisp.jpg" width="1000" height="625" aria-label="Crisp — offline AI video upscaler for macOS"><source data-src="assets/video/crisp.webm" data-src-hi="assets/video/crisp-hi.webm" type="video/webm"></video></div>
-            <span class="scroll-hint">↕ scroll to explore</span>
+            <!-- A dated STILL, not the recording (2026-09-24, CEO). The recording showed "macOS 12"
+                 after Crisp moved to macOS 26 and a 25-buyer founding offer; a video cannot be corrected,
+                 only re-shot. Taken from the live crispvideo.app on 2026-09-24 with the founding bar closed (it carries a
+                 live seat count). ⚠️ Re-shoot it when Crisp's price or requirements change. -->
+            <div class="mockup-scroll"><img class="shot" src="/assets/crisp-home-2026-09-24.webp" width="1600" height="1002" alt="The crispvideo.app homepage, captured 24 September 2026" loading="lazy" decoding="async"></div>
           </div>
         </div>
         <div class="product-info">
@@ -2849,8 +3023,11 @@
           <div class="product-num">04 — B2B SaaS · built by Jarvis Factory</div>
           <div class="product-title-row"><h3 class="product-name">ProposalAI</h3><span class="product-badge">● Internal build</span></div>
           <div class="product-year">2026 · myproposalai.com</div>
+          <!-- WAS "A live B2B SaaS". The build story below says ProposalAI is "not a
+               product we sell or support", so "live" contradicted this same page.
+               "Complete B2B product" is the wording the FAQ already uses for it. -->
           <p class="product-desc">
-            A <strong>live B2B SaaS</strong> that helps contractors send polished, branded proposals in minutes and win more bids —
+            A <strong>complete B2B product</strong> that helps contractors send polished, branded proposals in minutes and win more bids —
             with a clear ICP, value-based pricing, and a visit → trial → paid funnel. The product, marketing site, and Stripe billing
             were <strong>built almost entirely by Jarvis Factory</strong> under our direction — proof the studio ships monetized software, not demos.
           </p>
@@ -2863,8 +3040,13 @@
         <div class="product-visual">
           <div class="mockup">
             <div class="mockup-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span>docketseo.app</span></div>
-            <div class="mockup-scroll"><video class="shot lazyshot" loop muted playsinline preload="none" poster="assets/video/docket.jpg" width="1000" height="625" aria-label="Docket — on-device SEO and marketing audits for Mac"><source data-src="assets/video/docket.webm" data-src-hi="assets/video/docket-hi.webm" type="video/webm"></video></div>
-            <span class="scroll-hint">↕ scroll to explore</span>
+            <!-- A dated STILL, not the recording. The recording (assets/video/docket*.webm)
+                 showed "97 checks · $199 once" after Docket moved to 99 checks and $349,
+                 and a video cannot be corrected, only re-shot. This still was taken from
+                 the live docketseo.app on 2026-09-24 with its founding-offer bar closed —
+                 that bar carries a live seat count, and a picture of a count is a stale
+                 count the day after. ⚠️ Re-shoot it when Docket's price changes. -->
+            <div class="mockup-scroll"><img class="shot" src="/assets/docket-home-2026-09-24.webp" width="1600" height="1002" alt="The docketseo.app homepage, captured 24 September 2026" loading="lazy" decoding="async"></div>
           </div>
         </div>
         <div class="product-info">
@@ -2872,7 +3054,7 @@
           <div class="product-title-row"><h3 class="product-name">Docket</h3><span class="product-badge">● Shipping</span></div>
           <div class="product-year">2026 · docketseo.app</div>
           <p class="product-desc">
-            <strong>97 checks across 13 areas</strong> — SEO, copy, conversion, brand, structured data, local visibility and AI search
+            <strong>99 checks</strong> — SEO, copy, conversion, brand, structured data, local visibility and AI search
             visibility — run <strong>entirely on your Mac</strong>. Where every other tool hands over a categorised list of problems,
             Docket ranks findings by impact against effort and tells you what to do first, with the exact markup to paste.
             One-time download, no subscription or crawl credits, and nothing about the audited site leaves the machine.
@@ -3014,7 +3196,9 @@
         </div>
 
         <div class="pkg feature">
-          <span class="pkg-tag">Most popular</span>
+          <!-- WAS "Most popular": a claim about what customers choose, with no
+               customers counted behind it (RULES #14). This is a recommendation. -->
+          <span class="pkg-tag">Best fit for most businesses</span>
           <h3>Business Site</h3>
           <div class="price">$2,499 <small>starting at</small></div>
           <div class="payline">50% to start, 50% on launch</div><div class="pkg-alt"><b>half now, half at launch</b> &mdash; yours outright, for good</div>
@@ -3045,7 +3229,10 @@
         <div class="pkg">
           <h3>Care Plan</h3>
           <div class="price">$199<small>/mo starting</small></div>
-          <div class="payline">Monthly, cancel any time</div>
+          <!-- The rule is legal/terms.html §6: recurring services continue until
+               cancelled with at least 30 days' written notice. It said "cancel any
+               time", which the terms do not. Every page now states the terms' rule. -->
+          <div class="payline">Monthly, cancel with 30 days' written notice</div>
           <div class="meta">hosting · updates · edits</div>
           <p class="desc">Keep the site fast, secure, and current — hosting, backups, monitoring, and monthly change requests handled for you.</p>
           <ul class="feat">
@@ -3102,7 +3289,7 @@
             <li><strong>If you stop, the site comes down.</strong> Ownership arrives with
             the twelfth payment, so stopping early means it does not transfer — but we
             hold your site for 90 days and the buy-out above stays open the whole time.</li>
-            <li><strong>Nobody else here does this.</strong> Local subscription studios
+            <li><strong>We have not found another Grand Rapids studio that does this.</strong> Local subscription studios
           run $67–$699/mo with no end date and no ownership stated on their pricing
           pages — checked 2026-08-24 on their own sites.</li>
         </ul>
@@ -3246,14 +3433,17 @@
           <h2>You'll work directly with <em>Matthew Kerr</em>.</h2>
           <p>
             Kerr &amp; Company is small on purpose. I direct AI end-to-end to ship real, monetized products — a
-            <strong>notarized macOS app with a paying customer and 3 provisional U.S. patents</strong>, a
-            <strong>live B2B SaaS</strong>, and an automation engine that builds software on its own.
+            <strong>notarized macOS app with a paying customer and 3 provisional U.S. patents</strong>,
+            <strong>four paid Mac apps in production</strong>, and an automation engine that builds software on its own.
           </p>
           <p>
             You don't get handed off to a junior team. When you work with the studio, you get the same instincts and the
             same speed I use to ship my own products — and I reply to every inquiry personally.
           </p>
-          <a href="https://matthewkerr.dev" target="_blank" rel="noopener" class="founder-link">Meet the founder ↗</a>
+          <!-- Points at /about.html, not matthewkerr.dev: a contractor reading this
+               wants to know who will build the site, and that page answers it here
+               rather than sending them off to a personal site on another domain. -->
+          <a href="/about.html" class="founder-link">Meet the founder →</a>
         </div>
       </div>
     </div>
@@ -3444,7 +3634,7 @@
           <a href="sms:+16163201280">Text (616)&nbsp;320-1280</a></span>
     </div>
     <div class="fr">
-      <span style="color:var(--ink-3);">matthew@kerrandcompanyholdings.com</span>
+      <a href="mailto:matthew@kerrandcompanyholdings.com?subject=From%20builtbykerr.com">matthew@kerrandcompanyholdings.com</a>
       <a href="https://outlier.host" target="_blank" rel="noopener">Outlier</a>
       <a href="https://crispvideo.app" target="_blank" rel="noopener">Crisp</a>
       <a href="https://myproposalai.com" target="_blank" rel="noopener">ProposalAI</a>
@@ -3455,7 +3645,7 @@
       <a href="/legal/terms.html">Terms</a>
       <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
-      <a href="https://matthewkerr.dev" target="_blank" rel="noopener">Founder</a>
+      <a href="/about.html">Founder</a>
     </div>
   </footer>
 
@@ -3609,6 +3799,81 @@
       });
     })();
 
+    /* Free website check — the contact form's pattern, deliberately: same
+       endpoint, same fetch, Lead only inside res.ok, the form hidden and a plain
+       confirmation shown on success, an error that names another way to reach
+       Matthew on failure.
+       ⚠️ PLACED AFTER THE CONTACT FORM ON PURPOSE. e2e/ads-readiness.spec.ts checks
+       that the FIRST 'if (res.ok) {' in this file comes before the first Lead event
+       and the first catch block. This handler sitting above that one would break
+       the check for a reason that has nothing to do with the contact form.
+       Two small aids, both about people typing on a phone:
+       - "yourcompany.com" becomes "https://yourcompany.com" before the browser
+         judges it. type=url rejects a bare domain, and a bare domain is what most
+         owners type. Done on the button's click, which the browser also fires for
+         Enter in a field, so it runs before validation either way.
+       - the phone-or-email field says what is wrong in words when it is neither. */
+    (function () {
+      const form = document.getElementById('freeCheckForm');
+      if (!form) return;
+      const statusEl = document.getElementById('fcStatus');
+      const btn = document.getElementById('fc-submit');
+      const site = document.getElementById('fc-site');
+      const contact = document.getElementById('fc-contact');
+      const show = (kind, html) => { statusEl.className = 'form-status ' + kind; statusEl.innerHTML = html; };
+
+      const fixUrl = () => {
+        const v = site.value.trim();
+        if (v && !/^[a-z][a-z0-9+.-]*:\/\//i.test(v) && /\.[a-z]{2,}/i.test(v)) {
+          site.value = 'https://' + v.replace(/^\/+/, '');
+        }
+      };
+      const checkContact = () => {
+        const v = contact.value.trim();
+        const email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+        const phone = !/@/.test(v) && v.replace(/\D/g, '').length >= 7;
+        contact.setCustomValidity(v && !email && !phone ? 'Enter a phone number or an email address.' : '');
+      };
+      site.addEventListener('blur', fixUrl);
+      contact.addEventListener('input', checkContact);
+      btn.addEventListener('click', () => { fixUrl(); checkContact(); });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const key = form.querySelector('[name=access_key]').value;
+        if (!key || key === 'YOUR_WEB3FORMS_KEY') {
+          show('err', "This form isn't connected yet — please text your web address to <a href=\"sms:+16163201280\">(616) 320-1280</a>.");
+          return;
+        }
+        btn.disabled = true; btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+          if (res.ok) {
+            /* 'unspecified', the value the booked-call Lead uses, because
+               content_category holds the SERVICE a visitor picked and this form
+               does not ask for one. content_name says which door they came in. */
+            if (window.fbq && META_PIXEL_ID) {
+              fbq('track', 'Lead', {
+                content_name: 'Free website check',
+                content_category: 'unspecified'
+              }, { eventID: kcEventId() });
+            }
+            form.style.display = 'none';
+            show('ok', "<strong>Got it — thank you.</strong><br>Your free check comes back to the phone or email you gave, within 2 business days.");
+          } else {
+            throw new Error('bad response');
+          }
+        } catch (err) {
+          show('err', "Something went wrong sending that. Text your web address to <a href=\"sms:+16163201280\">(616) 320-1280</a> or email <a href=\"mailto:matthew@kerrandcompanyholdings.com?subject=Free%20website%20check\">matthew@kerrandcompanyholdings.com</a>.");
+          btn.disabled = false; btn.textContent = 'Send my free check';
+        }
+      });
+    })();
+
     // TWO-WAY, which is what Matthew means by "appearing and disappearing both
 // ways like outlier": unobserve() turns a reveal into a one-shot that fills
 // in once and then sits there forever. Keeping the element observed and
@@ -3739,7 +4004,7 @@ document.querySelectorAll('main#work article.product').forEach(el=>io.observe(el
       ? "Past 8 pages the tiers stop being honest — 20 minutes on a call settles it"
       : t.name;
     var scope = t.scope.slice();
-    if (state.care) scope.push("Care plan — $" + CARE + "/mo, cancel anytime");
+    if (state.care) scope.push("Care plan — $" + CARE + "/mo, cancel with 30 days' written notice");
     $("cfg-scope").innerHTML = scope.map(function(x){ return "<li>"+x+"</li>"; }).join("");
     $("cfg-date").innerHTML = "Earliest start if you book today: <b>" + businessDays(3) +
       "</b> · typical build " + t.lead + " business days from kickoff.";
@@ -3979,14 +4244,20 @@ var BOOKING_URL = 'https://calendly.com/admin-kerrandcompanyholdings/30min'
        term — those are Matthew's, on the call — and every path ends at booking.
        Backend: ops/lead-agent, Cloudflare Workers AI. -->
   <div id="kc-agent" hidden>
-    <button id="kc-agent-toggle" type="button" aria-expanded="false" aria-controls="kc-agent-panel">
+    <button id="kc-agent-toggle" type="button" aria-expanded="false" aria-controls="kc-agent-panel" aria-label="Ask a question">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      <span>Ask a question</span>
+      <span class="kc-agent-label">Ask a question</span>
     </button>
     <div id="kc-agent-panel" role="dialog" aria-label="Ask about pricing and scope" hidden>
       <div class="kc-a-head">
-        <div><strong>Ask about the work</strong><span>Answers now · Matthew reads every one</span></div>
+        <!-- WAS "Answers now · Matthew reads every one", and nothing does that.
+             Read 2026-09-24 in ~/ops/lead-agent (worker.js, wrangler.toml): the
+             worker sends the conversation to Workers AI and returns the reply;
+             it has no KV, D1 or log binding and forwards nothing. A promise that
+             a person reads every message is the one thing this box must not
+             make up. Same wording as the shared widget on the product sites. -->
+        <div><strong>Ask about the work</strong><span>Answers now · an assistant, not a person</span></div>
         <button type="button" id="kc-agent-close" aria-label="Close">&times;</button>
       </div>
       <div id="kc-agent-log" aria-live="polite"></div>

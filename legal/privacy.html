@@ -49,7 +49,7 @@
 
   <section>
     <div class="wrap legal-body">
-      <div class="updated">Last updated: August 13, 2026</div>
+      <div class="updated">Last updated: September 24, 2026</div>
 
       <p>This Privacy Policy explains how <strong>Kerr &amp; Co. LLC</strong> ("we," "us"), a Michigan limited liability company, handles information in connection with builtbykerr.com (the "Site") and our services.</p>
 
@@ -74,6 +74,40 @@
       <a href="https://kerr-subscribe.kerrco.workers.dev/unsubscribe">this page</a> — enter
       the address and it is deleted, no account and no reply-and-wait. You can also just
       ask us and we will do it.</p>
+
+      <!-- Added 2026-09-24 in the same change that put the free website check on the
+           homepage: a second form on the same Web3Forms path, named here the day it
+           ships rather than after. -->
+      <h3>Free website check</h3>
+      <p>The free website check on the homepage goes through the same <strong>Web3Forms</strong>
+      service. When you submit it, the web address, the phone number or email address, and the
+      trade (if you pick one) that you enter are sent to Web3Forms, which forwards them to us by
+      email. We use them to prepare your check, send it to you and reply to you — not for
+      marketing lists or automated sequences.</p>
+
+      <!-- Added 2026-09-24. The assistant has run on the homepage since 2026-08-25 with no
+           line on this page. Written from the code, not from a description of it: the
+           widget script at the end of index.html (what leaves the browser, and that it
+           uses no cookie or storage) and ~/ops/lead-agent/worker.js + wrangler.toml (the
+           server passes the conversation to Workers AI and returns the reply; it has no
+           storage binding and no logging). If either changes, this paragraph changes in
+           the same commit. -->
+      <h3>The “Ask a question” assistant</h3>
+      <p>The homepage has an assistant that answers questions about pricing, scope and
+      timelines. Nothing is sent when the page loads or when you open it. When you type a
+      question and press send, the conversation so far — your questions and its answers, up
+      to the last twelve messages — is sent to <code>kerr-lead-agent.kerrco.workers.dev</code>,
+      a program we run on Cloudflare Workers, which uses Cloudflare Workers AI to write the
+      answer and sends it back. Like any web request, it also carries your IP address and
+      browser details to Cloudflare. Please do not type anything you would not put in an email
+      to us.</p>
+      <p>The assistant stores nothing in your browser — no cookie, no local storage — and the
+      conversation exists only in the open page: reload or close it and it is gone. Our
+      program does not save conversations or forward them to us. Cloudflare handles the
+      requests it serves under <a href="https://www.cloudflare.com/privacypolicy/"
+      target="_blank" rel="noopener" style="color:var(--accent-2);">Cloudflare's Privacy
+      Policy</a>. When the first answer arrives, the Meta pixel described below records that
+      the assistant was used — not what you typed.</p>
 
       <h3>Information collected automatically</h3>
       <p>This Site is hosted on <strong>GitHub Pages</strong>. Like virtually all web hosting, GitHub's servers automatically log basic technical request data, which may include IP address, browser type, referring page, and time of request. We do not control that logging and do not use it for marketing. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener" style="color:var(--accent-2);">GitHub's Privacy Statement</a>.</p>
@@ -108,13 +142,17 @@
       <p>This Site runs the <strong>Meta pixel</strong> (Facebook/Instagram advertising).
       It sets a first-party cookie named <code>_fbp</code> and sends Meta the page you
       viewed, your IP address, your browser user-agent, and — if you submit the contact
-      form — the fact that a form submission happened. We use it for two things only:
+      form or the free website check, book a call through the calendar, or get an answer
+      from the assistant — the fact that it happened. We use it for two things only:
       to see which ads bring people to this Site, and to avoid paying to show ads to
       people who have already contacted us.</p>
 
-      <p>We do <strong>not</strong> send Meta the contents of your contact form. The
-      conversion event records that an inquiry occurred, not your name, your email
-      address, your phone number, or what you wrote.</p>
+      <!-- Reworded 2026-09-24 to match the code exactly: the contact form's event
+           carries the service picked from its list (content_category), so "we do not
+           send the contents of your contact form" was a little too broad. -->
+      <p>We do <strong>not</strong> send Meta your name, your email address, your phone
+      number, your web address or anything you type. The conversion event records that an
+      inquiry occurred and, for the contact form, which service you picked from its list.</p>
 
       <p>Plausible Analytics, described above, remains cookieless.</p>
 
