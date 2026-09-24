@@ -50,7 +50,7 @@ nav{position:sticky;top:0;z-index:50;height:66px;display:flex;align-items:center
 
 /* breadcrumb */
 .crumb{font-size:0.78rem;color:var(--ink-4);margin:1.6rem 0 0;font-family:var(--mono);letter-spacing:0.02em;}
-.crumb a{color:var(--ink-3);text-decoration:none;}
+.crumb a{color:var(--ink-3);text-decoration:none;display:inline-flex;align-items:center;min-height:24px;}
 .crumb a:hover{color:var(--accent-2);}
 
 /* hero */
@@ -69,6 +69,13 @@ nav{position:sticky;top:0;z-index:50;height:66px;display:flex;align-items:center
 
 /* sections */
 section{padding:2.8rem 0;border-bottom:1px solid var(--line);}
+/* ANCHORED SECTIONS CLEAR THE STICKY NAV. The nav above is sticky and 66px tall,
+   so a link to …#pricing landed with the section heading underneath it. The
+   homepage has done this for its own sections all along (scroll-margin-top in
+   index.html); interior pages never had it. Added with the 2026-09-24 merge,
+   whose redirect stubs and retargeted links land on #development,
+   #west-michigan and #michigan. */
+section[id]{scroll-margin-top:66px;}
 .section-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3.2vw,2.1rem);letter-spacing:-0.01em;margin-bottom:0.6rem;}
 .section-intro{color:var(--ink-2);max-width:680px;margin-bottom:1.8rem;}
 .answer{font-size:1.05rem;color:var(--ink);max-width:720px;line-height:1.7;margin-bottom:1.2rem;}
@@ -191,7 +198,7 @@ main.page li{margin-bottom:0.45rem;}
 /* footer */
 footer{padding:2rem clamp(1.1rem,4vw,2.4rem);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;font-size:0.82rem;color:var(--ink-3);}
 footer .fr{display:flex;flex-wrap:wrap;gap:1.2rem;}
-footer a{color:var(--ink-3);text-decoration:none;transition:color .15s;}
+footer a{color:var(--ink-3);text-decoration:none;transition:color .15s;display:inline-flex;align-items:center;min-height:24px;}
 footer a:hover{color:var(--accent-2);}
 
 /* BUTTON CONTRAST — the same defect as the homepage, on all twenty interior

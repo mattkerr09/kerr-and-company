@@ -103,9 +103,40 @@ const PAGES = [
   '/services/digital-marketing-grand-rapids.html',
   '/services/local-seo-google-business-profile.html',
   '/services/seo-grand-rapids.html',
-  '/services/web-design-west-michigan.html',
-  '/services/web-development-grand-rapids.html',
+  // The survivor of the 2026-09-24 merge holds what the two pages that sat here
+  // said; those URLs are redirect stubs now and are checked in MERGED below.
+  '/services/web-design-grand-rapids.html',
 ];
+
+/**
+ * THE MERGED URLS MUST STAY REDIRECTS.
+ *
+ * Three service pages were merged on 2026-09-24, measured first (ops:
+ * search/builtbykerr-consolidation-2026-09-24.md). Each old URL is a stub whose
+ * instant meta refresh and canonical send visitors and Google to the page that
+ * now holds its content. GitHub Pages cannot send a 301, so those two tags ARE
+ * the redirect, and a stub that loses them is a thin page competing with its
+ * survivor again. They are not in PAGES because they are not content pages: no
+ * h1 and no description, on purpose. No noindex either (the redirect is the
+ * signal, and a noindex needs its own measurement), and no pixel or analytics.
+ */
+const MERGED: [string, string][] = [
+  ['/services/web-design-west-michigan.html', '/services/web-design-grand-rapids.html'],
+  ['/services/web-development-grand-rapids.html', '/services/web-design-grand-rapids.html'],
+  ['/services/ai-consulting-michigan.html', '/services/ai-consulting.html'],
+];
+
+function stubProblems(html: string, to: string): string[] {
+  const p: string[] = [];
+  const refresh = /<meta[^>]+http-equiv=["']refresh["'][^>]+content=["']0;\s*url=([^"']+)["']/i.exec(html)?.[1];
+  const canonical = /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i.exec(html)?.[1];
+  if (refresh !== to) p.push(`meta refresh -> ${refresh ?? 'none'}, expected ${to}`);
+  if (canonical !== `${PRODUCTION}${to}`) p.push(`canonical -> ${canonical ?? 'none'}, expected ${PRODUCTION}${to}`);
+  const metas = html.match(/<meta\b[^>]*>/gi) || [];
+  if (metas.some(m => /name=["'](?:robots|googlebot)["']/i.test(m) && /noindex/i.test(m))) p.push('carries noindex');
+  if (/connect\.facebook\.net|fbq\(|plausible\.io/i.test(html)) p.push('carries a tracker');
+  return p;
+}
 
 let api: APIRequestContext;
 const bodies = new Map<string, string>();
@@ -213,6 +244,31 @@ test.describe('live site contract', () => {
       if (h1s !== 1) problems.push(`${p}: ${h1s} h1s`);
     }
     expect(problems, 'page-level SEO contract').toEqual([]);
+  });
+
+  test('each merged URL is still a redirect to the page that holds its content', async () => {
+    test.setTimeout(120_000);
+    // The detector must see before it is believed: a stub that lost its
+    // refresh, gained a noindex or gained the pixel has to be reported.
+    const good = `<meta http-equiv="refresh" content="0; url=/x.html"><link rel="canonical" href="${PRODUCTION}/x.html">`;
+    expect(stubProblems(good, '/x.html'), 'a correct stub was flagged').toEqual([]);
+    for (const bad of [
+      `<link rel="canonical" href="${PRODUCTION}/x.html">`,
+      `${good}<meta name="robots" content="noindex">`,
+      `${good}<script src="https://connect.facebook.net/en_US/fbevents.js"></script>`,
+    ]) {
+      expect(stubProblems(bad, '/x.html').length, `detector missed: ${bad.slice(-60)}`).toBeGreaterThan(0);
+    }
+
+    const problems: string[] = [];
+    for (const [from, to] of MERGED) {
+      const res = await api.get(`${BASE}${from}`, { timeout: 30_000 });
+      if (res.status() !== 200) { problems.push(`${from}: serves ${res.status()}`); continue; }
+      problems.push(...stubProblems(await res.text(), to).map(x => `${from}: ${x}`));
+      const survivor = await api.get(`${BASE}${to}`, { timeout: 30_000 });
+      if (survivor.status() !== 200) problems.push(`${to}: survivor serves ${survivor.status()}`);
+    }
+    expect(problems, 'a merged URL is no longer a clean redirect to its survivor').toEqual([]);
   });
 });
 

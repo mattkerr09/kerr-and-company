@@ -25,7 +25,7 @@
       { "@type": "Service", "@id": "https://builtbykerr.com/services/web-design-grand-rapids.html#service",
         "serviceType": "Website design and development",
         "provider": { "@type": "ProfessionalService", "name": "Kerr & Co.", "url": "https://builtbykerr.com/", "email": "matthew@kerrandcompanyholdings.com", "areaServed": ["Grand Rapids", "West Michigan", "Michigan", "United States"], "address": { "@type": "PostalAddress", "addressLocality": "Grand Rapids", "addressRegion": "MI", "addressCountry": "US" } },
-        "areaServed": ["Grand Rapids", "Kent County", "West Michigan", "Michigan"],
+        "areaServed": ["Grand Rapids", "Kent County", "West Michigan", "Holland", "Grand Haven", "Muskegon", "Kalamazoo", "Grandville", "Zeeland", "Allendale", "Michigan"],
         "description": "Conversion-focused website design and development for small and mid-size businesses, built fast with AI, with optional care plans and custom tools.",
         "offers": { "@type": "Offer", "priceCurrency": "USD", "price": "999", "description": "Starter website, starting at $999" } },
       { "@type": "BreadcrumbList", "itemListElement": [
@@ -36,7 +36,14 @@
         { "@type": "Question", "name": "How much does a website cost in Grand Rapids?", "acceptedAnswer": { "@type": "Answer", "text": "A simple business website starts at $999, a standard multi-page business site around $2,499, and a growth site with a custom AI tool from $4,999. You get a fixed quote before any work begins — never hourly billing. Most builds also include an optional care plan from $199/month." } },
         { "@type": "Question", "name": "How fast can you build a website?", "acceptedAnswer": { "@type": "Answer", "text": "Because we build with AI, a focused business site can go from kickoff to live in days, not weeks — we once shipped an entire product and its marketing site in two days. Larger builds with custom tools take longer, but you get a clear timeline up front." } },
         { "@type": "Question", "name": "Do you offer ongoing website maintenance?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every build can attach a monthly care plan (from $199/month) covering hosting, updates, security, backups, and a set number of change requests — so your site stays fast, secure, and current without you thinking about it." } },
-        { "@type": "Question", "name": "What makes your websites different from Wix or a template shop?", "acceptedAnswer": { "@type": "Answer", "text": "We build custom, conversion-focused sites and can add working AI tools most template shops can't — an instant-quote calculator, a booking/intake bot, or a missed-call-to-text system — so the site does real work, not just look good." } } ] }
+        { "@type": "Question", "name": "What makes your websites different from Wix or a template shop?", "acceptedAnswer": { "@type": "Answer", "text": "We build custom, conversion-focused sites and can add working AI tools most template shops can't — an instant-quote calculator, a booking/intake bot, or a missed-call-to-text system — so the site does real work, not just look good." } },
+        { "@type": "Question", "name": "What is the difference between web design and web development?", "acceptedAnswer": { "@type": "Answer", "text": "Design is what the site looks like and how it reads; development is the code that makes it load fast, work on a phone, submit a form, and connect to your booking or quoting tool. We do both on every build, so you never have a designer handing a mock-up to a developer who then quotes you again." } },
+        { "@type": "Question", "name": "Do you build web apps and custom tools, or only websites?", "acceptedAnswer": { "@type": "Answer", "text": "Both. The Growth package pairs a site with one working tool — an instant-quote calculator, a booking or intake bot, or missed-call-to-text — and larger tools are quoted on their own. Our own products are apps we built and sell, so the same person who writes your site writes real software." } },
+        { "@type": "Question", "name": "Do you work with WordPress, Shopify, or Squarespace?", "acceptedAnswer": { "@type": "Answer", "text": "When a site already runs on one of them and it is doing its job, we work inside it. For new builds our default is hand-written HTML, CSS and JavaScript on a content delivery network, because it is faster, cheaper to host, and has no plugin stack to patch. If you need a store or an editor-friendly CMS, we say so in the quote." } },
+        { "@type": "Question", "name": "Who owns the code when the site is done?", "acceptedAnswer": { "@type": "Answer", "text": "You do. The repository, the domain, and the hosting account are in your name. If you leave, you take the whole site with you — no export fee, no rebuild." } },
+        { "@type": "Question", "name": "Do you only work with Grand Rapids businesses?", "acceptedAnswer": { "@type": "Answer", "text": "No. We are based in Grand Rapids and build for businesses across West Michigan — Holland, Grand Haven, Muskegon, Kalamazoo, Grandville, Zeeland, Allendale and the lakeshore towns. The process is the same wherever you are." } },
+        { "@type": "Question", "name": "Do we need to meet in person?", "acceptedAnswer": { "@type": "Answer", "text": "No. The whole build runs on one call and a shared link where you watch real pages appear, and you always talk to the person writing the site, not an account manager." } },
+        { "@type": "Question", "name": "Can you set the site up to rank in my town and not just Grand Rapids?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Local search runs on your Google Business Profile, the city named on your pages and in your schema, and consistent listings. We point all three at the town your customers search from, and the local SEO service can manage it monthly." } } ] }
     ]
   }
   </script>
@@ -162,6 +169,41 @@ fbq('init','28202025336060922');fbq('track','PageView');
     </div>
   </section>
 
+  <!-- #development and #tools hold what the former web development page said and
+       this page did not; that URL is now a redirect stub pointing here (measured
+       merge, 2026-09-24). Seven pages link to #development as "the web
+       development section of the web design page" for speed, forms that arrive,
+       clean markup and why a static site is cheap to host — keep those four here. -->
+  <section id="development">
+    <div class="wrap">
+      <h2 class="section-title">What "development" includes on every build</h2>
+      <div class="prose">
+        <p>Development is the part of a website you cannot see in a screenshot: the code that makes it load fast on a phone, send a form to the right inbox, and connect to the tools you already run. Every quote includes it, because a beautiful page that scores 40 on a speed test or loses the contact form to a spam filter is a site that does not bring in business. We design and develop every site ourselves, so there is no hand-off between a designer and a developer.</p>
+        <h3>Performance and mobile</h3>
+        <p>Every page is built mobile-first and measured with Google's own tools before launch. Images are sized for the screen that loads them, fonts are limited to what the design needs, and there is no third-party script on the page that you did not ask for.</p>
+        <h3>Forms, calls, and tracking that arrive</h3>
+        <p>A lead form is only useful if it lands somewhere you read. We test every form end to end, add click-to-call on mobile, and set up analytics so you can see which page produced the call. No "we'll add tracking later".</p>
+        <h3>Structured data and clean markup</h3>
+        <p>Search engines read a site through its code. We ship the schema markup that tells Google what your business is, where it is, and what it sells, and we keep the HTML simple enough that a crawler and a screen reader both understand it.</p>
+        <h3>Hand-written, on hosting you own</h3>
+        <p>Our default build is plain HTML, CSS and a little JavaScript served from a content delivery network — the same way this site is built. No theme, no page builder, no forty plugins waiting for a security patch. Static sites cost almost nothing to host and have nothing to hack: we set hosting up in your account and, if you want us to run it, the <a href="#pricing">care plan</a> covers updates, backups, and monitoring from $199 a month.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap">
+      <h2 class="section-title">Custom tools we build alongside a site</h2>
+      <p class="section-intro">The difference between a brochure and a site that works while you sleep is usually one small piece of software.</p>
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h4>Instant-quote calculator</h4><p>A visitor enters the size of the job and sees a real range before calling.</p></div>
+        <div class="step"><div class="n">02</div><h4>Booking or intake bot</h4><p>Collects the details you would ask on the first call — address, timing, photos — and drops them into your inbox or calendar, at 11pm on a Sunday.</p></div>
+        <div class="step"><div class="n">03</div><h4>Missed-call-to-text</h4><p>When you cannot pick up, the caller gets a text within seconds and the lead is not lost to the next name on the list.</p></div>
+        <div class="step"><div class="n">04</div><h4>Anything with an API</h4><p>Forms into your CRM or inbox, bookings into your calendar, inventory, pricing sheets, review requests, appointment reminders. If a tool you use has an API, we can wire the site to it.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="wrap">
       <h2 class="section-title">Website FAQs</h2>
@@ -170,6 +212,13 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <div class="faq-item"><h3>How fast can you build it?</h3><p>Because we build with AI, a focused business site can go from kickoff to live in <strong>days</strong>. I once shipped an entire product and its marketing site in two days. Bigger builds with custom tools take longer, but you get a clear timeline up front.</p></div>
         <div class="faq-item"><h3>Do you handle ongoing maintenance?</h3><p>Yes — a monthly <a href="#pricing">care plan</a> from $199 covers hosting, updates, security, backups, and a set number of change requests, so your site stays fast and current without you managing it.</p></div>
         <div class="faq-item"><h3>What makes this different from Wix or a template shop?</h3><p>We build custom and can add a working <a href="/services/ai-automation.html">AI tool</a> most template shops can't — instant-quote calculators, booking/intake bots, or missed-call-to-text — so the site does real work, not just look good.</p></div>
+        <div class="faq-item"><h3>What is the difference between web design and web development?</h3><p>Design is what the site looks like and how it reads; development is the code that makes it load fast, work on a phone, submit a form, and connect to your booking or quoting tool. We do both on every build, so you never have a designer handing a mock-up to a developer who then quotes you again.</p></div>
+        <div class="faq-item"><h3>Do you build web apps and custom tools, or only websites?</h3><p>Both. The <a href="#pricing">Growth package</a> pairs a site with one working tool — an instant-quote calculator, a booking or intake bot, or missed-call-to-text — and larger tools are quoted on their own. Our own products are apps we built and sell, so the same person who writes your site writes real software.</p></div>
+        <div class="faq-item"><h3>Do you work with WordPress, Shopify, or Squarespace?</h3><p>When a site already runs on one of them and it is doing its job, we work inside it. For new builds our default is hand-written HTML, CSS and JavaScript on a content delivery network, because it is faster, cheaper to host, and has no plugin stack to patch. If you need a store or an editor-friendly CMS, we say so in the quote.</p></div>
+        <div class="faq-item"><h3>Who owns the code when the site is done?</h3><p>You do. The repository, the domain, and the hosting account are in your name. If you leave, you take the whole site with you — no export fee, no rebuild.</p></div>
+        <div class="faq-item"><h3>Do you only work with Grand Rapids businesses?</h3><p>No. We are based in Grand Rapids and build for businesses <a href="#west-michigan">across West Michigan</a> — Holland, Grand Haven, Muskegon, Kalamazoo, Grandville, Zeeland, Allendale and the lakeshore towns. The process is the same wherever you are.</p></div>
+        <div class="faq-item"><h3>Do we need to meet in person?</h3><p>No. The whole build runs on one call and a shared link where you watch real pages appear, and you always talk to the person writing the site, not an account manager.</p></div>
+        <div class="faq-item"><h3>Can you set the site up to rank in my town and not just Grand Rapids?</h3><p>Yes. Local search runs on your Google Business Profile, the city named on your pages and in your schema, and consistent listings. We point all three at the town your customers search from, and the <a href="/services/local-seo-google-business-profile.html">local SEO service</a> can manage it monthly.</p></div>
       </div>
     </div>
   </section>
@@ -208,16 +257,30 @@ fbq('init','28202025336060922');fbq('track','PageView');
     </div>
   </section>
 
-  <section>
+  <!-- #west-michigan holds what the former West Michigan web design page said and
+       this page did not (what changes town to town, the town list); that URL is
+       now a redirect stub pointing here (measured merge, 2026-09-24). Kent County
+       keeps its own page because it ranks better for its query than this one. -->
+  <section id="west-michigan">
     <div class="wrap">
-      <h2 class="section-title">Where we work, and the pages for each</h2>
+      <h2 class="section-title">Web design across West Michigan</h2>
       <div class="prose">
         <p>We are based in Grand Rapids and build for the whole of Kent County — Wyoming, Kentwood, Grandville, Walker, East Grand Rapids, Rockford, Byron Center, Caledonia — and across West Michigan from Holland and Grand Haven to Muskegon and Kalamazoo. The build happens over a call and a shared link, so the town changes the local search setup, not the quality of the site.</p>
+        <h3>The build doesn't change</h3>
+        <p>Every site gets the same mobile-first structure, the same tested forms and click-to-call, the same on-page SEO and speed work, whether the business is on Monroe Center or on US-31.</p>
+        <h3>The local setup does</h3>
+        <p>Local rankings lean on three things you control: the Business Profile, the words on the page, and how consistently the business's name, address and phone appear across the web. For a Holland business we write Holland on the page and in the schema, set the Business Profile's service area to Ottawa County, and fix the listings so they agree. A Zeeland business should not have to compete for "Grand Rapids" to be found in Zeeland.</p>
+        <h3>So does the season</h3>
+        <p>Lakeshore and resort businesses do most of a year's selling in a few months. The site has to capture the July visitor who books immediately and the February planner who wants a quote emailed — an intake bot that takes the booking at midnight in July, a quote calculator that qualifies the lead in February. We build both paths, and the care plan keeps the site current between seasons.</p>
+        <h3>Where we work</h3>
+        <p><strong>Grand Rapids and Kent County</strong> — see <a href="/services/custom-website-design-kent-county.html">custom websites for Kent County</a>.</p>
+        <p><strong>Lakeshore</strong> — Holland, Zeeland, Grand Haven, Spring Lake, Muskegon, Norton Shores, Saugatuck.</p>
+        <p><strong>Ottawa County</strong> — Allendale, Hudsonville, Jenison, Coopersville.</p>
+        <p><strong>South and east</strong> — Kalamazoo, Portage, Battle Creek, Hastings, Greenville, Big Rapids.</p>
+        <p>Not listed? If you are in Michigan and reachable by phone, we can build your site.</p>
       </div>
       <div class="related">
         <a href="/services/custom-website-design-kent-county.html">Custom websites for Kent County →</a>
-        <a href="/services/web-design-west-michigan.html">Web design for West Michigan →</a>
-        <a href="/services/web-development-grand-rapids.html">Web development in Grand Rapids →</a>
         <a href="/services/affordable-web-design-grand-rapids.html">Affordable web design: what $999 buys →</a>
       </div>
     </div>
