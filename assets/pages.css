@@ -200,6 +200,15 @@ footer{padding:2rem clamp(1.1rem,4vw,2.4rem);display:flex;flex-wrap:wrap;gap:1re
 footer .fr{display:flex;flex-wrap:wrap;gap:1.2rem;}
 footer a{color:var(--ink-3);text-decoration:none;transition:color .15s;display:inline-flex;align-items:center;min-height:24px;}
 footer a:hover{color:var(--accent-2);}
+/* More from Kerr & Company: the cross-site block, same words on every Kerr site.
+   A full-width row under the footer links; plain followed links, 24px targets
+   from the footer a rule above. */
+footer .kc-more{flex-basis:100%;border-top:1px solid var(--line);padding-top:1rem;}
+footer .kc-more-h{font-size:0.78rem;font-weight:600;color:var(--ink-2);margin:0 0 0.25rem;}
+footer .kc-more ul{list-style:none;display:flex;flex-wrap:wrap;gap:0.3rem 1.5rem;}
+footer .kc-more li{font-size:0.78rem;line-height:1.5;color:var(--ink-3);}
+footer .kc-more a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--line-2);}
+footer .kc-more a:hover{color:var(--ink);text-decoration-color:currentColor;}
 
 /* BUTTON CONTRAST — the same defect as the homepage, on all twenty interior
    pages, in BOTH themes: white label on a white fill, measured ratio 1.05.

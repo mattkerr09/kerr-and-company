@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />
   <title>Page not found — Kerr &amp; Co.</title>
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#07090e">
@@ -19,6 +20,15 @@
     a{display:inline-block;background:#2F63D6;color:#fff;font-weight:600;text-decoration:none;
       padding:0.8rem 1.5rem;border-radius:10px;transition:background .15s;}
     a:hover{background:#8fb4ff;}
+    /* More from Kerr & Company: the cross-site block, same words on every Kerr site.
+       Overrides the button styling the bare a rule above gives every link. */
+    .kc-more{margin-top:3.5rem;font-size:0.82rem;line-height:1.5;color:#8792a8;}
+    .kc-more .kc-more-h{margin:0 auto 0.4rem;font-weight:600;color:#eef2f8;}
+    .kc-more ul{list-style:none;display:grid;gap:0.3rem;}
+    .kc-more a{display:inline-flex;align-items:center;min-height:24px;background:none;color:#eef2f8;
+      font-weight:400;padding:0;border-radius:0;text-decoration:underline;text-underline-offset:2px;
+      text-decoration-color:rgba(238,242,248,0.35);}
+    .kc-more a:hover{background:none;color:#8fb4ff;}
   </style>
   <script async src="https://plausible.io/js/pa-rTFMzfkd1VEI12bit8C_d.js"></script>
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -46,6 +56,15 @@ fbq('init','28202025336060922');fbq('track','PageView');
     <h1>This page <em>shipped off</em> somewhere.</h1>
     <p>The page you're looking for doesn't exist. Let's get you back to the studio.</p>
     <a href="/">← Back to Kerr &amp; Co.</a>
+    <footer class="kc-more">
+      <p class="kc-more-h">More from Kerr &amp; Company</p>
+      <ul>
+        <li><a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac</li>
+        <li><a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac</li>
+        <li><a href="https://docketseo.app/">Docket SEO</a>: website audits that rank what to fix first</li>
+        <li><a href="https://adplaybook.app/">AdPlaybook</a>: ad copy within every platform's limits</li>
+      </ul>
+    </footer>
   </div>
 </body>
 </html>

@@ -1,0 +1,60 @@
+# Built by Kerr
+
+> Built by Kerr (builtbykerr.com) is the web studio of Kerr & Company LLC in Grand Rapids, Michigan: contractor websites, local SEO and custom AI tools for Grand Rapids and West Michigan businesses, from $999, with the price and launch date in writing before you pay anything.
+
+Kerr & Company is Matthew Kerr. The person you talk to is the person who builds the site: there is no account manager and no hourly billing. The work is for West Michigan businesses, and is done remotely for anyone in the United States. Contact: matthew@kerrandcompanyholdings.com, or text (616) 320-1280.
+
+## Websites and prices
+
+- [Pricing: the five packages](https://builtbykerr.com/#packages): Site & Business Audit, $750 one-off, a written report in 3 business days. Starter Site from $999 (1–3 pages), or $149/mo for 12 months, after which the payments stop and the site is yours (stop paying before then and the site comes down, held for 90 days with the buy-out open). Business Site from $2,499 (5–8 pages). Growth Site + Tool from $4,999 (a site plus one custom AI tool). Care Plan from $199/mo (hosting, updates and edits; cancel with 30 days' written notice). Builds are paid 50% to start and 50% on launch, and at the end you own the code, content, domain and accounts.
+- [Free website check](https://builtbykerr.com/#free-check): send your web address and within 2 business days get a short, plain-English read of your site against the three competitors Google shows next to you: tap-to-call, reviews, estimate form, speed, and what to fix first. No call needed, nothing to buy.
+- [Web design in Grand Rapids](https://builtbykerr.com/services/web-design-grand-rapids.html): custom websites built in days, from $999 with a fixed quote; care plans from $199/mo.
+- [Contractor website design](https://builtbykerr.com/services/contractor-website-design-grand-rapids.html): estimate form, click-to-call and a page per service for roofers, HVAC, plumbers and electricians, from $999.
+- [Affordable web design: what $999 buys](https://builtbykerr.com/services/affordable-web-design-grand-rapids.html): a custom three-page site for $999, what it includes and what it does not.
+- [Website maintenance](https://builtbykerr.com/services/website-maintenance-grand-rapids.html): the care plan, from $199/mo, for managed hosting, security, monthly edits and monitoring.
+- [Website redesign](https://builtbykerr.com/services/website-redesign-grand-rapids.html): copy rewritten, URLs kept, from $999; the $750 audit decides whether a redesign is the answer.
+- [App development](https://builtbykerr.com/services/app-development-grand-rapids.html): quote tools, booking tools and intake bots built as web apps alongside your site, from $4,999. Not app-store apps.
+
+## Search, ads and AI
+
+- [SEO in Grand Rapids](https://builtbykerr.com/services/seo-grand-rapids.html): SEO Audit & Roadmap $1,500 one-time; Local SEO + landing pages from $750/mo; Growth SEO from $2,500/mo; SEO + Ads Bundle from $2,500/mo.
+- [Local SEO and Google Business Profile](https://builtbykerr.com/services/local-seo-google-business-profile.html): Profile Tune-Up $750 one-time; Managed Local from $500/mo per location; Local Growth System from $1,200/mo; multi-location priced per location.
+- [Google and Meta ads](https://builtbykerr.com/services/digital-marketing-grand-rapids.html): Campaign Setup $500 one-time; flat management from $750/mo, never a percentage of ad spend; Growth Ads from $1,500/mo. Ad spend is paid directly to Google or Meta.
+- [AI automation](https://builtbykerr.com/services/ai-automation.html): Automation Audit $1,500 one-time; a single automation from $3,500; an automation system from $7,500; managed from $400/mo.
+- [AI consulting](https://builtbykerr.com/services/ai-consulting.html): advisory calls at $250/hour; AI Opportunity Assessment $3,500 fixed; team training from $2,500; advisory retainer from $1,500/mo.
+- [Studio engagements](https://builtbykerr.com/studio.html): AI Build Audit from $3,500; 0→1 Product Sprint from $25,000; Agent & Automation Build from $15,000.
+
+## Articles
+
+- [All articles](https://builtbykerr.com/articles/)
+- [What 39 top-ranked Grand Rapids trade websites have in common](https://builtbykerr.com/articles/what-top-ranked-grand-rapids-trade-websites-have-in-common.html): all 39 use HTTPS, 32 have a tap-to-call link, none has a text link.
+- [What a plumber should pay for a website](https://builtbykerr.com/articles/how-much-should-a-plumber-pay-for-a-website.html): $999 for a 1–3 page site or $2,499 for 5–8 pages, against page-one quotes of $1,000–$15,000 up front plus $150–$547 a month.
+- [Who owns your website and domain](https://builtbykerr.com/articles/who-owns-your-website-and-domain.html): only if the agreement says so; what this studio's agreement hands over, and a ten-minute check for the site you already have.
+- [If your web designer goes out of business](https://builtbykerr.com/articles/what-happens-if-your-web-designer-goes-out-of-business.html): you keep the site only if you already hold seven things; the handover checklist.
+- [How many Google reviews it takes to rank in Grand Rapids](https://builtbykerr.com/articles/how-many-google-reviews-to-rank-in-grand-rapids.html): measured 15 Sep 2026 across four trades, three of the twelve top-three map-pack spots have under 60 reviews and none is rated below 4.4.
+- [Do SEO companies require contracts?](https://builtbykerr.com/articles/do-seo-companies-require-contracts.html): of eight Grand Rapids SEO agency pages read 16 Sep 2026, one states its term, one states a price, six say nothing.
+- [Where to list your business online in Grand Rapids](https://builtbykerr.com/articles/where-to-list-your-business-online-in-grand-rapids.html): twelve free directories and three paid memberships, from 26 signup pages opened 15 Sep 2026.
+- [What website platform contractors use](https://builtbykerr.com/articles/what-website-platform-do-contractors-use.html): of 266 West Michigan trade websites read 23 Sep 2026, 130 run WordPress, 82 a hosted builder, 11 an agency platform, 9 a custom build.
+- [Is it a red flag if a contractor has no website?](https://builtbykerr.com/articles/is-it-a-red-flag-if-a-contractor-has-no-website.html): not by itself; 76 of 384 West Michigan contractor listings name no website. How to check a Michigan contractor's licence instead.
+- [Should a business website block AI crawlers?](https://builtbykerr.com/articles/should-a-small-business-website-block-ai-crawlers.html): no; of the 40 top-ranked Grand Rapids trade sites read 16 Sep 2026, 36 have a robots.txt and none blocks an AI crawler.
+
+## Case studies
+
+- [Case studies](https://builtbykerr.com/case-studies/): campaign write-ups with the spend, the result and the arithmetic.
+- [47 home-tour leads at $3.82 each](https://builtbykerr.com/case-studies/real-estate-ads-3-82-cost-per-lead.html): a Meta lead-form campaign on $179 of ad spend.
+- [Organic Instagram drove two thirds of a store's revenue](https://builtbykerr.com/case-studies/street-outfitters-organic-instagram-ecommerce.html): $11,113 in sales at a 4.08% conversion rate, from an audience grown organically to 15,000.
+
+## About and legal
+
+- [About](https://builtbykerr.com/about.html): who you deal with, how the work runs, and what has been shipped.
+- [Privacy policy](https://builtbykerr.com/legal/privacy.html)
+- [Terms of service](https://builtbykerr.com/legal/terms.html)
+- [Disclaimer](https://builtbykerr.com/legal/disclaimer.html): results, pricing and comparison disclaimers.
+- [Kerr & Company LLC](https://kerrandcompanyholdings.com/): the company record.
+
+## More from Kerr & Company
+
+- [Outlier](https://outlier.host/): private, offline AI for your Mac
+- [Crisp Video](https://crispvideo.app/): restore and upscale video offline on your Mac
+- [Docket SEO](https://docketseo.app/): website audits that rank what to fix first
+- [AdPlaybook](https://adplaybook.app/): ad copy within every platform's limits
