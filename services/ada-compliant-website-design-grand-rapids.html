@@ -175,14 +175,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
 
   <section>
     <div class="wrap">
-      <p class="answer">The Americans with Disabilities Act is a law. Whether a particular website meets it is a legal question about your business, and it is not one a web designer can settle. This page will not pretend otherwise. What a designer can do is build to the published technical guidelines that accessibility is measured against — <strong>WCAG, the Web Content Accessibility Guidelines</strong> — test the things that can be tested, and tell you exactly which ones were tested and which were not. That is what we do, and this page lists it.</p>
+      <p class="answer">The Americans with Disabilities Act is a law. Whether a particular website meets it is a legal question about your business, and it is not one a web designer can settle. This page will not pretend otherwise. What a designer can do is build to the published technical guidelines that accessibility is measured against (<strong>WCAG, the Web Content Accessibility Guidelines</strong>), test the things that can be tested, and tell you exactly which ones were tested and which were not. That is what we do, and this page lists it.</p>
       <div class="fgrid">
         <div class="fcard"><h3>Contrast</h3><p>Text has to be readable against whatever is painted behind it. WCAG's AA level asks for a 4.5:1 ratio on normal text. Light grey on white fails; so does a button whose label happens to match its background in one colour theme.</p></div>
         <div class="fcard"><h3>Tap targets</h3><p>A link or button has to be big enough to hit with a thumb. WCAG 2.5.8 sets a 24 by 24 CSS-pixel minimum. 44 pixels is the comfortable size, and it is what we hold the primary call-to-action and the demonstration builds' controls to.</p></div>
         <div class="fcard"><h3>Keyboard use</h3><p>Everything a mouse can reach, the Tab key can reach, and the focused control visibly changes so the person knows where they are. Focus outlines removed for looks are the usual failure.</p></div>
         <div class="fcard"><h3>Alt text</h3><p>Every meaningful image carries a written description for people who cannot see it and for search engines, which cannot either.</p></div>
         <div class="fcard"><h3>No sideways scrolling</h3><p>At a phone width of 390 pixels nothing is wider than the screen unless it sits in its own scroll container, such as a comparison table. A page that scrolls sideways hides content and buttons off the edge.</p></div>
-        <div class="fcard"><h3>Readable text and less motion</h3><p>Text sizes that do not need pinching, and animation that stops when the reader's device asks for reduced motion — without hiding the content the animation was going to reveal.</p></div>
+        <div class="fcard"><h3>Readable text and less motion</h3><p>Text sizes that do not need pinching, and animation that stops when the reader's device asks for reduced motion, without hiding the content the animation was going to reveal.</p></div>
       </div>
     </div>
   </section>
@@ -193,15 +193,15 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <div class="prose">
         <p>These are automated checks that run against the live site you are reading, builtbykerr.com, and against the three demonstration builds linked from the home page. They are not a promise about someone else's site; they are what we hold our own work to, in public, and the same method is what a client build is scoped against. Each check also plants a deliberate defect and must catch it, because a test that has only ever returned zero is indistinguishable from a test that cannot see.</p>
         <h3>Contrast, measured in both themes</h3>
-        <p>Named text and named buttons — headings, body lines, the payment line, the hero button, the navigation button, the package buttons — are measured against the colour actually painted behind them, walking up through transparent parents to find it, in both the dark theme and the light theme. Anything under 4.5:1 fails. The reason it runs in both themes is that the failure it was written for only showed in one.</p>
+        <p>Named text and named buttons (headings, body lines, the payment line, the hero button, the navigation button, the package buttons) are measured against the colour actually painted behind them, walking up through transparent parents to find it, in both the dark theme and the light theme. Anything under 4.5:1 fails. The reason it runs in both themes is that the failure it was written for only showed in one.</p>
         <h3>Keyboard focus, with real Tab presses</h3>
         <p>The test presses Tab thirty times and records whether each control it lands on changed in any visible way: outline, box shadow, border, background or underline. A planted link with its outline suppressed must be caught, so a real link with the same problem cannot slip past. It uses real key presses rather than scripted focus because the visible-focus style is only guaranteed for keyboard focus, and that is the state a keyboard user is actually in.</p>
         <h3>Reduced motion, without hidden content</h3>
-        <p>The page is loaded with the reduced-motion preference on and deliberately not scrolled. Every element that would normally animate into view must already be visible, and the background animation must be stopped. The specific failure this guards against is honouring the preference by removing the transition while leaving the hidden starting state in place — which makes content permanently invisible to exactly the people who asked for less motion.</p>
+        <p>The page is loaded with the reduced-motion preference on and deliberately not scrolled. Every element that would normally animate into view must already be visible, and the background animation must be stopped. The specific failure this guards against is honouring the preference by removing the transition while leaving the hidden starting state in place, which makes content permanently invisible to exactly the people who asked for less motion.</p>
         <h3>Phone layout at 390 pixels</h3>
         <p>Nothing on the page may be wider than the viewport unless it is inside a container that scrolls on its own, and the page must not scroll sideways. Every link, button, input and select must be at least 24 by 24 CSS pixels unless it sits inline in a sentence, which is the exemption the guideline itself makes. A planted 14-pixel link must be caught.</p>
         <h3>The primary button, at four phone widths</h3>
-        <p>At 320, 375, 390 and 412 pixels — which include the two most common phone widths in the United States — the header's Contact button must sit fully on screen and be at least 44 pixels tall. This exists because a "no sideways scroll" check cannot see a button that has been clipped off the edge by an overflow rule; only measuring the element against the viewport can.</p>
+        <p>At 320, 375, 390 and 412 pixels (which include the two most common phone widths in the United States), the header's Contact button must sit fully on screen and be at least 44 pixels tall. This exists because a "no sideways scroll" check cannot see a button that has been clipped off the edge by an overflow rule; only measuring the element against the viewport can.</p>
         <h3>The demonstration builds, on a phone first</h3>
         <p>Each of the three demonstrations is opened at 390 pixels wide. It must not scroll sideways, every tap target that is not inline text must be at least 44 pixels tall, and the page must load without a JavaScript error. They are checked on a phone first because the first version was verified only on a desktop, and a restaurant's navigation links turned out to be 29 pixels tall on the device most people book a table from.</p>
         <h3>One heading, a title, a description</h3>
@@ -214,7 +214,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
     <div class="wrap">
       <h2 class="section-title">What those tests do not check</h2>
       <div class="prose">
-        <p>Being specific about the gaps is the point of this page. There is no automated check here for whether alt text is any good — the demonstration builds carry written descriptions on their photographs, but that was a person writing them, and no script can tell "a slate roof with dormer windows" from "image". There is no check of the order a screen reader announces things in, of form error messages, of video captions, or of PDFs. And none of this is an audit against the full WCAG list, which runs to dozens of criteria.</p>
+        <p>Being specific about the gaps is the point of this page. There is no automated check here for whether alt text is any good. The demonstration builds carry written descriptions on their photographs, but that was a person writing them, and no script can tell "a slate roof with dormer windows" from "image". There is no check of the order a screen reader announces things in, of form error messages, of video captions, or of PDFs. And none of this is an audit against the full WCAG list, which runs to dozens of criteria.</p>
         <p>If your situation needs a formal audit against WCAG 2.2 at the AA level, that is a separate piece of work, it is agreed in writing before anything starts, and if it needs a specialist rather than a web designer, we will say so instead of taking the job.</p>
       </div>
     </div>
@@ -228,7 +228,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <div class="fcard"><h3>White text on white, and nothing errored</h3><p>Seven style rules pointed at a colour variable that did not exist. An undefined variable does not throw or log; the whole declaration is ignored and the text inherits, which on a light surface is white on white. Three of the seven had been live for weeks. Now every named element's contrast is measured rather than assumed.</p></div>
         <div class="fcard"><h3>Links 17 pixels tall on a phone</h3><p>A row of product links rendered 17 pixels tall at 390 pixels wide, under the 24-pixel minimum. Nothing in the suite could have caught it because nothing in the suite had a layout engine. It was found by hand, and the phone-layout test was written the same day.</p></div>
         <div class="fcard"><h3>A Contact button off the edge of the screen</h3><p>The header's main button rendered 19 pixels past the right edge on a 375-pixel phone while the sideways-scroll check passed, because an overflow rule had hidden the amputation. It was fine at 412 pixels, which is why a one-width check missed it. Now the button is measured against the viewport at four widths.</p></div>
-        <div class="fcard"><h3>A button whose label vanished in one theme</h3><p>A button carried a white label on the accent colour. In the dark theme the accent is near-white, so the label measured 1.05:1. The first contrast list contained only text, and the bug that was reported was a button — which is why buttons are now in the list by name.</p></div>
+        <div class="fcard"><h3>A button whose label vanished in one theme</h3><p>A button carried a white label on the accent colour. In the dark theme the accent is near-white, so the label measured 1.05:1. The first contrast list contained only text, and the bug that was reported was a button, which is why buttons are now in the list by name.</p></div>
       </div>
     </div>
   </section>
@@ -250,7 +250,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <p>Accessibility is not a separate product here, and there is no accessibility surcharge. The packages are the ones on the <a href="/services/web-design-grand-rapids.html#pricing">web design page</a>: a <a href="/services/affordable-web-design-grand-rapids.html">Starter Site from $999</a> (up to three pages, lead form and click-to-call, on-page SEO and Google setup, or $149 a month for twelve months and then it stops), a Business Site from $2,499 (five to eight pages with copywriting, local schema, reviews and analytics), a Growth Site + Tool from $4,999 (everything in Business plus one custom tool), and a care plan from $199 a month for hosting, updates and monitoring. Half to start, half on launch; three revision rounds included; we write the copy; you own everything at the end. Photography and logo design are not included.</p>
         <p>The demonstration builds show how we build and are held to the phone-layout and tap-target checks above. Which checks a client site is held to, and whether any formal audit is part of the scope, is agreed in writing before work starts, because a promise that is not written down is not a promise.</p>
         <h3>For a site you already have</h3>
-        <p>The <strong>Site &amp; Business Audit is $750</strong>, paid once: every page scanned against 190-plus technical, SEO, local and conversion checks, then a person reads your copy, offer and ads, and the whole thing is ranked by impact against effort with the exact fix. It is a written report in three business days and it is yours to keep or hand to any agency. If accessibility is the reason you are here, say so when you book it, and we will tell you before you pay what the report covers on that front and what it does not. The <a href="/services/web-design-grand-rapids.html#development">web development section</a> of the web design page covers the engineering side — speed, forms that arrive, clean markup — which is where most of the accessibility work actually lives.</p>
+        <p>The <strong>Site &amp; Business Audit is $750</strong>, paid once: every page scanned against 190-plus technical, SEO, local and conversion checks, then a person reads your copy, offer and ads, and the whole thing is ranked by impact against effort with the exact fix. It is a written report in three business days and it is yours to keep or hand to any agency. If accessibility is the reason you are here, say so when you book it, and we will tell you before you pay what the report covers on that front and what it does not. The <a href="/services/web-design-grand-rapids.html#development">web development section</a> of the web design page covers the engineering side (speed, forms that arrive, clean markup), which is where most of the accessibility work actually lives.</p>
       </div>
     </div>
   </section>
@@ -305,14 +305,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   <section class="cta-band">
     <div class="wrap">
       <h2>Want the <em>tested</em> version, not the badge?</h2>
-      <p>Send me your site and tell me who it is failing. I'll tell you what it does now on contrast, tap targets and keyboard use, and what it would take to fix — and I'll say plainly which questions need a lawyer instead of me.</p>
+      <p>Send me your site and tell me who it is failing. I'll tell you what it does now on contrast, tap targets and keyboard use, and what it would take to fix, and I'll say plainly which questions need a lawyer instead of me.</p>
       <div class="cta-actions">
         <a href="https://calendly.com/admin-kerrandcompanyholdings/30min" class="btn btn-primary" target="_blank" rel="noopener">Book a 20-minute call</a>
         <a href="sms:+16163201280" class="btn btn-ghost">Text me</a>
         <a href="/#free-check" class="btn btn-ghost">Free website check</a>
       </div>
       <div class="contact-line"><a href="mailto:matthew@kerrandcompanyholdings.com">matthew@kerrandcompanyholdings.com</a></div>
-      <div class="promise">Matthew replies personally — within one business day.</div>
+      <div class="promise">Matthew replies personally, within one business day.</div>
     </div>
   </section>
 
