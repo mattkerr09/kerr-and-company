@@ -870,6 +870,19 @@
     .proof-s a:hover { color:var(--ink-2); }
     @media (max-width:700px){ .proof-i{border-right:0;border-bottom:1px solid var(--line)}
       .proof-i:last-child{border-bottom:0} }
+    /* "We do this for our own products first" (2026-10-09), under #services. Matthew: "only
+       highlight the good sites with good numbers, never put anything on there that looks bad".
+       The strip above was retired with the rule that only first-party measured figures go in
+       display type; these are exactly that: Outlier's own Search Console and Plausible numbers,
+       each with its source and dates beside it, gated in ~/ops/facts.tsv. */
+    .own-first { margin-top: var(--s10); }
+    .own-first h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 3.2vw, 2rem);
+      letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); margin: 0; }
+    .own-first > p { font-size: 1rem; color: var(--ink-3); line-height: 1.7; margin: var(--s3) 0 0; max-width: 720px; }
+    .own-first .proof-strip { margin: var(--s6) 0 var(--s5); }
+    .own-first .own-close { color: var(--ink-2); }
+    .own-first .own-close strong { color: var(--ink); font-weight: 600; }
+    .own-first .own-close a { color: var(--accent-2); font-weight: 600; text-decoration: none; white-space: nowrap; }
 
     /* ── SERVICE GLYPHS ────────────────────────────────────────────────────
        #services measured 961px, 258 words, ZERO media and ZERO interaction —
@@ -2891,6 +2904,19 @@
         </a>
       </div>
       <p class="svc-more reveal" style="margin-top:1.1rem;font-size:0.88rem;color:var(--ink-3);">Also: <a href="/services/web-design-grand-rapids.html#development">web development in Grand Rapids</a> · <a href="/services/custom-website-design-kent-county.html">custom websites for Kent County</a> · <a href="/services/web-design-grand-rapids.html#west-michigan">web design for West Michigan</a> · <a href="/services/affordable-web-design-grand-rapids.html">what a $999 site includes</a></p>
+      <!-- Outlier's own search numbers, read 2026-10-09 from Search Console (admin@) and Plausible.
+           ~/ops/bin/gsc-total.py reproduces each figure for the dates printed under it. -->
+      <div class="own-first reveal">
+        <h3>We do this for our own products first</h3>
+        <p>Outlier, our Mac app, launched in 2026. We grew its Google search from zero with no ad spend.</p>
+        <div class="proof-strip">
+          <div class="proof-i"><p class="proof-n">39,000+</p><p class="proof-l">Google impressions</p><p class="proof-s">Search Console, 21 May to 6 Oct 2026</p></div>
+          <div class="proof-i"><p class="proof-n">270+</p><p class="proof-l">Google clicks</p><p class="proof-s">Search Console, 21 May to 6 Oct 2026</p></div>
+          <div class="proof-i"><p class="proof-n">+79%</p><p class="proof-l">Clicks in the latest 28 days against the 28 before</p><p class="proof-s">Search Console, 10 Sep to 7 Oct 2026</p></div>
+          <div class="proof-i"><p class="proof-n">ChatGPT</p><p class="proof-l">Its third-largest source of visitors, after direct visits and Google</p><p class="proof-s">Plausible, 1 Jul to 8 Oct 2026</p></div>
+        </div>
+        <p class="own-close"><strong>The same work goes into your site.</strong> <a href="/services/seo-grand-rapids.html">SEO in Grand Rapids →</a></p>
+      </div>
     </div>
   </section>
 
