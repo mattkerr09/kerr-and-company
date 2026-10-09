@@ -2513,6 +2513,84 @@
       #kc-agent-toggle .kc-agent-label { display: none; }
     }
 
+    /* ── A LITTLE MORE ALIVE, 2026-10-09 ────────────────────────────────────
+       Matthew: "honestly bookbreaker looks great, make every site just a little
+       bit better". Five touches taken from bookbreaker.bet, kept light and warm:
+       a glow from the top of the hero, the gradient on the headline's key words,
+       buttons that glow, cards that lift into a warm ring, and a frosted nav that
+       also frosts on older iPhones. Nothing new moves: the card lift is the
+       existing one, which reduced motion already turns off. Contrast measured over the
+       strongest part of the glow: body text keeps AA, and the key words stay at
+       4.2:1 or better (large text needs 3). */
+
+    /* 1. Glow from the top of the hero. A pseudo-element, because
+          `body > header` has its background-image forced to none above. */
+    .hero::before { content: ""; position: absolute; z-index: 0; pointer-events: none;
+      left: 0; right: 0; top: 0; height: min(680px, 100%);
+      background:
+        radial-gradient(60% 55% at 34% 0%, rgba(245,184,65,.20), transparent 70%),
+        radial-gradient(35% 40% at 88% 8%, rgba(217,154,43,.08), transparent 70%); }
+    :root:not([data-theme="light"]) .hero::before {
+      background:
+        radial-gradient(60% 55% at 34% 0%, rgba(245,184,65,.14), transparent 70%),
+        radial-gradient(35% 40% at 88% 8%, rgba(217,154,43,.06), transparent 70%); }
+
+    /* 2. The key words: rust, amber, gold instead of three near-identical
+          browns. Every stop is 4.2:1 or better on the glow. */
+    :root[data-theme="light"]       { --kw-1: #9A3412; --kw-2: #B45309; --kw-3: #A16207; }
+    :root:not([data-theme="light"]) { --kw-1: #FFE9B8; --kw-2: #FFD166; --kw-3: #F5B841; }
+    .hero h1 em { background-image:
+      linear-gradient(100deg, var(--kw-1) 0%, var(--kw-2) 48%, var(--kw-3) 100%); }
+
+    /* 3. Primary buttons: a top-lit fill, a 1px inset highlight and a soft
+          amber glow. background-color is left alone so the contrast suite
+          still reads the solid fill under the label. */
+    :root[data-theme="light"] .btn-primary,
+    :root[data-theme="light"] .nav-cta,
+    :root[data-theme="light"] .pkg .pkg-cta.solid,
+    :root[data-theme="light"] .cform button[type="submit"] {
+      background-image: linear-gradient(180deg, #2E2A23 0%, #111114 100%) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22),
+                  0 10px 34px -10px rgba(217,154,43,.55) !important; }
+    :root[data-theme="light"] .btn-primary:hover,
+    :root[data-theme="light"] .nav-cta:hover,
+    :root[data-theme="light"] .pkg .pkg-cta.solid:hover,
+    :root[data-theme="light"] .cform button[type="submit"]:hover {
+      background-image: linear-gradient(180deg, #24211B 0%, #000 100%) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.26),
+                  0 14px 40px -10px rgba(217,154,43,.72) !important; }
+    :root:not([data-theme="light"]) .btn-primary,
+    :root:not([data-theme="light"]) .nav-cta,
+    :root:not([data-theme="light"]) .pkg .pkg-cta.solid,
+    :root:not([data-theme="light"]) .cform button[type="submit"] {
+      background-image: linear-gradient(180deg, #FFFFFF 0%, #ECE9E1 100%) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7),
+                  0 10px 34px -10px rgba(245,184,65,.5) !important; }
+    :root:not([data-theme="light"]) .btn-primary:hover,
+    :root:not([data-theme="light"]) .nav-cta:hover,
+    :root:not([data-theme="light"]) .pkg .pkg-cta.solid:hover,
+    :root:not([data-theme="light"]) .cform button[type="submit"]:hover {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7),
+                  0 14px 40px -10px rgba(245,184,65,.7) !important; }
+
+    /* 4. Cards: the existing lift, now into a warm glow ring instead of a grey
+          drop shadow, and the featured package gets a glow at its top edge.
+          The "Why us" cards stay as they are: their grid staggers in, and
+          `.js .stagger.in > *` owns their transform and transition. */
+    .svc:hover, .pkg:hover, .card:hover, .frag:hover, .fit-card:hover {
+      border-color: color-mix(in srgb, var(--a2) 45%, transparent) !important;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--a2) 14%, transparent),
+                  0 30px 80px -30px color-mix(in srgb, var(--a3) 45%, transparent) !important; }
+    .pkg.feature { background-image:
+      radial-gradient(80% 45% at 50% 0%, color-mix(in srgb, var(--a2) 12%, transparent), transparent 70%);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--a2) 22%, transparent),
+                  0 30px 80px -30px color-mix(in srgb, var(--a3) 50%, transparent); }
+
+    /* 5. Frosted nav. It was blur only, and unprefixed, which Safari before 18
+          ignores: on those iPhones the bar was flat translucent paper. */
+    body > nav { -webkit-backdrop-filter: saturate(1.4) blur(18px);
+                 backdrop-filter: saturate(1.4) blur(18px); }
+
 </style>
   <!-- No-flash theme: set before paint. Same pattern as matthewkerr.dev, which is the
        only site in this portfolio that already had one. Reading localStorage and stamping
@@ -3667,6 +3745,7 @@
         <li><a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac</li>
         <li><a href="https://docketseo.app/">Docket SEO</a>: website audits that rank what to fix first</li>
         <li><a href="https://adplaybook.app/">AdPlaybook</a>: ad copy within every platform's limits</li>
+        <li><a href="https://bookbreaker.bet/">BookBreaker</a>: free arbitrage and +EV betting app for Mac</li>
       </ul>
     </div>
   </footer>

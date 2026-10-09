@@ -279,3 +279,29 @@ button[type="submit"]:hover, .cta-primary:hover {
   border-radius: 999px; background: var(--accent-2, #7c9cff); color: #0b0b0d;
   font-weight: 600; text-decoration: none; font-size: .9rem; }
 .quote-note { font-size: .8rem; opacity: .6; line-height: 1.55; margin: 1rem 0 0; }
+
+/* ── A LITTLE MORE ALIVE, 2026-10-09 ──────────────────────────────────────────
+   The homepage's touches from bookbreaker.bet, on the pages that link this file:
+   a soft amber glow from the top of the page, buttons with a top-lit fill and a
+   glow, cards that lift into a warm ring, and a nav that frosts on older iPhones
+   too. The glow peaks at 10% so the breadcrumb (--ink-4) keeps 5.2:1 under it.
+   background-color is untouched on the buttons, so the contrast checks still
+   read the solid fill under each label. */
+body::before{content:"";position:absolute;z-index:-1;pointer-events:none;left:0;right:0;top:0;height:640px;
+  background:radial-gradient(60% 55% at 30% 0%,rgba(245,184,65,.10),transparent 70%),
+             radial-gradient(35% 40% at 88% 8%,rgba(217,154,43,.05),transparent 70%);}
+nav{-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);}
+:root:not([data-theme="light"]) :is(.btn-primary,.nav-cta,.pkg-cta.solid,.cta-primary){
+  background-image:linear-gradient(180deg,#FFFFFF 0%,#ECE9E1 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 10px 34px -10px rgba(245,184,65,.5)!important;}
+:root:not([data-theme="light"]) :is(.btn-primary,.nav-cta,.pkg-cta.solid,.cta-primary):hover{
+  background-image:linear-gradient(180deg,#FFFFFF 0%,#F4F2EC 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 14px 40px -10px rgba(245,184,65,.7)!important;}
+.fcard,.why-item,.step,.pkg{transition:transform .22s cubic-bezier(.2,.7,.3,1),
+  box-shadow .22s cubic-bezier(.2,.7,.3,1),border-color .22s ease;}
+.fcard:hover,.why-item:hover,.step:hover{transform:translateY(-2px);}
+.fcard:hover,.why-item:hover,.step:hover,.pkg:hover{border-color:rgba(245,184,65,.38);
+  box-shadow:0 0 0 1px rgba(245,184,65,.12),0 30px 80px -30px rgba(245,184,65,.42);}
+@media (prefers-reduced-motion:reduce){
+  .fcard,.why-item,.step,.pkg{transition:none;}
+  .fcard:hover,.why-item:hover,.step:hover,.pkg:hover{transform:none;}}
