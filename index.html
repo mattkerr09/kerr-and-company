@@ -2457,6 +2457,23 @@
     .hero-proofline { margin: var(--s5) 0 0; font-size: 0.88rem; line-height: 1.6;
       color: var(--ink-3); letter-spacing: -0.005em; }
 
+    /* OUR GUARANTEE IN THE FIRST SCREEN, 2026-10-14 (Matthew approved the three
+       promises as worded). The band is the existing .guarantee: tint, border,
+       radius and type all come from it. This only lays out what is inside:
+       one column on a phone, three across from 800px. No new colour, no new font. */
+    .hero-guarantee { display: block; margin-top: var(--s6); }
+    .hero-guarantee .eyebrow { margin-bottom: var(--s3); }
+    .hero-guarantee-list { display: grid; gap: var(--s4); grid-template-columns: minmax(0, 1fr); }
+    @media (min-width: 800px) {
+      .hero-guarantee-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6); }
+    }
+    .hero-guarantee-list strong { display: block; margin-bottom: var(--s1); }
+    .hero-guarantee-list p { text-wrap: pretty; }
+    .hero-guarantee .hero-guarantee-price { margin-top: var(--s4); padding-top: var(--s4);
+      border-top: 1px solid var(--line-2); }
+    .hero-guarantee .hero-guarantee-price a { color: var(--ink); font-weight: 600;
+      text-underline-offset: 3px; }
+
     /* SHOWCASE: THE ROOFING DEMO, LABELLED ON ITS OWN CHROME. It replaced the
        Docket recording, which still showed "97 checks · $199 once" after Docket
        moved to 99 checks and $349. The label sits in the browser bar rather
@@ -2741,6 +2758,20 @@
           <a href="#free-check" class="btn btn-ghost">Free website check</a>
         </div>
         <p class="hero-proofline">Fixed price in writing · Live in days, not months · The domain is yours</p>
+        <!-- OUR GUARANTEE, 2026-10-14. The three promises as Matthew approved them. Each one is
+             already published: the rework line in the packages guarantee, the written date in
+             the hero subhead and the terms grid, the refund in section 8 of
+             legal/agreements/project-agreement.md and on the service pages. The price line
+             repeats the two package prices from the cards below and links to them. -->
+        <div class="guarantee hero-guarantee" role="group" aria-labelledby="guarantee-h">
+          <div class="eyebrow" id="guarantee-h">Our guarantee</div>
+          <div class="hero-guarantee-list">
+            <p><strong>Rework until you sign off.</strong> I rework the first deliverable until you approve it.</p>
+            <p><strong>A launch date in writing.</strong> The date and price are in writing before you pay.</p>
+            <p><strong>A full refund before work starts.</strong> Cancel before I start and your deposit comes back.</p>
+          </div>
+          <p class="hero-guarantee-price">Starter Site from $999, Business Site from $2,499. <a href="#packages">See pricing</a>, <a href="#quote">price it yourself</a>, or see <a href="/services/contractor-website-design-grand-rapids.html#pricing">which package fits a contractor</a>.</p>
+        </div>
       </div>
 
       <!-- The fold had no evidence in it. Cursor, Warp and Linear all give most of the first
