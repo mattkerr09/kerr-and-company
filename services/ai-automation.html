@@ -52,12 +52,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -94,7 +98,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <p class="answer">The automations that make small businesses the most money are usually the <strong>boring ones</strong>: answering the calls you miss, asking every customer for a review, and getting new leads to your phone in seconds instead of hours. We build them custom, connected to the tools you already use.</p>
       <div class="fgrid">
         <div class="fcard"><h3>Missed-call-to-text</h3><p>Every missed call gets an instant text back so the customer doesn't just call your competitor next.</p></div>
-        <div class="fcard"><h3>Automated reviews</h3><p>Texts customers after each job, routes happy ones to Google and unhappy ones to you privately first.</p></div>
+        <div class="fcard"><h3>Automated reviews</h3><p>Texts every customer after each job and asks for a Google review with one link. A private feedback form sits beside the review link, never in place of it.</p></div>
         <div class="fcard"><h3>Instant quotes &amp; intake</h3><p>A smart form or AI assistant that qualifies leads and gives ballpark pricing while they're still interested.</p></div>
         <div class="fcard"><h3>Lead routing</h3><p>New leads texted to the right person in seconds. Speed-to-lead is the single biggest lever on close rate.</p></div>
         <div class="fcard"><h3>Live dashboards</h3><p>Rankings, calls, reviews, and ad results in one screen instead of five logins and a spreadsheet.</p></div>
@@ -108,7 +112,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <h2 class="section-title">Why us for this</h2>
       <div class="prose">
         <p>Most "AI agencies" formed last year and resell someone else's chatbot. We build and ship our own AI products: a <strong>notarized macOS app with a paying customer</strong> (3 provisional patents filed), <strong>four paid Mac apps in production</strong>, and <strong>Jarvis Factory</strong>, an automation engine that orchestrates AI agents to build software.</p>
-        <p>That means two things for you: we can build things that don't exist off the shelf, and we ship them fast. We once took a product and its entire marketing site from idea to live <strong>in two days</strong>.</p>
+        <p>That means two things for you: we can build things that don't exist off the shelf, and we ship them fast. Crisp, one of our own apps, had a first working version in <strong>about a week</strong> and its first sale in September.</p>
       </div>
     </div>
   </section>
@@ -241,13 +245,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="/about.html">Founder</a>
     </div>

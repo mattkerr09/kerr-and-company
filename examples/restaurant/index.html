@@ -12,6 +12,9 @@
      them. Covered by the existing privacy policy, which discloses the
      pixel for "this Site" — these pages are on it. -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
@@ -19,6 +22,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');
 fbq('track','PageView');
+}
 </script>
 
 <script type="application/ld+json">
@@ -195,7 +199,8 @@ fbq('track','PageView');
 <footer><div class="wrap">
   <p><strong>Verde &amp; Co.</strong> is fictional. This page is a demonstration build by
   <a href="/">Kerr &amp; Company</a>, Grand Rapids. Sites like this start at $999.
-  <a href="/#services">See pricing &rarr;</a></p>
+  <a href="/#services">See pricing &rarr;</a>
+  <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a></p>
 </div></footer>
 <script>
 /* Six different menus, because "the menu changes when the produce does" is the

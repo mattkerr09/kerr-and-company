@@ -136,12 +136,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -228,7 +232,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <h2 class="section-title">Google Business Profile: where most restaurant clicks come from</h2>
       <div class="prose">
         <p>When someone searches for a restaurant near them, or for a kind of food plus "Grand Rapids", the businesses in the map pack are the ones that get the taps. That listing is your Google Business Profile, and it shows your hours, your photographs, your reviews, a menu link and a reservation link before the person has opened your site at all. The <a href="/services/local-seo-google-business-profile.html">local SEO page</a> explains what drives that ranking (the right category, completeness, review volume, consistent listings and activity) and that it is not how good the website looks.</p>
-        <p>Two consequences for the site. First, every build here includes Google setup: the profile is set up or corrected so it points at the site, and the hours, address and phone on the site match the ones on the profile. Inconsistent name, address and phone data across listings is one of the boring, fixable reasons local businesses lose search traffic. Second, reviews are the thing most likely to move the ranking, and the site cannot generate them. The local SEO page describes a review system that messages customers after a visit and routes happy ones to Google and unhappy ones to you privately first. That work is separate from the site: a one-time Profile Tune-Up is $750 and ongoing management starts at $500 a month per location, both on that page.</p>
+        <p>Two consequences for the site. First, every build here includes Google setup: the profile is set up or corrected so it points at the site, and the hours, address and phone on the site match the ones on the profile. Inconsistent name, address and phone data across listings is one of the boring, fixable reasons local businesses lose search traffic. Second, reviews are the thing most likely to move the ranking, and the site cannot generate them. The local SEO page describes a review system that messages every customer after a visit and asks for a Google review with one link, with a private feedback form beside it. That work is separate from the site: a one-time Profile Tune-Up is $750 and ongoing management starts at $500 a month per location, both on that page.</p>
       </div>
     </div>
   </section>
@@ -248,7 +252,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <h3>Care Plan, from $199 a month</h3>
         <p>Managed hosting and security, monthly edits and updates, uptime and performance monitoring. For a restaurant the monthly edits are the point: a new menu, a price change, the holiday hours. Optional; the <a href="/services/website-maintenance-grand-rapids.html">website maintenance page</a> lists what it covers and what it does not.</p>
         <h3>On every project</h3>
-        <p>We write the copy; you do not hand us finished text and hope. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. A fixed price and a date in writing before you commit, and no hourly meter. You own all of it at the end: code, content, domain, accounts. Cancellation before work starts is a full refund of the deposit; after work starts you pay only for work done. <a href="/articles/what-grand-rapids-agencies-charge.html">What Grand Rapids web designers charge</a> puts these prices against published local rates.</p>
+        <p>We write the copy; you do not hand us finished text and hope. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. A fixed price and a date in writing before you commit, and website work is never billed by the hour. You own all of it at the end: code, content, domain, accounts. Cancellation before work starts is a full refund of the deposit; after work starts you pay only for work done. <a href="/articles/what-grand-rapids-agencies-charge.html">What Grand Rapids web designers charge</a> puts these prices against published local rates.</p>
         <h3>Not included</h3>
         <p>Photography and logo design; your domain and third-party fees, which for a restaurant means the reservation, ordering or delivery service and any paid app you ask us to connect; hosting after launch unless you take a care plan, though a static site can be handed to you to host free; and regulated copy that needs a specialist to sign off.</p>
       </div>
@@ -325,13 +329,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="/about.html">Founder</a>
     </div>

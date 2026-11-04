@@ -13,6 +13,10 @@
 .article em{color:var(--accent-2);font-style:italic;}
 .article a{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
 .article a:hover{color:var(--ink);}
+/* Long source URLs (link text) and code samples wrap instead of pushing the page
+   sideways on a phone. Seven articles scrolled sideways at 375px (2026-11-04). */
+.article a,.article code{overflow-wrap:anywhere;}
+.article pre{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;}
 .article ul,.article ol{margin:0 0 1.1rem 1.3rem;color:var(--ink-2);}
 .article li{margin-bottom:0.5rem;line-height:1.7;}
 .article li::marker{color:var(--accent);}

@@ -57,12 +57,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -159,7 +163,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
 
     <p><strong>There is no agency around me.</strong> No project manager, no account manager, no sales team, no office. You talk to the person building the thing. That removes most of the cost structure described above, and it is the single largest factor.</p>
 
-    <p><strong>I build unusually fast.</strong> I ship AI products for a living: I built one, Crisp, along with its full marketing site in two days. A five-page service site is a smaller job than my normal work, and <a href="/articles/how-long-should-a-website-take.html">the honest production time is two to five days</a>, not eight weeks.</p>
+    <p><strong>I build unusually fast.</strong> I ship AI products for a living: Crisp, one of mine, had a first working version in about a week and its first sale in September. A five-page service site is a smaller job than my normal work, and <a href="/articles/how-long-should-a-website-take.html">the honest production time is two to five days</a>, not eight weeks.</p>
 
     <p><strong>I use AI for the mechanical parts.</strong> Boilerplate, responsive edge cases, schema markup, meta descriptions, alt text. That is a genuine multiplier, and it would be odd for someone who builds AI tools to pretend otherwise.</p>
 
@@ -255,13 +259,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/articles/">Articles</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
     </div>
     <div class="kc-more">

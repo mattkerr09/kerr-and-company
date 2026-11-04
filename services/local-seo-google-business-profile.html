@@ -36,7 +36,7 @@
       { "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "How much does Google Business Profile management cost?", "acceptedAnswer": { "@type": "Answer", "text": "Managed service runs $500–$1,200/month depending on review automation and number of locations. That covers profile optimization, weekly posts, review generation and responses, citation cleanup, and monthly rank reporting." } },
         { "@type": "Question", "name": "How do I show up in the map pack?", "acceptedAnswer": { "@type": "Answer", "text": "It's driven mostly by your Google Business Profile: the right primary category, complete accurate info, consistent name/address/phone across the web, steady review volume and responses, photos, and regular posts, reinforced by a local page on your site." } },
-        { "@type": "Question", "name": "Can you automate getting more reviews?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we build a system that texts or emails customers after a job, routes happy customers to your Google link, and sends unhappy ones to a private inbox first so you can fix it. Higher-rated businesses get meaningfully more calls." } },
+        { "@type": "Question", "name": "Can you automate getting more reviews?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We build a system that texts or emails every customer after a job and asks for a Google review with one link. A private feedback form sits beside the review link for anyone who would rather tell you directly, never in place of it. We ask everyone and do not filter who gets the link, because Google does not allow it. Higher-rated businesses get meaningfully more calls." } },
         { "@type": "Question", "name": "Does my business qualify for a profile?", "acceptedAnswer": { "@type": "Answer", "text": "You qualify if you have in-person customer contact: a storefront, or a service-area business that travels to customers. Fully online businesses generally don't, and I'll tell you honestly if local SEO isn't the right spend for you." } } ] }
     ]
   }
@@ -52,12 +52,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -94,7 +98,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <p class="answer">When someone searches "plumber near me" or "roofer in Grand Rapids," the <strong>three businesses in the map pack get the calls</strong>. That ranking is driven mostly by your Google Business Profile (categories, completeness, review volume, consistent listings, and activity), not by how pretty your website is. Most local businesses have never optimized any of it.</p>
       <div class="fgrid">
         <div class="fcard"><h3>Profile optimization</h3><p>Right primary category, services, attributes, hours, photos, and a keyword-rich description, the highest-impact local ranking factors.</p></div>
-        <div class="fcard"><h3>Automated reviews</h3><p>A custom system texts customers after a job, routes happy ones to Google and unhappy ones to you privately first.</p></div>
+        <div class="fcard"><h3>Automated reviews</h3><p>A custom system texts every customer after a job and asks for a Google review with one link. A private feedback form sits beside the review link, never in place of it.</p></div>
         <div class="fcard"><h3>Citations &amp; NAP</h3><p>Consistent name, address, and phone across the directories that matter, plus cleanup of duplicate or closed listings.</p></div>
         <div class="fcard"><h3>Live rank tracking</h3><p>A dashboard showing your map rankings, calls, direction requests, and review growth, not a PDF of vanity metrics.</p></div>
       </div>
@@ -157,7 +161,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <div class="faq-list">
         <div class="faq-item"><h3>How much does Google Business Profile management cost?</h3><p>Managed service runs <strong>$500–$1,200/month</strong> depending on review automation and number of locations. That covers profile optimization, weekly posts, review generation and responses, citation cleanup, and monthly rank reporting.</p></div>
         <div class="faq-item"><h3>How do I show up in the map pack?</h3><p>It's driven mostly by your Google Business Profile: the right <strong>primary category</strong>, complete accurate info, consistent name/address/phone across the web, steady <strong>review volume</strong> and responses, photos, and regular posts, reinforced by a local page on your site.</p></div>
-        <div class="faq-item"><h3>Can you automate getting more reviews?</h3><p>Yes, we build a system that texts or emails customers after a job, routes happy customers to your Google link, and sends unhappy ones to a private inbox first so you can fix it. Higher-rated businesses get meaningfully more calls.</p></div>
+        <div class="faq-item"><h3>Can you automate getting more reviews?</h3><p>Yes. We build a system that texts or emails every customer after a job and asks for a Google review with one link. A private feedback form sits beside the review link for anyone who would rather tell you directly, never in place of it. We ask everyone and do not filter who gets the link, because Google does not allow it. Higher-rated businesses get meaningfully more calls.</p></div>
         <div class="faq-item"><h3>Does my business qualify for a profile?</h3><p>You qualify if you have in-person customer contact: a storefront, or a service-area business that travels to customers. Fully online businesses generally don't, and I'll tell you honestly if local SEO isn't the right spend for you.</p></div>
       </div>
     </div>
@@ -169,7 +173,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <p class="section-intro">The map pack is the cheapest high-intent traffic a local business can get. Most providers manage it with a checklist; we build you a system.</p>
       <div class="why">
         <div class="why-item"><h3>Below premium managed pricing</h3><p>Premium managed local SEO commonly runs <strong>$799–$1,299 per location</strong>. Ours starts at <strong>$500</strong> with the same core work.</p></div>
-        <div class="why-item"><h3><span>⭐</span> Reviews on autopilot</h3><p>We build an automated request system: texts customers after a job, routes happy ones to Google and unhappy ones to you privately first.</p></div>
+        <div class="why-item"><h3><span>⭐</span> Reviews on autopilot</h3><p>We build an automated request system: it texts every customer after a job and asks for a Google review with one link, with a private feedback form beside the link, never in place of it.</p></div>
         <div class="why-item"><h3>Weekly activity, not set-and-forget</h3><p>Posts, Q&amp;A monitoring, and photo updates every week. Profile activity is a ranking signal most providers quietly skip.</p></div>
         <div class="why-item"><h3>We clean up the mess</h3><p>Duplicate listings, "permanently closed" ghosts, and mismatched phone numbers quietly kill rankings. We find and fix them.</p></div>
         <div class="why-item"><h3>Calls, not "impressions"</h3><p>Reporting tracks map rankings, calls, and direction requests, the things that turn into revenue.</p></div>
@@ -229,13 +233,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="/about.html">Founder</a>
     </div>

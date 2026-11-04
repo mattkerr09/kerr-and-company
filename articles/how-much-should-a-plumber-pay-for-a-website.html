@@ -59,12 +59,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -190,7 +194,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <li><strong>Hosting after launch.</strong> Not included unless you take the Care Plan at $199/mo, which covers managed hosting and security, monthly edits and updates, and uptime and performance monitoring. If you would rather not pay monthly, a static site can be handed to you to host for free.</li>
     </ul>
 
-    <p>What is in the price, on every project: I write the copy, three rounds of revisions are included, 50% to start and 50% at launch, a fixed price and a date in writing before you commit, no hourly meter, and you own all of it at the end: the code, the content, the domain, the accounts. If you cancel before work starts the deposit comes back in full; after work starts you pay only for work done. That is section 8 of the signed project agreement, not a promise on a web page.</p>
+    <p>What is in the price, on every project: I write the copy, three rounds of revisions are included, 50% to start and 50% at launch, a fixed price and a date in writing before you commit, no hourly billing for the website, and you own all of it at the end: the code, the content, the domain, the accounts. If you cancel before work starts the deposit comes back in full; after work starts you pay only for work done. That is section 8 of the signed project agreement, not a promise on a web page.</p>
 
     <div class="callout">
       <span class="clabel">About these prices</span>
@@ -260,18 +264,19 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <h2>Want the number for <em>your</em> site?</h2>
       <p>Send me your current site or Google listing and the list of services you want to rank for. I'll reply with a fixed price and a date, in writing.</p>
       <div class="contact-line"><a href="mailto:matthew@kerrandcompanyholdings.com">matthew@kerrandcompanyholdings.com</a></div>
-      <p class="promise">No hourly meter, no lock-in. Cancel before work starts and the deposit comes back in full.</p>
+      <p class="promise">Fixed price, no lock-in. Cancel before work starts and the deposit comes back in full.</p>
     </div>
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/articles/">Articles</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
     </div>
     <div class="kc-more">

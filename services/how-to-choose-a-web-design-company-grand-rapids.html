@@ -136,12 +136,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -244,7 +248,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <h3>Who writes the copy? We do.</h3>
         <p>One recorded twenty-minute call, and we write the whole site from it and from what you already have: your old site, your Google Business Profile, your reviews and listings. You correct a draft rather than write from nothing, by clicking on the draft and typing. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. This is the reason our projects do not stall on content, and it is in the terms on every project, whatever the size.</p>
         <h3>Fixed price or hourly? Fixed, published, in writing.</h3>
-        <p>The prices are on the <a href="/services/web-design-grand-rapids.html#pricing">web design page</a> before you call: a Starter Site from $999, a Business Site from $2,499, a Growth Site with one custom tool from $4,999, and a Care Plan from $199 a month. 50% to start and 50% on launch, negotiable on larger builds. The Starter Site can instead be paid as $149 a month for twelve months, after which the payments stop and the site is yours. A fixed price and a date go in writing before you commit, and there is no hourly meter. The <a href="/services/affordable-web-design-grand-rapids.html">affordable web design page</a> goes through what the cheapest package does and does not include, and if you are not sure what you need, the <a href="/#packages">Site &amp; Business Audit</a>, $750, is a written report in three business days that is yours to hand to any agency.</p>
+        <p>The prices are on the <a href="/services/web-design-grand-rapids.html#pricing">web design page</a> before you call: a Starter Site from $999, a Business Site from $2,499, a Growth Site with one custom tool from $4,999, and a Care Plan from $199 a month. 50% to start and 50% on launch, negotiable on larger builds. The Starter Site can instead be paid as $149 a month for twelve months, after which the payments stop and the site is yours. A fixed price and a date go in writing before you commit, and website work is never billed by the hour. The <a href="/services/affordable-web-design-grand-rapids.html">affordable web design page</a> goes through what the cheapest package does and does not include, and if you are not sure what you need, the <a href="/#packages">Site &amp; Business Audit</a>, $750, is a written report in three business days that is yours to hand to any agency.</p>
         <h3>Who owns it? You, from day one.</h3>
         <p>Domain, hosting, code, content and every login are registered in your name from the start, not transferred at the end. If you leave, you keep all of it and we help you move. A static site can be handed to you to host free.</p>
         <h3>What if it stalls? The agreement says.</h3>
@@ -327,13 +331,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="/about.html">Founder</a>
     </div>

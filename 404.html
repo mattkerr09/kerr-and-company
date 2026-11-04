@@ -29,6 +29,7 @@
       font-weight:400;padding:0;border-radius:0;text-decoration:underline;text-underline-offset:2px;
       text-decoration-color:rgba(238,242,248,0.35);}
     .kc-more a:hover{background:none;color:#8fb4ff;}
+    .kc-more .kc-more-legal{margin:0.5rem auto 0;}
   </style>
   <script async src="https://plausible.io/js/pa-rTFMzfkd1VEI12bit8C_d.js"></script>
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -41,12 +42,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -58,6 +63,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
     <a href="/">← Back to Kerr &amp; Co.</a>
     <footer class="kc-more">
       <p class="kc-more-h">Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
+      <p class="kc-more-legal"><a href="/legal/privacy.html">Privacy</a> &middot; <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a></p>
     </footer>
   </div>
 </body>

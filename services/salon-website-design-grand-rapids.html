@@ -136,12 +136,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -227,7 +231,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
       <h2 class="section-title">Business Profile and reviews</h2>
       <div class="prose">
         <p>When someone searches "salon near me" or "barber Grand Rapids", the three businesses in the map pack get the taps. That listing is your Google Business Profile, and it shows your hours, photographs, reviews and booking link before your site has loaded. The <a href="/services/local-seo-google-business-profile.html">local SEO page</a> explains that the ranking is driven mostly by the profile itself (the right category, completeness, review volume, consistent listings, activity) and not by how good the website looks.</p>
-        <p>Every build here includes Google setup, so the profile points at the site and the hours, address and phone match everywhere. Reviews are the other half, and for a salon they are the deciding one: a person choosing who will cut their hair reads them. The local SEO page describes a review system that messages a client after their appointment and routes happy ones to Google, with unhappy ones going to you privately first. That is separate from the site: a one-time Profile Tune-Up is $750, and ongoing management starts at $500 a month per location.</p>
+        <p>Every build here includes Google setup, so the profile points at the site and the hours, address and phone match everywhere. Reviews are the other half, and for a salon they are the deciding one: a person choosing who will cut their hair reads them. The local SEO page describes a review system that messages every client after their appointment and asks for a Google review with one link, with a private feedback form beside it. That is separate from the site: a one-time Profile Tune-Up is $750, and ongoing management starts at $500 a month per location.</p>
       </div>
     </div>
   </section>
@@ -247,7 +251,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <h3>Care Plan, from $199 a month</h3>
         <p>Managed hosting and security, monthly edits and updates (a price change, a new stylist, new hours) and uptime and performance monitoring. Optional; the <a href="/services/website-maintenance-grand-rapids.html">website maintenance page</a> lists what it covers and what it does not.</p>
         <h3>On every project</h3>
-        <p>We write the copy; you do not hand us finished text and hope. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. A fixed price and a date in writing before you commit, and no hourly meter. You own all of it at the end: code, content, domain, accounts. Cancellation before work starts is a full refund of the deposit; after work starts you pay only for work done. <a href="/articles/what-grand-rapids-agencies-charge.html">What Grand Rapids web designers charge</a> puts these prices against published local rates.</p>
+        <p>We write the copy; you do not hand us finished text and hope. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. A fixed price and a date in writing before you commit, and website work is never billed by the hour. You own all of it at the end: code, content, domain, accounts. Cancellation before work starts is a full refund of the deposit; after work starts you pay only for work done. <a href="/articles/what-grand-rapids-agencies-charge.html">What Grand Rapids web designers charge</a> puts these prices against published local rates.</p>
         <h3>Not included</h3>
         <p>Photography and logo design; your domain and third-party fees: the booking software, the card processor, a texting provider, any paid app you ask us to connect; hosting after launch unless you take a care plan, though a static site can be handed to you to host free; and regulated copy that needs a specialist to sign off, which for a medical spa means the treatment claims.</p>
       </div>
@@ -327,13 +331,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="/about.html">Founder</a>
     </div>

@@ -38,6 +38,12 @@ The guard is the **first statement**. Not a wrapper around `fbq('init')` — the
 whole snippet, including the script injection, must not run. Dark means zero
 requests to `facebook.net`, not "loaded but uninitialised".
 
+If the policy says it honours Global Privacy Control, the loader needs a second
+guard right after the first: `if (navigator.globalPrivacyControl === true) return;`.
+A policy sentence with no code behind it is a false statement. builtbykerr.com's
+`e2e/gpc.spec.ts` serves the repo locally and checks every pixel page both ways
+(GPC on: no `fbq`, no request to Meta; GPC off: both present).
+
 ## 3. The conversion event
 
 Fire it where the conversion **actually succeeded** — inside the branch that

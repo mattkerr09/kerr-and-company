@@ -136,12 +136,16 @@
      Disclosed site-wide already: legal/privacy.html says "This Site runs the
      Meta pixel", not "the homepage runs it". -->
 <script>
+// Global Privacy Control: a browser that sends the signal gets no Meta pixel at all
+// (legal/privacy.html, section 1). Nothing below runs, so nothing is requested from Meta.
+if (navigator.globalPrivacyControl !== true) {
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','28202025336060922');fbq('track','PageView');
+}
 </script>
 <!-- meta-pixel:end -->
 </head>
@@ -249,7 +253,7 @@ fbq('init','28202025336060922');fbq('track','PageView');
         <h3>Care Plan, from $199 a month</h3>
         <p>Managed hosting and security, monthly edits and updates, uptime and performance monitoring. Optional. A static site can also be handed to you to host free if you would rather run it yourself.</p>
         <h3>On every project</h3>
-        <p>We write the copy. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. A fixed price and a date in writing before you commit; no hourly meter. You own all of it at the end: code, content, domain, accounts. Cancellation before work starts is a full refund of the deposit; after work starts you pay only for work done, and anything already paid beyond that is refunded.</p>
+        <p>We write the copy. Three rounds of revisions are included, and anything after that is quoted before a minute of work happens. A fixed price and a date in writing before you commit; website work is never billed by the hour. You own all of it at the end: code, content, domain, accounts. Cancellation before work starts is a full refund of the deposit; after work starts you pay only for work done, and anything already paid beyond that is refunded.</p>
         <h3>Not included</h3>
         <p>Photography and logo design (you supply images and brand assets, or we use stock; logo work is quoted separately), your domain and any third-party fees, hosting after launch unless you take a care plan, and regulated copy that needs a specialist to sign off. The <a href="/services/affordable-web-design-grand-rapids.html">affordable web design page</a> goes through the cheapest package line by line, and <a href="/articles/what-grand-rapids-agencies-charge.html">what Grand Rapids web designers charge</a> puts these numbers against published local rates.</p>
       </div>
@@ -326,13 +330,14 @@ fbq('init','28202025336060922');fbq('track','PageView');
   </section>
 
   <footer>
-    <span>© 2026 Kerr &amp; Co. LLC · Grand Rapids, MI</span>
+    <span>© 2026 Kerr &amp; Company LLC · Grand Rapids, MI</span>
     <div class="fr">
       <a href="/">Home</a>
       <a href="/#services">Services</a>
       <a href="/about.html">About</a>
       <a href="/legal/privacy.html">Privacy</a>
       <a href="/legal/terms.html">Terms</a>
+      <a href="/legal/privacy.html#cookies">Do Not Sell or Share My Personal Information</a>
       <a href="/legal/disclaimer.html">Disclaimer</a>
       <a href="/about.html">Founder</a>
     </div>
