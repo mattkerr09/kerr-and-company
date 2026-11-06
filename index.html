@@ -3832,7 +3832,10 @@
      * digit number under the name. It is not a secret; it ships in client JS
      * by design and is visible to anyone who views source.
      */
-    var META_PIXEL_ID = '28202025336060922';
+    /* 2026-11-06: Matthew chose to remove the Meta pixel from every Kerr & Company site
+     * (no consent popup, 1 Facebook visit in 30 days). Held empty, so the loader below
+     * returns before anything is requested from Meta. legal/privacy.html says so. */
+    var META_PIXEL_ID = '';
 
     /* One id per conversion, shared by the browser pixel and (later) the
      * Conversions API, so Meta counts one Lead instead of two. Generating it

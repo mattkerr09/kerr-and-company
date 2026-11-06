@@ -106,7 +106,10 @@ async function run(gpc: boolean | undefined, pages: string[] = PAGES) {
 const line = (r: { page: string; fbq: string; metaRequests: number }) =>
   `${r.page}: fbq is ${r.fbq}, ${r.metaRequests} request(s) to Meta`;
 
-test.describe('Global Privacy Control', () => {
+/* 2026-11-06: skipped, not deleted. The Meta pixel was removed from every page on
+   Matthew's word, so there is nothing for GPC to switch off; e2e/pixel-coverage.spec.ts
+   now asserts zero pixel pages. Re-enable this if a pixel ever returns. */
+test.describe.skip('Global Privacy Control', () => {
   test('the check can see every pixel page (a floor, so it cannot pass on nothing)', () => {
     expect(PAGES.length, 'found far fewer pixel pages than the site has').toBeGreaterThanOrEqual(60);
     expect(PAGES, 'the home page must be among them').toContain('/index.html');
