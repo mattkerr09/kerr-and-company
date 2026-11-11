@@ -510,7 +510,7 @@ def render(page, data):
 {quick}
 </div>
 <h2>How this local read was made</h2>
-<p>Article Studio collected Brave Search’s local listings for “{html.escape(data['trade'])} &lt;town&gt; MI” on <time datetime="2026-11-11">11 November 2026</time>. The eight towns were Grand Rapids, Wyoming, Kentwood, Grandville, Walker, Holland, Muskegon and Kalamazoo. The search kept the first ten listings per town, or fewer where Brave returned fewer. These are Brave’s listings, not Google’s map pack. They are a dated search sample, not a census or a ranking of workmanship.</p>
+<p>I asked the Brave Search API for its local listings for “{html.escape(data['trade'])} &lt;town&gt; MI” on <time datetime="2026-11-11">11 November 2026</time>. The eight towns were Grand Rapids, Wyoming, Kentwood, Grandville, Walker, Holland, Muskegon and Kalamazoo. The search kept the first ten listings per town, or fewer where Brave returned fewer. These are Brave’s listings, not Google’s map pack. They are a dated search sample, not a census or a ranking of workmanship.</p>
 <p>Businesses listed in several towns were counted once across the region. The collector groups listings sharing a website host, so locations of a brand can be grouped together. The table shows that overlap separately. Each listed business homepage was fetched once, with no crawl of its other pages. Counts below use only the business sites that loaded and could be read. A site that blocked the fetch or could not be read is kept apart from a listing with no website.</p>
 {regional}
 <table class="datatable"><caption>Local listings returned by town, before regional overlap is removed</caption>
